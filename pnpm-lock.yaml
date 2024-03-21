@@ -31,7 +31,7 @@ importers:
         version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0)
     devDependencies:
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: ^2.0.0-preview
+        specifier: ^2.0.0-preview.2
         version: 2.0.0-preview.2
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.3.1

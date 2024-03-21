@@ -35,7 +35,7 @@
         "@solana/web3.js": "2.0.0-preview.2"
     },
     "devDependencies": {
-        "@solana/webcrypto-ed25519-polyfill": "^2.0.0-preview",
+        "@solana/webcrypto-ed25519-polyfill": "^2.0.0-preview.2",
         "@typescript-eslint/eslint-plugin": "^7.3.1",
         "@typescript-eslint/parser": "^7.3.1",
         "ava": "^6.1.2",
