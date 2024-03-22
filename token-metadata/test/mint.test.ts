@@ -44,7 +44,7 @@ test('it can mint a NonFungible with createDefaultNft', async (t) => {
   t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
 });
 
-test('it can mint a NonFungible with createDefaultToken22Nft', async (t) => {
+test('it can mint a Token22 NonFungible with createDefaultToken22Nft', async (t) => {
   const client = createDefaultSolanaClient();
   const payer = await generateKeyPairSignerWithSol(client);
   const updateAuthority = await generateKeyPairSignerWithSol(client);
