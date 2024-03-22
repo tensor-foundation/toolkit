@@ -1,5 +1,11 @@
 module.exports = {
   extends: ['@solana/eslint-config-solana'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
+  },
   rules: {
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/sort-type-constituents': 'off',

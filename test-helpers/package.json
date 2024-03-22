@@ -2,21 +2,31 @@
     "name": "@tensor-foundation/test-helpers",
     "version": "0.0.0",
     "description": "Utility functions for testing Solana programs with the Solana Web3.js library",
-    "main": "dist/src/index.js",
-    "types": "dist/src/index.d.ts",
+    "sideEffects": false,
+    "module": "./dist/src/index.js",
+    "main": "dist/src/index.cjs",
+    "types": "dist/types/src/index.d.ts",
     "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/types/src/index.d.ts",
+            "import": "./dist/src/index.js",
+            "require": "./dist/src/index.cjs"
+        }
+    },
     "scripts": {
-        "build": "rimraf dist && tsc -p tsconfig.json",
+        "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
         "build:docs": "typedoc",
         "clean": "rm -rf node_modules && rm -rf dist",
-        "test": "ava",
+        "test": "pnpm build && ava",
         "lint": "eslint --ext js,ts,tsx src",
         "lint:fix": "eslint --fix --ext js,ts,tsx src",
         "format": "prettier --check src test",
         "format:fix": "prettier --write src test"
     },
     "files": [
-        "/dist/src"
+        "./dist/src",
+        "./dist/types"
     ],
     "publishConfig": {
         "access": "public",
@@ -52,6 +62,17 @@
         "typedoc": "^0.25.12",
         "typedoc-plugin-missing-exports": "^2.2.0",
         "typescript": "^5.4.2"
+    },
+    "ava": {
+        "require": [
+            "@solana/webcrypto-ed25519-polyfill"
+        ],
+        "typescript": {
+            "compile": false,
+            "rewritePaths": {
+                "test/": "dist/test/"
+            }
+        }
     },
     "packageManager": "pnpm@8.2.0"
 }
