@@ -24,6 +24,7 @@ import {
   PrintSupplyArgs,
   getMintV1Instruction,
   printSupply,
+  findTokenRecordPda,
 } from '../generated';
 
 export interface NftData {
@@ -79,6 +80,76 @@ export const createDefaultNft = async (
     owner,
     payer,
     tokenProgramId: TOKEN_PROGRAM_ID,
+  };
+
+  return await mintNft(client, accounts, data);
+};
+
+// Create a default pNFT with example data. Useful for creating throw-away NFTs
+// for testing.
+// Returns the mint address of the NFT.
+export const createDefaultpNft = async (
+  client: Client,
+  authority: KeyPairSigner<string>,
+  owner: KeyPairSigner,
+  payer: KeyPairSigner | null
+): Promise<Address> => {
+  const data: NftData = {
+    name: 'Example NFT',
+    symbol: 'EXNFT',
+    uri: 'https://example.com/nft',
+    sellerFeeBasisPoints: 500,
+    creators: [
+      {
+        address: authority.address,
+        verified: true,
+        share: 100,
+      },
+    ],
+    printSupply: printSupply('Zero'),
+    tokenStandard: TokenStandard.ProgrammableNonFungible,
+  };
+
+  const accounts = {
+    authority,
+    owner,
+    payer,
+    tokenProgramId: TOKEN_PROGRAM_ID,
+  };
+
+  return await mintNft(client, accounts, data);
+};
+
+// Create a default pNFT with example data. Useful for creating throw-away NFTs
+// for testing.
+// Returns the mint address of the NFT.
+export const createDefaultToken22pNft = async (
+  client: Client,
+  authority: KeyPairSigner<string>,
+  owner: KeyPairSigner,
+  payer: KeyPairSigner | null
+): Promise<Address> => {
+  const data: NftData = {
+    name: 'Example NFT',
+    symbol: 'EXNFT',
+    uri: 'https://example.com/nft',
+    sellerFeeBasisPoints: 500,
+    creators: [
+      {
+        address: authority.address,
+        verified: true,
+        share: 100,
+      },
+    ],
+    printSupply: printSupply('Zero'),
+    tokenStandard: TokenStandard.ProgrammableNonFungible,
+  };
+
+  const accounts = {
+    authority,
+    owner,
+    payer,
+    tokenProgramId: TOKEN_22_PROGRAM_ID,
   };
 
   return await mintNft(client, accounts, data);
@@ -178,6 +249,11 @@ export const mintNft = async (
     programAddress: ATA_PROGRAM_ID,
   });
 
+  let tokenRecord = undefined;
+  if (tokenStandard === TokenStandard.ProgrammableNonFungible) {
+    [tokenRecord] = await findTokenRecordPda({ mint: mint.address, token });
+  }
+
   const createIx = getCreateV1Instruction({
     metadata,
     masterEdition,
@@ -212,6 +288,7 @@ export const mintNft = async (
     authority,
     payer,
     tokenStandard,
+    tokenRecord,
     splTokenProgram: tokenProgramId,
   });
 
