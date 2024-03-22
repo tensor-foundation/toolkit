@@ -1,1 +1,2 @@
-export * from './setup';
+export * from "./programIds";
+export * from "./setup";

@@ -4,6 +4,7 @@
     "description": "Utility functions for testing Solana programs with the Solana Web3.js library",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
+    "type": "module",
     "scripts": {
         "build": "rimraf dist && tsc -p tsconfig.json",
         "build:docs": "typedoc",
@@ -35,6 +36,7 @@
         "@solana/web3.js": "2.0.0-preview.2"
     },
     "devDependencies": {
+        "@solana/eslint-config-solana": "^3.0.0",
         "@solana/webcrypto-ed25519-polyfill": "^2.0.0-preview.2",
         "@typescript-eslint/eslint-plugin": "^7.3.1",
         "@typescript-eslint/parser": "^7.3.1",

@@ -32,6 +32,9 @@ importers:
         specifier: 2.0.0-preview.2
         version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0)
     devDependencies:
+      '@solana/eslint-config-solana':
+        specifier: ^3.0.0
+        version: 3.0.3(@typescript-eslint/eslint-plugin@7.3.1)(@typescript-eslint/parser@7.3.1)(eslint-plugin-jest@27.9.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-simple-import-sort@10.0.0)(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0)(eslint@8.57.0)(typescript@5.4.3)
       '@solana/webcrypto-ed25519-polyfill':
         specifier: ^2.0.0-preview.2
         version: 2.0.0-preview.2
