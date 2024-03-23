@@ -7,6 +7,7 @@ import {
 } from '@tensor-foundation/test-helpers';
 import {
   Metadata,
+  TokenStandard,
   createDefaultNft,
   createDefaultToken22Nft,
   createDefaultToken22pNft,
@@ -30,7 +31,7 @@ test('it can mint a NonFungible with createDefaultNft', async (t) => {
     data: {
       updateAuthority: updateAuthority.address,
       mint: mint,
-      tokenStandard: some(0),
+      tokenStandard: some(TokenStandard.NonFungible),
       collection: none(),
     },
   }));
@@ -60,7 +61,7 @@ test('it can mint a Token22 NonFungible with createDefaultToken22Nft', async (t)
     data: {
       updateAuthority: updateAuthority.address,
       mint: mint,
-      tokenStandard: some(0),
+      tokenStandard: some(TokenStandard.NonFungible),
       collection: none(),
     },
   }));
@@ -85,7 +86,7 @@ test('it can mint a ProgrammableNonFungible with createDefaultpNft', async (t) =
     data: {
       updateAuthority: updateAuthority.address,
       mint: mint,
-      tokenStandard: some(4),
+      tokenStandard: some(TokenStandard.ProgrammableNonFungible),
       collection: none(),
     },
   }));
@@ -115,7 +116,7 @@ test('it can mint a Token22 ProgrammableNonFungible with createDefaultToken22pNf
     data: {
       updateAuthority: updateAuthority.address,
       mint: mint,
-      tokenStandard: some(4),
+      tokenStandard: some(TokenStandard.ProgrammableNonFungible),
       collection: none(),
     },
   }));

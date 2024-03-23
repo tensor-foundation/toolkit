@@ -230,8 +230,6 @@ export const mintNft = async (
     mint = await generateKeyPairSigner();
   }
 
-  console.log('generated mint', mint.address);
-
   const [metadata] = await findMetadataPda({ mint: mint.address });
   const [masterEdition] = await findMasterEditionPda({ mint: mint.address });
   const [token] = await getProgramDerivedAddress({
