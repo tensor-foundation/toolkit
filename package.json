@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "scripts": {
+        "build": "pnpm --filter {test-helpers} && pnpm --filter {token-metadata} build",
+        "clean": "pnpm --filter {test-helpers} clean && pnpm --filter {token-metadata} clean"
+    }
+}
