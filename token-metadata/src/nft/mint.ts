@@ -1,6 +1,5 @@
 import {
   Address,
-  address,
   getAddressEncoder,
   getProgramDerivedAddress,
 } from '@solana/addresses';
@@ -8,10 +7,13 @@ import { KeyPairSigner, generateKeyPairSigner } from '@solana/signers';
 import { appendTransactionInstruction, pipe } from '@solana/web3.js';
 import { OptionOrNullable } from '@solana/codecs';
 import {
+  ASSOCIATED_TOKEN_ACCOUNTS,
   Client,
   createDefaultTransaction,
   signAndSendTransaction,
-} from '../setup';
+  TOKEN,
+  TOKEN22,
+} from '@tensor-foundation/test-helpers';
 import {
   getCreateV1Instruction,
   findMetadataPda,
@@ -45,12 +47,6 @@ export interface NftData {
   isCollection?: boolean;
 }
 
-const ATA_PROGRAM_ID = address('ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL');
-const TOKEN_PROGRAM_ID = address('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
-const TOKEN_22_PROGRAM_ID = address(
-  'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
-);
-
 // Create a default NFT with example data. Useful for creating throw-away NFTs
 // for testing.
 // Returns the mint address of the NFT.
@@ -79,7 +75,7 @@ export const createDefaultNft = async (
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN_PROGRAM_ID,
+    tokenProgramId: TOKEN,
   };
 
   return await mintNft(client, accounts, data);
@@ -114,7 +110,7 @@ export const createDefaultpNft = async (
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN_PROGRAM_ID,
+    tokenProgramId: TOKEN,
   };
 
   return await mintNft(client, accounts, data);
@@ -149,7 +145,7 @@ export const createDefaultToken22pNft = async (
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN_22_PROGRAM_ID,
+    tokenProgramId: TOKEN22,
   };
 
   return await mintNft(client, accounts, data);
@@ -191,7 +187,7 @@ export const createDefaultToken22Nft = async (
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN_22_PROGRAM_ID,
+    tokenProgramId: TOKEN22,
   };
 
   return await mintNft(client, accounts, data);
@@ -221,8 +217,8 @@ export const mintNft = async (
     isCollection = false,
   } = data;
 
-  const { authority, owner } = accounts;
-  let { tokenProgramId, payer, mint } = accounts;
+  const { authority, owner, tokenProgramId } = accounts;
+  let { payer, mint } = accounts;
 
   // const client = createDefaultSolanaClient();
 
@@ -230,23 +226,21 @@ export const mintNft = async (
     payer = authority;
   }
 
-  if (tokenProgramId === undefined) {
-    tokenProgramId = TOKEN_PROGRAM_ID;
-  }
-
   if (mint === undefined) {
     mint = await generateKeyPairSigner();
   }
+
+  console.log('generated mint', mint.address);
 
   const [metadata] = await findMetadataPda({ mint: mint.address });
   const [masterEdition] = await findMasterEditionPda({ mint: mint.address });
   const [token] = await getProgramDerivedAddress({
     seeds: [
       getAddressEncoder().encode(owner.address),
-      getAddressEncoder().encode(tokenProgramId),
+      getAddressEncoder().encode(tokenProgramId ?? TOKEN),
       getAddressEncoder().encode(mint.address),
     ],
-    programAddress: ATA_PROGRAM_ID,
+    programAddress: ASSOCIATED_TOKEN_ACCOUNTS,
   });
 
   let tokenRecord = undefined;

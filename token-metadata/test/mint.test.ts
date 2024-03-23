@@ -1,23 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import test from 'ava';
+import {
+  createDefaultSolanaClient,
+  generateKeyPairSignerWithSol,
+  TOKEN,
+  TOKEN22,
+} from '@tensor-foundation/test-helpers';
 import {
   Metadata,
   createDefaultNft,
-  createDefaultSolanaClient,
   createDefaultToken22Nft,
   createDefaultToken22pNft,
   createDefaultpNft,
   fetchMetadata,
   findMetadataPda,
-  generateKeyPairSignerWithSol,
 } from '../src/index.js';
 import { none, some } from '@solana/codecs';
-import { address } from '@solana/addresses';
-
-const TOKEN_PROGRAM_ID = address('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
-const TOKEN_22_PROGRAM_ID = address(
-  'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
-);
 
 test('it can mint a NonFungible with createDefaultNft', async (t) => {
   const client = createDefaultSolanaClient();
@@ -41,7 +38,7 @@ test('it can mint a NonFungible with createDefaultNft', async (t) => {
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
-  t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
+  t.assert(mintAccount?.value?.owner == TOKEN);
 });
 
 test('it can mint a Token22 NonFungible with createDefaultToken22Nft', async (t) => {
@@ -71,7 +68,7 @@ test('it can mint a Token22 NonFungible with createDefaultToken22Nft', async (t)
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
-  t.assert(mintAccount?.value?.owner == TOKEN_22_PROGRAM_ID);
+  t.assert(mintAccount?.value?.owner == TOKEN22);
 });
 
 test('it can mint a ProgrammableNonFungible with createDefaultpNft', async (t) => {
@@ -96,7 +93,7 @@ test('it can mint a ProgrammableNonFungible with createDefaultpNft', async (t) =
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
-  t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
+  t.assert(mintAccount?.value?.owner == TOKEN);
 });
 
 test('it can mint a Token22 ProgrammableNonFungible with createDefaultToken22pNft', async (t) => {
@@ -126,5 +123,5 @@ test('it can mint a Token22 ProgrammableNonFungible with createDefaultToken22pNf
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
-  t.assert(mintAccount?.value?.owner == TOKEN_22_PROGRAM_ID);
+  t.assert(mintAccount?.value?.owner == TOKEN22);
 });

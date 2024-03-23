@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import '@solana/webcrypto-ed25519-polyfill';
 
 import {
@@ -9,6 +8,7 @@ import {
 } from '@solana/signers';
 import {
   Address,
+  airdropFactory,
   Commitment,
   CompilableTransaction,
   createPrivateKeyFromBytes,
@@ -19,13 +19,18 @@ import {
   ITransactionWithBlockhashLifetime,
   lamports,
   pipe,
+  Rpc,
+  RpcSubscriptions,
+  sendAndConfirmTransactionFactory,
   setTransactionFeePayer,
   setTransactionLifetimeUsingBlockhash,
+  SolanaRpcApi,
+  SolanaRpcSubscriptionsApi,
 } from '@solana/web3.js';
 
 export type Client = {
-  rpc: ReturnType<typeof createSolanaRpc>;
-  rpcSubscriptions: ReturnType<typeof createSolanaRpcSubscriptions>;
+  rpc: Rpc<SolanaRpcApi>;
+  rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
 };
 
 export const createDefaultSolanaClient = (): Client => {
@@ -45,16 +50,17 @@ export const createKeyPairSigner = async (
     crypto.subtle.importKey('raw', publicKeyBytes, 'Ed25519', true, ['verify']),
     createPrivateKeyFromBytes(privateKeyBytes),
   ]);
-  return createSignerFromKeyPair({ privateKey, publicKey });
+  return await createSignerFromKeyPair({ privateKey, publicKey });
 };
 
 export const generateKeyPairSignerWithSol = async (
   client: Client,
   putativeLamports: bigint = 1_000_000_000n
 ) => {
-  //   const airdropRequester = createDefaultAirdropRequester(client);
   const signer = await generateKeyPairSigner();
-  client.rpc.requestAirdrop(signer.address, lamports(putativeLamports), {
+  await airdropFactory(client)({
+    recipientAddress: signer.address,
+    lamports: lamports(putativeLamports),
     commitment: 'confirmed',
   });
   return signer;
@@ -65,9 +71,11 @@ export const fundWalletWithSol = async (
   address: Address,
   putativeLamports: bigint = 1_000_000_000n
 ) => {
-  client.rpc.requestAirdrop(address, lamports(putativeLamports), {
-    commitment: 'confirmed',
-  });
+  await client.rpc
+    .requestAirdrop(address, lamports(putativeLamports), {
+      commitment: 'confirmed',
+    })
+    .send();
 };
 
 export const createDefaultTransaction = async (
@@ -91,7 +99,9 @@ export const signAndSendTransaction = async (
 ) => {
   const signedTransaction = await signTransactionWithSigners(transaction);
   const signature = getSignatureFromTransaction(signedTransaction);
-  client.rpc.sendAndConfirmTransaction(signedTransaction, { commitment });
+  await sendAndConfirmTransactionFactory(client)(signedTransaction, {
+    commitment,
+  });
 
   return signature;
 };
