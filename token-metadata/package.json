@@ -1,5 +1,5 @@
 {
-  "name": "@tensor-foundation/token-metadata",
+  "name": "@tensor-foundation/toolkit-token-metadata",
   "version": "0.0.0",
   "description": "Toolkit for Metaplex Token Metadata",
   "sideEffects": false,
