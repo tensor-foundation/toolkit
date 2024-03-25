@@ -2,8 +2,8 @@ import test from 'ava';
 import {
   createDefaultSolanaClient,
   generateKeyPairSignerWithSol,
-  TOKEN,
-  TOKEN22,
+  TOKEN_PROGRAM_ID,
+  TOKEN22_PROGRAM_ID,
 } from '@tensor-foundation/test-helpers';
 import {
   Metadata,
@@ -39,7 +39,7 @@ test('it can mint a NonFungible with createDefaultNft', async (t) => {
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
-  t.assert(mintAccount?.value?.owner == TOKEN);
+  t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
 });
 
 test('it can mint a Token22 NonFungible with createDefaultToken22Nft', async (t) => {
@@ -69,7 +69,7 @@ test('it can mint a Token22 NonFungible with createDefaultToken22Nft', async (t)
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
-  t.assert(mintAccount?.value?.owner == TOKEN22);
+  t.assert(mintAccount?.value?.owner == TOKEN22_PROGRAM_ID);
 });
 
 test('it can mint a ProgrammableNonFungible with createDefaultpNft', async (t) => {
@@ -94,7 +94,7 @@ test('it can mint a ProgrammableNonFungible with createDefaultpNft', async (t) =
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
-  t.assert(mintAccount?.value?.owner == TOKEN);
+  t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
 });
 
 test('it can mint a Token22 ProgrammableNonFungible with createDefaultToken22pNft', async (t) => {
@@ -124,5 +124,5 @@ test('it can mint a Token22 ProgrammableNonFungible with createDefaultToken22pNf
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
-  t.assert(mintAccount?.value?.owner == TOKEN22);
+  t.assert(mintAccount?.value?.owner == TOKEN22_PROGRAM_ID);
 });

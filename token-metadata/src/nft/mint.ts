@@ -7,12 +7,12 @@ import { KeyPairSigner, generateKeyPairSigner } from '@solana/signers';
 import { appendTransactionInstruction, pipe } from '@solana/web3.js';
 import { OptionOrNullable } from '@solana/codecs';
 import {
-  ASSOCIATED_TOKEN_ACCOUNTS,
+  ASSOCIATED_TOKEN_ACCOUNTS_PROGRAM_ID,
   Client,
   createDefaultTransaction,
   signAndSendTransaction,
-  TOKEN,
-  TOKEN22,
+  TOKEN_PROGRAM_ID,
+  TOKEN22_PROGRAM_ID,
 } from '@tensor-foundation/test-helpers';
 import {
   getCreateV1Instruction,
@@ -75,7 +75,7 @@ export const createDefaultNft = async (
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN,
+    tokenProgramId: TOKEN_PROGRAM_ID,
   };
 
   return await mintNft(client, accounts, data);
@@ -110,7 +110,7 @@ export const createDefaultpNft = async (
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN,
+    tokenProgramId: TOKEN_PROGRAM_ID,
   };
 
   return await mintNft(client, accounts, data);
@@ -145,7 +145,7 @@ export const createDefaultToken22pNft = async (
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN22,
+    tokenProgramId: TOKEN22_PROGRAM_ID,
   };
 
   return await mintNft(client, accounts, data);
@@ -187,7 +187,7 @@ export const createDefaultToken22Nft = async (
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN22,
+    tokenProgramId: TOKEN22_PROGRAM_ID,
   };
 
   return await mintNft(client, accounts, data);
@@ -235,10 +235,10 @@ export const mintNft = async (
   const [token] = await getProgramDerivedAddress({
     seeds: [
       getAddressEncoder().encode(owner.address),
-      getAddressEncoder().encode(tokenProgramId ?? TOKEN),
+      getAddressEncoder().encode(tokenProgramId ?? TOKEN_PROGRAM_ID),
       getAddressEncoder().encode(mint.address),
     ],
-    programAddress: ASSOCIATED_TOKEN_ACCOUNTS,
+    programAddress: ASSOCIATED_TOKEN_ACCOUNTS_PROGRAM_ID,
   });
 
   let tokenRecord = undefined;

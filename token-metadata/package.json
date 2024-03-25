@@ -19,7 +19,7 @@
     "build:docs": "typedoc",
     "clean": "rm -rf node_modules && rm -rf dist",
     "generate": "node ./generate.cjs",
-    "test": "pnpm build && ava",
+    "test": "ava",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
     "format": "prettier --check src test",
