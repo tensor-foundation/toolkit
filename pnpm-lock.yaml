@@ -104,6 +104,9 @@ importers:
       '@solana/web3.js':
         specifier: ^2.0.0-preview
         version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0)
+      '@tensor-foundation/test-helpers':
+        specifier: workspace:*
+        version: link:../test-helpers
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0

@@ -15,13 +15,4 @@ export default defineConfig(() => [
   // Source.
   { ...SHARED_OPTIONS, format: 'cjs' },
   { ...SHARED_OPTIONS, format: 'esm' },
-
-  // Tests.
-  {
-    ...SHARED_OPTIONS,
-    bundle: false,
-    entry: ['./test/*.ts'],
-    format: 'cjs',
-    outDir: './dist/test',
-  },
 ]);
