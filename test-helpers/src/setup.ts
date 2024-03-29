@@ -92,15 +92,24 @@ export const createDefaultTransaction = async (
   );
 };
 
+export interface TransactionOptions {
+  commitment?: Commitment;
+  skipPreflight?: boolean;
+}
+
 export const signAndSendTransaction = async (
   client: Client,
   transaction: CompilableTransaction & ITransactionWithBlockhashLifetime,
-  commitment: Commitment = 'confirmed'
+  options?: TransactionOptions
 ) => {
+  const commitment = options?.commitment ?? 'confirmed';
+  const skipPreflight = options?.skipPreflight ?? false;
+
   const signedTransaction = await signTransactionWithSigners(transaction);
   const signature = getSignatureFromTransaction(signedTransaction);
   await sendAndConfirmTransactionFactory(client)(signedTransaction, {
     commitment,
+    skipPreflight,
   });
 
   return signature;

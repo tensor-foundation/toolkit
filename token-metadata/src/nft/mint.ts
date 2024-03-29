@@ -1,13 +1,8 @@
-import {
-  Address,
-  getAddressEncoder,
-  getProgramDerivedAddress,
-} from '@solana/addresses';
+import { Address } from '@solana/addresses';
 import { KeyPairSigner, generateKeyPairSigner } from '@solana/signers';
 import { appendTransactionInstruction, pipe } from '@solana/web3.js';
 import { OptionOrNullable } from '@solana/codecs';
 import {
-  ASSOCIATED_TOKEN_ACCOUNTS_PROGRAM_ID,
   Client,
   createDefaultTransaction,
   signAndSendTransaction,
@@ -28,6 +23,7 @@ import {
   printSupply,
   findTokenRecordPda,
 } from '../generated';
+import { findAtaPda } from '../token';
 
 export interface NftData {
   name: string;
@@ -47,6 +43,14 @@ export interface NftData {
   isCollection?: boolean;
 }
 
+export type Nft = {
+  mint: Address;
+  metadata: Address;
+  masterEdition: Address;
+  token: Address;
+  tokenRecord?: Address;
+};
+
 // Create a default NFT with example data. Useful for creating throw-away NFTs
 // for testing.
 // Returns the mint address of the NFT.
@@ -55,7 +59,7 @@ export const createDefaultNft = async (
   authority: KeyPairSigner<string>,
   owner: KeyPairSigner,
   payer: KeyPairSigner | null
-): Promise<Address> => {
+): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
@@ -89,7 +93,7 @@ export const createDefaultpNft = async (
   authority: KeyPairSigner<string>,
   owner: KeyPairSigner,
   payer: KeyPairSigner | null
-): Promise<Address> => {
+): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
@@ -124,7 +128,7 @@ export const createDefaultToken22pNft = async (
   authority: KeyPairSigner<string>,
   owner: KeyPairSigner,
   payer: KeyPairSigner | null
-): Promise<Address> => {
+): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
@@ -167,7 +171,7 @@ export const createDefaultToken22Nft = async (
   authority: KeyPairSigner,
   owner: KeyPairSigner,
   payer: KeyPairSigner | null
-): Promise<Address> => {
+): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
@@ -193,12 +197,12 @@ export const createDefaultToken22Nft = async (
   return await mintNft(client, accounts, data);
 };
 
-// Create a new NFT on the local validator and return the mint address.
+// Create a new NFT and return the addresses associated with it.
 export const mintNft = async (
   client: Client,
   accounts: MintNftAccounts,
   data: NftData
-): Promise<Address> => {
+): Promise<Nft> => {
   const {
     name,
     symbol,
@@ -232,13 +236,10 @@ export const mintNft = async (
 
   const [metadata] = await findMetadataPda({ mint: mint.address });
   const [masterEdition] = await findMasterEditionPda({ mint: mint.address });
-  const [token] = await getProgramDerivedAddress({
-    seeds: [
-      getAddressEncoder().encode(owner.address),
-      getAddressEncoder().encode(tokenProgramId ?? TOKEN_PROGRAM_ID),
-      getAddressEncoder().encode(mint.address),
-    ],
-    programAddress: ASSOCIATED_TOKEN_ACCOUNTS_PROGRAM_ID,
+  const [token] = await findAtaPda({
+    owner: owner.address,
+    mint: mint.address,
+    tokenProgramId: tokenProgramId,
   });
 
   let tokenRecord = undefined;
@@ -291,5 +292,11 @@ export const mintNft = async (
     (tx) => signAndSendTransaction(client, tx)
   );
 
-  return mint.address;
+  return {
+    mint: mint.address,
+    metadata,
+    masterEdition,
+    token,
+    tokenRecord,
+  };
 };
