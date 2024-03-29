@@ -1,13 +1,8 @@
-import {
-  Address,
-  getAddressEncoder,
-  getProgramDerivedAddress,
-} from '@solana/addresses';
+import { Address } from '@solana/addresses';
 import { KeyPairSigner, generateKeyPairSigner } from '@solana/signers';
 import { appendTransactionInstruction, pipe } from '@solana/web3.js';
 import { OptionOrNullable } from '@solana/codecs';
 import {
-  ASSOCIATED_TOKEN_ACCOUNTS_PROGRAM_ID,
   Client,
   createDefaultTransaction,
   signAndSendTransaction,
@@ -28,6 +23,7 @@ import {
   printSupply,
   findTokenRecordPda,
 } from '../generated';
+import { findAtaPda } from '../token';
 
 export interface NftData {
   name: string;
@@ -232,13 +228,10 @@ export const mintNft = async (
 
   const [metadata] = await findMetadataPda({ mint: mint.address });
   const [masterEdition] = await findMasterEditionPda({ mint: mint.address });
-  const [token] = await getProgramDerivedAddress({
-    seeds: [
-      getAddressEncoder().encode(owner.address),
-      getAddressEncoder().encode(tokenProgramId ?? TOKEN_PROGRAM_ID),
-      getAddressEncoder().encode(mint.address),
-    ],
-    programAddress: ASSOCIATED_TOKEN_ACCOUNTS_PROGRAM_ID,
+  const [token] = await findAtaPda({
+    owner: owner.address,
+    mint: mint.address,
+    tokenProgramId: tokenProgramId,
   });
 
   let tokenRecord = undefined;

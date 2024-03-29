@@ -18,7 +18,7 @@
         "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
         "build:docs": "typedoc",
         "clean": "rm -rf node_modules && rm -rf dist",
-        "test": "pnpm build && ava",
+        "test": "ava",
         "lint": "eslint --ext js,ts,tsx src",
         "lint:fix": "eslint --fix --ext js,ts,tsx src",
         "format": "prettier --check src test",

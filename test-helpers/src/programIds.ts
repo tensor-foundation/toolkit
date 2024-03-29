@@ -17,6 +17,41 @@ export const TBID_PROGRAM_ID = address(
   'TB1Dqt8JeKQh7RLDzfYDJsq8KS4fS2yt87avRjyRxMv'
 );
 
+// System Programs
+export const SYSVARS_CLOCK = address(
+  'SysvarC1ock11111111111111111111111111111111'
+);
+export const SYSVARS_EPOCH_SCHEDULE = address(
+  'SysvarEpochSchedu1e111111111111111111111111'
+);
+export const SYSVARS_FEES = address(
+  'SysvarFees111111111111111111111111111111111'
+);
+export const SYSVARS_INSTRUCTIONS = address(
+  'Sysvar1nstructions1111111111111111111111111'
+);
+export const SYSVARS_RECENT_BLOCKHASHES = address(
+  'SysvarRecentB1ockHashes11111111111111111111'
+);
+export const SYSVARS_RENT = address(
+  'SysvarRent111111111111111111111111111111111'
+);
+export const SYSVARS_SLOT_HASHES = address(
+  'SysvarS1otHashes111111111111111111111111111'
+);
+export const SYSVARS_SLOT_HISTORY = address(
+  'SysvarS1otHistory11111111111111111111111111'
+);
+export const SYSVARS_STAKE_HISTORY = address(
+  'SysvarStakeHistory1111111111111111111111111'
+);
+export const SYSVARS_EPOCH_REWARDS = address(
+  'SysvarEpochRewards1111111111111111111111111'
+);
+export const SYSVARS_RESTART_SLOT = address(
+  'SysvarLastRestartS1ot1111111111111111111111'
+);
+
 // SPL Programs
 export const TOKEN_PROGRAM_ID = address(
   'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'
@@ -67,4 +102,7 @@ export const MPL_SYSTEM_EXTRAS_PROGRAM_ID = address(
 );
 export const MPL_TOKEN_METADATA_PROGRAM_ID = address(
   'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s'
+);
+export const MPL_TOKEN_AUTH_RULES_PROGRAM_ID = address(
+  'auth9SigNpDKz4sJJ1DfCTuZrZNSAgh9sFD3rboVmgg'
 );
