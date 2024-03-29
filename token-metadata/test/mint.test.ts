@@ -13,7 +13,6 @@ import {
   createDefaultToken22pNft,
   createDefaultpNft,
   fetchMetadata,
-  findMetadataPda,
 } from '../src/index.js';
 import { none, some } from '@solana/codecs';
 
@@ -22,8 +21,12 @@ test('it can mint a NonFungible with createDefaultNft', async (t) => {
   const payer = await generateKeyPairSignerWithSol(client);
   const updateAuthority = await generateKeyPairSignerWithSol(client);
 
-  const mint = await createDefaultNft(client, updateAuthority, payer, payer);
-  const [metadata] = await findMetadataPda({ mint });
+  const { mint, metadata } = await createDefaultNft(
+    client,
+    updateAuthority,
+    payer,
+    payer
+  );
 
   // Then a whitelist authority was created with the correct data.
   t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
@@ -47,13 +50,12 @@ test('it can mint a Token22 NonFungible with createDefaultToken22Nft', async (t)
   const payer = await generateKeyPairSignerWithSol(client);
   const updateAuthority = await generateKeyPairSignerWithSol(client);
 
-  const mint = await createDefaultToken22Nft(
+  const { mint, metadata } = await createDefaultToken22Nft(
     client,
     updateAuthority,
     payer,
     payer
   );
-  const [metadata] = await findMetadataPda({ mint });
 
   // Then a whitelist authority was created with the correct data.
   t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
@@ -77,8 +79,12 @@ test('it can mint a ProgrammableNonFungible with createDefaultpNft', async (t) =
   const payer = await generateKeyPairSignerWithSol(client);
   const updateAuthority = await generateKeyPairSignerWithSol(client);
 
-  const mint = await createDefaultpNft(client, updateAuthority, payer, payer);
-  const [metadata] = await findMetadataPda({ mint });
+  const { mint, metadata } = await createDefaultpNft(
+    client,
+    updateAuthority,
+    payer,
+    payer
+  );
 
   // Then a whitelist authority was created with the correct data.
   t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
@@ -102,13 +108,12 @@ test('it can mint a Token22 ProgrammableNonFungible with createDefaultToken22pNf
   const payer = await generateKeyPairSignerWithSol(client);
   const updateAuthority = await generateKeyPairSignerWithSol(client);
 
-  const mint = await createDefaultToken22pNft(
+  const { mint, metadata } = await createDefaultToken22pNft(
     client,
     updateAuthority,
     payer,
     payer
   );
-  const [metadata] = await findMetadataPda({ mint });
 
   // Then a whitelist authority was created with the correct data.
   t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{

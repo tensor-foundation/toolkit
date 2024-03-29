@@ -43,6 +43,14 @@ export interface NftData {
   isCollection?: boolean;
 }
 
+export type Nft = {
+  mint: Address;
+  metadata: Address;
+  masterEdition: Address;
+  token: Address;
+  tokenRecord?: Address;
+};
+
 // Create a default NFT with example data. Useful for creating throw-away NFTs
 // for testing.
 // Returns the mint address of the NFT.
@@ -51,7 +59,7 @@ export const createDefaultNft = async (
   authority: KeyPairSigner<string>,
   owner: KeyPairSigner,
   payer: KeyPairSigner | null
-): Promise<Address> => {
+): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
@@ -85,7 +93,7 @@ export const createDefaultpNft = async (
   authority: KeyPairSigner<string>,
   owner: KeyPairSigner,
   payer: KeyPairSigner | null
-): Promise<Address> => {
+): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
@@ -120,7 +128,7 @@ export const createDefaultToken22pNft = async (
   authority: KeyPairSigner<string>,
   owner: KeyPairSigner,
   payer: KeyPairSigner | null
-): Promise<Address> => {
+): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
@@ -163,7 +171,7 @@ export const createDefaultToken22Nft = async (
   authority: KeyPairSigner,
   owner: KeyPairSigner,
   payer: KeyPairSigner | null
-): Promise<Address> => {
+): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
@@ -189,12 +197,12 @@ export const createDefaultToken22Nft = async (
   return await mintNft(client, accounts, data);
 };
 
-// Create a new NFT on the local validator and return the mint address.
+// Create a new NFT and return the addresses associated with it.
 export const mintNft = async (
   client: Client,
   accounts: MintNftAccounts,
   data: NftData
-): Promise<Address> => {
+): Promise<Nft> => {
   const {
     name,
     symbol,
@@ -284,5 +292,11 @@ export const mintNft = async (
     (tx) => signAndSendTransaction(client, tx)
   );
 
-  return mint.address;
+  return {
+    mint: mint.address,
+    metadata,
+    masterEdition,
+    token,
+    tokenRecord,
+  };
 };
