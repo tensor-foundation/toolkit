@@ -286,7 +286,7 @@ export const mintNft = async (
   });
 
   await pipe(
-    await createDefaultTransaction(client, owner.address),
+    await createDefaultTransaction(client, owner),
     (tx) => appendTransactionInstruction(createIx, tx),
     (tx) => appendTransactionInstruction(mintIx, tx),
     (tx) => signAndSendTransaction(client, tx)

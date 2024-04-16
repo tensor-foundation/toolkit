@@ -11,7 +11,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "./dist",
     "preserveWatchOutput": true,
@@ -20,5 +20,11 @@
     "target": "ESNext"
   },
   "exclude": ["node_modules"],
-  "include": ["src", "test"]
+  "include": [
+    "test-helpers/src",
+    "toolkit-token-metadata/src",
+    "test-helpers/test",
+    "toolkit-token-metadata/test",
+    ".eslintrc.js"
+  ]
 }
