@@ -1,6 +1,6 @@
 {
     "name": "@tensor-foundation/test-helpers",
-    "version": "0.0.1-alpha.2",
+    "version": "0.0.1-alpha.3",
     "description": "Utility functions for testing Solana programs with the Solana Web3.js library",
     "sideEffects": false,
     "module": "./dist/src/index.js",
