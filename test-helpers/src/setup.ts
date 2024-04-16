@@ -26,7 +26,6 @@ import {
   setTransactionLifetimeUsingBlockhash,
   SolanaRpcApi,
   SolanaRpcSubscriptionsApi,
-  TransactionSigner,
 } from '@solana/web3.js';
 
 export type Client = {
@@ -43,7 +42,7 @@ export const createDefaultSolanaClient = (): Client => {
 
 export const createKeyPairSigner = async (
   bytes: Uint8Array
-): Promise<TransactionSigner<string>> => {
+): Promise<KeyPairSigner<string>> => {
   const publicKeyBytes = bytes.slice(32);
   const privateKeyBytes = bytes.slice(0, 32);
 
