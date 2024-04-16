@@ -5,6 +5,7 @@ import {
   signTransactionWithSigners,
   KeyPairSigner,
   createSignerFromKeyPair,
+  setTransactionFeePayerSigner,
 } from '@solana/signers';
 import {
   Address,
@@ -22,7 +23,6 @@ import {
   Rpc,
   RpcSubscriptions,
   sendAndConfirmTransactionFactory,
-  setTransactionFeePayer,
   setTransactionLifetimeUsingBlockhash,
   SolanaRpcApi,
   SolanaRpcSubscriptionsApi,
@@ -70,7 +70,7 @@ export const fundWalletWithSol = async (
   client: Client,
   address: Address,
   putativeLamports: bigint = 1_000_000_000n
-) => {
+): Promise<void> => {
   await client.rpc
     .requestAirdrop(address, lamports(putativeLamports), {
       commitment: 'confirmed',
@@ -80,14 +80,14 @@ export const fundWalletWithSol = async (
 
 export const createDefaultTransaction = async (
   client: Client,
-  feePayer: Address
+  feePayer: KeyPairSigner
 ) => {
   const { value: latestBlockhash } = await client.rpc
     .getLatestBlockhash()
     .send();
   return pipe(
     createTransaction({ version: 0 }),
-    (tx) => setTransactionFeePayer(feePayer, tx),
+    (tx) => setTransactionFeePayerSigner(feePayer, tx),
     (tx) => setTransactionLifetimeUsingBlockhash(latestBlockhash, tx)
   );
 };

@@ -9,7 +9,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types/src/index.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/src/index.js",
       "require": "./dist/src/index.cjs"
     }
@@ -24,7 +24,7 @@
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
     "format": "prettier --check src test",
     "format:fix": "prettier --write src test",
-    "validator": "CI=1 amman start --config ./scripts/validator.cjs",
+    "validator:start": "CI=1 amman start --config ./scripts/validator.cjs",
     "validator:debug": "amman start --config ./scripts/validator.cjs",
     "validator:logs": "CI=1 amman logs",
     "validator:stop": "amman stop"
@@ -42,21 +42,21 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana/accounts": "^2.0.0-preview",
-    "@solana/addresses": "^2.0.0-preview",
-    "@solana/codecs": "^2.0.0-preview",
-    "@solana/instructions": "^2.0.0-preview",
-    "@solana/programs": "^2.0.0-preview",
-    "@solana/signers": "^2.0.0-preview",
-    "@solana/web3.js": "^2.0.0-preview",
+    "@solana/accounts": "2.0.0-preview.2",
+    "@solana/addresses": "2.0.0-preview.2",
+    "@solana/codecs": "2.0.0-preview.2",
+    "@solana/instructions": "2.0.0-preview.2",
+    "@solana/programs": "2.0.0-preview.2",
+    "@solana/signers": "2.0.0-preview.2",
+    "@solana/web3.js": "2.0.0-preview.2",
     "@tensor-foundation/test-helpers": "*"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
     "@solana/eslint-config-solana": "^3.0.0",
     "@metaplex-foundation/amman": "^0.12.1",
-    "@metaplex-foundation/kinobi": "^0.17.10",
-    "@solana/webcrypto-ed25519-polyfill": "^2.0.0-preview",
+    "@metaplex-foundation/kinobi": "^0.18.4",
+    "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.2",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "ava": "^6.1.2",
