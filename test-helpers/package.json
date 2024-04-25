@@ -1,6 +1,6 @@
 {
     "name": "@tensor-foundation/test-helpers",
-    "version": "0.0.1-alpha.3",
+    "version": "0.0.1",
     "description": "Utility functions for testing Solana programs with the Solana Web3.js library",
     "sideEffects": false,
     "module": "./dist/src/index.js",
@@ -29,8 +29,7 @@
         "./dist/types"
     ],
     "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org"
+        "registry": "https://npm.pkg.github.com"
     },
     "homepage": "https://github.com/tensor-foundation",
     "repository": "https://github.com/tensor-foundation/toolkit.git",
@@ -76,5 +75,5 @@
             }
         }
     },
-    "packageManager": "pnpm@9.0.5"
+    "packageManager": "pnpm@9.0.6"
 }
