@@ -10,6 +10,9 @@ export const TLOCK_PROGRAM_ID = address(
 export const TSWAP_PROGRAM_ID = address(
   'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN'
 );
+export const TSWAP_SINGLETON = address(
+  '4zdNGgAtFsW1cQgHqkiWyRsxaAgxrSRRynnuunxzjxue'
+);
 export const WHITELIST_PROGRAM_ID = address(
   'TL1ST2iRBzuGTqLn1KXnGdSnEow62BzPnGiqyRXhWtW'
 );

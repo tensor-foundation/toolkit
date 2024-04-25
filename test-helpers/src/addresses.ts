@@ -6,7 +6,7 @@ import {
 
 export type NumberData = number[] | Uint8Array | Buffer;
 
-export const intoAddress = (data: NumberData): Address => {
+export const toAddress = (data: NumberData): Address => {
   const decoder = getAddressDecoder();
   return decoder.decode(Uint8Array.from(data));
 };
