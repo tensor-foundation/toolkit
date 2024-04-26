@@ -1,6 +1,6 @@
 {
     "name": "@tensor-foundation/test-helpers",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Utility functions for testing Solana programs with the Solana Web3.js library",
     "sideEffects": false,
     "module": "./dist/src/index.js",
@@ -56,7 +56,6 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-import": "^2.29.0",
         "eslint-plugin-prettier": "^5.1.3",
-        "merkletreejs": "^0.3.11",
         "prettier": "^3.2.5",
         "rimraf": "^5.0.5",
         "tsup": "^8.0.2",
