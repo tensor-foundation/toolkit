@@ -19,6 +19,9 @@ export const WHITELIST_PROGRAM_ID = address(
 export const TBID_PROGRAM_ID = address(
   'TB1Dqt8JeKQh7RLDzfYDJsq8KS4fS2yt87avRjyRxMv'
 );
+export const TFEES_PROGRAM_ID = address(
+  'TFEEgwDP6nn1s8mMX2tTNPPz8j2VomkphLUmyxKm17A'
+);
 
 // System Programs
 export const SYSVARS_CLOCK = address(
