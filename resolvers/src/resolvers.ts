@@ -3,7 +3,7 @@ import { ResolvedAccount, expectAddress } from '.';
 import {
   findAssociatedTokenAccountPda,
   findExtraAccountMetasPda,
-  findMasterEditionPda,
+  findEditionPda,
   findMetadataPda,
   findTokenRecordPda,
   findWnsApprovePda,
@@ -30,14 +30,19 @@ export const resolveEditionFromTokenStandard = async ({
   accounts: Record<string, ResolvedAccount>;
   args: { tokenStandard?: TokenStandard | undefined };
 }): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
-  return args.tokenStandard === TokenStandard.NonFungible ||
-    args.tokenStandard === TokenStandard.ProgrammableNonFungible
-    ? {
-        value: await findMasterEditionPda({
+  switch (args.tokenStandard) {
+    case TokenStandard.NonFungible:
+    case TokenStandard.NonFungibleEdition:
+    case TokenStandard.ProgrammableNonFungible:
+    case TokenStandard.ProgrammableNonFungibleEdition:
+      return {
+        value: await findEditionPda({
           mint: expectAddress(accounts.mint?.value),
         }),
-      }
-    : { value: null };
+      };
+    default:
+      return { value: null };
+  }
 };
 
 export const resolveOwnerTokenRecordFromTokenStandard = async ({
