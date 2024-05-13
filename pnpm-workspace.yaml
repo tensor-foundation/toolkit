@@ -1,3 +1,4 @@
 packages:
+  - 'resolvers'
   - 'test-helpers'
   - 'toolkit-token-metadata'
