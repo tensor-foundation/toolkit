@@ -1,0 +1,52 @@
+{
+  "name": "@tensor-foundation/resolvers",
+  "version": "0.0.1",
+  "description": "Kinobi resolvers for Tensor protocols",
+  "sideEffects": false,
+  "module": "./dist/src/index.js",
+  "main": "dist/src/index.cjs",
+  "types": "dist/types/src/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/src/index.js",
+      "require": "./dist/src/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
+    "build:docs": "typedoc",
+    "clean": "rm -rf node_modules && rm -rf dist",
+    "generate": "node ./generate.cjs",
+    "lint": "eslint --ext js,ts,tsx src",
+    "lint:fix": "eslint --fix --ext js,ts,tsx src",
+    "format": "prettier --check src",
+    "format:fix": "prettier --write src"
+  },
+  "files": [
+    "./dist/src",
+    "./dist/types"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "homepage": "https://github.com/tensor-foundation",
+  "repository": "https://github.com/tensor-foundation/toolkit.git",
+  "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@solana/accounts": "2.0.0-preview.2",
+    "@solana/addresses": "2.0.0-preview.2",
+    "@solana/codecs": "2.0.0-preview.2",
+    "@solana/instructions": "2.0.0-preview.2",
+    "@solana/programs": "2.0.0-preview.2",
+    "@solana/signers": "2.0.0-preview.2",
+    "@solana/web3.js": "2.0.0-preview.2"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.2"
+  },
+  "packageManager": "pnpm@9.0.6"
+}

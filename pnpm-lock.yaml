@@ -8,6 +8,37 @@ importers:
 
   .: {}
 
+  resolvers:
+    dependencies:
+      '@solana/accounts':
+        specifier: 2.0.0-preview.2
+        version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
+      '@solana/addresses':
+        specifier: 2.0.0-preview.2
+        version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
+      '@solana/codecs':
+        specifier: 2.0.0-preview.2
+        version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
+      '@solana/instructions':
+        specifier: 2.0.0-preview.2
+        version: 2.0.0-preview.2
+      '@solana/programs':
+        specifier: 2.0.0-preview.2
+        version: 2.0.0-preview.2
+      '@solana/signers':
+        specifier: 2.0.0-preview.2
+        version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
+      '@solana/web3.js':
+        specifier: 2.0.0-preview.2
+        version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+    devDependencies:
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(typescript@5.4.5)
+
   test-helpers:
     dependencies:
       '@solana/accounts':
