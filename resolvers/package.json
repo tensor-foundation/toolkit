@@ -24,10 +24,7 @@
     "format": "prettier --check src",
     "format:fix": "prettier --write src"
   },
-  "files": [
-    "./dist/src",
-    "./dist/types"
-  ],
+  "files": ["./dist/src", "./dist/types"],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -36,6 +33,7 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
+    "bs58": "^5.0.0",
     "@solana/accounts": "2.0.0-preview.2",
     "@solana/addresses": "2.0.0-preview.2",
     "@solana/codecs": "2.0.0-preview.2",
