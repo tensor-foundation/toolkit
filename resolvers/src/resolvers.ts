@@ -1,14 +1,14 @@
 import { Address, ProgramDerivedAddress } from '@solana/addresses';
 import { ResolvedAccount, expectAddress } from '.';
 import {
-    findAssociatedTokenAccountPda,
-    findEditionPda,
-    findExtraAccountMetasPda,
-    findFeeVaultPda,
-    findMetadataPda,
-    findTokenRecordPda,
-    findWnsApprovePda,
-    findWnsDistributionPda,
+  findAssociatedTokenAccountPda,
+  findEditionPda,
+  findExtraAccountMetasPda,
+  findFeeVaultPda,
+  findMetadataPda,
+  findTokenRecordPda,
+  findWnsApprovePda,
+  findWnsDistributionPda,
 } from './pdas';
 import { TokenStandard } from './types';
 
@@ -179,17 +179,5 @@ export const resolveWnsExtraAccountMetasPda = async ({
       },
       { programAddress: expectAddress(accounts.wnsProgram?.value) }
     ),
-  };
-};
-
-export const resolveFeeVaultPda = async ({
-  accounts,
-}: {
-  accounts: Record<string, ResolvedAccount>;
-}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
-  return {
-    value: await findFeeVaultPda({
-      stateAccount: expectAddress(accounts.stateAccount?.value),
-    }),
   };
 };

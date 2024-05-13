@@ -175,15 +175,15 @@ export async function findExtraAccountMetasPda(
 // --- FEE VAULT PDA
 
 export type FeeVaultSeeds = {
-  /** The address of the state account to derive the shard from */
-  stateAccount: Address;
+  /** The address of the state account to derive the shard from: e.g. pool, bid, order etc. */
+  address: Address;
 };
 
 export async function findFeeVaultPda(
   seeds: FeeVaultSeeds
 ): Promise<ProgramDerivedAddress> {
   // Last byte of state account address is the fee vault shard number.
-  const bytes = bs58.decode(seeds.stateAccount);
+  const bytes = bs58.decode(seeds.address);
   const lastByte = bytes[bytes.length - 1];
 
   return await getProgramDerivedAddress({
