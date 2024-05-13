@@ -55,13 +55,13 @@ export async function findMetadataPda(
   });
 }
 
-export type MasterEditionSeeds = {
+export type EditionSeeds = {
   /** The address of the mint account */
   mint: Address;
 };
 
-export async function findMasterEditionPda(
-  seeds: MasterEditionSeeds,
+export async function findEditionPda(
+  seeds: EditionSeeds,
   config: { programAddress?: Address | undefined } = {}
 ): Promise<ProgramDerivedAddress> {
   const {
@@ -103,6 +103,8 @@ export async function findTokenRecordPda(
     ],
   });
 }
+
+// --- WNS PDAs
 
 export type WnsApproveSeeds = {
   /** The address of the mint account */
