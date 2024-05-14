@@ -24,10 +24,7 @@
     "format": "prettier --check src",
     "format:fix": "prettier --write src"
   },
-  "files": [
-    "./dist/src",
-    "./dist/types"
-  ],
+  "files": ["./dist/src", "./dist/types"],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },

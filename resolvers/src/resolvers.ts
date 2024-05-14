@@ -2,8 +2,8 @@ import { Address, ProgramDerivedAddress } from '@solana/addresses';
 import { ResolvedAccount, expectAddress } from '.';
 import {
   findAssociatedTokenAccountPda,
-  findExtraAccountMetasPda,
   findEditionPda,
+  findExtraAccountMetasPda,
   findMetadataPda,
   findTokenRecordPda,
   findWnsApprovePda,
