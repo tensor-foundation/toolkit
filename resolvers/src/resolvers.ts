@@ -4,7 +4,6 @@ import {
   findAssociatedTokenAccountPda,
   findEditionPda,
   findExtraAccountMetasPda,
-  findFeeVaultPda,
   findMetadataPda,
   findTokenRecordPda,
   findWnsApprovePda,

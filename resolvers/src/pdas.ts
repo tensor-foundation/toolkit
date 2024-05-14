@@ -1,12 +1,11 @@
 import {
-    Address,
-    ProgramDerivedAddress,
-    address,
-    getAddressEncoder,
-    getProgramDerivedAddress,
+  Address,
+  ProgramDerivedAddress,
+  address,
+  getAddressEncoder,
+  getProgramDerivedAddress,
 } from '@solana/addresses';
-import { getStringDecoder, getStringEncoder, getU8Encoder, getUtf8Encoder } from '@solana/codecs';
-import bs58 from 'bs58';
+import { getStringEncoder, getU8Encoder, getUtf8Encoder } from '@solana/codecs';
 
 export type AssociatedTokenAccountSeeds = {
   /** The address of the owner account */
