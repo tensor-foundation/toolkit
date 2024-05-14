@@ -142,8 +142,8 @@ importers:
         specifier: 2.0.0-preview.2
         version: 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@tensor-foundation/test-helpers':
-        specifier: '*'
-        version: 0.0.2(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        specifier: 0.0.3
+        version: 0.0.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10))
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -705,8 +705,8 @@ packages:
   '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.2':
     resolution: {integrity: sha512-WDe2kYmWk6vs80GVqKE/1JOnQEp2fHK92Mq88FlDW70BMMXhKaZRVG+MPiK3BvKDqegcEfQaw39XqdI3DH5bDQ==}
 
-  '@tensor-foundation/test-helpers@0.0.2':
-    resolution: {integrity: sha512-iLIkIcAknFmLD0LPfO59HsPsO0FjglPLy16j2XD6LB4Akp6Ff5YxE3AJLUwmz0ct3qYxKvOyUaAaC/rM46zDQw==, tarball: https://npm.pkg.github.com/download/@tensor-foundation/test-helpers/0.0.2/feb5036985113625d2192948ecf0ca2328d64d9c}
+  '@tensor-foundation/test-helpers@0.0.3':
+    resolution: {integrity: sha512-jjXs/d+QSq29rV97qRJS976+7Lq2sWx8AKt18KWbsdIVkzSpbbVFMnd77WbT5I0Tgnr9KN6EGSWxRcE4+GdHVw==, tarball: https://npm.pkg.github.com/download/@tensor-foundation/test-helpers/0.0.3/831925436667c3ddaedfe83644559d1a658cc9f1}
 
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
@@ -3605,7 +3605,7 @@ snapshots:
     dependencies:
       '@noble/ed25519': 2.1.0
 
-  '@tensor-foundation/test-helpers@0.0.2(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+  '@tensor-foundation/test-helpers@0.0.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
     dependencies:
       '@solana/accounts': 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
       '@solana/addresses': 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
