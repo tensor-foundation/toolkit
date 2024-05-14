@@ -1,6 +1,7 @@
 import { Address, ProgramDerivedAddress } from '@solana/addresses';
-import { ResolvedAccount, expectAddress } from '.';
 import {
+  ResolvedAccount,
+  expectAddress,
   findAssociatedTokenAccountPda,
   findEditionPda,
   findExtraAccountMetasPda,
@@ -8,8 +9,8 @@ import {
   findTokenRecordPda,
   findWnsApprovePda,
   findWnsDistributionPda,
-} from './pdas';
-import { TokenStandard } from './types';
+  TokenStandard,
+} from './index';
 
 export const resolveMetadata = async ({
   accounts,

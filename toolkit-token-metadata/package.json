@@ -5,7 +5,7 @@
   "sideEffects": false,
   "module": "./dist/src/index.js",
   "main": "dist/src/index.cjs",
-  "types": "dist/types/src/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
@@ -29,10 +29,7 @@
     "validator:logs": "CI=1 amman logs",
     "validator:stop": "amman stop"
   },
-  "files": [
-    "./dist/src",
-    "./dist/types"
-  ],
+  "files": ["./dist/src", "./dist/types"],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -72,9 +69,7 @@
     "typescript": "^5.4.2"
   },
   "ava": {
-    "require": [
-      "@solana/webcrypto-ed25519-polyfill"
-    ],
+    "require": ["@solana/webcrypto-ed25519-polyfill"],
     "typescript": {
       "compile": false,
       "rewritePaths": {
