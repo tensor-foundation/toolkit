@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/resolvers",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Kinobi resolvers for Tensor protocols",
   "sideEffects": false,
   "module": "./dist/src/index.js",
@@ -24,7 +24,10 @@
     "format": "prettier --check src",
     "format:fix": "prettier --write src"
   },
-  "files": ["./dist/src", "./dist/types"],
+  "files": [
+    "./dist/src",
+    "./dist/types"
+  ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
