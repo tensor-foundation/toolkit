@@ -1,11 +1,11 @@
 import {
-  Address,
-  ProgramDerivedAddress,
-  address,
-  getAddressEncoder,
-  getProgramDerivedAddress,
+    Address,
+    ProgramDerivedAddress,
+    address,
+    getAddressEncoder,
+    getProgramDerivedAddress,
 } from '@solana/addresses';
-import { getStringEncoder, getU8Encoder, getUtf8Encoder } from '@solana/codecs';
+import { getStringDecoder, getStringEncoder, getU8Encoder, getUtf8Encoder } from '@solana/codecs';
 import bs58 from 'bs58';
 
 export type AssociatedTokenAccountSeeds = {
@@ -183,7 +183,7 @@ export async function findFeeVaultPda(
   seeds: FeeVaultSeeds
 ): Promise<ProgramDerivedAddress> {
   // Last byte of state account address is the fee vault shard number.
-  const bytes = bs58.decode(seeds.address);
+  const bytes = getAddressEncoder().encode(seeds.address);
   const lastByte = bytes[bytes.length - 1];
 
   return await getProgramDerivedAddress({
