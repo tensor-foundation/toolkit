@@ -1,16 +1,16 @@
 import { Address, ProgramDerivedAddress } from '@solana/addresses';
 import {
   ResolvedAccount,
+  TokenStandard,
   expectAddress,
   findAssociatedTokenAccountPda,
   findEditionPda,
   findExtraAccountMetasPda,
   findMetadataPda,
+  findNftReceiptPda,
   findTokenRecordPda,
   findWnsApprovePda,
   findWnsDistributionPda,
-  TokenStandard,
-  findNftReceiptPda,
 } from './index';
 
 export const resolveMetadata = async ({
@@ -151,6 +151,48 @@ export const resolvePoolTokenRecordFromTokenStandard = async ({
           mint: expectAddress(accounts.mint?.value),
           token: expectAddress(accounts.poolAta?.value),
         }),
+      }
+    : { value: null };
+};
+
+export const resolveTokenMetadataProgramFromTokenStandard = ({
+  args,
+}: {
+  args: { tokenStandard?: TokenStandard | undefined };
+}): Partial<{ value: Address<string> | null }> => {
+  return args.tokenStandard === TokenStandard.ProgrammableNonFungible ||
+    args.tokenStandard === TokenStandard.ProgrammableNonFungibleEdition
+    ? {
+        value:
+          'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s' as Address<'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s'>,
+      }
+    : { value: null };
+};
+
+export const resolveAuthorizationRulesProgramFromTokenStandard = ({
+  args,
+}: {
+  args: { tokenStandard?: TokenStandard | undefined };
+}): Partial<{ value: Address<string> | null }> => {
+  return args.tokenStandard === TokenStandard.ProgrammableNonFungible ||
+    args.tokenStandard === TokenStandard.ProgrammableNonFungibleEdition
+    ? {
+        value:
+          'auth9SigNpDKz4sJJ1DfCTuZrZNSAgh9sFD3rboVmgg' as Address<'auth9SigNpDKz4sJJ1DfCTuZrZNSAgh9sFD3rboVmgg'>,
+      }
+    : { value: null };
+};
+
+export const resolveSysvarInstructionsFromTokenStandard = ({
+  args,
+}: {
+  args: { tokenStandard?: TokenStandard | undefined };
+}): Partial<{ value: Address<string> | null }> => {
+  return args.tokenStandard === TokenStandard.ProgrammableNonFungible ||
+    args.tokenStandard === TokenStandard.ProgrammableNonFungibleEdition
+    ? {
+        value:
+          'Sysvar1nstructions1111111111111111111111111' as Address<'Sysvar1nstructions1111111111111111111111111'>,
       }
     : { value: null };
 };
