@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/resolvers",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Kinobi resolvers for Tensor protocols",
   "sideEffects": false,
   "module": "./dist/src/index.js",
