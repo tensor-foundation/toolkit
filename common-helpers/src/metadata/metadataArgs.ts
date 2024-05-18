@@ -122,7 +122,7 @@ export function computeMetadataArgsHash(metadataArgs: MetadataArgs) {
 }
 
 // converts between metadataArgs and TMetadataArgsArgs
-export function metadataArgsToTMetadataArgArgs(metadataArgs: MetadataArgs): TMetadataArgsArgs {
+export function metadataArgsToTMetadataArgsArgs(metadataArgs: MetadataArgs): TMetadataArgsArgs {
     const tMetadataArgsArgs: TMetadataArgsArgs = {
         name: metadataArgs.name,
         symbol: metadataArgs.symbol,
