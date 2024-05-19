@@ -1,4 +1,4 @@
 packages:
   - 'resolvers'
   - 'test-helpers'
-  - 'toolkit-token-metadata'
+  - 'mpl-token-metadata'
