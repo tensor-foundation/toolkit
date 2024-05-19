@@ -1,7 +1,6 @@
 {
-    "private": true,
     "scripts": {
-        "build": "pnpm --filter {test-helpers} && pnpm --filter {mpl-token-metadata} build",
-        "clean": "pnpm --filter {test-helpers} clean && pnpm --filter {mpl-token-metadata} clean"
+        "build": "pnpm --filter {resolvers} build && pnpm --filter {test-helpers} build && pnpm --filter {mpl-token-metadata} build",
+        "clean": "pnpm --filter {mpl-token-metadata} clean && pnpm --filter {resolvers} clean && pnpm --filter {test-helpers} clean"
     }
 }
