@@ -17,7 +17,20 @@ import {
 
 export enum Key {
   Uninitialized,
-  Counter,
+  EditionV1,
+  MasterEditionV1,
+  ReservationListV1,
+  MetadataV1,
+  ReservationListV2,
+  MasterEditionV2,
+  EditionMarker,
+  UseAuthorityRecord,
+  CollectionAuthorityRecord,
+  TokenOwnedEscrow,
+  TokenRecord,
+  MetadataDelegate,
+  EditionMarkerV2,
+  HolderDelegate,
 }
 
 export type KeyArgs = Key;

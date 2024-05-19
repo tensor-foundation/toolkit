@@ -21,7 +21,7 @@ if (!restart && isValidatorRunning) {
 
 // Initial message.
 const verb = isValidatorRunning ? 'Restarting' : 'Starting';
-const programs = [...getPrograms(), ...getExternalPrograms()];
+const programs = [...getExternalPrograms()];
 const programPluralized = programs.length === 1 ? 'program' : 'programs';
 echo(
   `${verb} local validator with ${programs.length} custom ${programPluralized}...`
@@ -77,18 +77,6 @@ try {
 } finally {
   fs.rmSync(cliLogs);
   process.exit();
-}
-
-function getPrograms() {
-  const binaryDir = path.join(__dirname, '..', 'target', 'deploy');
-  return getProgramFolders().map((folder) => {
-    const cargo = getCargo(folder);
-    const name = cargo.package.name.replace(/-/g, '_');
-    return {
-      programId: cargo.package.metadata.solana['program-id'],
-      deployPath: path.join(binaryDir, `${name}.so`),
-    };
-  });
 }
 
 function getExternalPrograms() {

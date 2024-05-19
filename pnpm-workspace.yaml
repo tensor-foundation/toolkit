@@ -1,4 +1,4 @@
 packages:
+  - 'mpl-token-metadata'
   - 'resolvers'
   - 'test-helpers'
-  - 'mpl-token-metadata'

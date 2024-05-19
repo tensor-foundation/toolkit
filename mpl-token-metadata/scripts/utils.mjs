@@ -13,9 +13,7 @@ export function getAllProgramIdls() {
 }
 
 export function getExternalProgramOutputDir() {
-  const config =
-    getCargo().workspace?.metadata?.solana?.["external-programs-output"];
-  return path.join(workingDirectory, config ?? "target/deploy");
+  return path.join(workingDirectory, "target/deploy");
 }
 
 export function getExternalProgramAddresses() {
@@ -28,35 +26,8 @@ export function getExternalProgramAddresses() {
 
 let didWarnAboutMissingPrograms = false;
 export function getProgramFolders() {
-  let programs;
-
-  if (process.env.PROGRAMS) {
-    try {
-      programs = JSON.parse(process.env.PROGRAMS);
-    } catch (error) {
-      programs = process.env.PROGRAMS.split(/\s+/);
-    }
-  } else {
-    programs = getAllProgramFolders();
-  }
-
-  const filteredPrograms = programs.filter((program) =>
-    fs.existsSync(path.join(workingDirectory, program))
-  );
-
-  if (
-    filteredPrograms.length !== programs.length &&
-    !didWarnAboutMissingPrograms
-  ) {
-    didWarnAboutMissingPrograms = true;
-    programs
-      .filter((program) => !filteredPrograms.includes(program))
-      .forEach((program) => {
-        echo(chalk.yellow(`Program not found: ${workingDirectory}/${program}`));
-      });
-  }
-
-  return filteredPrograms;
+  // fixed here since we are only simulating having a program
+  return ['program'];
 }
 
 export function getAllProgramFolders() {

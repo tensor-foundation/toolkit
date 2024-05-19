@@ -1,7 +1,12 @@
-import { Address } from '@solana/addresses';
-import { KeyPairSigner, generateKeyPairSigner } from '@solana/signers';
-import { appendTransactionInstruction, pipe } from '@solana/web3.js';
-import { OptionOrNullable } from '@solana/codecs';
+import {
+  Address,
+  KeyPairSigner,
+  generateKeyPairSigner,
+  OptionOrNullable,
+  pipe,
+  appendTransactionMessageInstruction,
+  none,
+} from '@solana/web3.js';
 import {
   Client,
   createDefaultTransaction,
@@ -10,18 +15,18 @@ import {
   TOKEN22_PROGRAM_ID,
 } from '@tensor-foundation/test-helpers';
 import {
-  getCreateV1Instruction,
-  findMetadataPda,
-  findMasterEditionPda,
   TokenStandard,
   Creator,
   Collection,
   Uses,
   CollectionDetails,
   PrintSupplyArgs,
-  getMintV1Instruction,
   printSupply,
+  findMetadataPda,
+  findMasterEditionPda,
   findTokenRecordPda,
+  getCreateV1Instruction,
+  getMintV1Instruction,
 } from '../generated';
 import { findAtaPda } from '../token';
 
@@ -40,7 +45,6 @@ export interface NftData {
   ruleSet?: Address;
   decimals?: number;
   printSupply?: OptionOrNullable<PrintSupplyArgs>;
-  isCollection?: boolean;
 }
 
 export type Nft = {
@@ -218,7 +222,6 @@ export const mintNft = async (
     ruleSet = null,
     decimals = null,
     printSupply,
-    isCollection = false,
   } = data;
 
   const { authority, owner, tokenProgramId } = accounts;
@@ -267,8 +270,7 @@ export const mintNft = async (
     collectionDetails,
     ruleSet,
     decimals,
-    printSupply,
-    isCollection,
+    printSupply: printSupply ?? none(),
     splTokenProgram: tokenProgramId,
   });
 
@@ -280,15 +282,16 @@ export const mintNft = async (
     mint: mint.address,
     authority,
     payer,
-    tokenStandard,
     tokenRecord,
     splTokenProgram: tokenProgramId,
+    amount: 1,
+    authorizationData: null,
   });
 
   await pipe(
     await createDefaultTransaction(client, owner),
-    (tx) => appendTransactionInstruction(createIx, tx),
-    (tx) => appendTransactionInstruction(mintIx, tx),
+    (tx) => appendTransactionMessageInstruction(createIx, tx),
+    (tx) => appendTransactionMessageInstruction(mintIx, tx),
     (tx) => signAndSendTransaction(client, tx)
   );
 

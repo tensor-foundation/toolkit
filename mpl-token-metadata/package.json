@@ -21,12 +21,12 @@
   "scripts": {
     "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
     "clean": "rm -rf node_modules && rm -rf dist",
-    "generate": "zx ./scripts/generate-clients.mjs",
+    "generate": "zx ./scripts/dump.mjs && zx ./scripts/generate-clients.mjs",
     "format": "prettier --check src test",
     "format:fix": "prettier --write src test",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
-    "test": "validator:start && ava",
+    "test": "ava",
     "validator:start": "zx ./scripts/start-validator.mjs",
     "validator:restart": "pnpm validator:start --restart",
     "validator:stop": "zx ./scripts/stop-validator.mjs"
@@ -39,7 +39,6 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@kinobi-so/visitors-core": "link:/Users/febo/Developer/kinobi-so/kinobi/packages/visitors-core",
     "@tensor-foundation/test-helpers": "workspace:*"
   },
   "peerDependencies": {
@@ -48,8 +47,8 @@
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
     "@iarna/toml": "^2.2.5",
-    "@kinobi-so/nodes-from-anchor": "^0.20.4",
-    "@kinobi-so/renderers-js": "^0.20.4",
+    "@kinobi-so/nodes-from-anchor": "^0.20.5",
+    "@kinobi-so/renderers-js": "^0.20.5",
     "@metaplex-foundation/shank-js": "^0.1.7",
     "@solana/eslint-config-solana": "^3.0.0",
     "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
@@ -57,7 +56,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "ava": "^6.1.2",
     "eslint": "^8.57.0",
-    "kinobi": "^0.20.2",
+    "kinobi": "^0.20.3",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tsup": "^8.0.2",

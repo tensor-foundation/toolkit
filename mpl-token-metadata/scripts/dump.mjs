@@ -3,7 +3,7 @@ import 'zx/globals';
 import {
   getExternalProgramAddresses,
   getExternalProgramOutputDir,
-} from '../utils.mjs';
+} from './utils.mjs';
 
 // Get input from environment variables.
 const rpc = process.env.RPC ?? 'https://api.mainnet-beta.solana.com';

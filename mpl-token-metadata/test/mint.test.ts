@@ -14,7 +14,7 @@ import {
   createDefaultpNft,
   fetchMetadata,
 } from '../src/index.js';
-import { none, some } from '@solana/codecs';
+import { none, some } from '@solana/web3.js';
 
 test('it can mint a NonFungible with createDefaultNft', async (t) => {
   const client = createDefaultSolanaClient();
