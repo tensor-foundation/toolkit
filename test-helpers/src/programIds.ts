@@ -1,4 +1,4 @@
-import { address } from '@solana/addresses';
+import { address } from '@solana/web3.js';
 
 // Tensor Programs
 export const TCOMP_PROGRAM_ID = address(

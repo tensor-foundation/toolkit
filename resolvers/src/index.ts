@@ -1,5 +1,8 @@
-import { Address, ProgramDerivedAddress } from '@solana/addresses';
-import { TransactionSigner } from '@solana/signers';
+import {
+  Address,
+  ProgramDerivedAddress,
+  TransactionSigner,
+} from '@solana/web3.js';
 
 export * from './pdas';
 export * from './resolvers';

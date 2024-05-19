@@ -1,31 +1,30 @@
 import '@solana/webcrypto-ed25519-polyfill';
 
 import {
-  generateKeyPairSigner,
-  signTransactionWithSigners,
-  KeyPairSigner,
-  createSignerFromKeyPair,
-  setTransactionFeePayerSigner,
-} from '@solana/signers';
-import {
   Address,
-  airdropFactory,
   Commitment,
-  CompilableTransaction,
-  createPrivateKeyFromBytes,
-  createSolanaRpc,
-  createSolanaRpcSubscriptions,
-  createTransaction,
-  getSignatureFromTransaction,
-  ITransactionWithBlockhashLifetime,
-  lamports,
-  pipe,
+  CompilableTransactionMessage,
+  KeyPairSigner,
   Rpc,
   RpcSubscriptions,
-  sendAndConfirmTransactionFactory,
-  setTransactionLifetimeUsingBlockhash,
   SolanaRpcApi,
   SolanaRpcSubscriptionsApi,
+  TransactionMessageWithBlockhashLifetime,
+  TransactionSigner,
+  airdropFactory,
+  createPrivateKeyFromBytes,
+  createSignerFromKeyPair,
+  createSolanaRpc,
+  createSolanaRpcSubscriptions,
+  createTransactionMessage,
+  generateKeyPairSigner,
+  getSignatureFromTransaction,
+  lamports,
+  pipe,
+  sendAndConfirmTransactionFactory,
+  setTransactionMessageFeePayerSigner,
+  setTransactionMessageLifetimeUsingBlockhash,
+  signTransactionMessageWithSigners,
 } from '@solana/web3.js';
 
 export type Client = {
@@ -80,15 +79,15 @@ export const fundWalletWithSol = async (
 
 export const createDefaultTransaction = async (
   client: Client,
-  feePayer: KeyPairSigner
+  feePayer: TransactionSigner
 ) => {
   const { value: latestBlockhash } = await client.rpc
     .getLatestBlockhash()
     .send();
   return pipe(
-    createTransaction({ version: 0 }),
-    (tx) => setTransactionFeePayerSigner(feePayer, tx),
-    (tx) => setTransactionLifetimeUsingBlockhash(latestBlockhash, tx)
+    createTransactionMessage({ version: 0 }),
+    (tx) => setTransactionMessageFeePayerSigner(feePayer, tx),
+    (tx) => setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, tx)
   );
 };
 
@@ -99,19 +98,16 @@ export interface TransactionOptions {
 
 export const signAndSendTransaction = async (
   client: Client,
-  transaction: CompilableTransaction & ITransactionWithBlockhashLifetime,
-  options?: TransactionOptions
+  transaction: CompilableTransactionMessage &
+    TransactionMessageWithBlockhashLifetime,
+  commitment: Commitment = 'confirmed'
 ) => {
-  const commitment = options?.commitment ?? 'confirmed';
-  const skipPreflight = options?.skipPreflight ?? false;
-
-  const signedTransaction = await signTransactionWithSigners(transaction);
+  const signedTransaction =
+    await signTransactionMessageWithSigners(transaction);
   const signature = getSignatureFromTransaction(signedTransaction);
   await sendAndConfirmTransactionFactory(client)(signedTransaction, {
     commitment,
-    skipPreflight,
   });
-
   return signature;
 };
 
