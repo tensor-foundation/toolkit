@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/mpl-token-metadata",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "description": "Toolkit for Metaplex Token Metadata",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
