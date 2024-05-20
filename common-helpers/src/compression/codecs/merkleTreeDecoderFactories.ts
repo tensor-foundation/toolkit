@@ -1,7 +1,4 @@
-import { getAddressDecoder } from "@solana/addresses";
-import { getStructDecoder } from "@solana/codecs";
-import { getU32Decoder, getU64Decoder } from "@solana/codecs-numbers";
-import { getArrayDecoder } from "@solana/codecs-data-structures";
+import { getAddressDecoder, getStructDecoder, getU32Decoder, getU64Decoder, getArrayDecoder } from "@solana/web3.js";
 
 export function getConcurrentMerkleTreeDecoderFactory(maxDepth: number, maxBufferSize: number) {
     return getStructDecoder([

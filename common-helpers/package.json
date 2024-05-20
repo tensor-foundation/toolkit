@@ -19,7 +19,6 @@
     "build:docs": "typedoc",
     "clean": "rm -rf node_modules && rm -rf dist",
     "generate": "node ./generate.cjs",
-    "test": "ava",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
     "format": "prettier --check src test",
@@ -40,34 +39,19 @@
   "repository": "https://github.com/tensor-foundation/toolkit.git",
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
-  "dependencies": {
-    "@solana/accounts": "2.0.0-preview.2",
-    "@solana/addresses": "2.0.0-preview.2",
-    "@solana/codecs": "2.0.0-preview.2",
-    "@solana/codecs-data-structures": "2.0.0-preview.2",
-    "@solana/codecs-numbers": "2.0.0-preview.2",
-    "@solana/codecs-strings": "2.0.0-preview.2",
-    "@solana/instructions": "2.0.0-preview.2",
-    "@solana/programs": "2.0.0-preview.2",
-    "@solana/signers": "2.0.0-preview.2",
-    "@solana/web3.js": "2.0.0-preview.2",
-    "@solana/codecs-core": "2.0.0-preview.2",
-    "@solana/transactions": "2.0.0-preview.2",
-    "@solana/functional": "2.0.0-preview.2",
+  "peerDependencies": {
+    "@solana/web3.js": "2.0.0-preview.3",
     "@types/bn.js": "^5.1.5",
     "bn.js": "^5.2.1",
     "helius-sdk": "^1.3.0",
     "js-sha3": "^0.9.3"
   },
   "devDependencies": {
-    "@ava/typescript": "^4.1.0",
     "@metaplex-foundation/amman": "^0.12.1",
     "@metaplex-foundation/kinobi": "^0.18.4",
     "@solana/eslint-config-solana": "^3.0.0",
-    "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.2",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
-    "ava": "^6.1.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
@@ -80,16 +64,5 @@
     "typedoc-plugin-missing-exports": "^2.2.0",
     "typescript": "^5.4.2"
   },
-  "ava": {
-    "require": [
-      "@solana/webcrypto-ed25519-polyfill"
-    ],
-    "typescript": {
-      "compile": false,
-      "rewritePaths": {
-        "test/": "dist/test/"
-      }
-    }
-  },
-  "packageManager": "pnpm@9.0.6"
+  "packageManager": "pnpm@9.1.0"
 }

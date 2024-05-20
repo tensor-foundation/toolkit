@@ -3,9 +3,9 @@ import {
   Decoder,
   Encoder,
   combineCodec,
-  getScalarEnumDecoder,
-  getScalarEnumEncoder,
-} from '@solana/codecs';
+  getEnumDecoder,
+  getEnumEncoder,
+} from '@solana/web3.js';
 
 export enum TUseMethod {
   Burn,
@@ -16,11 +16,11 @@ export enum TUseMethod {
 export type TUseMethodArgs = TUseMethod;
 
 export function getTUseMethodEncoder(): Encoder<TUseMethodArgs> {
-  return getScalarEnumEncoder(TUseMethod);
+  return getEnumEncoder(TUseMethod);
 }
 
 export function getTUseMethodDecoder(): Decoder<TUseMethod> {
-  return getScalarEnumDecoder(TUseMethod);
+  return getEnumDecoder(TUseMethod);
 }
 
 export function getTUseMethodCodec(): Codec<TUseMethodArgs, TUseMethod> {

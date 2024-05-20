@@ -1,5 +1,4 @@
-import { Address } from "@solana/addresses";
-import { Rpc, SolanaRpcApi } from "@solana/web3.js";
+import { Rpc, SolanaRpcApi, Address } from "@solana/web3.js";
 import { getConcurrentMerkleTreeDecoderFactory } from "./codecs/merkleTreeDecoderFactories";
 import { getConcurrentMerkleTreeHeaderDecoder } from "./codecs/merkleTreeHeaderDecoder";
 

@@ -3,9 +3,9 @@ import {
   Decoder,
   Encoder,
   combineCodec,
-  getScalarEnumDecoder,
-  getScalarEnumEncoder,
-} from '@solana/codecs';
+  getEnumDecoder,
+  getEnumEncoder,
+} from '@solana/web3.js';
 
 export enum TTokenStandard {
   NonFungible,
@@ -17,11 +17,11 @@ export enum TTokenStandard {
 export type TTokenStandardArgs = TTokenStandard;
 
 export function getTTokenStandardEncoder(): Encoder<TTokenStandardArgs> {
-  return getScalarEnumEncoder(TTokenStandard);
+  return getEnumEncoder(TTokenStandard);
 }
 
 export function getTTokenStandardDecoder(): Decoder<TTokenStandard> {
-  return getScalarEnumDecoder(TTokenStandard);
+  return getEnumDecoder(TTokenStandard);
 }
 
 export function getTTokenStandardCodec(): Codec<

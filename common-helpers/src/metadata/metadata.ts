@@ -1,6 +1,5 @@
-import { Address } from "@solana/addresses";
 import { getMetadataDecoder } from "./codecs/metadataDecoder";
-import { Rpc, SolanaRpcApi } from "@solana/web3.js";
+import { Rpc, SolanaRpcApi, Address } from "@solana/web3.js";
 
 // fetches ruleset given metadataPda
 export async function getRulesetFromMetadataPda(rpc: Rpc<SolanaRpcApi>, metadataPda: Address) {

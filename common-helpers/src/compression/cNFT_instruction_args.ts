@@ -1,9 +1,8 @@
-import { address, Address, getAddressEncoder } from "@solana/addresses";
+import { Rpc, SolanaRpcApi, address, Address, getAddressEncoder } from "@solana/web3.js";
+import { DAS } from "helius-sdk";
 import type { TMetadataArgsArgs } from "../shared-types";
-import { Rpc, SolanaRpcApi } from "@solana/web3.js";
 import { getCanopyDepth } from "./merkleTree";
 import { getTMetadataArgsArgs } from "../metadata/tMetadataArgsArgs";
-import { DAS } from "helius-sdk";
 import { getMetaHash } from "../metadata";
 
 export type CNFTTransferArgs = {
@@ -36,12 +35,12 @@ export async function getCNFTArgs(rpc: Rpc<SolanaRpcApi>, mint: Address, assetFi
     const sellerFeeBasisPoints = assetFields.royalty ? assetFields.royalty.basis_points : 0;
 
     // 2. get dataHash and creatorHash fields
-    const dataHash = getAddressEncoder().encode(
+    const dataHash = new Uint8Array(getAddressEncoder().encode(
         address(assetFields.compression.data_hash),
-    );
-    const creatorHash = getAddressEncoder().encode(
+    ));
+    const creatorHash = new Uint8Array(getAddressEncoder().encode(
         address(assetFields.compression.creator_hash),
-    );
+    ));
 
     // get creators (used as remaining accounts)
     const creators: Array<[Address, number]> | undefined = assetFields.creators?.map((c: DAS.Creators) => [address(c.address), c.share]);
@@ -72,7 +71,7 @@ export async function getCNFTTransferArgs(rpc: Rpc<SolanaRpcApi>, assetFields: D
     // 1. get merkleTree related fields
     const merkleTree = address(proofFields.tree_id);
     const proof = proofFields.proof.map((proof: string) => address(proof));
-    const root = getAddressEncoder().encode(address(proofFields.root));
+    const root = new Uint8Array(getAddressEncoder().encode(address(proofFields.root)));
     const index = assetFields.compression.leaf_id;
 
     // 2. construct TMetadataArgsArgs

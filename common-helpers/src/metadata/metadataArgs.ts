@@ -1,7 +1,7 @@
 import { MetadataArgs, TCreator, getMetadataArgsEncoder } from "./codecs/metadataArgsEncoder";
 import { keccak_256 } from 'js-sha3';
 import BN from 'bn.js';
-import { address, getAddressEncoder } from "@solana/addresses";
+import { address, getAddressEncoder } from "@solana/web3.js";
 import { TCollection, TMetadataArgsArgs, TTokenProgramVersion, TTokenStandard, TUseMethod, TUses } from "../shared-types";
 import { DAS } from "helius-sdk";
 
@@ -14,7 +14,7 @@ export function findMetadataArgs(assetFields: DAS.GetAssetResponse): MetadataArg
         throw new Error(`${assetFields.id} is not compressed.`);
     }
     const sellerFeeBasisPointsBuffer = assetFields.royalty ? new BN(assetFields.royalty.basis_points).toBuffer("le", 2): Buffer.from([0]);
-    const dataHashBuffer = getAddressEncoder().encode(address(assetFields.compression.data_hash));
+    const dataHashBuffer = new Uint8Array(getAddressEncoder().encode(address(assetFields.compression.data_hash)));
     const metadataArgs = convertAssetFieldsToMetadataArgs(assetFields);
     const originalMetadata = { ...metadataArgs };
 

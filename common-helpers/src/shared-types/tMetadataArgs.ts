@@ -4,7 +4,10 @@ import {
   Encoder,
   Option,
   OptionOrNullable,
+  ReadonlyUint8Array,
   combineCodec,
+  fixDecoderSize,
+  fixEncoderSize,
   getArrayDecoder,
   getArrayEncoder,
   getBooleanDecoder,
@@ -13,17 +16,15 @@ import {
   getBytesEncoder,
   getOptionDecoder,
   getOptionEncoder,
-  getStringDecoder,
-  getStringEncoder,
   getStructDecoder,
   getStructEncoder,
   getU16Decoder,
   getU16Encoder,
-  getU32Decoder,
-  getU32Encoder,
   getU8Decoder,
   getU8Encoder,
-} from '@solana/codecs';
+  getUtf8Decoder,
+  getUtf8Encoder
+} from '@solana/web3.js';
 import {
   TCollection,
   TCollectionArgs,
@@ -63,7 +64,7 @@ export type TMetadataArgs = {
   /** Uses */
   uses: Option<TUses>;
   tokenProgramVersion: TTokenProgramVersion;
-  creatorShares: Uint8Array;
+  creatorShares: ReadonlyUint8Array;
   creatorVerified: Array<boolean>;
 };
 
@@ -87,15 +88,15 @@ export type TMetadataArgsArgs = {
   /** Uses */
   uses: OptionOrNullable<TUsesArgs>;
   tokenProgramVersion: TTokenProgramVersionArgs;
-  creatorShares: Uint8Array;
+  creatorShares: ReadonlyUint8Array;
   creatorVerified: Array<boolean>;
 };
 
 export function getTMetadataArgsEncoder(): Encoder<TMetadataArgsArgs> {
   return getStructEncoder([
-    ['name', getStringEncoder()],
-    ['symbol', getStringEncoder()],
-    ['uri', getStringEncoder()],
+    ['name', getUtf8Encoder()],
+    ['symbol', getUtf8Encoder()],
+    ['uri', getUtf8Encoder()],
     ['sellerFeeBasisPoints', getU16Encoder()],
     ['primarySaleHappened', getBooleanEncoder()],
     ['isMutable', getBooleanEncoder()],
@@ -104,16 +105,16 @@ export function getTMetadataArgsEncoder(): Encoder<TMetadataArgsArgs> {
     ['collection', getOptionEncoder(getTCollectionEncoder())],
     ['uses', getOptionEncoder(getTUsesEncoder())],
     ['tokenProgramVersion', getTTokenProgramVersionEncoder()],
-    ['creatorShares', getBytesEncoder({ size: getU32Encoder() })],
+    ['creatorShares', fixEncoderSize(getBytesEncoder(), 32)],
     ['creatorVerified', getArrayEncoder(getBooleanEncoder())],
   ]);
 }
 
 export function getTMetadataArgsDecoder(): Decoder<TMetadataArgs> {
   return getStructDecoder([
-    ['name', getStringDecoder()],
-    ['symbol', getStringDecoder()],
-    ['uri', getStringDecoder()],
+    ['name', getUtf8Decoder()],
+    ['symbol', getUtf8Decoder()],
+    ['uri', getUtf8Decoder()],
     ['sellerFeeBasisPoints', getU16Decoder()],
     ['primarySaleHappened', getBooleanDecoder()],
     ['isMutable', getBooleanDecoder()],
@@ -122,7 +123,7 @@ export function getTMetadataArgsDecoder(): Decoder<TMetadataArgs> {
     ['collection', getOptionDecoder(getTCollectionDecoder())],
     ['uses', getOptionDecoder(getTUsesDecoder())],
     ['tokenProgramVersion', getTTokenProgramVersionDecoder()],
-    ['creatorShares', getBytesDecoder({ size: getU32Decoder() })],
+    ['creatorShares', fixDecoderSize(getBytesDecoder(), 32)],
     ['creatorVerified', getArrayDecoder(getBooleanDecoder())],
   ]);
 }

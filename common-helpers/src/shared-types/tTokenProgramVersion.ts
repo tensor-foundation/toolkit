@@ -3,9 +3,9 @@ import {
   Decoder,
   Encoder,
   combineCodec,
-  getScalarEnumDecoder,
-  getScalarEnumEncoder,
-} from '@solana/codecs';
+  getEnumDecoder,
+  getEnumEncoder,
+} from '@solana/web3.js';
 
 export enum TTokenProgramVersion {
   Original,
@@ -15,11 +15,11 @@ export enum TTokenProgramVersion {
 export type TTokenProgramVersionArgs = TTokenProgramVersion;
 
 export function getTTokenProgramVersionEncoder(): Encoder<TTokenProgramVersionArgs> {
-  return getScalarEnumEncoder(TTokenProgramVersion);
+  return getEnumEncoder(TTokenProgramVersion);
 }
 
 export function getTTokenProgramVersionDecoder(): Decoder<TTokenProgramVersion> {
-  return getScalarEnumDecoder(TTokenProgramVersion);
+  return getEnumDecoder(TTokenProgramVersion);
 }
 
 export function getTTokenProgramVersionCodec(): Codec<

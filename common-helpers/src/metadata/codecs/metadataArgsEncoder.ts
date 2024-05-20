@@ -12,20 +12,16 @@ import {
 import {
     Encoder,
     getStructEncoder,
-    getUtf8Encoder
-} from "@solana/codecs";
-import {
+    getUtf8Encoder,
     getU8Encoder,
     getU16Encoder,
     getU32Encoder,
-} from "@solana/codecs-numbers";
-import {
     getBooleanEncoder,
     getNullableEncoder,
     getArrayEncoder,
-} from "@solana/codecs-data-structures";
-import { getBase58Encoder } from "@solana/codecs-strings";
-import { addEncoderSizePrefix } from "../../internal_helpers";
+    getBase58Encoder,
+    addEncoderSizePrefix
+} from "@solana/web3.js";
 
 export type TCreator = {
     address: string,
