@@ -23,7 +23,7 @@ import {
   getU8Decoder,
   getU8Encoder,
   getUtf8Decoder,
-  getUtf8Encoder
+  getUtf8Encoder,
 } from '@solana/web3.js';
 import {
   TCollection,
