@@ -25,8 +25,8 @@
     "test": "ava",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
-    "format": "prettier --check src test",
-    "format:fix": "prettier --write src test"
+    "format": "prettier --check src",
+    "format:fix": "prettier --write src"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

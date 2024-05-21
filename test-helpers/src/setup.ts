@@ -106,8 +106,9 @@ export const signAndSendTransaction = async (
     await signTransactionMessageWithSigners(transaction);
   const signature = getSignatureFromTransaction(signedTransaction);
   await sendAndConfirmTransactionFactory(client)(signedTransaction, {
-    commitment: options?.commitment ?? 'confirmed',
-    skipPreflight: options?.skipPreflight ?? false,
+    commitment: 'confirmed',
+    skipPreflight: false,
+    ...options,
   });
   return signature;
 };
