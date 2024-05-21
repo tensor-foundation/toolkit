@@ -100,13 +100,15 @@ export const signAndSendTransaction = async (
   client: Client,
   transaction: CompilableTransactionMessage &
     TransactionMessageWithBlockhashLifetime,
-  commitment: Commitment = 'confirmed'
+  options?: TransactionOptions
 ) => {
   const signedTransaction =
     await signTransactionMessageWithSigners(transaction);
   const signature = getSignatureFromTransaction(signedTransaction);
   await sendAndConfirmTransactionFactory(client)(signedTransaction, {
-    commitment,
+    commitment: 'confirmed',
+    skipPreflight: false,
+    ...options,
   });
   return signature;
 };
