@@ -3,15 +3,15 @@
   "version": "0.0.1",
   "description": "Common helper functions for Tensor SDKs",
   "sideEffects": false,
-  "module": "./dist/src/index.js",
-  "main": "dist/src/index.cjs",
-  "types": "dist/types/src/index.d.ts",
-  "type": "module",
+  "module": "./dist/src/index.mjs",
+  "main": "./dist/src/index.js",
+  "types": "./dist/types/index.d.ts",
+  "type": "commonjs",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/src/index.js",
-      "require": "./dist/src/index.cjs"
+      "import": "./dist/src/index.mjs",
+      "require": "./dist/src/index.js"
     }
   },
   "scripts": {
@@ -22,11 +22,7 @@
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
     "format": "prettier --check src test",
-    "format:fix": "prettier --write src test",
-    "validator:start": "CI=1 amman start --config ./scripts/validator.cjs",
-    "validator:debug": "amman start --config ./scripts/validator.cjs",
-    "validator:logs": "CI=1 amman logs",
-    "validator:stop": "amman stop"
+    "format:fix": "prettier --write src test"
   },
   "files": [
     "./dist/src",
