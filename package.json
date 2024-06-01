@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "build": "pnpm --filter {resolvers} build && pnpm --filter {test-helpers} build && pnpm --filter {mpl-token-metadata} build",
-        "clean": "pnpm --filter {mpl-token-metadata} clean && pnpm --filter {resolvers} clean && pnpm --filter {test-helpers} clean"
+        "build": "pnpm --filter {test-helpers} build && pnpm --filter {token-metadata} build && pnpm --filter {common-helpers} build && pnpm --filter {resolvers} build",
+        "clean": "pnpm --filter {test-helpers} clean && pnpm --filter {token-metadata} clean && pnpm --filter {common-helpers} clean && pnpm --filter {resolvers} clean"
     }
 }

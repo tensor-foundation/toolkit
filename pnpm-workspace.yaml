@@ -2,3 +2,4 @@ packages:
   - 'mpl-token-metadata'
   - 'resolvers'
   - 'test-helpers'
+  - 'common-helpers'
