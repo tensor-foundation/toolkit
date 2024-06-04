@@ -1,0 +1,80 @@
+{
+  "name": "@tensor-foundation/mpl-core",
+  "version": "0.0.1",
+  "description": "Toolkit for Metaplex Core",
+  "sideEffects": false,
+  "module": "./dist/src/index.mjs",
+  "main": "./dist/src/index.js",
+  "types": "./dist/types/index.d.ts",
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/src/index.mjs",
+      "require": "./dist/src/index.js"
+    }
+  },
+  "files": [
+    "./dist/src",
+    "./dist/types"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
+    "clean": "rm -rf node_modules && rm -rf dist",
+    "generate": "zx ./scripts/dump.mjs && zx ./scripts/generate-clients.mjs",
+    "format": "prettier --check src test",
+    "format:fix": "prettier --write src test",
+    "lint": "eslint --ext js,ts,tsx src",
+    "lint:fix": "eslint --fix --ext js,ts,tsx src",
+    "test": "ava",
+    "validator:start": "zx ./scripts/start-validator.mjs",
+    "validator:restart": "pnpm validator:start --restart",
+    "validator:stop": "zx ./scripts/stop-validator.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "homepage": "https://github.com/tensor-foundation",
+  "repository": "https://github.com/tensor-foundation/toolkit.git",
+  "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@tensor-foundation/test-helpers": "workspace:*"
+  },
+  "peerDependencies": {
+    "@solana/web3.js": "2.0.0-preview.3"
+  },
+  "devDependencies": {
+    "@ava/typescript": "^4.1.0",
+    "@iarna/toml": "^2.2.5",
+    "@kinobi-so/nodes-from-anchor": "^0.20.5",
+    "@kinobi-so/renderers-js": "^0.20.5",
+    "@metaplex-foundation/shank-js": "^0.1.7",
+    "@solana/eslint-config-solana": "^3.0.0",
+    "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "ava": "^6.1.2",
+    "eslint": "^8.57.0",
+    "kinobi": "^0.20.3",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.2",
+    "typedoc": "^0.25.12",
+    "typedoc-plugin-missing-exports": "^2.2.0",
+    "typescript": "^5.4.2",
+    "zx": "^7.2.3"
+  },
+  "ava": {
+    "require": [
+      "@solana/webcrypto-ed25519-polyfill"
+    ],
+    "typescript": {
+      "compile": false,
+      "rewritePaths": {
+        "test/": "dist/test/"
+      }
+    }
+  },
+  "packageManager": "pnpm@9.1.0"
+}
