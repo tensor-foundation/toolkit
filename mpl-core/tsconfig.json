@@ -20,14 +20,5 @@
     "target": "ESNext"
   },
   "exclude": ["node_modules"],
-  "include": [
-    "test-helpers/src",
-    "mpl-core/src",
-    "mpl-core/test",
-    "mpl-token-metadata/src",
-    "mpl-token-metadata/test",
-    "common-helpers/src",
-    "test-helpers/test",
-    ".eslintrc.js"
-  ]
+  "include": ["src", "test"]
 }
