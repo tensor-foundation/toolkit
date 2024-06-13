@@ -8,6 +8,8 @@ import {
   AccountRole,
   IAccountLookupMeta,
   IAccountMeta,
+  address,
+  Address,
 } from '@solana/web3.js-next';
 
 interface IInstructionWithStringProgramAddress<
@@ -30,14 +32,34 @@ export function fromIInstructionToTransactionInstruction(
             role == AccountRole.READONLY_SIGNER ||
             role == AccountRole.WRITABLE_SIGNER,
           isWritable:
-            role == AccountRole.WRITABLE || AccountRole.WRITABLE_SIGNER,
+            role == AccountRole.WRITABLE || role == AccountRole.WRITABLE_SIGNER,
         } as AccountMeta;
       });
   const programId = new PublicKey(instruction.programAddress);
-  const data = instruction.data ? Buffer.from(instruction.data) : undefined;
+  const data = instruction.data
+    ? Buffer.from(instruction.data)
+    : Buffer.alloc(0);
   return new TransactionInstruction({
     keys,
     programId,
     data,
   });
+}
+
+export function fromTransactionInstructionToIInstruction(
+  instruction: TransactionInstruction
+): IInstruction {
+  const accounts: IAccountMeta[] = instruction.keys.map((key: AccountMeta) => {
+    return {
+      address: address(key.pubkey.toString()),
+      role: (Number(key.isSigner) << 1) | Number(key.isWritable), // 2 bits - Writable LSB, Signer MSB
+    } as IAccountMeta;
+  });
+  const data: Uint8Array = new Uint8Array(instruction.data);
+  const programAddress: Address = address(instruction.programId.toString());
+  return {
+    accounts: accounts,
+    programAddress: programAddress,
+    data: data,
+  };
 }

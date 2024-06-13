@@ -4,3 +4,4 @@ packages:
   - "resolvers"
   - "test-helpers"
   - "common-helpers"
+  - "compat-helpers"
