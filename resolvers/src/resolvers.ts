@@ -1,4 +1,4 @@
-import { Address, ProgramDerivedAddress } from '@solana/web3.js';
+import { Address, ProgramDerivedAddress, address } from '@solana/web3.js';
 import {
   ResolvedAccount,
   TokenStandard,
@@ -351,10 +351,13 @@ export const resolvePoolNftReceipt = async ({
   accounts: Record<string, ResolvedAccount>;
 }): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
   return {
-    value: await findNftReceiptPda({
-      mint: expectAddress(accounts.mint?.value),
-      pool: expectAddress(accounts.pool?.value),
-    }),
+    value: await findNftReceiptPda(
+      {
+        mint: expectAddress(accounts.mint?.value),
+        state: expectAddress(accounts.pool?.value),
+      },
+      { programAddress: address('TAMMqgJYcquwwj2tCdNUerh4C2bJjmghijVziSEf5tA') }
+    ),
   };
 };
 
@@ -364,10 +367,13 @@ export const resolveOrderNftReceipt = async ({
   accounts: Record<string, ResolvedAccount>;
 }): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
   return {
-    value: await findNftReceiptPda({
-      mint: expectAddress(accounts.mint?.value),
-      pool: expectAddress(accounts.order_state?.value),
-    }),
+    value: await findNftReceiptPda(
+      {
+        mint: expectAddress(accounts.mint?.value),
+        state: expectAddress(accounts.orderState?.value),
+      },
+      { programAddress: address('TCMPhJdwDryooaGtiocG1u3xcYbRpiJzb283XfCZsDp') }
+    ),
   };
 };
 

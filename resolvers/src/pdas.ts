@@ -198,23 +198,20 @@ export async function findFeeVaultPda(
 export type NftReceiptSeeds = {
   /** The address of the mint account */
   mint: Address;
-  /** The address of the pool account */
-  pool: Address;
+  /** The address of the state account */
+  state: Address;
 };
 
 export async function findNftReceiptPda(
   seeds: NftReceiptSeeds,
-  config: { programAddress?: Address | undefined } = {}
+  config: { programAddress: Address }
 ): Promise<ProgramDerivedAddress> {
-  const {
-    programAddress = 'TAMMqgJYcquwwj2tCdNUerh4C2bJjmghijVziSEf5tA' as Address<'TAMMqgJYcquwwj2tCdNUerh4C2bJjmghijVziSEf5tA'>,
-  } = config;
   return await getProgramDerivedAddress({
-    programAddress,
+    programAddress: config.programAddress,
     seeds: [
       getUtf8Encoder().encode('nft_receipt'),
       getAddressEncoder().encode(seeds.mint),
-      getAddressEncoder().encode(seeds.pool),
+      getAddressEncoder().encode(seeds.state),
     ],
   });
 }
