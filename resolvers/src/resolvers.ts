@@ -372,7 +372,7 @@ export const resolveOrderNftReceipt = async ({
         mint: expectAddress(accounts.mint?.value),
         state: expectAddress(accounts.orderState?.value),
       },
-      { programAddress: address('TCMPhJdwDryooaGtiocG1u3xcYbRpiJzb283XfCZsDp') }
+      { programAddress: address('TLoCKic2wGJm7VhZKumih4Lc35fUhYqVMgA4j389Buk') }
     ),
   };
 };
