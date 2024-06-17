@@ -345,7 +345,7 @@ export const resolvePoolAta = async ({
   };
 };
 
-export const resolveNftReceipt = async ({
+export const resolvePoolNftReceipt = async ({
   accounts,
 }: {
   accounts: Record<string, ResolvedAccount>;
@@ -354,6 +354,19 @@ export const resolveNftReceipt = async ({
     value: await findNftReceiptPda({
       mint: expectAddress(accounts.mint?.value),
       pool: expectAddress(accounts.pool?.value),
+    }),
+  };
+};
+
+export const resolveOrderNftReceipt = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findNftReceiptPda({
+      mint: expectAddress(accounts.mint?.value),
+      pool: expectAddress(accounts.order_state?.value),
     }),
   };
 };
