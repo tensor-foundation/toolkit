@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/resolvers",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Kinobi resolvers for Tensor protocols",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -14,10 +14,7 @@
       "require": "./dist/src/index.js"
     }
   },
-  "files": [
-    "./dist/src",
-    "./dist/types"
-  ],
+  "files": ["./dist/src", "./dist/types"],
   "scripts": {
     "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
     "build:docs": "typedoc",
@@ -29,7 +26,8 @@
     "format:fix": "prettier --write src"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/tensor-foundation",
   "repository": "https://github.com/tensor-foundation/toolkit.git",
