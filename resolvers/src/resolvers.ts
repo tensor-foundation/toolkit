@@ -137,7 +137,27 @@ export const resolveSellerTokenRecordFromTokenStandard = async ({
     : { value: null };
 };
 
+/* Resolve Token Record from source token account. */
 export const resolveSourceTokenRecordFromTokenStandard = async ({
+  accounts,
+  args,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+  args: { tokenStandard?: TokenStandard | undefined };
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return args.tokenStandard === TokenStandard.ProgrammableNonFungible ||
+    args.tokenStandard === TokenStandard.ProgrammableNonFungibleEdition
+    ? {
+        value: await findTokenRecordPda({
+          mint: expectAddress(accounts.mint?.value),
+          token: expectAddress(accounts.sourceTa?.value),
+        }),
+      }
+    : { value: null };
+};
+
+/* Resolve Token Record from source associated token account. */
+export const resolveSourceAtaTokenRecordFromTokenStandard = async ({
   accounts,
   args,
 }: {
