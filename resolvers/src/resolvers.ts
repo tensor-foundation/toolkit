@@ -449,7 +449,7 @@ export const resolveOrderAta = async ({
 
 export const resolveOrderTokenRecordFromTokenStandard = async ({
   accounts,
-  args
+  args,
 }: {
   accounts: Record<string, ResolvedAccount>;
   args: { tokenStandard?: TokenStandard | undefined };
