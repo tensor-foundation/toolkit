@@ -9,6 +9,7 @@ import {
   findMetadataPda,
   findNftReceiptPda,
   findTokenRecordPda,
+  findTreeAuthorityPda,
   findWnsApprovePda,
   findWnsDistributionPda,
 } from './index';
@@ -415,4 +416,51 @@ export const resolveWnsExtraAccountMetasPda = async ({
       { programAddress: expectAddress(accounts.wnsProgram?.value) }
     ),
   };
+};
+
+export const resolveTreeAuthorityPda = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findTreeAuthorityPda(
+      {
+        merkleTree: expectAddress(accounts.merkleTree?.value),
+      },
+      { programAddress: expectAddress(accounts.bubblegumProgram?.value) }
+    ),
+  };
+};
+
+export const resolveOrderAta = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findAssociatedTokenAccountPda({
+      owner: expectAddress(accounts.orderVault?.value),
+      mint: expectAddress(accounts.mint?.value),
+      tokenProgram: expectAddress(accounts.tokenProgram?.value),
+    }),
+  };
+};
+
+export const resolveOrderTokenRecordFromTokenStandard = async ({
+  accounts,
+  args
+}: {
+  accounts: Record<string, ResolvedAccount>;
+  args: { tokenStandard?: TokenStandard | undefined };
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return args.tokenStandard === TokenStandard.ProgrammableNonFungible ||
+    args.tokenStandard === TokenStandard.ProgrammableNonFungibleEdition
+    ? {
+        value: await findTokenRecordPda({
+          mint: expectAddress(accounts.mint?.value),
+          token: expectAddress(accounts.orderVaultAta?.value),
+        }),
+      }
+    : { value: null };
 };
