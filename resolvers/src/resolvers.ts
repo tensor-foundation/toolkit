@@ -60,7 +60,7 @@ export const resolveOwnerTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.ownerAta?.value),
+          token: expectAddress(accounts.ownerTa?.value),
         }),
       }
     : { value: null };
@@ -132,7 +132,7 @@ export const resolveSellerTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.sellerAta?.value),
+          token: expectAddress(accounts.sellerTa?.value),
         }),
       }
     : { value: null };
