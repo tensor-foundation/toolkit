@@ -25,6 +25,8 @@ import {
   AddBlockerArgs,
   Attributes,
   AttributesArgs,
+  Autograph,
+  AutographArgs,
   BurnDelegate,
   BurnDelegateArgs,
   Edition,
@@ -47,10 +49,14 @@ import {
   TransferDelegateArgs,
   UpdateDelegate,
   UpdateDelegateArgs,
+  VerifiedCreators,
+  VerifiedCreatorsArgs,
   getAddBlockerDecoder,
   getAddBlockerEncoder,
   getAttributesDecoder,
   getAttributesEncoder,
+  getAutographDecoder,
+  getAutographEncoder,
   getBurnDelegateDecoder,
   getBurnDelegateEncoder,
   getEditionDecoder,
@@ -73,6 +79,8 @@ import {
   getTransferDelegateEncoder,
   getUpdateDelegateDecoder,
   getUpdateDelegateEncoder,
+  getVerifiedCreatorsDecoder,
+  getVerifiedCreatorsEncoder,
 } from '.';
 
 export type Plugin =
@@ -97,7 +105,9 @@ export type Plugin =
   | { __kind: 'Edition'; fields: readonly [Edition] }
   | { __kind: 'MasterEdition'; fields: readonly [MasterEdition] }
   | { __kind: 'AddBlocker'; fields: readonly [AddBlocker] }
-  | { __kind: 'ImmutableMetadata'; fields: readonly [ImmutableMetadata] };
+  | { __kind: 'ImmutableMetadata'; fields: readonly [ImmutableMetadata] }
+  | { __kind: 'VerifiedCreators'; fields: readonly [VerifiedCreators] }
+  | { __kind: 'Autograph'; fields: readonly [Autograph] };
 
 export type PluginArgs =
   | { __kind: 'Royalties'; fields: readonly [RoyaltiesArgs] }
@@ -121,7 +131,9 @@ export type PluginArgs =
   | { __kind: 'Edition'; fields: readonly [EditionArgs] }
   | { __kind: 'MasterEdition'; fields: readonly [MasterEditionArgs] }
   | { __kind: 'AddBlocker'; fields: readonly [AddBlockerArgs] }
-  | { __kind: 'ImmutableMetadata'; fields: readonly [ImmutableMetadataArgs] };
+  | { __kind: 'ImmutableMetadata'; fields: readonly [ImmutableMetadataArgs] }
+  | { __kind: 'VerifiedCreators'; fields: readonly [VerifiedCreatorsArgs] }
+  | { __kind: 'Autograph'; fields: readonly [AutographArgs] };
 
 export function getPluginEncoder(): Encoder<PluginArgs> {
   return getDiscriminatedUnionEncoder([
@@ -194,6 +206,16 @@ export function getPluginEncoder(): Encoder<PluginArgs> {
       getStructEncoder([
         ['fields', getTupleEncoder([getImmutableMetadataEncoder()])],
       ]),
+    ],
+    [
+      'VerifiedCreators',
+      getStructEncoder([
+        ['fields', getTupleEncoder([getVerifiedCreatorsEncoder()])],
+      ]),
+    ],
+    [
+      'Autograph',
+      getStructEncoder([['fields', getTupleEncoder([getAutographEncoder()])]]),
     ],
   ]);
 }
@@ -269,6 +291,16 @@ export function getPluginDecoder(): Decoder<Plugin> {
       getStructDecoder([
         ['fields', getTupleDecoder([getImmutableMetadataDecoder()])],
       ]),
+    ],
+    [
+      'VerifiedCreators',
+      getStructDecoder([
+        ['fields', getTupleDecoder([getVerifiedCreatorsDecoder()])],
+      ]),
+    ],
+    [
+      'Autograph',
+      getStructDecoder([['fields', getTupleDecoder([getAutographDecoder()])]]),
     ],
   ]);
 }
@@ -390,6 +422,22 @@ export function plugin(
     'ImmutableMetadata'
   >['fields']
 ): GetDiscriminatedUnionVariant<PluginArgs, '__kind', 'ImmutableMetadata'>;
+export function plugin(
+  kind: 'VerifiedCreators',
+  data: GetDiscriminatedUnionVariantContent<
+    PluginArgs,
+    '__kind',
+    'VerifiedCreators'
+  >['fields']
+): GetDiscriminatedUnionVariant<PluginArgs, '__kind', 'VerifiedCreators'>;
+export function plugin(
+  kind: 'Autograph',
+  data: GetDiscriminatedUnionVariantContent<
+    PluginArgs,
+    '__kind',
+    'Autograph'
+  >['fields']
+): GetDiscriminatedUnionVariant<PluginArgs, '__kind', 'Autograph'>;
 export function plugin<K extends PluginArgs['__kind'], Data>(
   kind: K,
   data?: Data

@@ -13,7 +13,6 @@ const idl = rootNodeFromAnchor(require(path.join(idlDir, 'mpl-core.json')));
 const kinobi = k.createFromRoot(idl, []);
 
 // Render JavaScript.
-const jsClient = path.join(__dirname, '..', 'clients', 'js');
 kinobi.accept(
   renderJavaScriptVisitor(path.join(packageDir, 'src', 'generated'), {
     prettier: require(path.join(packageDir, '.prettierrc.json')),

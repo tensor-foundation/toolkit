@@ -86,6 +86,10 @@ export const MPL_CORE_PROGRAM_ERROR__DUPLICATE_LIFECYCLE_CHECKS = 0x25; // 37
 export const MPL_CORE_PROGRAM_ERROR__INVALID_ORACLE_ACCOUNT_DATA = 0x26; // 38
 /** UninitializedOracleAccount: Oracle account is uninitialized */
 export const MPL_CORE_PROGRAM_ERROR__UNINITIALIZED_ORACLE_ACCOUNT = 0x27; // 39
+/** MissingSigner: Missing required signer for operation */
+export const MPL_CORE_PROGRAM_ERROR__MISSING_SIGNER = 0x28; // 40
+/** InvalidPluginOperation: Invalid plugin operation */
+export const MPL_CORE_PROGRAM_ERROR__INVALID_PLUGIN_OPERATION = 0x29; // 41
 
 export type MplCoreProgramError =
   | typeof MPL_CORE_PROGRAM_ERROR__ALREADY_COMPRESSED
@@ -108,6 +112,7 @@ export type MplCoreProgramError =
   | typeof MPL_CORE_PROGRAM_ERROR__INVALID_LOG_WRAPPER_PROGRAM
   | typeof MPL_CORE_PROGRAM_ERROR__INVALID_ORACLE_ACCOUNT_DATA
   | typeof MPL_CORE_PROGRAM_ERROR__INVALID_PLUGIN
+  | typeof MPL_CORE_PROGRAM_ERROR__INVALID_PLUGIN_OPERATION
   | typeof MPL_CORE_PROGRAM_ERROR__INVALID_PLUGIN_SETTING
   | typeof MPL_CORE_PROGRAM_ERROR__INVALID_SYSTEM_PROGRAM
   | typeof MPL_CORE_PROGRAM_ERROR__MISSING_ASSET
@@ -115,6 +120,7 @@ export type MplCoreProgramError =
   | typeof MPL_CORE_PROGRAM_ERROR__MISSING_COMPRESSION_PROOF
   | typeof MPL_CORE_PROGRAM_ERROR__MISSING_EXTERNAL_PLUGIN_ADAPTER_ACCOUNT
   | typeof MPL_CORE_PROGRAM_ERROR__MISSING_NEW_OWNER
+  | typeof MPL_CORE_PROGRAM_ERROR__MISSING_SIGNER
   | typeof MPL_CORE_PROGRAM_ERROR__MISSING_SYSTEM_PROGRAM
   | typeof MPL_CORE_PROGRAM_ERROR__MISSING_UPDATE_AUTHORITY
   | typeof MPL_CORE_PROGRAM_ERROR__NO_APPROVALS
@@ -154,6 +160,7 @@ if (__DEV__) {
     [MPL_CORE_PROGRAM_ERROR__INVALID_LOG_WRAPPER_PROGRAM]: `Invalid Log Wrapper Program`,
     [MPL_CORE_PROGRAM_ERROR__INVALID_ORACLE_ACCOUNT_DATA]: `Could not read from oracle account`,
     [MPL_CORE_PROGRAM_ERROR__INVALID_PLUGIN]: `Invalid Plugin`,
+    [MPL_CORE_PROGRAM_ERROR__INVALID_PLUGIN_OPERATION]: `Invalid plugin operation`,
     [MPL_CORE_PROGRAM_ERROR__INVALID_PLUGIN_SETTING]: `Invalid setting for plugin`,
     [MPL_CORE_PROGRAM_ERROR__INVALID_SYSTEM_PROGRAM]: `Invalid System Program`,
     [MPL_CORE_PROGRAM_ERROR__MISSING_ASSET]: `Missing asset needed for extra account PDA derivation`,
@@ -161,6 +168,7 @@ if (__DEV__) {
     [MPL_CORE_PROGRAM_ERROR__MISSING_COMPRESSION_PROOF]: `Missing compression proof`,
     [MPL_CORE_PROGRAM_ERROR__MISSING_EXTERNAL_PLUGIN_ADAPTER_ACCOUNT]: `Missing account needed for external plugin adapter`,
     [MPL_CORE_PROGRAM_ERROR__MISSING_NEW_OWNER]: `Missing new owner`,
+    [MPL_CORE_PROGRAM_ERROR__MISSING_SIGNER]: `Missing required signer for operation`,
     [MPL_CORE_PROGRAM_ERROR__MISSING_SYSTEM_PROGRAM]: `Missing system program`,
     [MPL_CORE_PROGRAM_ERROR__MISSING_UPDATE_AUTHORITY]: `Missing update authority`,
     [MPL_CORE_PROGRAM_ERROR__NO_APPROVALS]: `Neither the asset or any plugins have approved this operation`,
