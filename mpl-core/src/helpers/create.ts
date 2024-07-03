@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable @typescript-eslint/return-await */
 import {
   Address,
   appendTransactionMessageInstruction,
@@ -50,11 +47,41 @@ export const createDefaultAsset = async (
   client: Client,
   payer: KeyPairSigner,
   updateAuthority: Address,
-  owner: Address
+  owner: Address,
+  withRoyalties: boolean = false
 ): Promise<Asset> => {
   const asset_kp = await generateKeyPairSigner();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let plugins: PluginAuthorityPairArgs[] | null = null;
+  if (withRoyalties) {
+    const creators: [CreatorArgs] = [
+      {
+        address: updateAuthority,
+        percentage: 100,
+      },
+    ];
+
+    const royalties: [RoyaltiesArgs] = [
+      {
+        basisPoints: 500,
+        creators,
+        ruleSet: {
+          __kind: 'None',
+        },
+      },
+    ];
+
+    plugins = [
+      {
+        plugin: {
+          __kind: 'Royalties',
+          fields: royalties,
+        },
+        authority: { __kind: 'UpdateAuthority' },
+      },
+    ];
+  }
+
   const ix = getCreateV2Instruction({
     asset: asset_kp,
     payer: payer,
@@ -63,7 +90,7 @@ export const createDefaultAsset = async (
     dataState: DataState.AccountState,
     name: 'TestAsset',
     uri: 'https://example.com/nft',
-    plugins: null,
+    plugins,
     externalPluginAdapters: null,
   });
 
