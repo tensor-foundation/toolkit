@@ -15,7 +15,7 @@ import {
 } from '../src';
 
 // eslint-disable-next-line @typescript-eslint/require-await
-test('it can mint a basic Asset with createDefaultAsset', async (t) => {
+test('it can mint a basic Asset with a Collection', async (t) => {
   const client = createDefaultSolanaClient();
   const payer = await generateKeyPairSignerWithSol(client);
   const updateAuthority = (await generateKeyPairSignerWithSol(client)).address;

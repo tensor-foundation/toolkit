@@ -14,10 +14,7 @@
       "require": "./dist/src/index.js"
     }
   },
-  "files": [
-    "./dist/src",
-    "./dist/types"
-  ],
+  "files": ["./dist/src", "./dist/types"],
   "scripts": {
     "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
     "clean": "rm -rf node_modules && rm -rf dist",
@@ -39,12 +36,10 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@tensor-foundation/test-helpers": "workspace:*"
-  },
-  "peerDependencies": {
-    "@solana/web3.js": "2.0.0-preview.3"
+    "@tensor-foundation/test-helpers": "0.0.5"
   },
   "devDependencies": {
+    "@solana/web3.js": "2.0.0-preview.3",
     "@ava/typescript": "^4.1.0",
     "@iarna/toml": "^2.2.5",
     "@kinobi-so/nodes-from-anchor": "^0.20.5",
@@ -66,9 +61,7 @@
     "zx": "^7.2.3"
   },
   "ava": {
-    "require": [
-      "@solana/webcrypto-ed25519-polyfill"
-    ],
+    "require": ["@solana/webcrypto-ed25519-polyfill"],
     "typescript": {
       "compile": false,
       "rewritePaths": {

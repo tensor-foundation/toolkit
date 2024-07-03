@@ -14,10 +14,7 @@
       "require": "./dist/src/index.js"
     }
   },
-  "files": [
-    "./dist/src",
-    "./dist/types"
-  ],
+  "files": ["./dist/src", "./dist/types"],
   "scripts": {
     "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
     "build:docs": "typedoc",
@@ -35,7 +32,9 @@
   "repository": "https://github.com/tensor-foundation/toolkit.git",
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
-  "peerDependencies": {
+  "dependencies": {
+    "@solana-program/token": "0.1.4",
+    "@solana-program/system": "0.3.3",
     "@solana/web3.js": "2.0.0-preview.3"
   },
   "devDependencies": {
