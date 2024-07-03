@@ -60,7 +60,7 @@ export const resolveOwnerTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.ownerAta?.value),
+          token: expectAddress(accounts.ownerTa?.value),
         }),
       }
     : { value: null };
@@ -78,7 +78,7 @@ export const resolveListTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.listAta?.value),
+          token: expectAddress(accounts.listTa?.value),
         }),
       }
     : { value: null };
@@ -96,7 +96,7 @@ export const resolveBidTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.bidAta?.value),
+          token: expectAddress(accounts.bidTa?.value),
         }),
       }
     : { value: null };
@@ -114,7 +114,7 @@ export const resolveBuyerTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.buyerAta?.value),
+          token: expectAddress(accounts.buyerTa?.value),
         }),
       }
     : { value: null };
@@ -132,7 +132,7 @@ export const resolveSellerTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.sellerAta?.value),
+          token: expectAddress(accounts.sellerTa?.value),
         }),
       }
     : { value: null };
@@ -150,7 +150,7 @@ export const resolveSourceTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.sourceAta?.value),
+          token: expectAddress(accounts.sourceTa?.value),
         }),
       }
     : { value: null };
@@ -168,7 +168,7 @@ export const resolveDestinationTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.destinationAta?.value),
+          token: expectAddress(accounts.destinationTa?.value),
         }),
       }
     : { value: null };
@@ -186,7 +186,7 @@ export const resolvePoolTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.poolAta?.value),
+          token: expectAddress(accounts.poolTa?.value),
         }),
       }
     : { value: null };
@@ -459,7 +459,7 @@ export const resolveOrderTokenRecordFromTokenStandard = async ({
     ? {
         value: await findTokenRecordPda({
           mint: expectAddress(accounts.mint?.value),
-          token: expectAddress(accounts.orderVaultAta?.value),
+          token: expectAddress(accounts.orderVaultTa?.value),
         }),
       }
     : { value: null };
