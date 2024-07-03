@@ -5,8 +5,4 @@ version = "0.7.1"
 [package.metadata.solana]
 program-id = "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
 # Include program itself as a dep so it downloads the binary.
-program-dependencies = [
-    "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d",
-    "noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV",
-    "cmtDvXumGCrqC1Age74AVPhSRVXJMd8PJS91L8KbNCK",
-]
+program-dependencies = ["CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"]
