@@ -14,7 +14,10 @@
       "require": "./dist/src/index.js"
     }
   },
-  "files": ["./dist/src", "./dist/types"],
+  "files": [
+    "./dist/src",
+    "./dist/types"
+  ],
   "scripts": {
     "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
     "clean": "rm -rf node_modules && rm -rf dist",
@@ -61,7 +64,9 @@
     "zx": "^7.2.3"
   },
   "ava": {
-    "require": ["@solana/webcrypto-ed25519-polyfill"],
+    "require": [
+      "@solana/webcrypto-ed25519-polyfill"
+    ],
     "typescript": {
       "compile": false,
       "rewritePaths": {

@@ -1,32 +1,32 @@
 import {
   Address,
-  KeyPairSigner,
+  appendTransactionMessageInstruction,
   generateKeyPairSigner,
+  KeyPairSigner,
+  none,
   OptionOrNullable,
   pipe,
-  appendTransactionMessageInstruction,
-  none,
 } from '@solana/web3.js';
 import {
   Client,
   createDefaultTransaction,
   signAndSendTransaction,
-  TOKEN_PROGRAM_ID,
   TOKEN22_PROGRAM_ID,
+  TOKEN_PROGRAM_ID,
 } from '@tensor-foundation/test-helpers';
 import {
-  TokenStandard,
-  Creator,
   Collection,
-  Uses,
   CollectionDetails,
-  PrintSupplyArgs,
-  printSupply,
-  findMetadataPda,
+  Creator,
   findMasterEditionPda,
+  findMetadataPda,
   findTokenRecordPda,
   getCreateV1Instruction,
   getMintV1Instruction,
+  printSupply,
+  PrintSupplyArgs,
+  TokenStandard,
+  Uses,
 } from '../generated';
 import { findAtaPda } from '../token';
 
@@ -60,9 +60,9 @@ export type Nft = {
 // Returns the mint address of the NFT.
 export const createDefaultNft = async (
   client: Client,
-  authority: KeyPairSigner<string>,
-  owner: KeyPairSigner,
-  payer: KeyPairSigner | null
+  payer: KeyPairSigner | null,
+  updateAuthority: KeyPairSigner<string>,
+  owner: KeyPairSigner
 ): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
@@ -71,7 +71,7 @@ export const createDefaultNft = async (
     sellerFeeBasisPoints: 500,
     creators: [
       {
-        address: authority.address,
+        address: updateAuthority.address,
         verified: true,
         share: 100,
       },
@@ -80,7 +80,7 @@ export const createDefaultNft = async (
   };
 
   const accounts = {
-    authority,
+    authority: updateAuthority,
     owner,
     payer,
     tokenProgramId: TOKEN_PROGRAM_ID,
@@ -94,9 +94,9 @@ export const createDefaultNft = async (
 // Returns the mint address of the NFT.
 export const createDefaultpNft = async (
   client: Client,
+  payer: KeyPairSigner | null,
   authority: KeyPairSigner<string>,
-  owner: KeyPairSigner,
-  payer: KeyPairSigner | null
+  owner: KeyPairSigner
 ): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
@@ -129,9 +129,9 @@ export const createDefaultpNft = async (
 // Returns the mint address of the NFT.
 export const createDefaultToken22pNft = async (
   client: Client,
+  payer: KeyPairSigner | null,
   authority: KeyPairSigner<string>,
-  owner: KeyPairSigner,
-  payer: KeyPairSigner | null
+  owner: KeyPairSigner
 ): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
@@ -172,9 +172,9 @@ export interface MintNftAccounts {
 // Returns the mint and metadat addresses of the NFT.
 export const createDefaultToken22Nft = async (
   client: Client,
+  payer: KeyPairSigner | null,
   authority: KeyPairSigner,
-  owner: KeyPairSigner,
-  payer: KeyPairSigner | null
+  owner: KeyPairSigner
 ): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
@@ -289,7 +289,7 @@ export const mintNft = async (
   });
 
   await pipe(
-    await createDefaultTransaction(client, owner),
+    await createDefaultTransaction(client, payer),
     (tx) => appendTransactionMessageInstruction(createIx, tx),
     (tx) => appendTransactionMessageInstruction(mintIx, tx),
     (tx) => signAndSendTransaction(client, tx)
