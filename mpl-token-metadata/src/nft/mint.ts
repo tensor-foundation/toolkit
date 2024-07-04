@@ -61,26 +61,29 @@ export type Nft = {
 export const createDefaultNft = async (
   client: Client,
   payer: KeyPairSigner | null,
-  updateAuthority: KeyPairSigner<string>,
-  owner: KeyPairSigner
+  authority: KeyPairSigner<string>,
+  owner: KeyPairSigner,
+  creators?: Creator[] | null
 ): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
     uri: 'https://example.com/nft',
     sellerFeeBasisPoints: 500,
-    creators: [
-      {
-        address: updateAuthority.address,
-        verified: true,
-        share: 100,
-      },
-    ],
+    creators: creators
+      ? creators
+      : [
+          {
+            address: authority.address,
+            verified: true,
+            share: 100,
+          },
+        ],
     printSupply: printSupply('Zero'),
   };
 
   const accounts = {
-    authority: updateAuthority,
+    authority,
     owner,
     payer,
     tokenProgramId: TOKEN_PROGRAM_ID,
@@ -96,20 +99,23 @@ export const createDefaultpNft = async (
   client: Client,
   payer: KeyPairSigner | null,
   authority: KeyPairSigner<string>,
-  owner: KeyPairSigner
+  owner: KeyPairSigner,
+  creators?: Creator[] | null
 ): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
     uri: 'https://example.com/nft',
     sellerFeeBasisPoints: 500,
-    creators: [
-      {
-        address: authority.address,
-        verified: true,
-        share: 100,
-      },
-    ],
+    creators: creators
+      ? creators
+      : [
+          {
+            address: authority.address,
+            verified: true,
+            share: 100,
+          },
+        ],
     printSupply: printSupply('Zero'),
     tokenStandard: TokenStandard.ProgrammableNonFungible,
   };
@@ -131,20 +137,23 @@ export const createDefaultToken22pNft = async (
   client: Client,
   payer: KeyPairSigner | null,
   authority: KeyPairSigner<string>,
-  owner: KeyPairSigner
+  owner: KeyPairSigner,
+  creators?: Creator[] | null
 ): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
     uri: 'https://example.com/nft',
     sellerFeeBasisPoints: 500,
-    creators: [
-      {
-        address: authority.address,
-        verified: true,
-        share: 100,
-      },
-    ],
+    creators: creators
+      ? creators
+      : [
+          {
+            address: authority.address,
+            verified: true,
+            share: 100,
+          },
+        ],
     printSupply: printSupply('Zero'),
     tokenStandard: TokenStandard.ProgrammableNonFungible,
   };
@@ -174,20 +183,23 @@ export const createDefaultToken22Nft = async (
   client: Client,
   payer: KeyPairSigner | null,
   authority: KeyPairSigner,
-  owner: KeyPairSigner
+  owner: KeyPairSigner,
+  creators?: Creator[] | null
 ): Promise<Nft> => {
   const data: NftData = {
     name: 'Example NFT',
     symbol: 'EXNFT',
     uri: 'https://example.com/nft',
     sellerFeeBasisPoints: 500,
-    creators: [
-      {
-        address: authority.address,
-        verified: true,
-        share: 100,
-      },
-    ],
+    creators: creators
+      ? creators
+      : [
+          {
+            address: authority.address,
+            verified: true,
+            share: 100,
+          },
+        ],
     printSupply: printSupply('Zero'),
   };
 
