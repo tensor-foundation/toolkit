@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/test-helpers",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Utility functions for testing Solana programs with the Solana Web3.js library",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -35,7 +35,9 @@
   "repository": "https://github.com/tensor-foundation/toolkit.git",
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
-  "peerDependencies": {
+  "dependencies": {
+    "@solana-program/token": "0.1.4",
+    "@solana-program/system": "0.3.3",
     "@solana/web3.js": "2.0.0-preview.3"
   },
   "devDependencies": {
@@ -54,7 +56,9 @@
     "typescript": "^5.4.2"
   },
   "ava": {
-    "require": ["@solana/webcrypto-ed25519-polyfill"],
+    "require": [
+      "@solana/webcrypto-ed25519-polyfill"
+    ],
     "typescript": {
       "compile": false,
       "rewritePaths": {

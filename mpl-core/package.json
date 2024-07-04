@@ -39,12 +39,10 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@tensor-foundation/test-helpers": "workspace:*"
-  },
-  "peerDependencies": {
-    "@solana/web3.js": "2.0.0-preview.3"
+    "@tensor-foundation/test-helpers": "0.0.5"
   },
   "devDependencies": {
+    "@solana/web3.js": "2.0.0-preview.3",
     "@ava/typescript": "^4.1.0",
     "@iarna/toml": "^2.2.5",
     "@kinobi-so/nodes-from-anchor": "^0.20.5",

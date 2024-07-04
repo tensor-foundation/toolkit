@@ -1,5 +1,5 @@
 {
-  "version": "0.7.0",
+  "version": "0.7.1",
   "name": "mpl_core_program",
   "instructions": [
     {
@@ -9,35 +9,27 @@
           "name": "asset",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The address of the new asset"
-          ]
+          "docs": ["The address of the new asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The authority signing for creation"
-          ]
+          "docs": ["The authority signing for creation"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "owner",
@@ -53,26 +45,20 @@
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The authority on the new asset"
-          ]
+          "docs": ["The authority on the new asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -95,34 +81,26 @@
           "name": "collection",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The address of the new asset"
-          ]
+          "docs": ["The address of the new asset"]
         },
         {
           "name": "updateAuthority",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The authority of the new asset"
-          ]
+          "docs": ["The authority of the new asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         }
       ],
       "args": [
@@ -145,52 +123,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -213,43 +179,33 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -272,52 +228,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -340,43 +284,33 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -399,52 +333,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -467,43 +389,33 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -526,52 +438,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -594,43 +494,33 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -653,52 +543,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -721,43 +599,33 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -780,53 +648,41 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -849,35 +705,27 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": true,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -900,61 +748,47 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "newOwner",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The new owner to which to transfer the asset"
-          ]
+          "docs": ["The new owner to which to transfer the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -977,26 +811,20 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
@@ -1011,18 +839,14 @@
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1045,17 +869,13 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
@@ -1071,26 +891,20 @@
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The new update authority of the asset"
-          ]
+          "docs": ["The new update authority of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1113,52 +927,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account receiving the storage fees"
-          ]
+          "docs": ["The account receiving the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1181,52 +983,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1249,17 +1039,13 @@
           "name": "recipient1",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the recipient 1"
-          ]
+          "docs": ["The address of the recipient 1"]
         },
         {
           "name": "recipient2",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the recipient 2"
-          ]
+          "docs": ["The address of the recipient 2"]
         }
       ],
       "args": [],
@@ -1275,35 +1061,27 @@
           "name": "asset",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The address of the new asset"
-          ]
+          "docs": ["The address of the new asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The authority signing for creation"
-          ]
+          "docs": ["The authority signing for creation"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "owner",
@@ -1319,26 +1097,20 @@
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The authority on the new asset"
-          ]
+          "docs": ["The authority on the new asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1361,34 +1133,26 @@
           "name": "collection",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The address of the new asset"
-          ]
+          "docs": ["The address of the new asset"]
         },
         {
           "name": "updateAuthority",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The authority of the new asset"
-          ]
+          "docs": ["The authority of the new asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         }
       ],
       "args": [
@@ -1411,52 +1175,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1479,43 +1231,33 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1538,52 +1280,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1606,43 +1336,33 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1665,52 +1385,40 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1733,43 +1441,33 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
           "isMut": false,
           "isSigner": true,
           "isOptional": true,
-          "docs": [
-            "The owner or delegate of the asset"
-          ]
+          "docs": ["The owner or delegate of the asset"]
         },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1792,26 +1490,20 @@
           "name": "asset",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "collection",
           "isMut": true,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The collection to which the asset belongs"
-          ]
+          "docs": ["The collection to which the asset belongs"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
@@ -1826,18 +1518,14 @@
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -1860,17 +1548,13 @@
           "name": "collection",
           "isMut": true,
           "isSigner": false,
-          "docs": [
-            "The address of the asset"
-          ]
+          "docs": ["The address of the asset"]
         },
         {
           "name": "payer",
           "isMut": true,
           "isSigner": true,
-          "docs": [
-            "The account paying for the storage fees"
-          ]
+          "docs": ["The account paying for the storage fees"]
         },
         {
           "name": "authority",
@@ -1885,18 +1569,14 @@
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
-          "docs": [
-            "The system program"
-          ]
+          "docs": ["The system program"]
         },
         {
           "name": "logWrapper",
           "isMut": false,
           "isSigner": false,
           "isOptional": true,
-          "docs": [
-            "The SPL Noop Program"
-          ]
+          "docs": ["The SPL Noop Program"]
         }
       ],
       "args": [
@@ -2048,10 +1728,7 @@
           {
             "name": "hash",
             "type": {
-              "array": [
-                "u8",
-                32
-              ]
+              "array": ["u8", 32]
             }
           }
         ]
@@ -2114,6 +1791,38 @@
             "type": {
               "vec": {
                 "defined": "Attribute"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "AutographSignature",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "publicKey"
+          },
+          {
+            "name": "message",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Autograph",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "signatures",
+            "type": {
+              "vec": {
+                "defined": "AutographSignature"
               }
             }
           }
@@ -2681,6 +2390,38 @@
             "name": "additionalDelegates",
             "type": {
               "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "VerifiedCreatorsSignature",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "publicKey"
+          },
+          {
+            "name": "verified",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VerifiedCreators",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "signatures",
+            "type": {
+              "vec": {
+                "defined": "VerifiedCreatorsSignature"
+              }
             }
           }
         ]
@@ -3309,20 +3050,14 @@
           {
             "name": "assetHash",
             "type": {
-              "array": [
-                "u8",
-                32
-              ]
+              "array": ["u8", 32]
             }
           },
           {
             "name": "pluginHashes",
             "type": {
               "vec": {
-                "array": [
-                  "u8",
-                  32
-                ]
+                "array": ["u8", 32]
               }
             }
           }
@@ -3437,6 +3172,22 @@
                 "defined": "ImmutableMetadata"
               }
             ]
+          },
+          {
+            "name": "VerifiedCreators",
+            "fields": [
+              {
+                "defined": "VerifiedCreators"
+              }
+            ]
+          },
+          {
+            "name": "Autograph",
+            "fields": [
+              {
+                "defined": "Autograph"
+              }
+            ]
           }
         ]
       }
@@ -3484,6 +3235,12 @@
           },
           {
             "name": "ImmutableMetadata"
+          },
+          {
+            "name": "VerifiedCreators"
+          },
+          {
+            "name": "Autograph"
           }
         ]
       }
@@ -3693,15 +3450,11 @@
           },
           {
             "name": "Address",
-            "fields": [
-              "publicKey"
-            ]
+            "fields": ["publicKey"]
           },
           {
             "name": "Bytes",
-            "fields": [
-              "bytes"
-            ]
+            "fields": ["bytes"]
           }
         ]
       }
@@ -3794,15 +3547,11 @@
         "variants": [
           {
             "name": "LifecycleHook",
-            "fields": [
-              "publicKey"
-            ]
+            "fields": ["publicKey"]
           },
           {
             "name": "Oracle",
-            "fields": [
-              "publicKey"
-            ]
+            "fields": ["publicKey"]
           },
           {
             "name": "DataStore",
@@ -3865,9 +3614,7 @@
           },
           {
             "name": "Custom",
-            "fields": [
-              "u64"
-            ]
+            "fields": ["u64"]
           }
         ]
       }
@@ -4015,15 +3762,11 @@
           },
           {
             "name": "Address",
-            "fields": [
-              "publicKey"
-            ]
+            "fields": ["publicKey"]
           },
           {
             "name": "Collection",
-            "fields": [
-              "publicKey"
-            ]
+            "fields": ["publicKey"]
           }
         ]
       }
@@ -4229,6 +3972,16 @@
       "code": 39,
       "name": "UninitializedOracleAccount",
       "msg": "Oracle account is uninitialized"
+    },
+    {
+      "code": 40,
+      "name": "MissingSigner",
+      "msg": "Missing required signer for operation"
+    },
+    {
+      "code": 41,
+      "name": "InvalidPluginOperation",
+      "msg": "Invalid plugin operation"
     }
   ],
   "metadata": {
