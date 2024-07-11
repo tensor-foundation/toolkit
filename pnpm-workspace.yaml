@@ -1,7 +1,8 @@
 packages:
-  - "mpl-token-metadata"
-  - "mpl-core"
-  - "resolvers"
-  - "test-helpers"
   - "common-helpers"
   - "compat-helpers"
+  - "mpl-token-metadata"
+  - "mpl-core"
+  - "phoenix"
+  - "resolvers"
+  - "test-helpers"

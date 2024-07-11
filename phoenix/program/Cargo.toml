@@ -1,0 +1,8 @@
+[package]
+name = "phoenix-v1"
+version = "0.2.4"
+
+[package.metadata.solana]
+program-id = "PhoeNiXZ8ByJGLkxNfZRnkUfjvmuYqLR89jjFHGqdXY"
+# Include program itself as a dep so it downloads the binary.
+program-dependencies = ["PhoeNiXZ8ByJGLkxNfZRnkUfjvmuYqLR89jjFHGqdXY"]
