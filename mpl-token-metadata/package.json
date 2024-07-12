@@ -50,6 +50,7 @@
     "@metaplex-foundation/shank-js": "^0.1.7",
     "@solana/eslint-config-solana": "^3.0.0",
     "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
+    "@solana-program/token": "0.1.4",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "ava": "^6.1.2",

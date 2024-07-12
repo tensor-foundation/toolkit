@@ -55,38 +55,63 @@ export type Nft = {
   tokenRecord?: Address;
 };
 
+export type CreateNftArgs = {
+  client: Client;
+  payer: KeyPairSigner | null;
+  authority: KeyPairSigner;
+  owner: KeyPairSigner;
+  creators?: Creator[] | null;
+  data?: NftData;
+  standard?: TokenStandard;
+  tokenProgram?: Address;
+};
+
 // Create a default NFT with example data. Useful for creating throw-away NFTs
-// for testing.
+// for testing. TokenStandard defaults to NonFungible.
 // Returns the mint address of the NFT.
-export const createDefaultNft = async (
-  client: Client,
-  payer: KeyPairSigner | null,
-  authority: KeyPairSigner<string>,
-  owner: KeyPairSigner,
-  creators?: Creator[] | null
-): Promise<Nft> => {
-  const data: NftData = {
-    name: 'Example NFT',
-    symbol: 'EXNFT',
-    uri: 'https://example.com/nft',
-    sellerFeeBasisPoints: 500,
-    creators: creators
-      ? creators
-      : [
-          {
-            address: authority.address,
-            verified: true,
-            share: 100,
-          },
-        ],
-    printSupply: printSupply('Zero'),
-  };
+export const createDefaultNft = async (args: CreateNftArgs): Promise<Nft> => {
+  const {
+    client,
+    payer,
+    authority,
+    owner,
+    creators,
+    standard = TokenStandard.NonFungible,
+    tokenProgram = TOKEN_PROGRAM_ID,
+  } = args;
+
+  let { data } = args;
+
+  if (!data) {
+    data = {
+      name: 'Example NFT',
+      symbol: 'EXNFT',
+      uri: 'https://example.com/nft',
+      sellerFeeBasisPoints: 500,
+      creators: creators
+        ? creators
+        : [
+            {
+              address: authority.address,
+              verified: true,
+              share: 100,
+            },
+          ],
+      printSupply: printSupply('Zero'),
+      tokenStandard: standard,
+    };
+  }
+
+  // In case user provides two contradictory standards.
+  if (data.tokenStandard != standard) {
+    throw new Error('Token standard mismatch');
+  }
 
   const accounts = {
     authority,
     owner,
     payer,
-    tokenProgramId: TOKEN_PROGRAM_ID,
+    tokenProgramId: tokenProgram,
   };
 
   return await mintNft(client, accounts, data);
