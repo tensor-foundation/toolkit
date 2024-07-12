@@ -7,7 +7,6 @@ import {
   getMintSize,
   getMintToInstruction,
   getTokenSize,
-  TOKEN_PROGRAM_ADDRESS,
 } from '@solana-program/token';
 import {
   Address,
@@ -25,12 +24,31 @@ import {
   signAndSendTransaction,
 } from '../setup';
 
-export const createMint = async (
-  client: Client,
-  payer: TransactionSigner,
-  mintAuthority: Address,
-  decimals: number = 0
-): Promise<Address> => {
+export interface TokenArgs {
+  client: Client;
+  payer: TransactionSigner;
+  mint: Address;
+  owner: Address;
+  tokenProgram?: Address;
+}
+
+export interface MintArgs {
+  client: Client;
+  payer: TransactionSigner;
+  mintAuthority: Address;
+  decimals?: number;
+  tokenProgram?: Address;
+}
+
+export const createMint = async (args: MintArgs): Promise<Address> => {
+  const {
+    client,
+    payer,
+    mintAuthority,
+    decimals = 0,
+    tokenProgram = TOKEN_PROGRAM_ID,
+  } = args;
+
   const space = BigInt(getMintSize());
 
   const [transactionMessage, rent, mint] = await Promise.all([
@@ -45,7 +63,7 @@ export const createMint = async (
       newAccount: mint,
       lamports: rent,
       space,
-      programAddress: TOKEN_PROGRAM_ADDRESS,
+      programAddress: tokenProgram,
     }),
     getInitializeMintInstruction({
       mint: mint.address,
@@ -63,12 +81,9 @@ export const createMint = async (
   return mint.address;
 };
 
-export const createToken = async (
-  client: Client,
-  payer: TransactionSigner,
-  mint: Address,
-  owner: Address
-): Promise<Address> => {
+export const createToken = async (args: TokenArgs): Promise<Address> => {
+  const { client, payer, mint, owner, tokenProgram = TOKEN_PROGRAM_ID } = args;
+
   const space = BigInt(getTokenSize());
 
   const [transactionMessage, rent, token] = await Promise.all([
@@ -83,7 +98,7 @@ export const createToken = async (
       newAccount: token,
       lamports: rent,
       space,
-      programAddress: TOKEN_PROGRAM_ADDRESS,
+      programAddress: tokenProgram,
     }),
     getInitializeAccountInstruction({ account: token.address, mint, owner }),
   ];
@@ -97,15 +112,12 @@ export const createToken = async (
   return token.address;
 };
 
-export const createAta = async (
-  client: Client,
-  payer: TransactionSigner,
-  mint: Address,
-  owner: Address
-): Promise<Address> => {
+export const createAta = async (args: TokenArgs): Promise<Address> => {
+  const { client, payer, mint, owner, tokenProgram = TOKEN_PROGRAM_ID } = args;
+
   const [ownerAta] = await findAssociatedTokenPda({
     owner,
-    tokenProgram: TOKEN_PROGRAM_ID,
+    tokenProgram,
     mint,
   });
 
@@ -114,6 +126,7 @@ export const createAta = async (
     ata: ownerAta,
     owner,
     mint,
+    tokenProgram,
   });
 
   await pipe(
@@ -130,16 +143,17 @@ export interface Mint {
   decimals: number;
 }
 
-export interface CreateMintArgs {
+export interface CreateAndMintToArgs {
   client: Client;
   mintAuthority: KeyPairSigner;
   payer?: KeyPairSigner;
   recipient?: Address;
   decimals?: number;
   initialSupply?: bigint;
+  tokenProgram?: Address;
 }
 
-export const createTestMint = async (args: CreateMintArgs): Promise<Mint> => {
+export const createAndMintTo = async (args: CreateMintArgs): Promise<Mint> => {
   const {
     client,
     mintAuthority,
@@ -147,18 +161,26 @@ export const createTestMint = async (args: CreateMintArgs): Promise<Mint> => {
     payer = mintAuthority,
     decimals = 0,
     initialSupply = 0n,
+    tokenProgram = TOKEN_PROGRAM_ID,
   } = args;
 
-  const mint = await createMint(client, payer, mintAuthority.address, decimals);
+  const mint = await createMint({
+    client,
+    payer,
+    mintAuthority: mintAuthority.address,
+    decimals,
+    tokenProgram,
+  });
 
   if (initialSupply > 0n) {
-    const ata = await createAta(client, payer, mint, recipient);
+    const ata = await createAta({ client, payer, mint, owner: recipient });
 
     const mintToIx = getMintToInstruction({
       mint,
       token: ata,
       mintAuthority,
       amount: initialSupply,
+      tokenProgram,
     });
 
     await pipe(
