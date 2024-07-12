@@ -1012,7 +1012,7 @@
         {
           "name": "marketCreator",
           "isMut": true,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The market_creator account must sign for the creation of new vaults"
         },
         {

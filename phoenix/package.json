@@ -1,7 +1,7 @@
 {
-  "name": "@tensor-foundation/mpl-core",
+  "name": "@tensor-foundation/phoenix",
   "version": "0.0.1",
-  "description": "Toolkit for Metaplex Core",
+  "description": "Toolkit for Phoenix-V1 Program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
   "main": "./dist/src/index.js",

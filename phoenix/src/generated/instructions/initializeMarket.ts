@@ -79,8 +79,7 @@ export type InitializeMarketInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountMarketCreator extends string
-        ? WritableSignerAccount<TAccountMarketCreator> &
-            IAccountSignerMeta<TAccountMarketCreator>
+        ? WritableAccount<TAccountMarketCreator>
         : TAccountMarketCreator,
       TAccountBaseMint extends string
         ? ReadonlyAccount<TAccountBaseMint>
@@ -183,7 +182,9 @@ export type InitializeMarketInput<
   /** This account holds the market state */
   market: Address<TAccountMarket>;
   /** The market_creator account must sign for the creation of new vaults */
-  marketCreator: TransactionSigner<TAccountMarketCreator>;
+  marketCreator:
+    | Address<TAccountMarketCreator>
+    | TransactionSigner<TAccountMarketCreator>;
   /** Base mint account */
   baseMint: Address<TAccountBaseMint>;
   /** Quote mint account */
@@ -234,7 +235,10 @@ export function getInitializeMarketInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountMarketCreator,
+  (typeof input)['marketCreator'] extends TransactionSigner<TAccountMarketCreator>
+    ? WritableSignerAccount<TAccountMarketCreator> &
+        IAccountSignerMeta<TAccountMarketCreator>
+    : TAccountMarketCreator,
   TAccountBaseMint,
   TAccountQuoteMint,
   TAccountBaseVault,
@@ -299,7 +303,10 @@ export function getInitializeMarketInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountMarketCreator,
+    (typeof input)['marketCreator'] extends TransactionSigner<TAccountMarketCreator>
+      ? WritableSignerAccount<TAccountMarketCreator> &
+          IAccountSignerMeta<TAccountMarketCreator>
+      : TAccountMarketCreator,
     TAccountBaseMint,
     TAccountQuoteMint,
     TAccountBaseVault,
