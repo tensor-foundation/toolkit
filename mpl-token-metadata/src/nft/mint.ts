@@ -11,7 +11,6 @@ import {
   Client,
   createDefaultTransaction,
   signAndSendTransaction,
-  TOKEN22_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
 } from '@tensor-foundation/test-helpers';
 import {
@@ -117,82 +116,6 @@ export const createDefaultNft = async (args: CreateNftArgs): Promise<Nft> => {
   return await mintNft(client, accounts, data);
 };
 
-// Create a default pNFT with example data. Useful for creating throw-away NFTs
-// for testing.
-// Returns the mint address of the NFT.
-export const createDefaultpNft = async (
-  client: Client,
-  payer: KeyPairSigner | null,
-  authority: KeyPairSigner<string>,
-  owner: KeyPairSigner,
-  creators?: Creator[] | null
-): Promise<Nft> => {
-  const data: NftData = {
-    name: 'Example NFT',
-    symbol: 'EXNFT',
-    uri: 'https://example.com/nft',
-    sellerFeeBasisPoints: 500,
-    creators: creators
-      ? creators
-      : [
-          {
-            address: authority.address,
-            verified: true,
-            share: 100,
-          },
-        ],
-    printSupply: printSupply('Zero'),
-    tokenStandard: TokenStandard.ProgrammableNonFungible,
-  };
-
-  const accounts = {
-    authority,
-    owner,
-    payer,
-    tokenProgramId: TOKEN_PROGRAM_ID,
-  };
-
-  return await mintNft(client, accounts, data);
-};
-
-// Create a default pNFT with example data. Useful for creating throw-away NFTs
-// for testing.
-// Returns the mint address of the NFT.
-export const createDefaultToken22pNft = async (
-  client: Client,
-  payer: KeyPairSigner | null,
-  authority: KeyPairSigner<string>,
-  owner: KeyPairSigner,
-  creators?: Creator[] | null
-): Promise<Nft> => {
-  const data: NftData = {
-    name: 'Example NFT',
-    symbol: 'EXNFT',
-    uri: 'https://example.com/nft',
-    sellerFeeBasisPoints: 500,
-    creators: creators
-      ? creators
-      : [
-          {
-            address: authority.address,
-            verified: true,
-            share: 100,
-          },
-        ],
-    printSupply: printSupply('Zero'),
-    tokenStandard: TokenStandard.ProgrammableNonFungible,
-  };
-
-  const accounts = {
-    authority,
-    owner,
-    payer,
-    tokenProgramId: TOKEN22_PROGRAM_ID,
-  };
-
-  return await mintNft(client, accounts, data);
-};
-
 export interface MintNftAccounts {
   authority: KeyPairSigner;
   owner: KeyPairSigner;
@@ -200,43 +123,6 @@ export interface MintNftAccounts {
   mint?: KeyPairSigner;
   tokenProgramId?: Address;
 }
-
-// Create a default Token 22 NFT with example data. Useful for creating throw-away NFTs
-// for testing.
-// Returns the mint and metadat addresses of the NFT.
-export const createDefaultToken22Nft = async (
-  client: Client,
-  payer: KeyPairSigner | null,
-  authority: KeyPairSigner,
-  owner: KeyPairSigner,
-  creators?: Creator[] | null
-): Promise<Nft> => {
-  const data: NftData = {
-    name: 'Example NFT',
-    symbol: 'EXNFT',
-    uri: 'https://example.com/nft',
-    sellerFeeBasisPoints: 500,
-    creators: creators
-      ? creators
-      : [
-          {
-            address: authority.address,
-            verified: true,
-            share: 100,
-          },
-        ],
-    printSupply: printSupply('Zero'),
-  };
-
-  const accounts = {
-    authority,
-    owner,
-    payer,
-    tokenProgramId: TOKEN22_PROGRAM_ID,
-  };
-
-  return await mintNft(client, accounts, data);
-};
 
 // Create a new NFT and return the addresses associated with it.
 export const mintNft = async (
