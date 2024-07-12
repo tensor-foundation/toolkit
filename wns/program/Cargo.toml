@@ -1,0 +1,8 @@
+[package]
+name = "wns"
+version = "0.4.1-alpha"
+
+[package.metadata.solana]
+program-id = "wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM"
+# Include program itself as a dep so it downloads the binary.
+program-dependencies = ["wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM"]
