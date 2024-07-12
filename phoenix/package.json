@@ -1,7 +1,7 @@
 {
-  "name": "@tensor-foundation/mpl-token-metadata",
-  "version": "0.1.0",
-  "description": "Toolkit for Metaplex Token Metadata",
+  "name": "@tensor-foundation/phoenix",
+  "version": "0.0.1",
+  "description": "Toolkit for Phoenix-V1 Program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
   "main": "./dist/src/index.js",
@@ -39,7 +39,7 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@tensor-foundation/test-helpers": "workspace:*",
+    "@solana-program/token": "0.1.4",
     "@solana/web3.js": "2.0.0-preview.3"
   },
   "devDependencies": {
@@ -48,9 +48,10 @@
     "@kinobi-so/nodes-from-anchor": "^0.20.5",
     "@kinobi-so/renderers-js": "^0.20.5",
     "@metaplex-foundation/shank-js": "^0.1.7",
+    "@solana-program/system": "0.3.3",
     "@solana/eslint-config-solana": "^3.0.0",
     "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
-    "@solana-program/token": "0.1.4",
+    "@tensor-foundation/test-helpers": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "ava": "^6.1.2",

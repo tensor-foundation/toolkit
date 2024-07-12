@@ -126,7 +126,6 @@ export const createAta = async (args: TokenArgs): Promise<Address> => {
     ata: ownerAta,
     owner,
     mint,
-    tokenProgram,
   });
 
   await pipe(
@@ -153,7 +152,9 @@ export interface CreateAndMintToArgs {
   tokenProgram?: Address;
 }
 
-export const createAndMintTo = async (args: CreateMintArgs): Promise<Mint> => {
+export const createAndMintTo = async (
+  args: CreateAndMintToArgs
+): Promise<Mint> => {
   const {
     client,
     mintAuthority,
@@ -180,7 +181,6 @@ export const createAndMintTo = async (args: CreateMintArgs): Promise<Mint> => {
       token: ata,
       mintAuthority,
       amount: initialSupply,
-      tokenProgram,
     });
 
     await pipe(

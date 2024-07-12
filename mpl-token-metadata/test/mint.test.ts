@@ -1,133 +1,207 @@
-import test from 'ava';
 import {
+  Token,
+  fetchToken,
+  findAssociatedTokenPda,
+} from '@solana-program/token';
+import { Account, none, some } from '@solana/web3.js';
+import {
+  TOKEN22_PROGRAM_ID,
+  TOKEN_PROGRAM_ID,
   createDefaultSolanaClient,
   generateKeyPairSignerWithSol,
-  TOKEN_PROGRAM_ID,
-  TOKEN22_PROGRAM_ID,
 } from '@tensor-foundation/test-helpers';
+import test from 'ava';
 import {
   Metadata,
   TokenStandard,
   createDefaultNft,
-  createDefaultToken22Nft,
-  createDefaultToken22pNft,
-  createDefaultpNft,
   fetchMetadata,
 } from '../src/index.js';
-import { none, some } from '@solana/web3.js';
 
-test('it can mint a NonFungible with createDefaultNft', async (t) => {
+const nftSetup = async () => {
   const client = createDefaultSolanaClient();
   const payer = await generateKeyPairSignerWithSol(client);
-  const updateAuthority = await generateKeyPairSignerWithSol(client);
+  const authority = await generateKeyPairSignerWithSol(client);
+  const owner = await generateKeyPairSignerWithSol(client);
+  return { client, payer, authority, owner };
+};
 
-  const { mint, metadata } = await createDefaultNft(
+test('it can mint a NonFungible', async (t) => {
+  const { client, payer, authority, owner } = await nftSetup();
+
+  // Mint a NonFungible.
+  const { mint, metadata } = await createDefaultNft({
     client,
-    updateAuthority,
     payer,
-    payer
-  );
+    authority,
+    owner,
+  });
 
-  // Then a whitelist authority was created with the correct data.
+  // Check the metadata.
   t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
     address: metadata,
     data: {
-      updateAuthority: updateAuthority.address,
+      updateAuthority: authority.address,
       mint: mint,
       tokenStandard: some(TokenStandard.NonFungible),
       collection: none(),
     },
   }));
 
+  // Check the mint is owned by the correct program.
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
   t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
+
+  // Check the token account has correct mint, amount and owner.
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint,
+    owner: owner.address,
+    tokenProgram: TOKEN_PROGRAM_ID,
+  });
+  t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
+    address: ownerAta,
+    data: {
+      mint,
+      owner: owner.address,
+      amount: 1n,
+    },
+  });
 });
 
-test('it can mint a Token22 NonFungible with createDefaultToken22Nft', async (t) => {
-  const client = createDefaultSolanaClient();
-  const payer = await generateKeyPairSignerWithSol(client);
-  const updateAuthority = await generateKeyPairSignerWithSol(client);
+test('it can mint a Token22 NonFungible', async (t) => {
+  const { client, payer, authority, owner } = await nftSetup();
 
-  const { mint, metadata } = await createDefaultToken22Nft(
+  // Mint a Token22 NonFungible.
+  const { mint, metadata } = await createDefaultNft({
     client,
-    updateAuthority,
     payer,
-    payer
-  );
+    authority,
+    owner,
+    tokenProgram: TOKEN22_PROGRAM_ID,
+  });
 
-  // Then a whitelist authority was created with the correct data.
+  // Check the metadata.
   t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
     address: metadata,
     data: {
-      updateAuthority: updateAuthority.address,
+      updateAuthority: authority.address,
       mint: mint,
       tokenStandard: some(TokenStandard.NonFungible),
       collection: none(),
     },
   }));
 
+  // Check the mint is owned by the correct program.
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
   t.assert(mintAccount?.value?.owner == TOKEN22_PROGRAM_ID);
+
+  // Check the token account has correct mint, amount and owner.
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint,
+    owner: owner.address,
+    tokenProgram: TOKEN22_PROGRAM_ID,
+  });
+  t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
+    address: ownerAta,
+    data: {
+      mint,
+      owner: owner.address,
+      amount: 1n,
+    },
+  });
 });
 
-test('it can mint a ProgrammableNonFungible with createDefaultpNft', async (t) => {
-  const client = createDefaultSolanaClient();
-  const payer = await generateKeyPairSignerWithSol(client);
-  const updateAuthority = await generateKeyPairSignerWithSol(client);
+test('it can mint a ProgrammableNonFungible', async (t) => {
+  const { client, payer, authority, owner } = await nftSetup();
 
-  const { mint, metadata } = await createDefaultpNft(
+  // Mint a ProgrammableNonFungible.
+  const { mint, metadata } = await createDefaultNft({
     client,
-    updateAuthority,
     payer,
-    payer
-  );
+    authority,
+    owner,
+    standard: TokenStandard.ProgrammableNonFungible,
+  });
 
-  // Then a whitelist authority was created with the correct data.
+  // Check the metadata.
   t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
     address: metadata,
     data: {
-      updateAuthority: updateAuthority.address,
+      updateAuthority: authority.address,
       mint: mint,
       tokenStandard: some(TokenStandard.ProgrammableNonFungible),
       collection: none(),
     },
   }));
 
+  // Check the mint is owned by the correct program.
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
   t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
+
+  // Check the token account has correct mint, amount and owner.
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint,
+    owner: owner.address,
+    tokenProgram: TOKEN_PROGRAM_ID,
+  });
+  t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
+    address: ownerAta,
+    data: {
+      mint,
+      owner: owner.address,
+      amount: 1n,
+    },
+  });
 });
 
-test('it can mint a Token22 ProgrammableNonFungible with createDefaultToken22pNft', async (t) => {
-  const client = createDefaultSolanaClient();
-  const payer = await generateKeyPairSignerWithSol(client);
-  const updateAuthority = await generateKeyPairSignerWithSol(client);
+test('it can mint a Token22 ProgrammableNonFungible', async (t) => {
+  const { client, payer, authority, owner } = await nftSetup();
 
-  const { mint, metadata } = await createDefaultToken22pNft(
+  // Mint a Token22 ProgrammableNonFungible.
+  const { mint, metadata } = await createDefaultNft({
     client,
-    updateAuthority,
     payer,
-    payer
-  );
+    authority,
+    owner,
+    standard: TokenStandard.ProgrammableNonFungible,
+    tokenProgram: TOKEN22_PROGRAM_ID,
+  });
 
-  // Then a whitelist authority was created with the correct data.
+  // Check the metadata.
   t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
     address: metadata,
     data: {
-      updateAuthority: updateAuthority.address,
+      updateAuthority: authority.address,
       mint: mint,
       tokenStandard: some(TokenStandard.ProgrammableNonFungible),
       collection: none(),
     },
   }));
 
+  // Check the mint is owned by the correct program.
   const mintAccount = await client.rpc
     .getAccountInfo(mint, { encoding: 'base64' })
     .send();
   t.assert(mintAccount?.value?.owner == TOKEN22_PROGRAM_ID);
+
+  // Check the token account has correct mint, amount and owner.
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint,
+    owner: owner.address,
+    tokenProgram: TOKEN22_PROGRAM_ID,
+  });
+  t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
+    address: ownerAta,
+    data: {
+      mint,
+      owner: owner.address,
+      amount: 1n,
+    },
+  });
 });

@@ -8,7 +8,7 @@ import { renderVisitor as renderJavaScriptVisitor } from '@kinobi-so/renderers-j
 const packageDir = path.join(__dirname, '..');
 const idlDir = path.join(__dirname, '..');
 
-// Render Token Metadata types.
+// Render MPL Core types.
 const idl = rootNodeFromAnchor(require(path.join(idlDir, 'mpl-core.json')));
 const kinobi = k.createFromRoot(idl, []);
 
