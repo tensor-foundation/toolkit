@@ -58,8 +58,7 @@ export type PlaceLimitOrderWithFreeFundsInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountTrader extends string
-        ? ReadonlySignerAccount<TAccountTrader> &
-            IAccountSignerMeta<TAccountTrader>
+        ? ReadonlyAccount<TAccountTrader>
         : TAccountTrader,
       TAccountSeat extends string
         ? ReadonlyAccount<TAccountSeat>
@@ -117,7 +116,7 @@ export type PlaceLimitOrderWithFreeFundsInput<
   logAuthority: Address<TAccountLogAuthority>;
   /** This account holds the market state */
   market: Address<TAccountMarket>;
-  trader: TransactionSigner<TAccountTrader>;
+  trader: Address<TAccountTrader> | TransactionSigner<TAccountTrader>;
   seat: Address<TAccountSeat>;
   orderPacket: PlaceLimitOrderWithFreeFundsInstructionDataArgs['orderPacket'];
 };
@@ -141,7 +140,9 @@ export function getPlaceLimitOrderWithFreeFundsInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountTrader,
+  (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+    ? ReadonlySignerAccount<TAccountTrader> & IAccountSignerMeta<TAccountTrader>
+    : TAccountTrader,
   TAccountSeat
 > {
   // Program address.
@@ -181,7 +182,10 @@ export function getPlaceLimitOrderWithFreeFundsInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountTrader,
+    (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+      ? ReadonlySignerAccount<TAccountTrader> &
+          IAccountSignerMeta<TAccountTrader>
+      : TAccountTrader,
     TAccountSeat
   >;
 

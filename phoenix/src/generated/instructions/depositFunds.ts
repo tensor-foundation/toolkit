@@ -61,8 +61,7 @@ export type DepositFundsInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountTrader extends string
-        ? ReadonlySignerAccount<TAccountTrader> &
-            IAccountSignerMeta<TAccountTrader>
+        ? ReadonlyAccount<TAccountTrader>
         : TAccountTrader,
       TAccountSeat extends string
         ? ReadonlyAccount<TAccountSeat>
@@ -144,7 +143,7 @@ export type DepositFundsInput<
   logAuthority: Address<TAccountLogAuthority>;
   /** This account holds the market state */
   market: Address<TAccountMarket>;
-  trader: TransactionSigner<TAccountTrader>;
+  trader: Address<TAccountTrader> | TransactionSigner<TAccountTrader>;
   seat: Address<TAccountSeat>;
   /** Trader base token account */
   baseAccount: Address<TAccountBaseAccount>;
@@ -189,7 +188,9 @@ export function getDepositFundsInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountTrader,
+  (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+    ? ReadonlySignerAccount<TAccountTrader> & IAccountSignerMeta<TAccountTrader>
+    : TAccountTrader,
   TAccountSeat,
   TAccountBaseAccount,
   TAccountQuoteAccount,
@@ -250,7 +251,10 @@ export function getDepositFundsInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountTrader,
+    (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+      ? ReadonlySignerAccount<TAccountTrader> &
+          IAccountSignerMeta<TAccountTrader>
+      : TAccountTrader,
     TAccountSeat,
     TAccountBaseAccount,
     TAccountQuoteAccount,

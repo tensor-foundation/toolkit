@@ -62,9 +62,19 @@ export const createDefaultMarket = async (
   const market = await generateKeyPairSigner();
 
   // Simulate SOL mint.
-  const baseMint = await createMint(client, payer, mintAuthority.address, 9);
+  const baseMint = await createMint({
+    client,
+    payer,
+    mintAuthority: mintAuthority.address,
+    decimals: 9,
+  });
   // Simulate USDC mint.
-  const quoteMint = await createMint(client, payer, mintAuthority.address, 6);
+  const quoteMint = await createMint({
+    client,
+    payer,
+    mintAuthority: mintAuthority.address,
+    decimals: 6,
+  });
 
   const [baseVault] = await findMintVaultPda({
     market: market.address,

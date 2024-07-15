@@ -56,8 +56,7 @@ export type CollectFeesInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountSweeper extends string
-        ? ReadonlySignerAccount<TAccountSweeper> &
-            IAccountSignerMeta<TAccountSweeper>
+        ? ReadonlyAccount<TAccountSweeper>
         : TAccountSweeper,
       TAccountFeeRecipient extends string
         ? WritableAccount<TAccountFeeRecipient>
@@ -113,7 +112,7 @@ export type CollectFeesInput<
   /** This account holds the market state */
   market: Address<TAccountMarket>;
   /** Signer of collect fees instruction */
-  sweeper: TransactionSigner<TAccountSweeper>;
+  sweeper: Address<TAccountSweeper> | TransactionSigner<TAccountSweeper>;
   /** Fee collector quote token account */
   feeRecipient: Address<TAccountFeeRecipient>;
   /** Quote vault PDA, seeds are [b'vault', market_address, quote_mint_address] */
@@ -145,7 +144,10 @@ export function getCollectFeesInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountSweeper,
+  (typeof input)['sweeper'] extends TransactionSigner<TAccountSweeper>
+    ? ReadonlySignerAccount<TAccountSweeper> &
+        IAccountSignerMeta<TAccountSweeper>
+    : TAccountSweeper,
   TAccountFeeRecipient,
   TAccountQuoteVault,
   TAccountTokenProgram
@@ -192,7 +194,10 @@ export function getCollectFeesInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountSweeper,
+    (typeof input)['sweeper'] extends TransactionSigner<TAccountSweeper>
+      ? ReadonlySignerAccount<TAccountSweeper> &
+          IAccountSignerMeta<TAccountSweeper>
+      : TAccountSweeper,
     TAccountFeeRecipient,
     TAccountQuoteVault,
     TAccountTokenProgram

@@ -55,8 +55,7 @@ export type RequestSeatInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountPayer extends string
-        ? WritableSignerAccount<TAccountPayer> &
-            IAccountSignerMeta<TAccountPayer>
+        ? WritableAccount<TAccountPayer>
         : TAccountPayer,
       TAccountSeat extends string
         ? WritableAccount<TAccountSeat>
@@ -107,7 +106,7 @@ export type RequestSeatInput<
   logAuthority: Address<TAccountLogAuthority>;
   /** This account holds the market state */
   market: Address<TAccountMarket>;
-  payer: TransactionSigner<TAccountPayer>;
+  payer: Address<TAccountPayer> | TransactionSigner<TAccountPayer>;
   seat: Address<TAccountSeat>;
   /** System program */
   systemProgram?: Address<TAccountSystemProgram>;
@@ -134,7 +133,9 @@ export function getRequestSeatInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountPayer,
+  (typeof input)['payer'] extends TransactionSigner<TAccountPayer>
+    ? WritableSignerAccount<TAccountPayer> & IAccountSignerMeta<TAccountPayer>
+    : TAccountPayer,
   TAccountSeat,
   TAccountSystemProgram
 > {
@@ -178,7 +179,9 @@ export function getRequestSeatInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountPayer,
+    (typeof input)['payer'] extends TransactionSigner<TAccountPayer>
+      ? WritableSignerAccount<TAccountPayer> & IAccountSignerMeta<TAccountPayer>
+      : TAccountPayer,
     TAccountSeat,
     TAccountSystemProgram
   >;
