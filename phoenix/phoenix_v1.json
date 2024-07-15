@@ -26,7 +26,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "baseAccount",
@@ -96,7 +96,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "seat",
@@ -141,7 +141,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "seat",
@@ -216,7 +216,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "seat",
@@ -261,7 +261,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "baseAccount",
@@ -331,7 +331,7 @@
         {
           "name": "trader",
           "isMut": true,
-          "isSigner": true
+          "isSigner": "either"
         }
       ],
       "args": [
@@ -371,7 +371,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "baseAccount",
@@ -434,7 +434,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         }
       ],
       "args": [],
@@ -467,7 +467,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "baseAccount",
@@ -537,7 +537,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         }
       ],
       "args": [
@@ -577,7 +577,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "baseAccount",
@@ -647,7 +647,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         }
       ],
       "args": [
@@ -687,7 +687,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "baseAccount",
@@ -757,7 +757,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "seat",
@@ -832,7 +832,7 @@
         {
           "name": "payer",
           "isMut": true,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "seat",
@@ -858,7 +858,7 @@
         {
           "name": "logAuthority",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "Log authority"
         }
       ],
@@ -892,7 +892,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "seat",
@@ -967,7 +967,7 @@
         {
           "name": "trader",
           "isMut": false,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "seat",
@@ -1089,7 +1089,7 @@
         {
           "name": "successor",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The successor account must sign to claim authority"
         }
       ],
@@ -1123,7 +1123,7 @@
         {
           "name": "marketAuthority",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The market_authority account must sign to name successor"
         }
       ],
@@ -1162,7 +1162,7 @@
         {
           "name": "marketAuthority",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The market_authority account must sign to change market status"
         }
       ],
@@ -1203,7 +1203,7 @@
         {
           "name": "marketAuthority",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The market_authority account must sign to change seat status"
         },
         {
@@ -1249,13 +1249,13 @@
         {
           "name": "marketAuthority",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The market_authority account must sign to request a seat on behalf of a trader"
         },
         {
           "name": "payer",
           "isMut": true,
-          "isSigner": true
+          "isSigner": "either"
         },
         {
           "name": "trader",
@@ -1304,7 +1304,7 @@
         {
           "name": "marketAuthority",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The market_authority account must sign to evict a seat"
         },
         {
@@ -1375,7 +1375,7 @@
         {
           "name": "marketAuthority",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The market_authority account must sign to claim authority"
         },
         {
@@ -1457,7 +1457,7 @@
         {
           "name": "sweeper",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "Signer of collect fees instruction"
         },
         {
@@ -1509,7 +1509,7 @@
         {
           "name": "marketAuthority",
           "isMut": false,
-          "isSigner": true,
+          "isSigner": "either",
           "desc": "The market_authority account must sign to change the free recipient"
         },
         {

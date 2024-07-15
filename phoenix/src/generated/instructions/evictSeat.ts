@@ -60,8 +60,7 @@ export type EvictSeatInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountMarketAuthority extends string
-        ? ReadonlySignerAccount<TAccountMarketAuthority> &
-            IAccountSignerMeta<TAccountMarketAuthority>
+        ? ReadonlyAccount<TAccountMarketAuthority>
         : TAccountMarketAuthority,
       TAccountTrader extends string
         ? ReadonlyAccount<TAccountTrader>
@@ -133,7 +132,9 @@ export type EvictSeatInput<
   /** This account holds the market state */
   market: Address<TAccountMarket>;
   /** The market_authority account must sign to evict a seat */
-  marketAuthority: TransactionSigner<TAccountMarketAuthority>;
+  marketAuthority:
+    | Address<TAccountMarketAuthority>
+    | TransactionSigner<TAccountMarketAuthority>;
   trader: Address<TAccountTrader>;
   /** The trader's PDA seat account, seeds are [b'seat', market_address, trader_address] */
   seat: Address<TAccountSeat>;
@@ -176,7 +177,10 @@ export function getEvictSeatInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountMarketAuthority,
+  (typeof input)['marketAuthority'] extends TransactionSigner<TAccountMarketAuthority>
+    ? ReadonlySignerAccount<TAccountMarketAuthority> &
+        IAccountSignerMeta<TAccountMarketAuthority>
+    : TAccountMarketAuthority,
   TAccountTrader,
   TAccountSeat,
   TAccountBaseAccount,
@@ -238,7 +242,10 @@ export function getEvictSeatInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountMarketAuthority,
+    (typeof input)['marketAuthority'] extends TransactionSigner<TAccountMarketAuthority>
+      ? ReadonlySignerAccount<TAccountMarketAuthority> &
+          IAccountSignerMeta<TAccountMarketAuthority>
+      : TAccountMarketAuthority,
     TAccountTrader,
     TAccountSeat,
     TAccountBaseAccount,

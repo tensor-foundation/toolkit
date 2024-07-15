@@ -58,8 +58,7 @@ export type CancelAllOrdersInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountTrader extends string
-        ? ReadonlySignerAccount<TAccountTrader> &
-            IAccountSignerMeta<TAccountTrader>
+        ? ReadonlyAccount<TAccountTrader>
         : TAccountTrader,
       TAccountBaseAccount extends string
         ? WritableAccount<TAccountBaseAccount>
@@ -122,7 +121,7 @@ export type CancelAllOrdersInput<
   logAuthority: Address<TAccountLogAuthority>;
   /** This account holds the market state */
   market: Address<TAccountMarket>;
-  trader: TransactionSigner<TAccountTrader>;
+  trader: Address<TAccountTrader> | TransactionSigner<TAccountTrader>;
   /** Trader base token account */
   baseAccount: Address<TAccountBaseAccount>;
   /** Trader quote token account */
@@ -162,7 +161,9 @@ export function getCancelAllOrdersInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountTrader,
+  (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+    ? ReadonlySignerAccount<TAccountTrader> & IAccountSignerMeta<TAccountTrader>
+    : TAccountTrader,
   TAccountBaseAccount,
   TAccountQuoteAccount,
   TAccountBaseVault,
@@ -215,7 +216,10 @@ export function getCancelAllOrdersInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountTrader,
+    (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+      ? ReadonlySignerAccount<TAccountTrader> &
+          IAccountSignerMeta<TAccountTrader>
+      : TAccountTrader,
     TAccountBaseAccount,
     TAccountQuoteAccount,
     TAccountBaseVault,

@@ -16,6 +16,7 @@ import {
   IInstruction,
   IInstructionWithAccounts,
   IInstructionWithData,
+  ReadonlyAccount,
   ReadonlySignerAccount,
   TransactionSigner,
   combineCodec,
@@ -37,8 +38,7 @@ export type LogInstruction<
   IInstructionWithAccounts<
     [
       TAccountLogAuthority extends string
-        ? ReadonlySignerAccount<TAccountLogAuthority> &
-            IAccountSignerMeta<TAccountLogAuthority>
+        ? ReadonlyAccount<TAccountLogAuthority>
         : TAccountLogAuthority,
       ...TRemainingAccounts,
     ]
@@ -71,12 +71,20 @@ export function getLogInstructionDataCodec(): Codec<
 
 export type LogInput<TAccountLogAuthority extends string = string> = {
   /** Log authority */
-  logAuthority: TransactionSigner<TAccountLogAuthority>;
+  logAuthority:
+    | Address<TAccountLogAuthority>
+    | TransactionSigner<TAccountLogAuthority>;
 };
 
 export function getLogInstruction<TAccountLogAuthority extends string>(
   input: LogInput<TAccountLogAuthority>
-): LogInstruction<typeof PHOENIX_V1_PROGRAM_ADDRESS, TAccountLogAuthority> {
+): LogInstruction<
+  typeof PHOENIX_V1_PROGRAM_ADDRESS,
+  (typeof input)['logAuthority'] extends TransactionSigner<TAccountLogAuthority>
+    ? ReadonlySignerAccount<TAccountLogAuthority> &
+        IAccountSignerMeta<TAccountLogAuthority>
+    : TAccountLogAuthority
+> {
   // Program address.
   const programAddress = PHOENIX_V1_PROGRAM_ADDRESS;
 
@@ -94,7 +102,13 @@ export function getLogInstruction<TAccountLogAuthority extends string>(
     accounts: [getAccountMeta(accounts.logAuthority)],
     programAddress,
     data: getLogInstructionDataEncoder().encode({}),
-  } as LogInstruction<typeof PHOENIX_V1_PROGRAM_ADDRESS, TAccountLogAuthority>;
+  } as LogInstruction<
+    typeof PHOENIX_V1_PROGRAM_ADDRESS,
+    (typeof input)['logAuthority'] extends TransactionSigner<TAccountLogAuthority>
+      ? ReadonlySignerAccount<TAccountLogAuthority> &
+          IAccountSignerMeta<TAccountLogAuthority>
+      : TAccountLogAuthority
+  >;
 
   return instruction;
 }

@@ -57,8 +57,7 @@ export type CancelUpToWithFreeFundsInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountTrader extends string
-        ? ReadonlySignerAccount<TAccountTrader> &
-            IAccountSignerMeta<TAccountTrader>
+        ? ReadonlyAccount<TAccountTrader>
         : TAccountTrader,
       ...TRemainingAccounts,
     ]
@@ -112,7 +111,7 @@ export type CancelUpToWithFreeFundsInput<
   logAuthority: Address<TAccountLogAuthority>;
   /** This account holds the market state */
   market: Address<TAccountMarket>;
-  trader: TransactionSigner<TAccountTrader>;
+  trader: Address<TAccountTrader> | TransactionSigner<TAccountTrader>;
   params: CancelUpToWithFreeFundsInstructionDataArgs['params'];
 };
 
@@ -133,7 +132,9 @@ export function getCancelUpToWithFreeFundsInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountTrader
+  (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+    ? ReadonlySignerAccount<TAccountTrader> & IAccountSignerMeta<TAccountTrader>
+    : TAccountTrader
 > {
   // Program address.
   const programAddress = PHOENIX_V1_PROGRAM_ADDRESS;
@@ -170,7 +171,10 @@ export function getCancelUpToWithFreeFundsInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountTrader
+    (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+      ? ReadonlySignerAccount<TAccountTrader> &
+          IAccountSignerMeta<TAccountTrader>
+      : TAccountTrader
   >;
 
   return instruction;

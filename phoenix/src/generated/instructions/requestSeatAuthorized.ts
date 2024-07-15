@@ -58,12 +58,10 @@ export type RequestSeatAuthorizedInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountMarketAuthority extends string
-        ? ReadonlySignerAccount<TAccountMarketAuthority> &
-            IAccountSignerMeta<TAccountMarketAuthority>
+        ? ReadonlyAccount<TAccountMarketAuthority>
         : TAccountMarketAuthority,
       TAccountPayer extends string
-        ? WritableSignerAccount<TAccountPayer> &
-            IAccountSignerMeta<TAccountPayer>
+        ? WritableAccount<TAccountPayer>
         : TAccountPayer,
       TAccountTrader extends string
         ? ReadonlyAccount<TAccountTrader>
@@ -120,8 +118,10 @@ export type RequestSeatAuthorizedInput<
   /** This account holds the market state */
   market: Address<TAccountMarket>;
   /** The market_authority account must sign to request a seat on behalf of a trader */
-  marketAuthority: TransactionSigner<TAccountMarketAuthority>;
-  payer: TransactionSigner<TAccountPayer>;
+  marketAuthority:
+    | Address<TAccountMarketAuthority>
+    | TransactionSigner<TAccountMarketAuthority>;
+  payer: Address<TAccountPayer> | TransactionSigner<TAccountPayer>;
   trader: Address<TAccountTrader>;
   seat: Address<TAccountSeat>;
   /** System program */
@@ -153,8 +153,13 @@ export function getRequestSeatAuthorizedInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountMarketAuthority,
-  TAccountPayer,
+  (typeof input)['marketAuthority'] extends TransactionSigner<TAccountMarketAuthority>
+    ? ReadonlySignerAccount<TAccountMarketAuthority> &
+        IAccountSignerMeta<TAccountMarketAuthority>
+    : TAccountMarketAuthority,
+  (typeof input)['payer'] extends TransactionSigner<TAccountPayer>
+    ? WritableSignerAccount<TAccountPayer> & IAccountSignerMeta<TAccountPayer>
+    : TAccountPayer,
   TAccountTrader,
   TAccountSeat,
   TAccountSystemProgram
@@ -206,8 +211,13 @@ export function getRequestSeatAuthorizedInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountMarketAuthority,
-    TAccountPayer,
+    (typeof input)['marketAuthority'] extends TransactionSigner<TAccountMarketAuthority>
+      ? ReadonlySignerAccount<TAccountMarketAuthority> &
+          IAccountSignerMeta<TAccountMarketAuthority>
+      : TAccountMarketAuthority,
+    (typeof input)['payer'] extends TransactionSigner<TAccountPayer>
+      ? WritableSignerAccount<TAccountPayer> & IAccountSignerMeta<TAccountPayer>
+      : TAccountPayer,
     TAccountTrader,
     TAccountSeat,
     TAccountSystemProgram

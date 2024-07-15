@@ -57,8 +57,7 @@ export type ReduceOrderWithFreeFundsInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountTrader extends string
-        ? WritableSignerAccount<TAccountTrader> &
-            IAccountSignerMeta<TAccountTrader>
+        ? WritableAccount<TAccountTrader>
         : TAccountTrader,
       ...TRemainingAccounts,
     ]
@@ -112,7 +111,7 @@ export type ReduceOrderWithFreeFundsInput<
   logAuthority: Address<TAccountLogAuthority>;
   /** This account holds the market state */
   market: Address<TAccountMarket>;
-  trader: TransactionSigner<TAccountTrader>;
+  trader: Address<TAccountTrader> | TransactionSigner<TAccountTrader>;
   params: ReduceOrderWithFreeFundsInstructionDataArgs['params'];
 };
 
@@ -133,7 +132,9 @@ export function getReduceOrderWithFreeFundsInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountTrader
+  (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+    ? WritableSignerAccount<TAccountTrader> & IAccountSignerMeta<TAccountTrader>
+    : TAccountTrader
 > {
   // Program address.
   const programAddress = PHOENIX_V1_PROGRAM_ADDRESS;
@@ -170,7 +171,10 @@ export function getReduceOrderWithFreeFundsInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountTrader
+    (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+      ? WritableSignerAccount<TAccountTrader> &
+          IAccountSignerMeta<TAccountTrader>
+      : TAccountTrader
   >;
 
   return instruction;

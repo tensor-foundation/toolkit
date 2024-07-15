@@ -53,8 +53,7 @@ export type NameSuccessorInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountMarketAuthority extends string
-        ? ReadonlySignerAccount<TAccountMarketAuthority> &
-            IAccountSignerMeta<TAccountMarketAuthority>
+        ? ReadonlyAccount<TAccountMarketAuthority>
         : TAccountMarketAuthority,
       ...TRemainingAccounts,
     ]
@@ -107,7 +106,9 @@ export type NameSuccessorInput<
   /** This account holds the market state */
   market: Address<TAccountMarket>;
   /** The market_authority account must sign to name successor */
-  marketAuthority: TransactionSigner<TAccountMarketAuthority>;
+  marketAuthority:
+    | Address<TAccountMarketAuthority>
+    | TransactionSigner<TAccountMarketAuthority>;
   successor: NameSuccessorInstructionDataArgs['successor'];
 };
 
@@ -128,7 +129,10 @@ export function getNameSuccessorInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountMarketAuthority
+  (typeof input)['marketAuthority'] extends TransactionSigner<TAccountMarketAuthority>
+    ? ReadonlySignerAccount<TAccountMarketAuthority> &
+        IAccountSignerMeta<TAccountMarketAuthority>
+    : TAccountMarketAuthority
 > {
   // Program address.
   const programAddress = PHOENIX_V1_PROGRAM_ADDRESS;
@@ -168,7 +172,10 @@ export function getNameSuccessorInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountMarketAuthority
+    (typeof input)['marketAuthority'] extends TransactionSigner<TAccountMarketAuthority>
+      ? ReadonlySignerAccount<TAccountMarketAuthority> &
+          IAccountSignerMeta<TAccountMarketAuthority>
+      : TAccountMarketAuthority
   >;
 
   return instruction;

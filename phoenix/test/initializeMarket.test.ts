@@ -76,18 +76,18 @@ test('it can submit a limit order', async (t) => {
     marketCreator
   );
 
-  const baseAccount = await createAta(
+  const baseAccount = await createAta({
     client,
     payer,
-    market.baseMint,
-    trader.address
-  );
-  const quoteAccount = await createAta(
+    mint: market.baseMint,
+    owner: trader.address,
+  });
+  const quoteAccount = await createAta({
     client,
     payer,
-    market.quoteMint,
-    trader.address
-  );
+    mint: market.quoteMint,
+    owner: trader.address,
+  });
 
   // Fund the trader's quote account.
   const mintToIx = getMintToInstruction({

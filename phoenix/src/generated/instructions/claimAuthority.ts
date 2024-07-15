@@ -51,8 +51,7 @@ export type ClaimAuthorityInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountSuccessor extends string
-        ? ReadonlySignerAccount<TAccountSuccessor> &
-            IAccountSignerMeta<TAccountSuccessor>
+        ? ReadonlyAccount<TAccountSuccessor>
         : TAccountSuccessor,
       ...TRemainingAccounts,
     ]
@@ -96,7 +95,7 @@ export type ClaimAuthorityInput<
   /** This account holds the market state */
   market: Address<TAccountMarket>;
   /** The successor account must sign to claim authority */
-  successor: TransactionSigner<TAccountSuccessor>;
+  successor: Address<TAccountSuccessor> | TransactionSigner<TAccountSuccessor>;
 };
 
 export function getClaimAuthorityInstruction<
@@ -116,7 +115,10 @@ export function getClaimAuthorityInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountSuccessor
+  (typeof input)['successor'] extends TransactionSigner<TAccountSuccessor>
+    ? ReadonlySignerAccount<TAccountSuccessor> &
+        IAccountSignerMeta<TAccountSuccessor>
+    : TAccountSuccessor
 > {
   // Program address.
   const programAddress = PHOENIX_V1_PROGRAM_ADDRESS;
@@ -148,7 +150,10 @@ export function getClaimAuthorityInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountSuccessor
+    (typeof input)['successor'] extends TransactionSigner<TAccountSuccessor>
+      ? ReadonlySignerAccount<TAccountSuccessor> &
+          IAccountSignerMeta<TAccountSuccessor>
+      : TAccountSuccessor
   >;
 
   return instruction;

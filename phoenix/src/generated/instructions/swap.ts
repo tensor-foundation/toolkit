@@ -64,8 +64,7 @@ export type SwapInstruction<
         ? WritableAccount<TAccountMarket>
         : TAccountMarket,
       TAccountTrader extends string
-        ? ReadonlySignerAccount<TAccountTrader> &
-            IAccountSignerMeta<TAccountTrader>
+        ? ReadonlyAccount<TAccountTrader>
         : TAccountTrader,
       TAccountBaseAccount extends string
         ? WritableAccount<TAccountBaseAccount>
@@ -137,7 +136,7 @@ export type SwapInput<
   logAuthority: Address<TAccountLogAuthority>;
   /** This account holds the market state */
   market: Address<TAccountMarket>;
-  trader: TransactionSigner<TAccountTrader>;
+  trader: Address<TAccountTrader> | TransactionSigner<TAccountTrader>;
   /** Trader base token account */
   baseAccount: Address<TAccountBaseAccount>;
   /** Trader quote token account */
@@ -178,7 +177,9 @@ export function getSwapInstruction<
   TAccountPhoenixProgram,
   TAccountLogAuthority,
   TAccountMarket,
-  TAccountTrader,
+  (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+    ? ReadonlySignerAccount<TAccountTrader> & IAccountSignerMeta<TAccountTrader>
+    : TAccountTrader,
   TAccountBaseAccount,
   TAccountQuoteAccount,
   TAccountBaseVault,
@@ -236,7 +237,10 @@ export function getSwapInstruction<
     TAccountPhoenixProgram,
     TAccountLogAuthority,
     TAccountMarket,
-    TAccountTrader,
+    (typeof input)['trader'] extends TransactionSigner<TAccountTrader>
+      ? ReadonlySignerAccount<TAccountTrader> &
+          IAccountSignerMeta<TAccountTrader>
+      : TAccountTrader,
     TAccountBaseAccount,
     TAccountQuoteAccount,
     TAccountBaseVault,
