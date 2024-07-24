@@ -147,12 +147,21 @@ importers:
 
   mpl-bubblegum:
     dependencies:
+      '@solana-program/system':
+        specifier: 0.3.3
+        version: 0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/web3.js':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+      '@tensor-foundation/mpl-token-metadata':
+        specifier: workspace:*
+        version: link:../mpl-token-metadata
       '@tensor-foundation/test-helpers':
         specifier: workspace:*
         version: link:../test-helpers
+      js-sha3:
+        specifier: ^0.9.3
+        version: 0.9.3
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -452,12 +461,6 @@ importers:
       '@solana/web3.js':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-      '@tensor-foundation/test-helpers':
-        specifier: workspace:*
-        version: 'link:'
-      js-sha3:
-        specifier: ^0.9.3
-        version: 0.9.3
     devDependencies:
       '@noble/hashes':
         specifier: ^1.4.0

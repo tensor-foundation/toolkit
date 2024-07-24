@@ -38,8 +38,7 @@
   "dependencies": {
     "@solana-program/token": "0.1.4",
     "@solana-program/system": "0.3.3",
-    "@solana/web3.js": "2.0.0-preview.3",
-    "js-sha3": "^0.9.3"
+    "@solana/web3.js": "2.0.0-preview.3"
   },
   "devDependencies": {
     "@noble/hashes": "^1.4.0",

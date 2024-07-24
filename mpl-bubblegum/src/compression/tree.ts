@@ -1,12 +1,8 @@
 import { Address, KeyPairSigner, appendTransactionMessageInstruction, createTransactionMessage, generateKeyPairSigner, pipe, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash } from '@solana/web3.js';
 import { getCreateAccountInstruction } from '@solana-program/system';
-import {
-    Client,
-    signAndSendTransaction,
-} from '../setup';
 import { findTreeAuthorityPda, getConcurrentMerkleTreeAccountSize } from './helpers';
-import { ACCOUNT_COMPRESSION_PROGRAM_ID, NOOP_PROGRAM_ID } from '..';
-import { getCreateTreeInstruction } from './generated';
+import { ACCOUNT_COMPRESSION_PROGRAM_ID, NOOP_PROGRAM_ID, Client, signAndSendTransaction } from '@tensor-foundation/test-helpers';
+import { getCreateTreeInstruction } from '../generated';
 
 type DepthSizePair = {
     maxDepth: number,

@@ -287,7 +287,7 @@ export const initializeCollection = async (
     tokenStandard: some(TokenStandard.NonFungible),
     uses: null,
     // Will be set to true during mint by bubblegum
-    collection: some({ key: collectionMint, verified: true }),
+    collection: null,
     primarySaleHappened: true,
     sellerFeeBasisPoints: 500,
     isMutable: false,

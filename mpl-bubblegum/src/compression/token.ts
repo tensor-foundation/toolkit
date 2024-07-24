@@ -6,9 +6,9 @@ import {
   getU64Encoder,
   getUtf8Encoder,
 } from '@solana/web3.js';
-import { Creator, MetadataArgs, MetadataArgsArgs, getMetadataArgsEncoder, getMintToCollectionV1Instruction, getMintV1Instruction } from "./generated";
+import { Creator, MetadataArgs, MetadataArgsArgs, getMetadataArgsEncoder, getMintToCollectionV1Instruction, getMintV1Instruction } from "../generated";
 import { findTreeAuthorityPda } from "./helpers";
-import { ACCOUNT_COMPRESSION_PROGRAM_ID, Client, MPL_BUBBLEGUM_PROGRAM_ID, MPL_TOKEN_METADATA_PROGRAM_ID, NOOP_PROGRAM_ID, signAndSendTransaction } from "..";
+import { ACCOUNT_COMPRESSION_PROGRAM_ID, Client, MPL_BUBBLEGUM_PROGRAM_ID, MPL_TOKEN_METADATA_PROGRAM_ID, NOOP_PROGRAM_ID, signAndSendTransaction } from "@tensor-foundation/test-helpers";
 import { keccak_256 } from 'js-sha3';
 
 
