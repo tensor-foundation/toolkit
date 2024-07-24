@@ -1,4 +1,4 @@
-import { Address, KeyPairSigner, appendTransactionMessageInstruction, createTransactionMessage, getU16Encoder, isOption, pipe, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash, unwrapOption } from "@solana/web3.js";
+import { Address, KeyPairSigner, appendTransactionMessageInstruction, createTransactionMessage, getU16Encoder, pipe, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash, unwrapOption } from "@solana/web3.js";
 import {
   ProgramDerivedAddress,
   getAddressEncoder,
@@ -6,7 +6,7 @@ import {
   getU64Encoder,
   getUtf8Encoder,
 } from '@solana/web3.js';
-import { Creator, MetadataArgs, MetadataArgsArgs, getMetadataArgsEncoder, getMintToCollectionV1Instruction, getMintV1Instruction } from "../generated";
+import { Creator, MetadataArgs, getMetadataArgsEncoder, getMintToCollectionV1Instruction, getMintV1Instruction } from "../generated";
 import { findTreeAuthorityPda } from "./helpers";
 import { ACCOUNT_COMPRESSION_PROGRAM_ID, Client, MPL_BUBBLEGUM_PROGRAM_ID, MPL_TOKEN_METADATA_PROGRAM_ID, NOOP_PROGRAM_ID, signAndSendTransaction } from "@tensor-foundation/test-helpers";
 import { keccak_256 } from 'js-sha3';
@@ -121,7 +121,7 @@ export const mintCNft = async ({
   client: Client,
   treeOwner: KeyPairSigner;
   receiver: Address;
-  metadata: MetadataArgsArgs;
+  metadata: MetadataArgs;
   merkleTree: Address;
   unverifiedCollection?: boolean;
 }) => {
@@ -130,7 +130,7 @@ export const mintCNft = async ({
     seeds: [Buffer.from("collection_cpi")],
 });
   const [treeAuthority] = await findTreeAuthorityPda({ merkleTree });
-  const collectionKey = isOption(metadata.collection) ? unwrapOption(metadata.collection)!.key : metadata.collection!.key;
+  const collectionKey = unwrapOption(metadata.collection)!.key;
   const mintIx =
   !!metadata.collection && !unverifiedCollection
   ? getMintToCollectionV1Instruction(
