@@ -1,6 +1,7 @@
 packages:
   - "common-helpers"
   - "compat-helpers"
+  - "mpl-bubblegum"
   - "mpl-core"
   - "mpl-token-metadata"
   - "phoenix"
