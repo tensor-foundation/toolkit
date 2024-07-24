@@ -3,6 +3,8 @@ import { getCreateAccountInstruction } from '@solana-program/system';
 import { findTreeAuthorityPda, getConcurrentMerkleTreeAccountSize } from './helpers';
 import { ACCOUNT_COMPRESSION_PROGRAM_ID, NOOP_PROGRAM_ID, Client, signAndSendTransaction } from '@tensor-foundation/test-helpers';
 import { getCreateTreeInstruction } from '../generated';
+import { getConcurrentMerkleTreeDecoderFactory } from '../codecs';
+import { getConcurrentMerkleTreeHeaderDecoder } from '../account_compression';
 
 type DepthSizePair = {
     maxDepth: number,
@@ -67,3 +69,30 @@ export const makeTree = async ({
     );
     return merkleTree;
 };
+
+export async function getRootFromMerkleTreeAddress(
+    client: Client,
+    merkleTree: Address
+  ): Promise<Address> {
+    const merkleTreeData = await client.rpc
+      .getAccountInfo(merkleTree, { encoding: 'base64' })
+      .send()
+      .then((result: any) => result.value.data[0]);
+    const merkleTreeDataBytes = Buffer.from(merkleTreeData, 'base64');
+    var currOffset = 0;
+    const [merkleTreeHeader, headerOffset] =
+      getConcurrentMerkleTreeHeaderDecoder().read(
+        merkleTreeDataBytes,
+        currOffset
+      );
+    currOffset = headerOffset;
+    const { fields } = merkleTreeHeader.header;
+    const { maxDepth, maxBufferSize } = fields[0];
+    const [ treeBody ] = getConcurrentMerkleTreeDecoderFactory(
+      maxDepth,
+      maxBufferSize
+    ).read(merkleTreeDataBytes, currOffset);
+
+    const activeIndex = Number(treeBody.activeIndex);
+    return treeBody.changeLogs[activeIndex].root;
+}

@@ -147,6 +147,9 @@ importers:
 
   mpl-bubblegum:
     dependencies:
+      '@solana-program/compute-budget':
+        specifier: 0.3.2
+        version: 0.3.2(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana-program/system':
         specifier: 0.3.3
         version: 0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
@@ -162,6 +165,9 @@ importers:
       js-sha3:
         specifier: ^0.9.3
         version: 0.9.3
+      typescript-collections:
+        specifier: ^1.3.3
+        version: 1.3.3
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -1131,6 +1137,11 @@ packages:
 
   '@socket.io/component-emitter@3.1.1':
     resolution: {integrity: sha512-dzJtaDAAoXx4GCOJpbB2eG/Qj8VDpdwkLsWGzGm+0L7E8/434RyMbAHmk9ubXWVAb9nXmc44jUf8GKqVDiKezg==}
+
+  '@solana-program/compute-budget@0.3.2':
+    resolution: {integrity: sha512-ZJsJ+yp2IZzUmIz5AVMXnsI86izYYIyKsmogYrSkZB9YfhHXnp6auTy8Tf+AgDEBoezpL0I+9z2h5lXK4pJcKg==}
+    peerDependencies:
+      '@solana/web3.js': 2.0.0-preview.3
 
   '@solana-program/system@0.3.3':
     resolution: {integrity: sha512-TBR/NjAOn7kt1g1aZcUka6yk+n70/EcXO0cPL+lXCIfzqL5/3u1ko0UOLmdyCrs13jVheI+zeKmyR4Ft1Yz2fQ==}
@@ -3858,6 +3869,9 @@ packages:
     peerDependencies:
       typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x
 
+  typescript-collections@1.3.3:
+    resolution: {integrity: sha512-7sI4e/bZijOzyURng88oOFZCISQPTHozfE2sUu5AviFYk5QV7fYGb6YiDl+vKjF/pICA354JImBImL9XJWUvdQ==}
+
   typescript@5.4.5:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
@@ -4902,6 +4916,10 @@ snapshots:
   '@sindresorhus/merge-streams@2.3.0': {}
 
   '@socket.io/component-emitter@3.1.1': {}
+
+  '@solana-program/compute-budget@0.3.2(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
+    dependencies:
+      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
   '@solana-program/system@0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
     dependencies:
@@ -8331,6 +8349,8 @@ snapshots:
       minimatch: 9.0.4
       shiki: 0.14.7
       typescript: 5.4.5
+
+  typescript-collections@1.3.3: {}
 
   typescript@5.4.5: {}
 

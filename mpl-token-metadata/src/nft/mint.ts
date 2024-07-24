@@ -34,6 +34,8 @@ import {
   getCreateV1Instruction,
   getMintV1Instruction,
   getSetCollectionSizeInstruction,
+  Key,
+  MetadataArgs,
   printSupply,
   PrintSupplyArgs,
   TokenStandard,
@@ -82,7 +84,7 @@ export type InitializeCollectionReturn = {
   collectionMint: Address,
   collectionMetadataAccount: Address,
   collectionMasterEditionAccount: Address,
-  metadata: any,
+  metadata: MetadataArgs,
 }
 
 // Create a default NFT with example data. Useful for creating throw-away NFTs
@@ -284,7 +286,7 @@ export const initializeCollection = async ({
     (tx) => signAndSendTransaction(client, tx)
   );
 
-  const meta = {
+  const meta: MetadataArgs = {
     name: "Compressed NFT",
     symbol: "COMP",
     uri: "https://v6nul6vaqrzhjm7qkcpbtbqcxmhwuzvcw2coxx2wali6sbxu634a.arweave.net/r5tF-qCEcnSz8FCeGYYCuw9qZqK2hOvfVgLR6Qb09vg",
@@ -298,7 +300,11 @@ export const initializeCollection = async ({
     sellerFeeBasisPoints: 500,
     isMutable: false,
     collectionDetails: null,
-  }
+    key: Key.MasterEditionV1,
+    updateAuthority: mintAuthority.address,
+    mint: collectionMint,
+    programmableConfig: none(),
+  } 
 
   const [collectionMetadataAccount] = await getProgramDerivedAddress({
     seeds: [
