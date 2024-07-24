@@ -74,7 +74,6 @@ export class MerkleTree {
             const parent = node.parent;
             if (parent.left!.id === node.id) {
                 proof.push(parent.right!);
-                console.log(`${node.level}: proof => ${Uint8Array.from(parent.right!.node)}`);
 
                 const hashed = hash(node.node, parent.right!.node);
                 if (!hashed.equals(parent.node)) {
@@ -84,7 +83,6 @@ export class MerkleTree {
                 }
             } else {
                 proof.push(parent.left!);
-                console.log(`${node.level}: proof => ${Uint8Array.from(parent.left!.node)}`);
 
                 const hashed = hash(parent.left!.node, node.node);
                 if (!hashed.equals(parent.node)) {
