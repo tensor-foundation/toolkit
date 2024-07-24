@@ -247,17 +247,23 @@ export const mintNft = async (
   };
 };
 
-export const initializeCollection = async (
+export const initializeCollection = async ({
+  client,
+  payer,
+  mintAuthority,
+  owner,
+  creators
+}:{
   client: Client,
   payer: KeyPairSigner,
   mintAuthority: KeyPairSigner,
   owner: Address,
   creators: Creator[]
-): Promise<InitializeCollectionReturn> => {
+}): Promise<InitializeCollectionReturn> => {
   const collectionMint = await createMint({
     client,
     payer,
-    mintAuthority: mintAuthority.address
+    mintAuthority: mintAuthority.address,
   });
   const collectionTokenAccount = await createAta({
     client,

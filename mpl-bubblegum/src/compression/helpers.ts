@@ -26,7 +26,7 @@ export function getConcurrentMerkleTreeAccountSize(
     // - the header version       (1 byte)
     return (
         2 +
-        64 + // concurrentMerkleTreeHeaderDataV1Beet.byteSize (?)
+        54 + // concurrentMerkleTreeHeaderDataV1Beet.byteSize (?)
         getConcurrentMerkleTreeDecoderFactory(maxDepth, maxBufferSize).fixedSize +
         (canopyDepth ? getCanopyDecoderFactory(canopyDepth).fixedSize : 0)
     );
