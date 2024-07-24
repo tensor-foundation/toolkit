@@ -56,7 +56,7 @@ export const verifyCNftCreator = async ({
   const { value: latestBlockhash } = await client.rpc
     .getLatestBlockhash()
     .send();
-  const sig = await pipe(
+  await pipe(
     createTransactionMessage({ version: 0 }),
     (tx) => setTransactionMessageFeePayerSigner(verifiedCreator, tx),
     (tx) => setTransactionMessageFeePayerSigner(payer, tx),
@@ -64,8 +64,6 @@ export const verifyCNftCreator = async ({
     (tx) => appendTransactionMessageInstruction(verifyCreatorIx, tx),
     (tx) => signAndSendTransaction(client, tx),
   );
-  console.log("creator verified:", sig);
-
   return;
 };
 
@@ -110,7 +108,7 @@ export const verifyCNft = async ({
   const { value: latestBlockhash } = await client.rpc
     .getLatestBlockhash()
     .send();
-  const sig = await pipe(
+  await pipe(
     createTransactionMessage({ version: 0 }),
     (tx) => setTransactionMessageFeePayerSigner(payer, tx),
     (tx) => setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, tx),
@@ -118,7 +116,6 @@ export const verifyCNft = async ({
     (tx) => appendTransactionMessageInstruction(verifyLeafIx, tx),
     (tx) => signAndSendTransaction(client, tx),
   );
-  console.log("CNFT verified:", sig);
 
   return { leaf, assetId };
 };
