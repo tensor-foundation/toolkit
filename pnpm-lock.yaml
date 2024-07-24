@@ -377,12 +377,18 @@ importers:
         specifier: 0.3.3
         version: 0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana-program/token':
-        specifier: 0.1.4
-        version: 0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
+        specifier: 0.2.0
+        version: 0.2.0(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/web3.js':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
     devDependencies:
+      '@ava/typescript':
+        specifier: ^4.1.0
+        version: 4.1.0
+      '@iarna/toml':
+        specifier: ^2.2.5
+        version: 2.2.5
       '@noble/hashes':
         specifier: ^1.4.0
         version: 1.4.0
@@ -390,8 +396,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: 2.0.0-preview.2
-        version: 2.0.0-preview.2
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.0.0
         version: 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
@@ -422,6 +428,9 @@ importers:
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
+      zx:
+        specifier: ^7.2.3
+        version: 7.2.3
 
   wns:
     dependencies:
@@ -1063,6 +1072,11 @@ packages:
     peerDependencies:
       '@solana/web3.js': 2.0.0-preview.3
 
+  '@solana-program/token@0.2.0':
+    resolution: {integrity: sha512-2W3ylIdgwx/5k4P2RB/tvOhZD08GSQ86Iakxl/k280V5swM7wX8JwUgWSxpQOBl10tQmuA3EYleGkcrdCYyepg==}
+    peerDependencies:
+      '@solana/web3.js': 2.0.0-preview.4
+
   '@solana/accounts@2.0.0-preview.3':
     resolution: {integrity: sha512-30GCO7SF3VRYqsumfCTW4bJ1fK67KwX62ZSi6nlU3+6ni4ZmmCT4jPYcqoBgO1kUzDJ4UORNeh/PbdFfbCA0FA==}
 
@@ -1250,9 +1264,6 @@ packages:
 
   '@solana/web3.js@2.0.0-preview.3':
     resolution: {integrity: sha512-BivbEWn49waNJV3FLlyd9mYsm960snRZbj+i8PVKbYTVOejLeKyI7KEfUnz+BwbFQl+35PEO3CUp/xpdca3KOA==}
-
-  '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.2':
-    resolution: {integrity: sha512-WDe2kYmWk6vs80GVqKE/1JOnQEp2fHK92Mq88FlDW70BMMXhKaZRVG+MPiK3BvKDqegcEfQaw39XqdI3DH5bDQ==}
 
   '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.3':
     resolution: {integrity: sha512-MaV4swf8QJr+H7BVr9hJiZxn/nWedvCMSJB53GtHse5/EC+STdBMzfELICKXiQtycWC5V4vC9LKTOHIjx2zXhg==}
@@ -4832,6 +4843,10 @@ snapshots:
     dependencies:
       '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
+  '@solana-program/token@0.2.0(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
+    dependencies:
+      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+
   '@solana/accounts@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
       '@solana/addresses': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)
@@ -5325,10 +5340,6 @@ snapshots:
     transitivePeerDependencies:
       - fastestsmallesttextencoderdecoder
       - ws
-
-  '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.2':
-    dependencies:
-      '@noble/ed25519': 2.1.0
 
   '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.3':
     dependencies:

@@ -1,11 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { getCreateAccountInstruction } from '@solana-program/system';
 import {
   findAssociatedTokenPda,
   getCreateAssociatedTokenInstructionAsync,
   getInitializeAccountInstruction,
-  getInitializeMintInstruction,
   getMintSize,
-  getMintToInstruction,
   getTokenSize,
 } from '@solana-program/token';
 import {
@@ -14,15 +13,22 @@ import {
   appendTransactionMessageInstructions,
   generateKeyPairSigner,
   KeyPairSigner,
+  none,
   pipe,
   TransactionSigner,
 } from '@solana/web3.js';
-import { TOKEN_PROGRAM_ID } from '../programIds';
+import { TOKEN22_PROGRAM_ID, TOKEN_PROGRAM_ID } from '../programIds';
 import {
   Client,
   createDefaultTransaction,
   signAndSendTransaction,
 } from '../setup';
+import {
+  getInitializeMetadataPointerInstruction,
+  METADATA_POINTER_EXTENSION_LENGTH,
+} from './extensions';
+import { getInitializeMint2Instruction } from './initializeMint';
+import { getMintToInstruction } from './mintTo';
 
 export interface TokenArgs {
   client: Client;
@@ -36,6 +42,7 @@ export interface MintArgs {
   client: Client;
   payer: TransactionSigner;
   mintAuthority: Address;
+  freezeAuthority: Address | null;
   decimals?: number;
   tokenProgram?: Address;
 }
@@ -45,6 +52,7 @@ export const createMint = async (args: MintArgs): Promise<Address> => {
     client,
     payer,
     mintAuthority,
+    freezeAuthority,
     decimals = 0,
     tokenProgram = TOKEN_PROGRAM_ID,
   } = args;
@@ -65,10 +73,12 @@ export const createMint = async (args: MintArgs): Promise<Address> => {
       space,
       programAddress: tokenProgram,
     }),
-    getInitializeMintInstruction({
+    getInitializeMint2Instruction({
       mint: mint.address,
-      decimals,
       mintAuthority,
+      decimals,
+      freezeAuthority: freezeAuthority ?? none(),
+      tokenProgram,
     }),
   ];
 
@@ -116,9 +126,9 @@ export const createAta = async (args: TokenArgs): Promise<Address> => {
   const { client, payer, mint, owner, tokenProgram = TOKEN_PROGRAM_ID } = args;
 
   const [ownerAta] = await findAssociatedTokenPda({
+    mint,
     owner,
     tokenProgram,
-    mint,
   });
 
   const ix = await getCreateAssociatedTokenInstructionAsync({
@@ -126,6 +136,7 @@ export const createAta = async (args: TokenArgs): Promise<Address> => {
     ata: ownerAta,
     owner,
     mint,
+    tokenProgram,
   });
 
   await pipe(
@@ -154,7 +165,7 @@ export interface CreateAndMintToArgs {
 
 export const createAndMintTo = async (
   args: CreateAndMintToArgs
-): Promise<Mint> => {
+): Promise<[Mint, Address | null]> => {
   const {
     client,
     mintAuthority,
@@ -169,18 +180,28 @@ export const createAndMintTo = async (
     client,
     payer,
     mintAuthority: mintAuthority.address,
+    freezeAuthority: null,
     decimals,
     tokenProgram,
   });
 
+  let ata = null;
+
   if (initialSupply > 0n) {
-    const ata = await createAta({ client, payer, mint, owner: recipient });
+    ata = await createAta({
+      client,
+      payer,
+      mint,
+      owner: recipient,
+      tokenProgram,
+    });
 
     const mintToIx = getMintToInstruction({
       mint,
       token: ata,
       mintAuthority,
       amount: initialSupply,
+      tokenProgram,
     });
 
     await pipe(
@@ -190,5 +211,55 @@ export const createAndMintTo = async (
     );
   }
 
-  return { mint, decimals };
+  return [{ mint, decimals }, ata];
+};
+
+export const createMintWithMetadata = async (
+  args: MintArgs & Omit<MintArgs, 'tokenProgram'>
+): Promise<Address> => {
+  const { client, payer, mintAuthority, freezeAuthority, decimals = 0 } = args;
+  const tokenProgram = TOKEN22_PROGRAM_ID;
+
+  const space =
+    165n + // ACCOUNT_SIZE
+    1n + // ACCOUNT_SIZE_TYPE
+    BigInt(METADATA_POINTER_EXTENSION_LENGTH) + // METADATA_POINTER_SIZE
+    2n + // TYPE_SIZE
+    2n; // LENGTH_SIZE
+
+  const [transactionMessage, rent, mint] = await Promise.all([
+    createDefaultTransaction(client, payer),
+    client.rpc.getMinimumBalanceForRentExemption(space).send(),
+    generateKeyPairSigner(),
+  ]);
+
+  const instructions = [
+    getCreateAccountInstruction({
+      payer,
+      newAccount: mint,
+      lamports: rent,
+      space,
+      programAddress: tokenProgram,
+    }),
+    getInitializeMetadataPointerInstruction({
+      tokenProgram,
+      mint: mint.address,
+      metadata: mint.address, // point to self for metadata
+    }),
+    getInitializeMint2Instruction({
+      mint: mint.address,
+      mintAuthority,
+      freezeAuthority: freezeAuthority ?? none(),
+      decimals,
+      tokenProgram,
+    }),
+  ];
+
+  await pipe(
+    transactionMessage,
+    (tx) => appendTransactionMessageInstructions(instructions, tx),
+    (tx) => signAndSendTransaction(client, tx)
+  );
+
+  return mint.address;
 };
