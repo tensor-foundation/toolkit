@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { SYSTEM_PROGRAM_ADDRESS } from '@solana-program/system';
 import { fetchToken, Token } from '@solana-program/token';
 import { Account } from '@solana/web3.js';
 import test from 'ava';
@@ -7,7 +8,13 @@ import {
   createDefaultSolanaClient,
   createMint,
   createMintWithMetadata,
+  createMintWithMetadataPointer,
+  createMintWithTransferHook,
+  createT22Nft,
+  deserializeExtension,
+  ExtensionType,
   generateKeyPairSignerWithSol,
+  LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID,
   TOKEN22_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
 } from '../src/index.js';
@@ -109,11 +116,11 @@ test('it can create a token22 mint and mint to a token account', async (t) => {
   });
 });
 
-test('it can create a token22 mint with metadata', async (t) => {
+test('it can create a token22 mint with a metadata pointer extension', async (t) => {
   const { client, payer, authority } = await tokenSetup();
 
   // Create a legacy mint.
-  const mint = await createMintWithMetadata({
+  const mint = await createMintWithMetadataPointer({
     client,
     payer,
     mintAuthority: authority.address,
@@ -126,6 +133,118 @@ test('it can create a token22 mint with metadata', async (t) => {
     await client.rpc.getAccountInfo(mint, { encoding: 'base64' }).send()
   ).value;
   t.assert(mintAccount?.owner == TOKEN22_PROGRAM_ID);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+  // Metadata pointer was created correctly.
   const data = new Uint8Array(Buffer.from(String(mintAccount?.data), 'base64'));
+  const metadataPointer = deserializeExtension(
+    data,
+    ExtensionType.MetadataPointer
+  );
+
+  t.assert(metadataPointer?.authority === SYSTEM_PROGRAM_ADDRESS);
+  t.assert(metadataPointer?.metadata === mint);
+});
+
+test('it can create a token22 mint with a transfer hook extension', async (t) => {
+  const { client, payer, authority } = await tokenSetup();
+
+  // Create a legacy mint.
+  const mint = await createMintWithTransferHook({
+    client,
+    payer,
+    mintAuthority: authority.address,
+    freezeAuthority: null,
+    decimals: 9,
+  });
+
+  // Check the mint is owned by the correct program.
+  const mintAccount = (
+    await client.rpc.getAccountInfo(mint, { encoding: 'base64' }).send()
+  ).value;
+  t.assert(mintAccount?.owner == TOKEN22_PROGRAM_ID);
+
+  // Transfer Hook was created correctly.
+  const data = new Uint8Array(Buffer.from(String(mintAccount?.data), 'base64'));
+  const transferHook = deserializeExtension(data, ExtensionType.TransferHook);
+
+  t.assert(transferHook?.authority === SYSTEM_PROGRAM_ADDRESS);
+  t.assert(transferHook?.programId === LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID);
+});
+
+test('it can create a token22 mint with metadata on the mint', async (t) => {
+  const { client, payer, authority } = await tokenSetup();
+
+  // Create a legacy mint.
+  const mint = await createMintWithMetadata({
+    client,
+    payer,
+    mintAuthority: authority,
+    freezeAuthority: null,
+    decimals: 0,
+    data: {
+      name: 'Test Token',
+      symbol: 'TT',
+      uri: 'https://example.com',
+    },
+  });
+
+  // Check the mint is owned by the correct program.
+  const mintAccount = (
+    await client.rpc.getAccountInfo(mint, { encoding: 'base64' }).send()
+  ).value;
+  t.assert(mintAccount?.owner == TOKEN22_PROGRAM_ID);
+
+  // Metadata pointer was created correctly.
+  const data = new Uint8Array(Buffer.from(String(mintAccount?.data), 'base64'));
+  const metadataPointer = deserializeExtension(
+    data,
+    ExtensionType.MetadataPointer
+  );
+
+  t.assert(metadataPointer?.authority === SYSTEM_PROGRAM_ADDRESS);
+  t.assert(metadataPointer?.metadata === mint);
+});
+
+test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
+  const { client, payer, authority } = await tokenSetup();
+
+  const royaltyDestination = await generateKeyPairSignerWithSol(client);
+
+  const royaltyDestinationString =
+    '_ro_' + royaltyDestination.address.toString();
+  const sellerFeeBasisPoints = '100';
+
+  // Create a legacy mint.
+  const mint = await createT22Nft({
+    client,
+    payer,
+    mintAuthority: authority,
+    freezeAuthority: null,
+    decimals: 0,
+    data: {
+      name: 'Test Token',
+      symbol: 'TT',
+      uri: 'https://example.com',
+    },
+    royalties: {
+      key: royaltyDestinationString,
+      value: sellerFeeBasisPoints,
+    },
+  });
+
+  // Check the mint is owned by the correct program.
+  const mintAccount = (
+    await client.rpc.getAccountInfo(mint, { encoding: 'base64' }).send()
+  ).value;
+  t.assert(mintAccount?.owner == TOKEN22_PROGRAM_ID);
+
+  // Metadata pointer was created correctly.
+  const data = new Uint8Array(Buffer.from(String(mintAccount?.data), 'base64'));
+  const metadataPointer = deserializeExtension(
+    data,
+    ExtensionType.MetadataPointer
+  );
+
+  t.assert(metadataPointer?.authority === SYSTEM_PROGRAM_ADDRESS);
+  t.assert(metadataPointer?.metadata === mint);
 });

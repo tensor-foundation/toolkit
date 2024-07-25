@@ -39,15 +39,17 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana-program/token": "0.2.0",
     "@solana-program/system": "0.3.3",
-    "@solana/web3.js": "2.0.0-preview.3"
+    "@solana-program/token": "0.2.0",
+    "@solana/web3.js": "2.0.0-preview.3",
+    "bs58": "^6.0.0"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
     "@iarna/toml": "^2.2.5",
     "@noble/hashes": "^1.4.0",
     "@solana/eslint-config-solana": "^3.0.3",
+    "@solana/errors": "2.0.0-preview.3",
     "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

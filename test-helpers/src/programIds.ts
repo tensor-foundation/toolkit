@@ -109,3 +109,7 @@ export const MPL_TOKEN_METADATA_PROGRAM_ID = address(
 export const MPL_TOKEN_AUTH_RULES_PROGRAM_ID = address(
   'auth9SigNpDKz4sJJ1DfCTuZrZNSAgh9sFD3rboVmgg'
 );
+
+export const LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID = address(
+  'CZ1rQoAHSqWBoAEfqGsiLhgbM59dDrCWk3rnG5FXaoRV'
+);

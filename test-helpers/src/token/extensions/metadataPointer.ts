@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SYSTEM_PROGRAM_ADDRESS } from '@solana-program/system';
 import {
   Address,
@@ -13,8 +12,13 @@ import {
   transformEncoder,
   WritableAccount,
 } from '@solana/web3.js';
-import { TOKEN22_PROGRAM_ID } from '../programIds';
-import { getAccountMetaFactory, ResolvedAccount } from '../shared';
+import { TOKEN22_PROGRAM_ID } from '../../programIds';
+import { getAccountMetaFactory, ResolvedAccount } from '../../shared';
+
+export interface MetadataPointer {
+  authority: Address;
+  metadata: Address;
+}
 
 export enum MetadataPointerInstruction {
   Initialize = 0,
@@ -22,9 +26,7 @@ export enum MetadataPointerInstruction {
 }
 
 export const METADATA_POINTER_EXTENSION_LENGTH = 64;
-
 const TOKEN_INSTRUCTION_DISCRIMINATOR = 39;
-const METADATA_POINTER_INSTRUCTION_DISCRIMINATOR = 0;
 
 export interface InitializeMetadataPointerInput {
   tokenProgram: Address;
@@ -104,7 +106,7 @@ function getInitializeMetadataPointerInstructionDataEncoder(): Encoder<Initializ
     ]),
     (value) => ({
       discriminator: TOKEN_INSTRUCTION_DISCRIMINATOR,
-      subDiscriminator: METADATA_POINTER_INSTRUCTION_DISCRIMINATOR,
+      subDiscriminator: MetadataPointerInstruction.Initialize,
       authority: value.authority,
       metadata: value.metadata,
     })
