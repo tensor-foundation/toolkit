@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SYSTEM_PROGRAM_ADDRESS } from '@solana-program/system';
 import { TOKEN_PROGRAM_ADDRESS } from '@solana-program/token';
 import {
@@ -20,7 +19,6 @@ import {
 import { getAccountMetaFactory, ResolvedAccount } from '../shared';
 
 export type InitializeMint2Input<TAccountMint extends string = string> = {
-  /** The mint to initialize. */
   mint: Address<TAccountMint>;
   tokenProgram?: Address;
   decimals: InitializeMint2InstructionDataArgs['decimals'];

@@ -1,5 +1,6 @@
 import { getCreateAccountInstruction } from '@solana-program/system';
 import {
+  AuthorityType,
   findAssociatedTokenPda,
   getCreateAssociatedTokenInstructionAsync,
   getInitializeAccountInstruction,
@@ -40,6 +41,7 @@ import {
 } from './extensions/tokenMetadata';
 import { getInitializeMint2Instruction } from './initializeMint';
 import { getMintToInstruction } from './mintTo';
+import { getSetAuthorityInstruction } from './setAuthorityT22';
 
 export interface TokenArgs {
   client: Client;
@@ -408,13 +410,11 @@ export const createMintWithMetadata = async (
     }),
   ];
 
-  const sig = await pipe(
+  await pipe(
     transactionMessage,
     (tx) => appendTransactionMessageInstructions(instructions, tx),
     (tx) => signAndSendTransaction(client, tx)
   );
-
-  console.log(sig);
 
   return mint.address;
 };
@@ -488,12 +488,11 @@ export const createT22Nft = async (
     }),
   ];
 
-  const mintSig = await pipe(
+  await pipe(
     transactionMessage,
     (tx) => appendTransactionMessageInstructions(mintInstructions, tx),
     (tx) => signAndSendTransaction(client, tx)
   );
-  console.log(mintSig);
 
   const [ownerAta] = await findAssociatedTokenPda({
     mint: mint.address,
@@ -503,6 +502,7 @@ export const createT22Nft = async (
 
   // Update the fields on the metadata account for Libreplex-style royalties,
   // create the token account for the owner, and mint the NFT to the owner.
+  // Finally, set the mint authority to null.
   const updateInstructions = [
     getUpdateFieldInstruction({
       metadata: mint.address,
@@ -525,14 +525,19 @@ export const createT22Nft = async (
       amount: 1,
       tokenProgram,
     }),
+    getSetAuthorityInstruction({
+      owned: mint.address,
+      owner: mintAuthority,
+      authorityType: AuthorityType.MintTokens,
+      newAuthority: none(),
+    }),
   ];
 
-  const updateSig = await pipe(
+  await pipe(
     await createDefaultTransaction(client, payer),
     (tx) => appendTransactionMessageInstructions(updateInstructions, tx),
     (tx) => signAndSendTransaction(client, tx)
   );
-  console.log(updateSig);
 
   return [mint.address, ownerAta];
 };
