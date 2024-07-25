@@ -40,7 +40,12 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@tensor-foundation/test-helpers": "workspace:*",
-    "@solana/web3.js": "2.0.0-preview.3"
+    "@tensor-foundation/mpl-token-metadata": "workspace:*",
+    "@solana/web3.js": "2.0.0-preview.3",
+    "js-sha3": "^0.9.3",
+    "@solana-program/system": "0.3.3",
+    "@solana-program/compute-budget": "0.3.2",
+    "typescript-collections": "^1.3.3"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
