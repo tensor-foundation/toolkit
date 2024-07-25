@@ -440,9 +440,10 @@ export const createT22Nft = async (
   const space =
     165n + // ACCOUNT_SIZE
     1n + // ACCOUNT_SIZE_TYPE
+    BigInt(TRANSFER_HOOK_EXTENSION_LENGTH) + // TRANSFER_HOOK_SIZE
     BigInt(METADATA_POINTER_EXTENSION_LENGTH) + // METADATA_POINTER_SIZE
-    2n + // TYPE_SIZE
-    2n; // LENGTH_SIZE
+    2n * 2n + // TYPE_SIZE
+    2n * 2n; // LENGTH_SIZE
 
   // Token 2022 does the resizing but not lamport transfers for rent.
   const encodedData = getTokenMetadataArgsEncoder().encode(data);
@@ -471,6 +472,11 @@ export const createT22Nft = async (
       tokenProgram,
       mint: mint.address,
       metadata: mint.address, // point to self for metadata
+    }),
+    getInitializeTransferHookInstruction({
+      tokenProgram,
+      mint: mint.address,
+      programId: LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID,
     }),
     getInitializeMint2Instruction({
       mint: mint.address,

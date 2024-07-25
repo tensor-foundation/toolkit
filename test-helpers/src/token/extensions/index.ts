@@ -136,13 +136,11 @@ const findExtension = (
   account: Uint8Array,
   extensionType: ExtensionType
 ): Uint8Array | null => {
-  const baseAccountLength = 165;
+  // Base account + type byte
+  const baseAccountLength = 166;
   let offset = baseAccountLength;
 
   while (offset < account.length) {
-    // Skip account type byte
-    offset += 1;
-
     // Read extension type (2 bytes), little-endian
     const currentExtensionType = account[offset] | (account[offset + 1] << 8);
     offset += 2;

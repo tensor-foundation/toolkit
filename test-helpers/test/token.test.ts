@@ -237,8 +237,9 @@ test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
   ).value;
   t.assert(mintAccount?.owner == TOKEN22_PROGRAM_ID);
 
-  // Metadata pointer was created correctly.
   const data = new Uint8Array(Buffer.from(String(mintAccount?.data), 'base64'));
+
+  // Metadata pointer was created correctly.
   const metadataPointer = deserializeExtension(
     data,
     ExtensionType.MetadataPointer
@@ -246,6 +247,12 @@ test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
 
   t.assert(metadataPointer?.authority === SYSTEM_PROGRAM_ADDRESS);
   t.assert(metadataPointer?.metadata === mint);
+
+  // Transfer Hook was created correctly.
+  const transferHook = deserializeExtension(data, ExtensionType.TransferHook);
+
+  // t.assert(transferHook?.authority === SYSTEM_PROGRAM_ADDRESS);
+  t.assert(transferHook?.programId === LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID);
 
   // Check the token account has correct mint, amount and owner.
   t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
