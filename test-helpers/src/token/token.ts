@@ -69,6 +69,7 @@ export const createMint = async (args: MintArgs): Promise<Address> => {
       mint: mint.address,
       decimals,
       mintAuthority,
+      freezeAuthority: mintAuthority,
     }),
   ];
 
