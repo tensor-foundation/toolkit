@@ -1,5 +1,3 @@
-/* eslint-disable no-extra-semi */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SYSTEM_PROGRAM_ADDRESS } from '@solana-program/system';
 import {
   addEncoderSizePrefix,
@@ -199,6 +197,7 @@ enum FieldType {
   Key = 'Key',
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Field =
   | { type: FieldType.Name }
   | { type: FieldType.Symbol }

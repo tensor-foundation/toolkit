@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SYSTEM_PROGRAM_ADDRESS } from '@solana-program/system';
 import { fetchToken, Token } from '@solana-program/token';
 import { Account } from '@solana/web3.js';
@@ -206,7 +205,7 @@ test('it can create a token22 mint with metadata on the mint', async (t) => {
 });
 
 test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
-  const { client, payer, authority } = await tokenSetup();
+  const { client, payer, owner, authority } = await tokenSetup();
 
   const royaltyDestination = await generateKeyPairSignerWithSol(client);
 
@@ -214,10 +213,10 @@ test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
     '_ro_' + royaltyDestination.address.toString();
   const sellerFeeBasisPoints = '100';
 
-  // Create a legacy mint.
-  const mint = await createT22Nft({
+  const [mint, ownerAta] = await createT22Nft({
     client,
     payer,
+    owner: owner.address,
     mintAuthority: authority,
     freezeAuthority: null,
     decimals: 0,
@@ -247,4 +246,14 @@ test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
 
   t.assert(metadataPointer?.authority === SYSTEM_PROGRAM_ADDRESS);
   t.assert(metadataPointer?.metadata === mint);
+
+  // Check the token account has correct mint, amount and owner.
+  t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
+    address: ownerAta,
+    data: {
+      mint,
+      owner: owner.address,
+      amount: 1n,
+    },
+  });
 });

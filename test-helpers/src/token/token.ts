@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { getCreateAccountInstruction } from '@solana-program/system';
 import {
   findAssociatedTokenPda,
@@ -72,6 +71,7 @@ export interface MetadataMintArgs {
 export interface T22NftArgs {
   client: Client;
   payer: TransactionSigner;
+  owner: Address;
   mintAuthority: TransactionSigner;
   freezeAuthority: Address | null;
   decimals?: number;
@@ -419,10 +419,13 @@ export const createMintWithMetadata = async (
   return mint.address;
 };
 
-export const createT22Nft = async (args: T22NftArgs): Promise<Address> => {
+export const createT22Nft = async (
+  args: T22NftArgs
+): Promise<[Address, Address]> => {
   const {
     client,
     payer,
+    owner,
     mintAuthority,
     freezeAuthority,
     decimals = 0,
@@ -492,7 +495,14 @@ export const createT22Nft = async (args: T22NftArgs): Promise<Address> => {
   );
   console.log(mintSig);
 
-  // Update the fields on the metadata account for Libreplex-style royalties.
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint: mint.address,
+    owner,
+    tokenProgram,
+  });
+
+  // Update the fields on the metadata account for Libreplex-style royalties,
+  // create the token account for the owner, and mint the NFT to the owner.
   const updateInstructions = [
     getUpdateFieldInstruction({
       metadata: mint.address,
@@ -501,6 +511,19 @@ export const createT22Nft = async (args: T22NftArgs): Promise<Address> => {
         key: royalties.key,
         value: royalties.value,
       },
+    }),
+    await getCreateAssociatedTokenInstructionAsync({
+      payer,
+      owner,
+      mint: mint.address,
+      tokenProgram,
+    }),
+    getMintToInstruction({
+      mint: mint.address,
+      token: ownerAta,
+      mintAuthority,
+      amount: 1,
+      tokenProgram,
     }),
   ];
 
@@ -511,5 +534,5 @@ export const createT22Nft = async (args: T22NftArgs): Promise<Address> => {
   );
   console.log(updateSig);
 
-  return mint.address;
+  return [mint.address, ownerAta];
 };
