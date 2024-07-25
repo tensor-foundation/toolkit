@@ -26,7 +26,10 @@
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
     "format": "prettier --check src",
-    "format:fix": "prettier --write src"
+    "format:fix": "prettier --write src",
+    "validator:start": "zx ./scripts/start-validator.mjs",
+    "validator:restart": "pnpm validator:start --restart",
+    "validator:stop": "zx ./scripts/stop-validator.mjs"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -36,14 +39,18 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana-program/token": "0.1.4",
     "@solana-program/system": "0.3.3",
-    "@solana/web3.js": "2.0.0-preview.3"
+    "@solana-program/token": "0.2.0",
+    "@solana/web3.js": "2.0.0-preview.3",
+    "bs58": "^6.0.0"
   },
   "devDependencies": {
+    "@ava/typescript": "^4.1.0",
+    "@iarna/toml": "^2.2.5",
     "@noble/hashes": "^1.4.0",
     "@solana/eslint-config-solana": "^3.0.3",
-    "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.2",
+    "@solana/errors": "2.0.0-preview.3",
+    "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "ava": "^6.1.2",
@@ -53,7 +60,8 @@
     "tsup": "^8.0.2",
     "typedoc": "^0.25.12",
     "typedoc-plugin-missing-exports": "^2.2.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "zx": "^7.2.3"
   },
   "ava": {
     "require": [

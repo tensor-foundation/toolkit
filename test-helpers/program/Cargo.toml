@@ -1,0 +1,8 @@
+[package]
+name = "dummy_test_program"
+version = "0.1.0"
+
+# Used to get programs needed for the test validator.
+[package.metadata.solana]
+program-id = "dummytest1111111111111111111"
+program-dependencies = ["TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"]

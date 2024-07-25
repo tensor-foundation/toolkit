@@ -81,11 +81,11 @@ export type CreateNftArgs = {
 };
 
 export type InitializeCollectionReturn = {
-  collectionMint: Address,
-  collectionMetadataAccount: Address,
-  collectionMasterEditionAccount: Address,
-  metadata: MetadataArgs,
-}
+  collectionMint: Address;
+  collectionMetadataAccount: Address;
+  collectionMasterEditionAccount: Address;
+  metadata: MetadataArgs;
+};
 
 // Create a default NFT with example data. Useful for creating throw-away NFTs
 // for testing. TokenStandard defaults to NonFungible.
@@ -254,18 +254,19 @@ export const initializeCollection = async ({
   payer,
   mintAuthority,
   owner,
-  creators
-}:{
-  client: Client,
-  payer: KeyPairSigner,
-  mintAuthority: KeyPairSigner,
-  owner: Address,
-  creators: Creator[]
+  creators,
+}: {
+  client: Client;
+  payer: KeyPairSigner;
+  mintAuthority: KeyPairSigner;
+  owner: Address;
+  creators: Creator[];
 }): Promise<InitializeCollectionReturn> => {
   const collectionMint = await createMint({
     client,
     payer,
     mintAuthority: mintAuthority.address,
+    freezeAuthority: null,
   });
   const collectionTokenAccount = await createAta({
     client,
@@ -287,9 +288,9 @@ export const initializeCollection = async ({
   );
 
   const meta: MetadataArgs = {
-    name: "Compressed NFT",
-    symbol: "COMP",
-    uri: "https://v6nul6vaqrzhjm7qkcpbtbqcxmhwuzvcw2coxx2wali6sbxu634a.arweave.net/r5tF-qCEcnSz8FCeGYYCuw9qZqK2hOvfVgLR6Qb09vg",
+    name: 'Compressed NFT',
+    symbol: 'COMP',
+    uri: 'https://v6nul6vaqrzhjm7qkcpbtbqcxmhwuzvcw2coxx2wali6sbxu634a.arweave.net/r5tF-qCEcnSz8FCeGYYCuw9qZqK2hOvfVgLR6Qb09vg',
     creators: creators,
     editionNonce: some(0),
     tokenStandard: some(TokenStandard.NonFungible),
@@ -304,15 +305,15 @@ export const initializeCollection = async ({
     updateAuthority: mintAuthority.address,
     mint: collectionMint,
     programmableConfig: none(),
-  } 
+  };
 
   const [collectionMetadataAccount] = await getProgramDerivedAddress({
     seeds: [
-      Buffer.from("metadata", "utf8"),
+      Buffer.from('metadata', 'utf8'),
       new Uint8Array(getAddressEncoder().encode(MPL_TOKEN_METADATA_PROGRAM_ID)),
       new Uint8Array(getAddressEncoder().encode(collectionMint)),
     ],
-    programAddress: MPL_TOKEN_METADATA_PROGRAM_ID
+    programAddress: MPL_TOKEN_METADATA_PROGRAM_ID,
   });
   const data = {
     name: meta.name,
@@ -322,50 +323,44 @@ export const initializeCollection = async ({
     creators: meta.creators,
     collection: meta.collection,
     uses: meta.uses,
-  }
-  const collectionMetadataIx = getCreateMetadataAccountV3Instruction(
-    {
-      metadata: collectionMetadataAccount,
-      mint: collectionMint,
-      mintAuthority: mintAuthority,
-      payer: payer,
-      updateAuthority: mintAuthority,
-      data,
-      isMutable: meta.isMutable,
-      collectionDetails: meta.collectionDetails,
-    }
-  );
+  };
+  const collectionMetadataIx = getCreateMetadataAccountV3Instruction({
+    metadata: collectionMetadataAccount,
+    mint: collectionMint,
+    mintAuthority: mintAuthority,
+    payer: payer,
+    updateAuthority: mintAuthority,
+    data,
+    isMutable: meta.isMutable,
+    collectionDetails: meta.collectionDetails,
+  });
 
   const [collectionMasterEditionAccount] = await getProgramDerivedAddress({
     seeds: [
-      Buffer.from("metadata", "utf8"),
+      Buffer.from('metadata', 'utf8'),
       new Uint8Array(getAddressEncoder().encode(MPL_TOKEN_METADATA_PROGRAM_ID)),
       new Uint8Array(getAddressEncoder().encode(collectionMint)),
-      Buffer.from("edition", "utf8"),
+      Buffer.from('edition', 'utf8'),
     ],
-    programAddress: MPL_TOKEN_METADATA_PROGRAM_ID
+    programAddress: MPL_TOKEN_METADATA_PROGRAM_ID,
   });
 
-  const collectionMasterEditionIx = getCreateMasterEditionV3Instruction(
-    {
-      edition: collectionMasterEditionAccount,
-      mint: collectionMint,
-      mintAuthority: mintAuthority,
-      payer: payer,
-      updateAuthority: mintAuthority,
-      metadata: collectionMetadataAccount,
-      maxSupply: 0
-    }
-  );
+  const collectionMasterEditionIx = getCreateMasterEditionV3Instruction({
+    edition: collectionMasterEditionAccount,
+    mint: collectionMint,
+    mintAuthority: mintAuthority,
+    payer: payer,
+    updateAuthority: mintAuthority,
+    metadata: collectionMetadataAccount,
+    maxSupply: 0,
+  });
 
-  const sizeCollectionIx = getSetCollectionSizeInstruction(
-    {
-      collectionMetadata: collectionMetadataAccount,
-      collectionAuthority: mintAuthority,
-      collectionMint: collectionMint,
-      setCollectionSizeArgs: {size: 50},
-    }
-  );
+  const sizeCollectionIx = getSetCollectionSizeInstruction({
+    collectionMetadata: collectionMetadataAccount,
+    collectionAuthority: mintAuthority,
+    collectionMint: collectionMint,
+    setCollectionSizeArgs: { size: 50 },
+  });
 
   const { value: latestBlockhash } = await client.rpc
     .getLatestBlockhash()
@@ -378,12 +373,12 @@ export const initializeCollection = async ({
     (tx) => appendTransactionMessageInstruction(collectionMetadataIx, tx),
     (tx) => appendTransactionMessageInstruction(collectionMasterEditionIx, tx),
     (tx) => appendTransactionMessageInstruction(sizeCollectionIx, tx),
-    (tx) => signAndSendTransaction(client, tx),
+    (tx) => signAndSendTransaction(client, tx)
   );
   return {
     collectionMint,
     collectionMetadataAccount,
     collectionMasterEditionAccount,
-    metadata: meta
-  }
+    metadata: meta,
+  };
 };
