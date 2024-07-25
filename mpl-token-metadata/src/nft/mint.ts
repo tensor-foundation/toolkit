@@ -266,7 +266,7 @@ export const initializeCollection = async ({
     client,
     payer,
     mintAuthority: mintAuthority.address,
-    freezeAuthority: null,
+    freezeAuthority: mintAuthority.address,
   });
   const collectionTokenAccount = await createAta({
     client,
