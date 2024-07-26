@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/wen-new-standard",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Toolkit for Wen New Standard program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -32,14 +32,15 @@
     "validator:stop": "zx ./scripts/stop-validator.mjs"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/tensor-foundation",
   "repository": "https://github.com/tensor-foundation/toolkit.git",
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@tensor-foundation/test-helpers": "0.0.5"
+    "@tensor-foundation/test-helpers": "workspace:*"
   },
   "devDependencies": {
     "@solana/web3.js": "2.0.0-preview.3",

@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/compat-helpers",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Helper functions to make old web3.js programs compatible with web3.js-next modules",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -29,7 +29,8 @@
     "./dist/types"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/tensor-foundation",
   "repository": "https://github.com/tensor-foundation/toolkit.git",
@@ -37,9 +38,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@solana/web3.js-next": "npm:@solana/web3.js@^2.0.0-preview.3",
-    "@solana/rpc-spec-types": "^2.0.0-preview.3",
-    "@solana/rpc": "^2.0.0-preview.3",
-    "@solana/rpc-transformers": "^2.0.0-preview.3"
+    "@solana/rpc-spec-types": "2.0.0-preview.3",
+    "@solana/rpc": "2.0.0-preview.3",
+    "@solana/rpc-transformers": "2.0.0-preview.3"
   },
   "peerDependencies": {
     "@solana/web3.js": "<2.0.0",

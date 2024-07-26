@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/common-helpers",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Common helper functions for Tensor SDKs",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -29,7 +29,8 @@
     "./dist/types"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"  
   },
   "homepage": "https://github.com/tensor-foundation",
   "repository": "https://github.com/tensor-foundation/toolkit.git",
