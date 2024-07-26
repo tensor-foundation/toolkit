@@ -32,7 +32,8 @@
     "validator:stop": "zx ./scripts/stop-validator.mjs"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/tensor-foundation",
   "repository": "https://github.com/tensor-foundation/toolkit.git",
@@ -48,7 +49,7 @@
     "@ava/typescript": "^4.1.0",
     "@iarna/toml": "^2.2.5",
     "@noble/hashes": "^1.4.0",
-    "@solana/eslint-config-solana": "^3.0.3",
+    "@solana/eslint-config-solana": "3.0.3",
     "@solana/errors": "2.0.0-preview.3",
     "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

@@ -78,13 +78,13 @@ importers:
   compat-helpers:
     dependencies:
       '@solana/rpc':
-        specifier: ^2.0.0-preview.3
+        specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)
       '@solana/rpc-spec-types':
-        specifier: ^2.0.0-preview.3
+        specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3
       '@solana/rpc-transformers':
-        specifier: ^2.0.0-preview.3
+        specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)
       '@solana/web3.js':
         specifier: <2.0.0
@@ -233,8 +233,8 @@ importers:
   mpl-core:
     dependencies:
       '@tensor-foundation/test-helpers':
-        specifier: 0.0.5
-        version: 0.0.5(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
+        specifier: workspace:*
+        version: link:../test-helpers
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -484,7 +484,7 @@ importers:
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3
       '@solana/eslint-config-solana':
-        specifier: ^3.0.3
+        specifier: 3.0.3
         version: 3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
       '@solana/webcrypto-ed25519-polyfill':
         specifier: 2.0.0-preview.3
@@ -526,8 +526,8 @@ importers:
   wns:
     dependencies:
       '@tensor-foundation/test-helpers':
-        specifier: 0.0.5
-        version: 0.0.5(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
+        specifier: workspace:*
+        version: link:../test-helpers
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -1367,11 +1367,6 @@ packages:
   '@supercharge/promise-pool@3.2.0':
     resolution: {integrity: sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==}
     engines: {node: '>=8'}
-
-  '@tensor-foundation/test-helpers@0.0.5':
-    resolution: {integrity: sha512-0nz677l5DjdJVz2oSA1VQk0npPQF+tkFi4LKQvlWxQoVllhCNuGddI7mcD++ARcYM1nIcR0VO1t53mDjZJ/Adw==, tarball: https://npm.pkg.github.com/download/@tensor-foundation/test-helpers/0.0.5/adae61b3fa2402b219071b89b3696281de6a2896}
-    peerDependencies:
-      '@solana/web3.js': 2.0.0-preview.3
 
   '@types/bn.js@5.1.5':
     resolution: {integrity: sha512-V46N0zwKRF5Q00AZ6hWtN0T8gGmDUaUzLWQvHFo5yThtVwK/VCenFY3wXVbOvNfajEpsTfQM4IN9k/d6gUVX3A==}
@@ -5455,10 +5450,6 @@ snapshots:
       '@noble/ed25519': 2.1.0
 
   '@supercharge/promise-pool@3.2.0': {}
-
-  '@tensor-foundation/test-helpers@0.0.5(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
-    dependencies:
-      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
   '@types/bn.js@5.1.5':
     dependencies:

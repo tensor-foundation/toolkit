@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "clean": "pnpm --filter common-helpers --filter compat-helpers --filter mpl-core --filter mpl-token-metadata --filter phoenix --filter resolvers --filter test-helpers --filter wns clean",
-    "build": "pnpm --filter common-helpers --filter compat-helpers --filter mpl-core --filter mpl-token-metadata --filter phoenix --filter resolvers --filter test-helpers --filter wns build"
+    "clean": "pnpm --filter common-helpers --filter compat-helpers --filter mpl-core --filter mpl-bubblegum --filter mpl-core --filter mpl-token-metadata --filter phoenix --filter resolvers --filter test-helpers --filter wns clean",
+    "build": "pnpm --filter common-helpers --filter compat-helpers --filter mpl-core --filter mpl-bubblegum --filter mpl-core --filter mpl-token-metadata --filter phoenix --filter resolvers --filter test-helpers --filter wns build"
   }
 }

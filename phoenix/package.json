@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/phoenix",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Toolkit for Phoenix-V1 Program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -32,7 +32,8 @@
     "validator:stop": "zx ./scripts/stop-validator.mjs"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/tensor-foundation",
   "repository": "https://github.com/tensor-foundation/toolkit.git",
