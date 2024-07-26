@@ -10,6 +10,7 @@ import {
   createMintWithMetadataPointer,
   createMintWithTransferHook,
   createT22Nft,
+  createT22NftWithRoyalties,
   deserializeExtension,
   ExtensionType,
   generateKeyPairSignerWithSol,
@@ -204,6 +205,51 @@ test('it can create a token22 mint with metadata on the mint', async (t) => {
   t.assert(metadataPointer?.metadata === mint);
 });
 
+test('it can create a token22 Libreplex NFT w/o royalties', async (t) => {
+  const { client, payer, owner, authority } = await tokenSetup();
+
+  const [mint, ownerAta] = await createT22Nft({
+    client,
+    payer,
+    owner: owner.address,
+    mintAuthority: authority,
+    freezeAuthority: null,
+    decimals: 0,
+    data: {
+      name: 'Test Token',
+      symbol: 'TT',
+      uri: 'https://example.com',
+    },
+  });
+
+  // Check the mint is owned by the correct program.
+  const mintAccount = (
+    await client.rpc.getAccountInfo(mint, { encoding: 'base64' }).send()
+  ).value;
+  t.assert(mintAccount?.owner == TOKEN22_PROGRAM_ID);
+
+  const data = new Uint8Array(Buffer.from(String(mintAccount?.data), 'base64'));
+
+  // Metadata pointer was created correctly.
+  const metadataPointer = deserializeExtension(
+    data,
+    ExtensionType.MetadataPointer
+  );
+
+  t.assert(metadataPointer?.authority === SYSTEM_PROGRAM_ADDRESS);
+  t.assert(metadataPointer?.metadata === mint);
+
+  // Check the token account has correct mint, amount and owner.
+  t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
+    address: ownerAta,
+    data: {
+      mint,
+      owner: owner.address,
+      amount: 1n,
+    },
+  });
+});
+
 test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
   const { client, payer, owner, authority } = await tokenSetup();
 
@@ -213,7 +259,7 @@ test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
     '_ro_' + royaltyDestination.address.toString();
   const sellerFeeBasisPoints = '100';
 
-  const [mint, ownerAta] = await createT22Nft({
+  const [mint, ownerAta] = await createT22NftWithRoyalties({
     client,
     payer,
     owner: owner.address,

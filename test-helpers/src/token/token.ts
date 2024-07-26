@@ -250,7 +250,7 @@ export const createAndMintTo = async (
 };
 
 export const createMintWithMetadataPointer = async (
-  args: MintArgs & Omit<MintArgs, 'tokenProgram'>
+  args: Omit<MintArgs, 'tokenProgram'>
 ): Promise<Address> => {
   const { client, payer, mintAuthority, freezeAuthority, decimals = 0 } = args;
   const tokenProgram = TOKEN22_PROGRAM_ID;
@@ -300,7 +300,7 @@ export const createMintWithMetadataPointer = async (
 };
 
 export const createMintWithTransferHook = async (
-  args: MintArgs & Omit<MintArgs, 'tokenProgram'>
+  args: Omit<MintArgs, 'tokenProgram'>
 ): Promise<Address> => {
   const { client, payer, mintAuthority, freezeAuthority, decimals = 0 } = args;
   const tokenProgram = TOKEN22_PROGRAM_ID;
@@ -419,7 +419,122 @@ export const createMintWithMetadata = async (
   return mint.address;
 };
 
+// Create T22 NFT but w/o transfer hook, for testing.
 export const createT22Nft = async (
+  args: Omit<T22NftArgs, 'royalties'>
+): Promise<[Address, Address]> => {
+  const {
+    client,
+    payer,
+    owner,
+    mintAuthority,
+    freezeAuthority,
+    decimals = 0,
+    data,
+  } = args;
+  const tokenProgram = TOKEN22_PROGRAM_ID;
+
+  const extensionOverhead = 72n;
+  const tokenMetadataRoyaltyFields = 64n;
+
+  const space =
+    165n + // ACCOUNT_SIZE
+    1n + // ACCOUNT_SIZE_TYPE
+    BigInt(METADATA_POINTER_EXTENSION_LENGTH) + // METADATA_POINTER_SIZE
+    2n + // TYPE_SIZE
+    2n; // LENGTH_SIZE
+
+  // Token 2022 does the resizing but not lamport transfers for rent.
+  const encodedData = getTokenMetadataArgsEncoder().encode(data);
+  const rentSpace =
+    space +
+    BigInt(encodedData.length) +
+    extensionOverhead +
+    tokenMetadataRoyaltyFields;
+
+  const [transactionMessage, rent, mint] = await Promise.all([
+    createDefaultTransaction(client, payer),
+    client.rpc.getMinimumBalanceForRentExemption(rentSpace).send(),
+    generateKeyPairSigner(),
+  ]);
+
+  // Setup the mint account with metadata pointer and metadata extension.
+  const mintInstructions = [
+    getCreateAccountInstruction({
+      payer,
+      newAccount: mint,
+      lamports: rent,
+      space,
+      programAddress: tokenProgram,
+    }),
+    getInitializeMetadataPointerInstruction({
+      tokenProgram,
+      mint: mint.address,
+      metadata: mint.address, // point to self for metadata
+    }),
+    getInitializeMint2Instruction({
+      mint: mint.address,
+      mintAuthority: mintAuthority.address,
+      freezeAuthority: freezeAuthority ?? none(),
+      decimals,
+      tokenProgram,
+    }),
+    getInitializeTokenMetadataInstruction({
+      mint: mint.address,
+      metadata: mint.address,
+      mintAuthority,
+      updateAuthority: mintAuthority.address,
+      data,
+    }),
+  ];
+
+  await pipe(
+    transactionMessage,
+    (tx) => appendTransactionMessageInstructions(mintInstructions, tx),
+    (tx) => signAndSendTransaction(client, tx)
+  );
+
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint: mint.address,
+    owner,
+    tokenProgram,
+  });
+
+  // Update the fields on the metadata account for Libreplex-style royalties,
+  // create the token account for the owner, and mint the NFT to the owner.
+  // Finally, set the mint authority to null.
+  const updateInstructions = [
+    await getCreateAssociatedTokenInstructionAsync({
+      payer,
+      owner,
+      mint: mint.address,
+      tokenProgram,
+    }),
+    getMintToInstruction({
+      mint: mint.address,
+      token: ownerAta,
+      mintAuthority,
+      amount: 1,
+      tokenProgram,
+    }),
+    getSetAuthorityInstruction({
+      owned: mint.address,
+      owner: mintAuthority,
+      authorityType: AuthorityType.MintTokens,
+      newAuthority: none(),
+    }),
+  ];
+
+  await pipe(
+    await createDefaultTransaction(client, payer),
+    (tx) => appendTransactionMessageInstructions(updateInstructions, tx),
+    (tx) => signAndSendTransaction(client, tx)
+  );
+
+  return [mint.address, ownerAta];
+};
+
+export const createT22NftWithRoyalties = async (
   args: T22NftArgs
 ): Promise<[Address, Address]> => {
   const {
