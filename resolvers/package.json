@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/resolvers",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Kinobi resolvers for Tensor protocols",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -14,7 +14,10 @@
       "require": "./dist/src/index.js"
     }
   },
-  "files": ["./dist/src", "./dist/types"],
+  "files": [
+    "./dist/src",
+    "./dist/types"
+  ],
   "scripts": {
     "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
     "build:docs": "typedoc",
