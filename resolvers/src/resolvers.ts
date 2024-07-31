@@ -357,7 +357,7 @@ export const resolvePoolNftReceipt = async ({
         mint: expectAddress(accounts.mint?.value),
         state: expectAddress(accounts.pool?.value),
       },
-      { programAddress: address('TAMMqgJYcquwwj2tCdNUerh4C2bJjmghijVziSEf5tA') }
+      { programAddress: address('TAMM6ub33ij1mbetoMyVBLeKY5iP41i4UPUJQGkhfsg') }
     ),
   };
 };
