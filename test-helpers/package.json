@@ -27,6 +27,7 @@
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
     "format": "prettier --check src",
     "format:fix": "prettier --write src",
+    "programs:build": "zx ./scripts/program/build.mjs",
     "validator:start": "zx ./scripts/start-validator.mjs",
     "validator:restart": "pnpm validator:start --restart",
     "validator:stop": "zx ./scripts/stop-validator.mjs"
@@ -40,15 +41,18 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
+    "@solana/compat": "2.0.0-preview.3",
     "@solana-program/system": "0.3.3",
     "@solana-program/token": "0.2.0",
     "@solana/web3.js": "2.0.0-preview.3",
+    "@solana/web3.js-legacy": "npm:@solana/web3.js@^1.95.2",
     "bs58": "^6.0.0"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
     "@iarna/toml": "^2.2.5",
     "@noble/hashes": "^1.4.0",
+    "@octokit/rest": "^21.0.0",
     "@solana/eslint-config-solana": "3.0.3",
     "@solana/errors": "2.0.0-preview.3",
     "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
@@ -56,6 +60,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "ava": "^6.1.2",
     "eslint": "^8.57.0",
+    "jszip": "^3.10.1",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tsup": "^8.0.2",

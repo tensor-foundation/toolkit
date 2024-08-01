@@ -1,4 +1,5 @@
 export * from './extensions';
+export * from './initializeExtraMetasAccount';
 export * from './initializeMint';
 export * from './mintTo';
 export * from './setAuthorityT22';

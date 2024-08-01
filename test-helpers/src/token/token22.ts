@@ -1,36 +1,43 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { getCreateAccountInstruction } from '@solana-program/system';
+import {
+  getCreateAccountInstruction,
+  getTransferSolInstruction,
+} from '@solana-program/system';
 import {
   AuthorityType,
   findAssociatedTokenPda,
   getCreateAssociatedTokenInstructionAsync,
 } from '@solana-program/token';
+import { fromLegacyPublicKey } from '@solana/compat';
 import {
   AccountRole,
   Address,
-  appendTransactionMessageInstructions,
   Commitment,
   Decoder,
+  Encoder,
+  IAccountMeta,
+  ProgramDerivedAddress,
+  TransactionSigner,
+  appendTransactionMessageInstructions,
   fixDecoderSize,
   generateKeyPairSigner,
   getAddressDecoder,
   getAddressEncoder,
   getArrayDecoder,
+  getArrayEncoder,
   getBooleanDecoder,
+  getBooleanEncoder,
   getBytesDecoder,
   getProgramDerivedAddress,
   getStructDecoder,
+  getStructEncoder,
   getU32Decoder,
   getU8Decoder,
+  getU8Encoder,
   getUtf8Encoder,
-  IAccountMeta,
   none,
   pipe,
-  ProgramDerivedAddress,
-  ReadonlyUint8Array,
-  TransactionSigner,
 } from '@solana/web3.js';
+import { AccountMeta, TransactionInstruction } from '@solana/web3.js-legacy';
 import {
   LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID,
   TOKEN22_PROGRAM_ID,
@@ -40,18 +47,20 @@ import {
   createDefaultTransaction,
   signAndSendTransaction,
 } from '../setup';
+import { fromIInstructionToTransactionInstruction } from '../shared';
 import {
-  getInitializeMetadataPointerInstruction,
-  getInitializeTransferHookInstruction,
   METADATA_POINTER_EXTENSION_LENGTH,
   TRANSFER_HOOK_EXTENSION_LENGTH,
+  getInitializeMetadataPointerInstruction,
+  getInitializeTransferHookInstruction,
 } from './extensions';
 import {
+  TokenMetadataInstructionArgs,
   getInitializeTokenMetadataInstruction,
   getTokenMetadataArgsEncoder,
   getUpdateFieldInstruction,
-  TokenMetadataInstructionArgs,
 } from './extensions/tokenMetadata';
+import { getInitializeExtraMetasAccountInstruction } from './initializeExtraMetasAccount';
 import { getInitializeMint2Instruction } from './initializeMint';
 import { getMintToInstruction } from './mintTo';
 import { unpackSeeds } from './seeds';
@@ -365,9 +374,16 @@ export const createT22Nft = async (
   return [mint.address, ownerAta];
 };
 
+interface T22NftReturn {
+  mint: Address;
+  ownerAta: Address;
+  extraMetasDataLength: number;
+  extraAccountMetas: IAccountMeta[];
+}
+
 export const createT22NftWithRoyalties = async (
   args: T22NftArgs
-): Promise<[Address, Address]> => {
+): Promise<T22NftReturn> => {
   const {
     client,
     payer,
@@ -405,7 +421,7 @@ export const createT22NftWithRoyalties = async (
     generateKeyPairSigner(),
   ]);
 
-  // Setup the mint account with metadata pointer and metadata extension.
+  // // Setup the mint account with metadata pointer and metadata extension.
   const mintInstructions = [
     getCreateAccountInstruction({
       payer,
@@ -452,9 +468,35 @@ export const createT22NftWithRoyalties = async (
     tokenProgram,
   });
 
+  const [extraAccountMetasAccount] = await findExtraAccountMetaAddress(
+    { mint: mint.address },
+    LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID
+  );
+
+  const extraAccountMetaList = {
+    extraAccounts: [],
+  };
+
+  const initializeMetasIx = getInitializeExtraMetasAccountInstruction({
+    extraAccountMetasAccount,
+    mint: mint.address,
+    authority: mintAuthority,
+    extraAccountMetaList,
+  });
+
+  // 35 for each extra account meta, 8 for state discriminator, 4 for TVL length, 4 for list/vector length
+  // two mandatory extra metas
+  const extraMetasDataLength =
+    35 * (extraAccountMetaList.extraAccounts.length + 2) + 16;
+
+  const extraMetasRent = await client.rpc
+    .getMinimumBalanceForRentExemption(BigInt(extraMetasDataLength))
+    .send();
+
   // Update the fields on the metadata account for Libreplex-style royalties,
   // create the token account for the owner, and mint the NFT to the owner.
-  // Finally, set the mint authority to null.
+  // Initialize the extra metas account on the Libreplex transfer hook program, and
+  // finally, set the mint authority to null.
   const updateInstructions = [
     getUpdateFieldInstruction({
       metadata: mint.address,
@@ -477,6 +519,12 @@ export const createT22NftWithRoyalties = async (
       amount: 1,
       tokenProgram,
     }),
+    getTransferSolInstruction({
+      source: payer,
+      destination: extraAccountMetasAccount,
+      amount: extraMetasRent,
+    }),
+    initializeMetasIx,
     getSetAuthorityInstruction({
       owned: mint.address,
       owner: mintAuthority,
@@ -491,14 +539,25 @@ export const createT22NftWithRoyalties = async (
     (tx) => signAndSendTransaction(client, tx)
   );
 
-  return [mint.address, ownerAta];
-};
+  const instruction =
+    fromIInstructionToTransactionInstruction(initializeMetasIx);
 
-interface TransactionInstruction {
-  data: Buffer;
-  keys: IAccountMeta[];
-  programId: Address;
-}
+  // Decode the extra account metas.
+  const extraAccountMetas = await getTransferHookExtraAccounts(
+    client,
+    mint.address,
+    instruction,
+    LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID,
+    'confirmed'
+  );
+
+  return {
+    mint: mint.address,
+    ownerAta,
+    extraMetasDataLength,
+    extraAccountMetas,
+  };
+};
 
 export async function getTransferHookExtraAccounts(
   client: Client,
@@ -509,7 +568,7 @@ export async function getTransferHookExtraAccounts(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   commitment?: Commitment
 ) {
-  const [address] = await getExtraAccountMetaAddress(
+  const [address] = await findExtraAccountMetaAddress(
     { mint },
     tansferHookProgramId
   );
@@ -542,7 +601,7 @@ export async function getTransferHookExtraAccounts(
         extraAccountMeta,
         instruction.keys,
         instruction.data,
-        instruction.programId
+        fromLegacyPublicKey(instruction.programId)
       )
     );
   }
@@ -560,7 +619,7 @@ export interface ExtraAccountMetaSeeds {
   mint: Address;
 }
 
-export async function getExtraAccountMetaAddress(
+export async function findExtraAccountMetaAddress(
   seeds: ExtraAccountMetaSeeds,
   programAddress: Address
 ): Promise<ProgramDerivedAddress> {
@@ -573,6 +632,13 @@ export async function getExtraAccountMetaAddress(
   });
 }
 
+export async function findGlobalDenyListAddress(): Promise<ProgramDerivedAddress> {
+  return await getProgramDerivedAddress({
+    programAddress: LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID,
+    seeds: [getUtf8Encoder().encode('global_deny_list')],
+  });
+}
+
 export interface ExtraAccountMeta {
   discriminator: number;
   addressConfig: Address;
@@ -581,13 +647,10 @@ export interface ExtraAccountMeta {
 }
 
 export interface ExtraAccountMetaList {
-  count: number;
   extraAccounts: ExtraAccountMeta[];
 }
 
 export interface ExtraAccountMetaAccountData {
-  instructionDiscriminator: ReadonlyUint8Array;
-  length: number;
   extraAccountsList: ExtraAccountMetaList;
 }
 
@@ -596,7 +659,7 @@ export function getExtraAccountMetas(data: Buffer): ExtraAccountMeta[] {
   const decodedData = decoder.decode(data);
   return decodedData.extraAccountsList.extraAccounts.slice(
     0,
-    decodedData.extraAccountsList.count
+    decodedData.extraAccountsList.extraAccounts.length
   );
 }
 
@@ -611,7 +674,6 @@ export function getExtraAccountMetaDecoder(): Decoder<ExtraAccountMeta> {
 
 export function getExtraAccountMetaListDecoder(): Decoder<ExtraAccountMetaList> {
   return getStructDecoder([
-    ['count', getU32Decoder()],
     ['extraAccounts', getArrayDecoder(getExtraAccountMetaDecoder())],
   ]);
 }
@@ -619,15 +681,30 @@ export function getExtraAccountMetaListDecoder(): Decoder<ExtraAccountMetaList> 
 export function getExtraAccountMetaAccountDataDecoder(): Decoder<ExtraAccountMetaAccountData> {
   return getStructDecoder([
     ['instructionDiscriminator', fixDecoderSize(getBytesDecoder(), 8)],
-    ['length', getU32Decoder()],
+    ['tlvLength', getU32Decoder()],
     ['extraAccountsList', getExtraAccountMetaListDecoder()],
+  ]);
+}
+
+export function getExtraAccountMetaListEncoder(): Encoder<ExtraAccountMetaList> {
+  return getStructEncoder([
+    ['extraAccounts', getArrayEncoder(getExtraAccountMetaEncoder())],
+  ]);
+}
+
+export function getExtraAccountMetaEncoder(): Encoder<ExtraAccountMeta> {
+  return getStructEncoder([
+    ['discriminator', getU8Encoder()],
+    ['addressConfig', getAddressEncoder()],
+    ['isSigner', getBooleanEncoder()],
+    ['isWritable', getBooleanEncoder()],
   ]);
 }
 
 export async function resolveExtraAccountMeta(
   client: Client,
   extraMeta: ExtraAccountMeta,
-  previousMetas: IAccountMeta[],
+  previousMetas: AccountMeta[],
   instructionData: Uint8Array,
   transferHookProgramId: Address
 ): Promise<IAccountMeta> {
@@ -653,7 +730,7 @@ export async function resolveExtraAccountMeta(
     if (previousMetas.length <= accountIndex) {
       throw new Error('Token transfer hook not found!');
     }
-    programAddress = previousMetas[accountIndex].address;
+    programAddress = fromLegacyPublicKey(previousMetas[accountIndex]);
   }
 
   const addressBytes = new Uint8Array(

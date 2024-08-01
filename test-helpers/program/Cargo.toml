@@ -2,7 +2,20 @@
 name = "dummy_test_program"
 version = "0.1.0"
 
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+no-entrypoint = []
+
+[dependencies]
+solana-program = "~1.17.22"
+
 # Used to get programs needed for the test validator.
 [package.metadata.solana]
-program-id = "dummytest1111111111111111111"
-program-dependencies = ["TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"]
+program-id = "dummytest1111111111111111111111111111111111"
+program-dependencies = [
+    "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+    "CZ1rQoAHSqWBoAEfqGsiLhgbM59dDrCWk3rnG5FXaoRV",
+]
+account-dependencies = ["99jtJwGDfaBKXtc7kxQneAGbERGK8F5XyJWHv7qTbj9G"]

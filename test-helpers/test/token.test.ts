@@ -13,6 +13,7 @@ import {
   createT22NftWithRoyalties,
   deserializeExtension,
   ExtensionType,
+  findExtraAccountMetaAddress,
   generateKeyPairSignerWithSol,
   LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID,
   TOKEN22_PROGRAM_ID,
@@ -259,23 +260,24 @@ test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
     '_ro_' + royaltyDestination.address.toString();
   const sellerFeeBasisPoints = '100';
 
-  const [mint, ownerAta] = await createT22NftWithRoyalties({
-    client,
-    payer,
-    owner: owner.address,
-    mintAuthority: authority,
-    freezeAuthority: null,
-    decimals: 0,
-    data: {
-      name: 'Test Token',
-      symbol: 'TT',
-      uri: 'https://example.com',
-    },
-    royalties: {
-      key: royaltyDestinationString,
-      value: sellerFeeBasisPoints,
-    },
-  });
+  const { mint, ownerAta, extraMetasDataLength } =
+    await createT22NftWithRoyalties({
+      client,
+      payer,
+      owner: owner.address,
+      mintAuthority: authority,
+      freezeAuthority: null,
+      decimals: 0,
+      data: {
+        name: 'Test Token',
+        symbol: 'TT',
+        uri: 'https://example.com',
+      },
+      royalties: {
+        key: royaltyDestinationString,
+        value: sellerFeeBasisPoints,
+      },
+    });
 
   // Check the mint is owned by the correct program.
   const mintAccount = (
@@ -297,7 +299,6 @@ test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
   // Transfer Hook was created correctly.
   const transferHook = deserializeExtension(data, ExtensionType.TransferHook);
 
-  // t.assert(transferHook?.authority === SYSTEM_PROGRAM_ADDRESS);
   t.assert(transferHook?.programId === LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID);
 
   // Check the token account has correct mint, amount and owner.
@@ -309,4 +310,24 @@ test('it can create a token22 Libreplex NFT w/ royalties setup', async (t) => {
       amount: 1n,
     },
   });
+
+  // Extra metas account was created and has correct owner and size.
+  const [extraAccountMetasAccount] = await findExtraAccountMetaAddress(
+    { mint },
+    LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID
+  );
+
+  const extraMetasAccount = (
+    await client.rpc
+      .getAccountInfo(extraAccountMetasAccount, { encoding: 'base64' })
+      .send()
+  ).value;
+
+  const extraMetasData = new Uint8Array(
+    Buffer.from(extraMetasAccount!.data[0], 'base64')
+  );
+
+  t.assert(extraMetasAccount);
+  t.assert(extraMetasAccount!.owner === LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID);
+  t.assert(extraMetasData.length === extraMetasDataLength);
 });

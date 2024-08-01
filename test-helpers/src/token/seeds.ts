@@ -1,4 +1,5 @@
-import { IAccountMeta } from '@solana/web3.js';
+import { fromLegacyPublicKey } from '@solana/compat';
+import { AccountMeta } from '@solana/web3.js-legacy';
 import { Client } from '../setup';
 
 interface Seed {
@@ -51,7 +52,7 @@ function unpackSeedInstructionArg(
 
 function unpackSeedAccountKey(
   seeds: Uint8Array,
-  previousMetas: IAccountMeta[]
+  previousMetas: AccountMeta[]
 ): Seed {
   if (seeds.length < 1) {
     throw new Error('Transfer hook invalid seed');
@@ -61,7 +62,7 @@ function unpackSeedAccountKey(
     throw new Error('Transfer hook invalid seed');
   }
   return {
-    data: new TextEncoder().encode(previousMetas[index].address),
+    data: new TextEncoder().encode(fromLegacyPublicKey(previousMetas[index])),
     packedLength: DISCRIMINATOR_SPAN + ACCOUNT_KEY_INDEX_SPAN,
   };
 }
@@ -69,7 +70,7 @@ function unpackSeedAccountKey(
 async function unpackSeedAccountData(
   client: Client,
   seeds: Uint8Array,
-  previousMetas: IAccountMeta[]
+  previousMetas: AccountMeta[]
 ): Promise<Seed> {
   if (seeds.length < 3) {
     throw new Error('Transfer hook invalid seed');
@@ -79,7 +80,9 @@ async function unpackSeedAccountData(
     throw new Error('Transfer hook invalid seed');
   }
   const accountInfo = await client.rpc
-    .getAccountInfo(previousMetas[accountIndex].address, { encoding: 'base64' })
+    .getAccountInfo(fromLegacyPublicKey(previousMetas[accountIndex]), {
+      encoding: 'base64',
+    })
     .send();
   if (accountInfo.value == null) {
     throw new Error('Transfer hook account data not found');
@@ -101,7 +104,7 @@ async function unpackSeedAccountData(
 async function unpackFirstSeed(
   client: Client,
   seeds: Uint8Array,
-  previousMetas: IAccountMeta[],
+  previousMetas: AccountMeta[],
   instructionData: Uint8Array
 ): Promise<Seed | null> {
   const [discriminator, ...rest] = seeds;
@@ -116,7 +119,6 @@ async function unpackFirstSeed(
     case 3:
       return unpackSeedAccountKey(remaining, previousMetas);
     case 4:
-      // eslint-disable-next-line @typescript-eslint/return-await
       return await unpackSeedAccountData(client, remaining, previousMetas);
     default:
       throw new Error('Token transfer hook invalid seed');
@@ -126,7 +128,7 @@ async function unpackFirstSeed(
 export async function unpackSeeds(
   client: Client,
   seeds: Uint8Array,
-  previousMetas: IAccountMeta[],
+  previousMetas: AccountMeta[],
   instructionData: Uint8Array
 ): Promise<Uint8Array[]> {
   const unpackedSeeds: Uint8Array[] = [];
