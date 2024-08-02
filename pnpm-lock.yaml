@@ -537,6 +537,9 @@ importers:
 
   wns:
     dependencies:
+      '@solana-program/token':
+        specifier: ^0.2.1
+        version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@tensor-foundation/test-helpers':
         specifier: workspace:*
         version: link:../test-helpers
@@ -1257,6 +1260,11 @@ packages:
 
   '@solana-program/token@0.2.0':
     resolution: {integrity: sha512-2W3ylIdgwx/5k4P2RB/tvOhZD08GSQ86Iakxl/k280V5swM7wX8JwUgWSxpQOBl10tQmuA3EYleGkcrdCYyepg==}
+    peerDependencies:
+      '@solana/web3.js': 2.0.0-preview.4
+
+  '@solana-program/token@0.2.1':
+    resolution: {integrity: sha512-5o7sNkXf0oJe9Svp8R7RPSm2qOmV6Sy/1r/SpdbhwdFmMTpN1ZWSAVfx4SZzL2YGTpgxifbco3niyP6lUeBJXw==}
     peerDependencies:
       '@solana/web3.js': 2.0.0-preview.4
 
@@ -5219,6 +5227,10 @@ snapshots:
   '@solana-program/token@0.2.0(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
     dependencies:
       '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+
+  '@solana-program/token@0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
+    dependencies:
+      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
   '@solana/accounts@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:

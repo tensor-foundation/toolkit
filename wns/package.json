@@ -40,6 +40,7 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
+    "@solana-program/token": "^0.2.1",
     "@tensor-foundation/test-helpers": "workspace:*"
   },
   "devDependencies": {
