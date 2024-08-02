@@ -1,7 +1,7 @@
 {
-  "name": "@tensor-foundation/wen-new-standard",
+  "name": "@tensor-foundation/wen-royalty-distribution",
   "version": "0.1.0",
-  "description": "Toolkit for Wen New Standard program",
+  "description": "Toolkit for Wen New Standard royalty distribution program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
   "main": "./dist/src/index.js",
@@ -40,17 +40,17 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana-program/token": "^0.2.1",
+    "@solana-program/token": "^0.2.0",
     "@tensor-foundation/test-helpers": "workspace:*"
   },
   "devDependencies": {
-    "@solana/web3.js": "2.0.0-preview.3",
     "@ava/typescript": "^4.1.0",
     "@iarna/toml": "^2.2.5",
     "@kinobi-so/nodes-from-anchor": "^0.20.7",
     "@kinobi-so/renderers-js": "^0.20.7",
     "@metaplex-foundation/shank-js": "^0.1.7",
     "@solana/eslint-config-solana": "^3.0.0",
+    "@solana/web3.js": "2.0.0-preview.3",
     "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
