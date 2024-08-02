@@ -374,7 +374,7 @@ export const createT22Nft = async (
   return [mint.address, ownerAta];
 };
 
-interface T22NftReturn {
+export interface T22NftReturn {
   mint: Address;
   ownerAta: Address;
   extraMetasDataLength: number;
