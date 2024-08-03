@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/wen-royalty-distribution",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Toolkit for Wen New Standard royalty distribution program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
