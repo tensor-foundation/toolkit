@@ -17,5 +17,10 @@ program-id = "dummytest1111111111111111111111111111111111"
 program-dependencies = [
     "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
     "CZ1rQoAHSqWBoAEfqGsiLhgbM59dDrCWk3rnG5FXaoRV",
+    "wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM",
+    "diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay",
 ]
-account-dependencies = ["99jtJwGDfaBKXtc7kxQneAGbERGK8F5XyJWHv7qTbj9G"]
+account-dependencies = [
+    "99jtJwGDfaBKXtc7kxQneAGbERGK8F5XyJWHv7qTbj9G",
+    "9SUrE3EPBoXVjNywEDHSJKJdxebs8H8sLgEWdueEvnKX",
+]

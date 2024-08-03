@@ -41,11 +41,15 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana/compat": "2.0.0-preview.3",
+    "@solana/spl-token": "^0.3.11",
+    "@solana-program/compute-budget": "0.3.2",
     "@solana-program/system": "0.3.3",
     "@solana-program/token": "0.2.0",
+    "@solana/compat": "2.0.0-preview.3",
     "@solana/web3.js": "2.0.0-preview.3",
     "@solana/web3.js-legacy": "npm:@solana/web3.js@^1.95.2",
+    "@tensor-foundation/wen-new-standard": "workspace:*",
+    "@tensor-foundation/wen-royalty-distribution": "workspace:*",
     "bs58": "^6.0.0"
   },
   "devDependencies": {
@@ -53,8 +57,8 @@
     "@iarna/toml": "^2.2.5",
     "@noble/hashes": "^1.4.0",
     "@octokit/rest": "^21.0.0",
-    "@solana/eslint-config-solana": "3.0.3",
     "@solana/errors": "2.0.0-preview.3",
+    "@solana/eslint-config-solana": "3.0.3",
     "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

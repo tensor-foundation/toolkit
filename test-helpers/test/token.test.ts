@@ -4,7 +4,6 @@ import { Account } from '@solana/web3.js';
 import test from 'ava';
 import {
   createAndMintTo,
-  createDefaultSolanaClient,
   createMint,
   createMintWithMetadata,
   createMintWithMetadataPointer,
@@ -18,15 +17,8 @@ import {
   LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID,
   TOKEN22_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
+  tokenSetup,
 } from '../src/index.js';
-
-const tokenSetup = async () => {
-  const client = createDefaultSolanaClient();
-  const payer = await generateKeyPairSignerWithSol(client);
-  const authority = await generateKeyPairSignerWithSol(client);
-  const owner = await generateKeyPairSignerWithSol(client);
-  return { client, payer, authority, owner };
-};
 
 test('it can create a legacy mint', async (t) => {
   const { client, payer, authority } = await tokenSetup();

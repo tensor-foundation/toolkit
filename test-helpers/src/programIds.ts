@@ -21,6 +21,7 @@ export const TBID_PROGRAM_ID = address(
 );
 
 // System Programs
+export const SYSTEM_PROGRAM_ID = address('11111111111111111111111111111111');
 export const SYSVARS_CLOCK = address(
   'SysvarC1ock11111111111111111111111111111111'
 );
