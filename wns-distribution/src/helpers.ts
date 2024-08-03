@@ -1,17 +1,21 @@
 import {
+  address,
   Address,
   getAddressEncoder,
   getProgramDerivedAddress,
   ProgramDerivedAddress,
 } from '@solana/web3.js';
 
-export type DistributionAccountSeeds = {
+export type WnsDistributionSeeds = {
+  /** The address of the collection account */
   collection: Address;
-  paymentMint: Address;
+
+  /** The address of the payment mint account */
+  paymentMint?: Address | null;
 };
 
-export function findDistributionAccountPda(
-  seeds: DistributionAccountSeeds,
+export function findWnsDistributionPda(
+  seeds: WnsDistributionSeeds,
   config: { programAddress?: Address | undefined } = {}
 ): Promise<ProgramDerivedAddress> {
   const {
@@ -21,7 +25,9 @@ export function findDistributionAccountPda(
     programAddress,
     seeds: [
       getAddressEncoder().encode(seeds.collection),
-      getAddressEncoder().encode(seeds.paymentMint),
+      getAddressEncoder().encode(
+        seeds.paymentMint ?? address('11111111111111111111111111111111')
+      ),
     ],
   });
 }

@@ -21,7 +21,7 @@ import {
   WEN_NEW_STANDARD_PROGRAM_ADDRESS,
 } from '@tensor-foundation/wen-new-standard';
 import {
-  findDistributionAccountPda,
+  findWnsDistributionPda,
   getInitializeDistributionInstruction,
 } from '@tensor-foundation/wen-royalty-distribution';
 import { SYSTEM_PROGRAM_ID, TOKEN22_PROGRAM_ID } from '../programIds';
@@ -79,8 +79,9 @@ const testGroupData: GroupData = {
 };
 
 export interface GroupReturn {
-  group: Address;
   mint: Address;
+  group: Address;
+  distribution: Address;
 }
 
 export async function createGroupWithRoyalties(
@@ -91,7 +92,7 @@ export async function createGroupWithRoyalties(
     payer,
     authority,
     owner,
-    mint = await generateKeyPairSigner(),
+    mint = await generateKeyPairSigner(), // Collection mint
     data = testGroupData,
   } = args;
 
@@ -107,7 +108,7 @@ export async function createGroupWithRoyalties(
   const [group] = await findGroupPda({
     mint: mint.address,
   });
-  const [distributionAccount] = await findDistributionAccountPda({
+  const [distributionAccount] = await findWnsDistributionPda({
     collection: mint.address,
     paymentMint: SYSTEM_PROGRAM_ID,
   });
@@ -143,7 +144,7 @@ export async function createGroupWithRoyalties(
     (tx) => signAndSendTransaction(client, tx)
   );
 
-  return { group, mint: mint.address };
+  return { group, mint: mint.address, distribution: distributionAccount };
 }
 
 const testNftData: NftData = {
@@ -162,7 +163,7 @@ export async function createNft(args: CreateNftArgs): Promise<{
 }> {
   const {
     client,
-    mint = await generateKeyPairSigner(),
+    mint = await generateKeyPairSigner(), // NFT mint, not the collection mint
     authority,
     payer = authority,
     owner,
@@ -175,11 +176,6 @@ export async function createNft(args: CreateNftArgs): Promise<{
 
   const [manager] = await findManagerPda();
 
-  const [mintAta] = await findAssociatedTokenPda({
-    mint: mint.address,
-    owner,
-    tokenProgram: TOKEN22_PROGRAM_ID,
-  });
   const [ownerAta] = await findAssociatedTokenPda({
     mint: mint.address,
     owner,
@@ -199,7 +195,7 @@ export async function createNft(args: CreateNftArgs): Promise<{
       authority,
       receiver: owner,
       mint,
-      mintTokenAccount: mintAta,
+      mintTokenAccount: ownerAta,
       manager,
       name: data.name,
       symbol: data.symbol,
@@ -239,6 +235,7 @@ export async function createNft(args: CreateNftArgs): Promise<{
   );
 
   // Hacky--there's probably a better way to do this.
+
   const [extraAccountMetasAccount] = await findExtraAccountMetaAddress(
     { mint: mint.address },
     WEN_NEW_STANDARD_PROGRAM_ADDRESS
@@ -273,7 +270,7 @@ export async function createNft(args: CreateNftArgs): Promise<{
 export async function createWnsNftInGroup(args: CreateNftArgs) {
   const { client, owner, authority, payer = authority } = args;
 
-  const { group } = await createGroupWithRoyalties({
+  const { group, distribution } = await createGroupWithRoyalties({
     client,
     payer,
     authority,
@@ -287,5 +284,5 @@ export async function createWnsNftInGroup(args: CreateNftArgs) {
     group,
   });
 
-  return { mint, ownerAta, group, extraAccountMetas };
+  return { mint, ownerAta, group, distribution, extraAccountMetas };
 }
