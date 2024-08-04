@@ -4,7 +4,6 @@ import fs from 'node:fs';
 import 'zx/globals';
 import {
   getCargo,
-  getExternalAccountAddresses,
   getExternalProgramAddresses,
   getExternalProgramOutputDir,
   getProgramFolders,
@@ -22,18 +21,10 @@ if (!restart && isValidatorRunning) {
 
 // Initial message.
 const verb = isValidatorRunning ? 'Restarting' : 'Starting';
-
-// Get programs and accounts.
-const programs = [...getPrograms(), ...getExternalPrograms()];
+const programs = [...getExternalPrograms()];
 const programPluralized = programs.length === 1 ? 'program' : 'programs';
-const accounts = [...getExternalAccounts()];
-const accountsPluralized = accounts.length === 1 ? 'account' : 'accounts';
-
 echo(
-  `${verb} local validator with ${programs.length} custom ${programPluralized}` +
-    (accounts.length > 0
-      ? ` and ${accounts.length} external ${accountsPluralized}...`
-      : `...`)
+  `${verb} local validator with ${programs.length} custom ${programPluralized}...`
 );
 
 // Kill the validator if it's already running.
@@ -48,11 +39,6 @@ const args = [/* Reset ledger */ '-r'];
 // Load programs.
 programs.forEach(({ programId, deployPath }) => {
   args.push(/* Load BPF program */ '--bpf-program', programId, deployPath);
-});
-
-// Load accounts.
-accounts.forEach(({ account, deployPath }) => {
-  args.push(/* Load account */ '--account', account, deployPath);
 });
 
 // Start the validator in detached mode.
@@ -93,30 +79,10 @@ try {
   process.exit();
 }
 
-function getPrograms() {
-  const binaryDir = path.join(__dirname, '..', 'target', 'deploy');
-  return getProgramFolders().map((folder) => {
-    const cargo = getCargo(folder);
-    const name = cargo.package.name.replace(/-/g, '_');
-    return {
-      programId: cargo.package.metadata.solana['program-id'],
-      deployPath: path.join(binaryDir, `${name}.so`),
-    };
-  });
-}
-
 function getExternalPrograms() {
   const binaryDir = getExternalProgramOutputDir();
   return getExternalProgramAddresses().map((address) => ({
     programId: address,
     deployPath: path.join(binaryDir, `${address}.so`),
-  }));
-}
-
-function getExternalAccounts() {
-  const binaryDir = getExternalProgramOutputDir();
-  return getExternalAccountAddresses().map((address) => ({
-    account: address,
-    deployPath: path.join(binaryDir, `${address}.json`),
   }));
 }

@@ -8,3 +8,4 @@ packages:
   - "resolvers"
   - "test-helpers"
   - "wns"
+  - "wns-distribution"

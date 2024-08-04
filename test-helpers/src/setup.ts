@@ -27,6 +27,16 @@ import {
   signTransactionMessageWithSigners,
 } from '@solana/web3.js';
 
+export const tokenSetup = async () => {
+  const client = createDefaultSolanaClient();
+  const [payer, authority, owner] = await Promise.all([
+    generateKeyPairSignerWithSol(client),
+    generateKeyPairSignerWithSol(client),
+    generateKeyPairSignerWithSol(client),
+  ]);
+  return { client, payer, authority, owner };
+};
+
 export type Client = {
   rpc: Rpc<SolanaRpcApi>;
   rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;

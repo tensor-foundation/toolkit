@@ -1,0 +1,8 @@
+[package]
+name = "wen-royalty-distribution"
+version = "0.2.0-alpha"
+
+[package.metadata.solana]
+program-id = "diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay"
+# Include program itself as a dep so it downloads the binary.
+program-dependencies = ["diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay"]

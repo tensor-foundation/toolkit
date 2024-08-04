@@ -1,0 +1,6 @@
+[workspace]
+resolver = "2"
+members = ["program"]
+
+[workspace.metadata.solana]
+external-programs-repositories = []
