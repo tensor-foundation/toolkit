@@ -15,6 +15,7 @@ import {
   Metadata,
   TokenStandard,
   createDefaultNft,
+  createDefaultNftInCollection,
   fetchMetadata,
 } from '../src/index.js';
 
@@ -195,6 +196,100 @@ test('it can mint a Token22 ProgrammableNonFungible', async (t) => {
     mint,
     owner: owner.address,
     tokenProgram: TOKEN22_PROGRAM_ID,
+  });
+  t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
+    address: ownerAta,
+    data: {
+      mint,
+      owner: owner.address,
+      amount: 1n,
+    },
+  });
+});
+
+test('it can mint a NonFungible in a collection', async (t) => {
+  const { client, payer, authority, owner } = await nftSetup();
+
+  // Mint a NonFungible.
+  const { collection, item } = await createDefaultNftInCollection({
+    client,
+    payer,
+    authority,
+    owner,
+  });
+
+  const { mint: collectionMint } = collection;
+  const { mint, metadata } = item;
+
+  // Check the item metadata.
+  t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
+    address: metadata,
+    data: {
+      updateAuthority: authority.address,
+      mint: mint,
+      tokenStandard: some(TokenStandard.NonFungible),
+      collection: some({ verified: true, key: collectionMint }),
+    },
+  }));
+
+  // Check the mint is owned by the correct program.
+  const mintAccount = await client.rpc
+    .getAccountInfo(mint, { encoding: 'base64' })
+    .send();
+  t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
+
+  // Check the token account has correct mint, amount and owner.
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint,
+    owner: owner.address,
+    tokenProgram: TOKEN_PROGRAM_ID,
+  });
+  t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
+    address: ownerAta,
+    data: {
+      mint,
+      owner: owner.address,
+      amount: 1n,
+    },
+  });
+});
+
+test('it can mint a ProgrammableNonFungible in a collection', async (t) => {
+  const { client, payer, authority, owner } = await nftSetup();
+
+  const { collection, item } = await createDefaultNftInCollection({
+    client,
+    payer,
+    authority,
+    owner,
+    standard: TokenStandard.ProgrammableNonFungible,
+  });
+
+  const { mint: collectionMint } = collection;
+  const { mint, metadata } = item;
+
+  // Check the item metadata.
+  t.like(await fetchMetadata(client.rpc, metadata), <Metadata>(<unknown>{
+    address: metadata,
+    data: {
+      updateAuthority: authority.address,
+      mint: mint,
+      tokenStandard: some(TokenStandard.ProgrammableNonFungible),
+      collection: some({ verified: true, key: collectionMint }),
+    },
+  }));
+
+  // Check the mint is owned by the correct program.
+  const mintAccount = await client.rpc
+    .getAccountInfo(mint, { encoding: 'base64' })
+    .send();
+  t.assert(mintAccount?.value?.owner == TOKEN_PROGRAM_ID);
+
+  // Check the token account has correct mint, amount and owner.
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint,
+    owner: owner.address,
+    tokenProgram: TOKEN_PROGRAM_ID,
   });
   t.like(await fetchToken(client.rpc, ownerAta), <Account<Token>>{
     address: ownerAta,

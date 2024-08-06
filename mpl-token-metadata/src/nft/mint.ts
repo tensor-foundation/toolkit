@@ -1,3 +1,4 @@
+import { getMintToInstruction } from '@solana-program/token';
 import {
   Address,
   appendTransactionMessageInstruction,
@@ -34,15 +35,16 @@ import {
   getCreateV1Instruction,
   getMintV1Instruction,
   getSetCollectionSizeInstruction,
+  getVerifyInstruction,
   Key,
   MetadataArgs,
   printSupply,
   PrintSupplyArgs,
   TokenStandard,
   Uses,
+  VerificationArgs,
 } from '../generated';
 import { findAtaPda } from '../token';
-import { getMintToInstruction } from '@solana-program/token';
 
 export interface NftData {
   name: string;
@@ -74,6 +76,7 @@ export type CreateNftArgs = {
   payer: KeyPairSigner | null;
   authority: KeyPairSigner;
   owner: KeyPairSigner;
+  collectionMint?: Address;
   creators?: Creator[] | null;
   data?: NftData;
   standard?: TokenStandard;
@@ -97,6 +100,7 @@ export const createDefaultNft = async (args: CreateNftArgs): Promise<Nft> => {
     authority,
     owner,
     creators,
+    collectionMint,
     standard = TokenStandard.NonFungible,
     tokenProgram = TOKEN_PROGRAM_ID,
   } = args;
@@ -120,6 +124,9 @@ export const createDefaultNft = async (args: CreateNftArgs): Promise<Nft> => {
           ],
       printSupply: printSupply('Zero'),
       tokenStandard: standard,
+      collection: collectionMint
+        ? { verified: false, key: collectionMint }
+        : undefined,
     };
   }
 
@@ -136,6 +143,45 @@ export const createDefaultNft = async (args: CreateNftArgs): Promise<Nft> => {
   };
 
   return await mintNft(client, accounts, data);
+};
+
+// Creates a Metaplex Collection NFT and creates another NFT in the collection,
+// minted to the same owner and with the same update authority.
+// Returns the collection NFT first, and the NFT in the collection second.
+export const createDefaultNftInCollection = async (
+  args: CreateNftArgs
+): Promise<{ collection: Nft; item: Nft }> => {
+  const { client, payer, authority } = args;
+
+  // Mint the collection NFT.
+  const collectionNft = await createDefaultNft(args);
+  const { mint: collectionMint, metadata: collectionMetadata } = collectionNft;
+
+  // Mint the item NFT with the collection set.
+  const nft = await createDefaultNft({ ...args, collectionMint });
+  const { metadata } = nft;
+
+  // Verify the collection on the item.
+  const verifyCollectionIx = getVerifyInstruction({
+    authority,
+    metadata,
+    collectionMint,
+    collectionMetadata,
+    collectionMasterEdition: (
+      await findMasterEditionPda({
+        mint: collectionMint,
+      })
+    )[0],
+    verificationArgs: VerificationArgs.CollectionV1,
+  });
+
+  await pipe(
+    await createDefaultTransaction(client, payer!),
+    (tx) => appendTransactionMessageInstruction(verifyCollectionIx, tx),
+    (tx) => signAndSendTransaction(client, tx)
+  );
+
+  return { collection: collectionNft, item: nft };
 };
 
 export interface MintNftAccounts {
@@ -161,7 +207,7 @@ export const mintNft = async (
     primarySaleHappened = false,
     isMutable = true,
     tokenStandard = TokenStandard.NonFungible,
-    collection = null,
+    collection,
     uses = null,
     collectionDetails = null,
     ruleSet = null,
@@ -210,7 +256,7 @@ export const mintNft = async (
     primarySaleHappened,
     isMutable,
     tokenStandard,
-    collection,
+    collection: collection ? some(collection) : none(),
     uses,
     collectionDetails,
     ruleSet,
