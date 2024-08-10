@@ -45,6 +45,7 @@ export interface CreateNftArgs {
   mint?: TransactionSigner;
   group?: Address;
   data?: NftData;
+  paymentMint?: Address;
 }
 
 export interface NftData {
@@ -61,6 +62,7 @@ export interface CreateGroupArgs {
   authority: TransactionSigner;
   owner: Address;
   mint?: TransactionSigner;
+  paymentMint?: Address;
   data?: GroupData;
 }
 
@@ -93,6 +95,7 @@ export async function createGroupWithRoyalties(
     authority,
     owner,
     mint = await generateKeyPairSigner(), // Collection mint
+    paymentMint,
     data = testGroupData,
   } = args;
 
@@ -110,7 +113,7 @@ export async function createGroupWithRoyalties(
   });
   const [distributionAccount] = await findWnsDistributionPda({
     collection: mint.address,
-    paymentMint: SYSTEM_PROGRAM_ID,
+    paymentMint: paymentMint ?? SYSTEM_PROGRAM_ID,
   });
 
   const instructions = [
@@ -134,7 +137,7 @@ export async function createGroupWithRoyalties(
       payer,
       groupMint: mint.address,
       distributionAccount,
-      paymentMint: SYSTEM_PROGRAM_ID,
+      paymentMint: paymentMint ?? SYSTEM_PROGRAM_ID,
     }),
   ];
 
@@ -268,13 +271,14 @@ export async function createNft(args: CreateNftArgs): Promise<{
 }
 
 export async function createWnsNftInGroup(args: CreateNftArgs) {
-  const { client, owner, authority, payer = authority } = args;
+  const { client, owner, authority, payer = authority, paymentMint } = args;
 
   const { group, distribution } = await createGroupWithRoyalties({
     client,
     payer,
     authority,
     owner,
+    paymentMint,
   });
 
   const { mint, ownerAta, extraAccountMetas } = await createNft({

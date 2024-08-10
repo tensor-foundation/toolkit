@@ -41,7 +41,7 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana/spl-token": "^0.3.11",
+    "@solana/spl-token": "^0.4.8",
     "@solana-program/compute-budget": "0.3.2",
     "@solana-program/system": "0.3.3",
     "@solana-program/token": "0.2.0",

@@ -37,7 +37,7 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana/web3.js-next": "npm:@solana/web3.js@^2.0.0-preview.3",
+    "@solana/web3.js-next": "npm:@solana/web3.js@2.0.0-preview.3",
     "@solana/rpc-spec-types": "2.0.0-preview.3",
     "@solana/rpc": "2.0.0-preview.3",
     "@solana/rpc-transformers": "2.0.0-preview.3"
@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "@metaplex-foundation/amman": "^0.12.1",
-    "@metaplex-foundation/kinobi": "^0.18.4",
     "@solana/eslint-config-solana": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",

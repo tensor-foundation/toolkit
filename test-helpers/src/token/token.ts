@@ -7,15 +7,19 @@ import {
   getTokenSize,
 } from '@solana-program/token';
 import {
+  address,
   Address,
   appendTransactionMessageInstruction,
   appendTransactionMessageInstructions,
+  Base64EncodedDataResponse,
   generateKeyPairSigner,
   KeyPairSigner,
   none,
   pipe,
   TransactionSigner,
 } from '@solana/web3.js';
+import { ExecutionContext } from 'ava';
+import bs58 from 'bs58';
 import { TOKEN_PROGRAM_ID } from '../programIds';
 import {
   Client,
@@ -208,3 +212,57 @@ export const createAndMintTo = async (
 
   return [{ mint, decimals }, ata];
 };
+
+export interface TokenNftOwnedByParams {
+  t: ExecutionContext;
+  client: Client;
+  mint: Address;
+  owner: Address;
+  tokenProgramAddress?: Address;
+}
+
+const TOKEN_OWNER_START_INDEX = 32;
+const TOKEN_OWNER_END_INDEX = 64;
+const TOKEN_AMOUNT_START_INDEX = 64;
+
+export function getTokenAmount(data: Base64EncodedDataResponse): BigInt {
+  const buffer = Buffer.from(String(data), 'base64');
+  return buffer.readBigUInt64LE(TOKEN_AMOUNT_START_INDEX);
+}
+
+export function getTokenOwner(data: Base64EncodedDataResponse): Address {
+  const buffer = Buffer.from(String(data), 'base64');
+  const base58string = bs58.encode(
+    buffer.subarray(TOKEN_OWNER_START_INDEX, TOKEN_OWNER_END_INDEX)
+  );
+  return address(base58string);
+}
+
+// Asserts that a token-based NFT is owned by a specific address by deriving
+// the ATA for the owner and checking the amount and owner of the token.
+export async function assertTokenNftOwnedBy(params: TokenNftOwnedByParams) {
+  const {
+    t,
+    client,
+    mint,
+    owner,
+    tokenProgramAddress = TOKEN_PROGRAM_ID,
+  } = params;
+
+  const [ownerAta] = await findAssociatedTokenPda({
+    mint,
+    owner,
+    tokenProgram: tokenProgramAddress,
+  });
+  const ownerAtaAccount = await client.rpc
+    .getAccountInfo(ownerAta, { encoding: 'base64' })
+    .send();
+
+  const data = ownerAtaAccount!.value!.data;
+
+  const postBuyTokenAmount = getTokenAmount(data);
+  const postBuyTokenOwner = getTokenOwner(data);
+
+  t.assert(postBuyTokenAmount === 1n);
+  t.assert(postBuyTokenOwner === owner);
+}
