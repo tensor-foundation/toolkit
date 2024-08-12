@@ -6,8 +6,10 @@ import {
   IAccountSignerMeta,
   IInstruction,
   ProgramDerivedAddress,
+  SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM,
   TransactionSigner,
   isProgramDerivedAddress,
+  isSolanaError,
   upgradeRoleToSigner,
   isTransactionSigner as web3JsIsTransactionSigner,
 } from '@solana/web3.js';
@@ -16,6 +18,7 @@ import {
   PublicKey,
   TransactionInstruction,
 } from '@solana/web3.js-legacy';
+import { ExecutionContext } from 'ava';
 
 /**
  * Asserts that the given value is not null or undefined.
@@ -87,6 +90,25 @@ export function expectTransactionSigner<T extends string = string>(
   }
   return value;
 }
+
+export const expectCustomError = async (
+  t: ExecutionContext,
+  promise: Promise<unknown>,
+  code: number
+) => {
+  const error = await t.throwsAsync<Error & { data: { logs: string[] } }>(
+    promise
+  );
+
+  if (isSolanaError(error.cause, SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM)) {
+    t.assert(
+      error.cause.context.code === code,
+      `expected error code ${code}, received ${error.cause.context.code}`
+    );
+  } else {
+    t.fail("expected a custom error, but didn't get one");
+  }
+};
 
 /**
  * Defines an instruction account to resolve.

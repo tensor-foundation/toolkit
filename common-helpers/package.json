@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/common-helpers",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Common helper functions for Tensor SDKs",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
