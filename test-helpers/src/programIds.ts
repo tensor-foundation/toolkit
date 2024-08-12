@@ -114,3 +114,10 @@ export const MPL_TOKEN_AUTH_RULES_PROGRAM_ID = address(
 export const LIBREPLEX_TRANSFER_HOOK_PROGRAM_ID = address(
   'CZ1rQoAHSqWBoAEfqGsiLhgbM59dDrCWk3rnG5FXaoRV'
 );
+
+export const WEN_NEW_STANDARD_PROGRAM_ID = address(
+  'wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM'
+);
+export const WEN_ROYALTY_DISTRIBUTION_PROGRAM_ID = address(
+  'diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay'
+);

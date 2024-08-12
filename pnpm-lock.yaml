@@ -20,7 +20,7 @@ importers:
         specifier: ^5.2.1
         version: 5.2.1
       helius-sdk:
-        specifier: ^1.3.0
+        specifier: 1.3.4
         version: 1.3.4(arweave@1.15.1)(bufferutil@4.0.8)(fastestsmallesttextencoderdecoder@1.0.22)(utf-8-validate@5.0.10)
       js-sha3:
         specifier: ^0.9.3
@@ -29,9 +29,6 @@ importers:
       '@metaplex-foundation/amman':
         specifier: ^0.12.1
         version: 0.12.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
-      '@metaplex-foundation/kinobi':
-        specifier: ^0.18.4
-        version: 0.18.5(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@solana/eslint-config-solana':
         specifier: ^3.0.0
         version: 3.0.3(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -64,7 +61,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -90,7 +87,7 @@ importers:
         specifier: <2.0.0
         version: 1.95.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@solana/web3.js-next':
-        specifier: npm:@solana/web3.js@^2.0.0-preview.3
+        specifier: npm:@solana/web3.js@2.0.0-preview.3
         version: '@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10))'
       jayson:
         specifier: ^4.1.0
@@ -99,9 +96,6 @@ importers:
       '@metaplex-foundation/amman':
         specifier: ^0.12.1
         version: 0.12.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@5.0.10)
-      '@metaplex-foundation/kinobi':
-        specifier: ^0.18.4
-        version: 0.18.5(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@solana/eslint-config-solana':
         specifier: ^3.0.0
         version: 3.0.3(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -134,7 +128,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -176,17 +170,14 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.5
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.20.5
-        version: 0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
-      '@solana-program/token':
-        specifier: 0.1.4
-        version: 0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/eslint-config-solana':
         specifier: ^3.0.0
         version: 3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -206,8 +197,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.20.3
-        version: 0.20.6
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -216,7 +207,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -243,11 +234,11 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.5
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.20.5
-        version: 0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
@@ -273,8 +264,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.20.3
-        version: 0.20.6
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -283,7 +274,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -299,6 +290,9 @@ importers:
 
   mpl-token-metadata:
     dependencies:
+      '@solana-program/token':
+        specifier: ^0.2.1
+        version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/web3.js':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
@@ -313,17 +307,14 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.5
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.20.5
-        version: 0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
-      '@solana-program/token':
-        specifier: 0.1.4
-        version: 0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/eslint-config-solana':
         specifier: ^3.0.0
         version: 3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -343,8 +334,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.20.3
-        version: 0.20.6
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -353,7 +344,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -370,8 +361,8 @@ importers:
   phoenix:
     dependencies:
       '@solana-program/token':
-        specifier: 0.1.4
-        version: 0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
+        specifier: ^0.2.1
+        version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/web3.js':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
@@ -383,26 +374,20 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.5
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.20.5
-        version: 0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
-      '@solana-program/system':
-        specifier: 0.3.3
-        version: 0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/eslint-config-solana':
         specifier: ^3.0.0
         version: 3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
       '@solana/webcrypto-ed25519-polyfill':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3
-      '@tensor-foundation/test-helpers':
-        specifier: workspace:*
-        version: link:../test-helpers
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.0.0
         version: 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -416,8 +401,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.20.3
-        version: 0.20.6
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -426,7 +411,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -451,7 +436,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typescript:
         specifier: ^5.4.2
         version: 5.5.4
@@ -471,8 +456,8 @@ importers:
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)
       '@solana/spl-token':
-        specifier: ^0.3.11
-        version: 0.3.11(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(fastestsmallesttextencoderdecoder@1.0.22)(utf-8-validate@5.0.10)
+        specifier: ^0.4.8
+        version: 0.4.8(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)(utf-8-validate@5.0.10)
       '@solana/web3.js':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10))
@@ -533,7 +518,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -560,11 +545,11 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.7
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.20.7
-        version: 0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
@@ -590,8 +575,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.20.4
-        version: 0.20.6
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -600,7 +585,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -617,11 +602,8 @@ importers:
   wns-distribution:
     dependencies:
       '@solana-program/token':
-        specifier: ^0.2.0
+        specifier: ^0.2.1
         version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
-      '@tensor-foundation/test-helpers':
-        specifier: workspace:*
-        version: link:../test-helpers
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -630,11 +612,11 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.7
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.20.7
-        version: 0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
@@ -660,8 +642,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.20.4
-        version: 0.20.6
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -670,7 +652,7 @@ importers:
         version: 5.0.10
       tsup:
         specifier: ^8.0.2
-        version: 8.2.3(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(typescript@5.5.4)(yaml@2.5.0)
       typedoc:
         specifier: ^0.25.12
         version: 0.25.13(typescript@5.5.4)
@@ -996,52 +978,49 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@kinobi-so/errors@0.20.6':
-    resolution: {integrity: sha512-bxMfPbTU1JjhQzd1KzBzF9aKGpMwTxqkNA4ALdu0HLbNe6gTpZ+XF//a/Sdhcn6MZ48KAQX9siKfqVutgKjdzg==}
+  '@kinobi-so/errors@0.20.4':
+    resolution: {integrity: sha512-5GWQPiqLOngZFxMCTnF0rGsCc9LXUHXX+zBzbXBjhsdyQm8OSFpVFZtwiBkF+jsOBQPrLv26dFlkWJgBiq2jXQ==}
     hasBin: true
 
-  '@kinobi-so/errors@0.21.0':
-    resolution: {integrity: sha512-7dPK35L/Y01qzekhVHdKAu+lENmHhuwX39rIx3qNJpNPHKi1VCcorLuOJlfT2F9MPPUjv5pZliL5qQ5IsvtNMw==}
+  '@kinobi-so/errors@0.20.5':
+    resolution: {integrity: sha512-EoMmMIR787Phz7BOQB7GMKaqKC/mPOyKwxTqzYwV3agoM95ZsU9eN9OFE35zJlGRrQYCAVXKsRoopoa6znoREw==}
     hasBin: true
 
-  '@kinobi-so/node-types@0.20.6':
-    resolution: {integrity: sha512-gStEfb52LAuK/RnfJGn426iECgobAhPAxlbcHIxx9BfuauF8Q57DfFFYUhCBS94/Se/KCtC4W+5dQjkTI8WViw==}
+  '@kinobi-so/node-types@0.20.4':
+    resolution: {integrity: sha512-kFFXMC9nSemDj2itNeSj4VR9R6QTz0z7v3niwxHHq9IJ4TFPwpcZAt7aH++SGlCUeHG3iOHC2ZngFMhv+Ks/Fw==}
 
-  '@kinobi-so/node-types@0.21.0':
-    resolution: {integrity: sha512-UmzjocmsLa1pZ/ExVklGRsWQZNoIvifKBuTEAcpdxlDhg6hmrMWoXwWvRrLI5o7v1WKvTucv7KuM+5GU9UhFDw==}
+  '@kinobi-so/node-types@0.20.5':
+    resolution: {integrity: sha512-DnZn2UCAEqbl+L89IFfVJK5jwavsvPmFByN1LyErzVE/BJKsaRN2myMQPDDT5fEs6dWdaCDNcVKuvwcz57VjgQ==}
 
-  '@kinobi-so/nodes-from-anchor@0.20.8':
-    resolution: {integrity: sha512-TJtHixtIA6uVk2/syPHTwzlEyRMZYH1GeCv9D3uhDo17SxUl2gYTnG+Q5FXDuzNWtUFOYYvW8l0t9p7MzVbfmQ==}
+  '@kinobi-so/nodes-from-anchor@0.20.7':
+    resolution: {integrity: sha512-4/ZjHCT6UOBRrlaLQghub0/lHFwRca32USEbKRDFHfQcCLZVmGosychvus5J0VHELD6WolcVVszsVPHZ+BjdiA==}
 
-  '@kinobi-so/nodes-from-anchor@0.20.9':
-    resolution: {integrity: sha512-xNlwvJek6Hbfi45Unocwq/lT3rFXhmpZcAZmQJMgdIH8E4iAya9ZQ89j4neRQ+C1KVrK9qFJh0SaJvt9xnJQXA==}
+  '@kinobi-so/nodes@0.20.4':
+    resolution: {integrity: sha512-zeGOOdOaKbMxqiZWNJx/JVGVWp4mzCkwDp3bG4J+x9+mQ1nQcyuPvHXeHmtBXa9IWp7AScXlyn5HddVzK/8ZRQ==}
 
-  '@kinobi-so/nodes@0.20.6':
-    resolution: {integrity: sha512-lKP+fj/6wvJp3dkwkhQRhFEgM6IlAufqOAU1A/sSi2Ciou7OxdqFJ98c14AFOMYBKpWqNOh5zUTtxBUyGDe9Sg==}
+  '@kinobi-so/nodes@0.20.5':
+    resolution: {integrity: sha512-6cxoTk7qYlBDg+djIHGrBfHewvTRwgKrR4GibdMrpRHODiv19kJusyu4vz1/ZAvlVabnyyiAmQbbAHE3/WdWwg==}
 
-  '@kinobi-so/nodes@0.21.0':
-    resolution: {integrity: sha512-Z8STFjB3/f9LzK494l6qydkBMsFtnm96YreJjlAg9/DeKNtphimslSvFTF/9qHiGMfOQpOVhQqbWFXpt+PCZiQ==}
+  '@kinobi-so/renderers-core@0.20.4':
+    resolution: {integrity: sha512-feb0Fsw7UIj14JZ2LmHYyosT07K/Jrs7CvNYD2YF4g6WQz9mmy1l8Fa+gpVtoDdSHvfXrgzv8193p0QkRRBWmA==}
 
-  '@kinobi-so/renderers-core@0.20.6':
-    resolution: {integrity: sha512-GdgkwbipQK/Vb4z+08eB3j81oZHWcD8jKHRZzOuMBSpT8aVZIes1Nxy8FfoJYFppmjWvRaGg/X4YKAsLXZV56Q==}
+  '@kinobi-so/renderers-js@0.20.7':
+    resolution: {integrity: sha512-CRugH3+fpZsXokuyUl8ioq9XzaNotAXB0zvqYQOh/TTho0sb4tkUrx7lYq6R1YAtRIcqkDSp+Dma1agKB7Tbmg==}
 
-  '@kinobi-so/renderers-js@0.20.11':
-    resolution: {integrity: sha512-4MxpJ3gTQKvzIaeefHwo1bkWoopJJAvjVjwJCag7s2lxBWJ+NC1Dgo4z5BnTyDBoP5jJbXixRDKRc1p+/BW5jQ==}
+  '@kinobi-so/validators@0.20.4':
+    resolution: {integrity: sha512-PyhfM1fgsAPrDgMOB1VjvW+CytPTtLMLB0bSCU+0GRm8IoZ8pj74cIcB5XPjai3N5dU7kDMYz1nZLnCFsoXfLg==}
 
-  '@kinobi-so/validators@0.20.6':
-    resolution: {integrity: sha512-KSJ3sJU83n60KlTvL5UGE1p1PMAgvCz4A0N6XbX0RT1Rcm9LZoqIpdebDzkQ2wJTLznjwP2CuCtpHcNfejbwWg==}
+  '@kinobi-so/visitors-core@0.20.4':
+    resolution: {integrity: sha512-l4LCAOKL35tXn4jDZ4/gNdBeJYB5ACE4lgKQxL6oyII36hPe8pwCihIpjzHKDm9S93o9pKFN76ay5S3NnWANRw==}
 
-  '@kinobi-so/visitors-core@0.20.6':
-    resolution: {integrity: sha512-V8Zosr40x38LMiMzGmJLvsglhlHJ7GPvLgAfGU4+7D8EhsFI5BXLIdQd55cbQE64Y1/2iG7jKDoEak0U+sy8Tw==}
+  '@kinobi-so/visitors-core@0.20.5':
+    resolution: {integrity: sha512-/huwX+Jhd4Zl1eNS+dsKwYDfZx1tu/n9nLyaWl+8gbEedJ4YFIW1Ay0lxEx3zvaOBx1BXgZCpcLGV7mMOJUtuQ==}
 
-  '@kinobi-so/visitors-core@0.21.0':
-    resolution: {integrity: sha512-m6C/cAy7q7ZAWhByQGo2YnBsbt0qS3Un0lyT4mmPGQt0QFXUDExFipjTvY/NnzZ5lQJ2grvnL04pqLx8V7eiuw==}
+  '@kinobi-so/visitors@0.20.4':
+    resolution: {integrity: sha512-sr+1qiU4sN5OfrVI//RqqHMKl5VapugkO3f/MHXGmFBDWANXJCIMmAXMMARzk/h6v76zswJ+NOHe0C3FLYb1xg==}
 
-  '@kinobi-so/visitors@0.20.6':
-    resolution: {integrity: sha512-EZOp83sWEZoS+J+fb5ipHQXagUovGVCdaJrMIlYZEMe9tAa5oZF8d0skWg6T2AeP8SHCNnwW0nRA2/K90ltjWA==}
-
-  '@kinobi-so/visitors@0.21.0':
-    resolution: {integrity: sha512-gigysLJCfVtNCFkdDMeHGB+1SOvoiQOPUVKxewzOq1wDYVioFmmf4aXfB1GCEslLlMvl63cTJrwvh8bDIZoaSA==}
+  '@kinobi-so/visitors@0.20.5':
+    resolution: {integrity: sha512-XlTzk34I5ExRwHAzl4LsnW1gJyQoHl0fmncMJ1WN3X4PTRj9P2jVi8kYRkrcU6HiPVxkBCgASSmSilt67tuneQ==}
 
   '@mapbox/node-pre-gyp@1.0.11':
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
@@ -1062,9 +1041,6 @@ packages:
 
   '@metaplex-foundation/cusper@0.0.2':
     resolution: {integrity: sha512-S9RulC2fFCFOQraz61bij+5YCHhSO9llJegK8c8Y6731fSi6snUSQJdCUqYS8AIgR0TKbQvdvgSyIIdbDFZbBA==}
-
-  '@metaplex-foundation/kinobi@0.18.5':
-    resolution: {integrity: sha512-qh4h4xGB+PHR5o4rcZki+wsIeZYi6R9SRV5UMqGi/rfDJXk0ckAZ+fxdam+mCc4N8HWLLWmEJbF5gx8E5K0fOA==}
 
   '@metaplex-foundation/mpl-token-metadata@2.13.0':
     resolution: {integrity: sha512-Fl/8I0L9rv4bKTV/RAl5YIbJe9SnQPInKvLz+xR1fEc4/VQkuCn3RPgypfUMEKWmCznzaw4sApDxy6CFS4qmJw==}
@@ -1117,8 +1093,8 @@ packages:
   '@near-js/utils@0.0.4':
     resolution: {integrity: sha512-mPUEPJbTCMicGitjEGvQqOe8AS7O4KkRCxqd0xuE/X6gXF1jz1pYMZn4lNUeUz2C84YnVSGLAM0o9zcN6Y4hiA==}
 
-  '@noble/curves@1.4.2':
-    resolution: {integrity: sha512-TavHr8qycMChk8UwMld0ZDRvatedkzWfH8IiaeGCfymOP5i0hSCozz9vHOL0nkwk7HRMlFnAiKpS2jrUmSybcw==}
+  '@noble/curves@1.5.0':
+    resolution: {integrity: sha512-J5EKamIHnKPyClwVrzmaf5wSdQXgdHcPZIZLu3bwnbeCx8/7NPK5q2ZBWF+5FvYGByjiQQsJYX6jfgB2wDPn3A==}
 
   '@noble/ed25519@1.7.3':
     resolution: {integrity: sha512-iR8GBkDt0Q3GyaVcIu7mSsVIqnFbkbRzGLWlvhwunacoLwt4J3swfKhfaM6rN6WY+TBGoYT1GtT1mIh2/jGbRQ==}
@@ -1205,11 +1181,6 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@prettier/sync@0.5.2':
-    resolution: {integrity: sha512-Yb569su456XNx5BsH/Vyem7xD6g/y9iLmLUzRKM1a/dhU/D7HqqvkAG72znulXlMXztbV0iiu9O5AL8K98TzZQ==}
-    peerDependencies:
-      prettier: '*'
-
   '@randlabs/communication-bridge@1.0.1':
     resolution: {integrity: sha512-CzS0U8IFfXNK7QaJFE4pjbxDGfPjbXBEsEaCn9FN15F+ouSAEUQkva3Gl66hrkBZOGexKFEWMwUHIDKpZ2hfVg==}
 
@@ -1220,83 +1191,83 @@ packages:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
     engines: {node: '>= 8.0.0'}
 
-  '@rollup/rollup-android-arm-eabi@4.19.2':
-    resolution: {integrity: sha512-OHflWINKtoCFSpm/WmuQaWW4jeX+3Qt3XQDepkkiFTsoxFc5BpF3Z5aDxFZgBqRjO6ATP5+b1iilp4kGIZVWlA==}
+  '@rollup/rollup-android-arm-eabi@4.20.0':
+    resolution: {integrity: sha512-TSpWzflCc4VGAUJZlPpgAJE1+V60MePDQnBd7PPkpuEmOy8i87aL6tinFGKBFKuEDikYpig72QzdT3QPYIi+oA==}
     cpu: [arm]
     os: [android]
 
-  '@rollup/rollup-android-arm64@4.19.2':
-    resolution: {integrity: sha512-k0OC/b14rNzMLDOE6QMBCjDRm3fQOHAL8Ldc9bxEWvMo4Ty9RY6rWmGetNTWhPo+/+FNd1lsQYRd0/1OSix36A==}
+  '@rollup/rollup-android-arm64@4.20.0':
+    resolution: {integrity: sha512-u00Ro/nok7oGzVuh/FMYfNoGqxU5CPWz1mxV85S2w9LxHR8OoMQBuSk+3BKVIDYgkpeOET5yXkx90OYFc+ytpQ==}
     cpu: [arm64]
     os: [android]
 
-  '@rollup/rollup-darwin-arm64@4.19.2':
-    resolution: {integrity: sha512-IIARRgWCNWMTeQH+kr/gFTHJccKzwEaI0YSvtqkEBPj7AshElFq89TyreKNFAGh5frLfDCbodnq+Ye3dqGKPBw==}
+  '@rollup/rollup-darwin-arm64@4.20.0':
+    resolution: {integrity: sha512-uFVfvzvsdGtlSLuL0ZlvPJvl6ZmrH4CBwLGEFPe7hUmf7htGAN+aXo43R/V6LATyxlKVC/m6UsLb7jbG+LG39Q==}
     cpu: [arm64]
     os: [darwin]
 
-  '@rollup/rollup-darwin-x64@4.19.2':
-    resolution: {integrity: sha512-52udDMFDv54BTAdnw+KXNF45QCvcJOcYGl3vQkp4vARyrcdI/cXH8VXTEv/8QWfd6Fru8QQuw1b2uNersXOL0g==}
+  '@rollup/rollup-darwin-x64@4.20.0':
+    resolution: {integrity: sha512-xbrMDdlev53vNXexEa6l0LffojxhqDTBeL+VUxuuIXys4x6xyvbKq5XqTXBCEUA8ty8iEJblHvFaWRJTk/icAQ==}
     cpu: [x64]
     os: [darwin]
 
-  '@rollup/rollup-linux-arm-gnueabihf@4.19.2':
-    resolution: {integrity: sha512-r+SI2t8srMPYZeoa1w0o/AfoVt9akI1ihgazGYPQGRilVAkuzMGiTtexNZkrPkQsyFrvqq/ni8f3zOnHw4hUbA==}
+  '@rollup/rollup-linux-arm-gnueabihf@4.20.0':
+    resolution: {integrity: sha512-jMYvxZwGmoHFBTbr12Xc6wOdc2xA5tF5F2q6t7Rcfab68TT0n+r7dgawD4qhPEvasDsVpQi+MgDzj2faOLsZjA==}
     cpu: [arm]
     os: [linux]
 
-  '@rollup/rollup-linux-arm-musleabihf@4.19.2':
-    resolution: {integrity: sha512-+tYiL4QVjtI3KliKBGtUU7yhw0GMcJJuB9mLTCEauHEsqfk49gtUBXGtGP3h1LW8MbaTY6rSFIQV1XOBps1gBA==}
+  '@rollup/rollup-linux-arm-musleabihf@4.20.0':
+    resolution: {integrity: sha512-1asSTl4HKuIHIB1GcdFHNNZhxAYEdqML/MW4QmPS4G0ivbEcBr1JKlFLKsIRqjSwOBkdItn3/ZDlyvZ/N6KPlw==}
     cpu: [arm]
     os: [linux]
 
-  '@rollup/rollup-linux-arm64-gnu@4.19.2':
-    resolution: {integrity: sha512-OR5DcvZiYN75mXDNQQxlQPTv4D+uNCUsmSCSY2FolLf9W5I4DSoJyg7z9Ea3TjKfhPSGgMJiey1aWvlWuBzMtg==}
+  '@rollup/rollup-linux-arm64-gnu@4.20.0':
+    resolution: {integrity: sha512-COBb8Bkx56KldOYJfMf6wKeYJrtJ9vEgBRAOkfw6Ens0tnmzPqvlpjZiLgkhg6cA3DGzCmLmmd319pmHvKWWlQ==}
     cpu: [arm64]
     os: [linux]
 
-  '@rollup/rollup-linux-arm64-musl@4.19.2':
-    resolution: {integrity: sha512-Hw3jSfWdUSauEYFBSFIte6I8m6jOj+3vifLg8EU3lreWulAUpch4JBjDMtlKosrBzkr0kwKgL9iCfjA8L3geoA==}
+  '@rollup/rollup-linux-arm64-musl@4.20.0':
+    resolution: {integrity: sha512-+it+mBSyMslVQa8wSPvBx53fYuZK/oLTu5RJoXogjk6x7Q7sz1GNRsXWjn6SwyJm8E/oMjNVwPhmNdIjwP135Q==}
     cpu: [arm64]
     os: [linux]
 
-  '@rollup/rollup-linux-powerpc64le-gnu@4.19.2':
-    resolution: {integrity: sha512-rhjvoPBhBwVnJRq/+hi2Q3EMiVF538/o9dBuj9TVLclo9DuONqt5xfWSaE6MYiFKpo/lFPJ/iSI72rYWw5Hc7w==}
+  '@rollup/rollup-linux-powerpc64le-gnu@4.20.0':
+    resolution: {integrity: sha512-yAMvqhPfGKsAxHN8I4+jE0CpLWD8cv4z7CK7BMmhjDuz606Q2tFKkWRY8bHR9JQXYcoLfopo5TTqzxgPUjUMfw==}
     cpu: [ppc64]
     os: [linux]
 
-  '@rollup/rollup-linux-riscv64-gnu@4.19.2':
-    resolution: {integrity: sha512-EAz6vjPwHHs2qOCnpQkw4xs14XJq84I81sDRGPEjKPFVPBw7fwvtwhVjcZR6SLydCv8zNK8YGFblKWd/vRmP8g==}
+  '@rollup/rollup-linux-riscv64-gnu@4.20.0':
+    resolution: {integrity: sha512-qmuxFpfmi/2SUkAw95TtNq/w/I7Gpjurx609OOOV7U4vhvUhBcftcmXwl3rqAek+ADBwSjIC4IVNLiszoj3dPA==}
     cpu: [riscv64]
     os: [linux]
 
-  '@rollup/rollup-linux-s390x-gnu@4.19.2':
-    resolution: {integrity: sha512-IJSUX1xb8k/zN9j2I7B5Re6B0NNJDJ1+soezjNojhT8DEVeDNptq2jgycCOpRhyGj0+xBn7Cq+PK7Q+nd2hxLA==}
+  '@rollup/rollup-linux-s390x-gnu@4.20.0':
+    resolution: {integrity: sha512-I0BtGXddHSHjV1mqTNkgUZLnS3WtsqebAXv11D5BZE/gfw5KoyXSAXVqyJximQXNvNzUo4GKlCK/dIwXlz+jlg==}
     cpu: [s390x]
     os: [linux]
 
-  '@rollup/rollup-linux-x64-gnu@4.19.2':
-    resolution: {integrity: sha512-OgaToJ8jSxTpgGkZSkwKE+JQGihdcaqnyHEFOSAU45utQ+yLruE1dkonB2SDI8t375wOKgNn8pQvaWY9kPzxDQ==}
+  '@rollup/rollup-linux-x64-gnu@4.20.0':
+    resolution: {integrity: sha512-y+eoL2I3iphUg9tN9GB6ku1FA8kOfmF4oUEWhztDJ4KXJy1agk/9+pejOuZkNFhRwHAOxMsBPLbXPd6mJiCwew==}
     cpu: [x64]
     os: [linux]
 
-  '@rollup/rollup-linux-x64-musl@4.19.2':
-    resolution: {integrity: sha512-5V3mPpWkB066XZZBgSd1lwozBk7tmOkKtquyCJ6T4LN3mzKENXyBwWNQn8d0Ci81hvlBw5RoFgleVpL6aScLYg==}
+  '@rollup/rollup-linux-x64-musl@4.20.0':
+    resolution: {integrity: sha512-hM3nhW40kBNYUkZb/r9k2FKK+/MnKglX7UYd4ZUy5DJs8/sMsIbqWK2piZtVGE3kcXVNj3B2IrUYROJMMCikNg==}
     cpu: [x64]
     os: [linux]
 
-  '@rollup/rollup-win32-arm64-msvc@4.19.2':
-    resolution: {integrity: sha512-ayVstadfLeeXI9zUPiKRVT8qF55hm7hKa+0N1V6Vj+OTNFfKSoUxyZvzVvgtBxqSb5URQ8sK6fhwxr9/MLmxdA==}
+  '@rollup/rollup-win32-arm64-msvc@4.20.0':
+    resolution: {integrity: sha512-psegMvP+Ik/Bg7QRJbv8w8PAytPA7Uo8fpFjXyCRHWm6Nt42L+JtoqH8eDQ5hRP7/XW2UiIriy1Z46jf0Oa1kA==}
     cpu: [arm64]
     os: [win32]
 
-  '@rollup/rollup-win32-ia32-msvc@4.19.2':
-    resolution: {integrity: sha512-Mda7iG4fOLHNsPqjWSjANvNZYoW034yxgrndof0DwCy0D3FvTjeNo+HGE6oGWgvcLZNLlcp0hLEFcRs+UGsMLg==}
+  '@rollup/rollup-win32-ia32-msvc@4.20.0':
+    resolution: {integrity: sha512-GabekH3w4lgAJpVxkk7hUzUf2hICSQO0a/BLFA11/RMxQT92MabKAqyubzDZmMOC/hcJNlc+rrypzNzYl4Dx7A==}
     cpu: [ia32]
     os: [win32]
 
-  '@rollup/rollup-win32-x64-msvc@4.19.2':
-    resolution: {integrity: sha512-DPi0ubYhSow/00YqmG1jWm3qt1F8aXziHc/UNy8bo9cpCacqhuWu+iSq/fp2SyEQK7iYTZ60fBU9cat3MXTjIQ==}
+  '@rollup/rollup-win32-x64-msvc@4.20.0':
+    resolution: {integrity: sha512-aJ1EJSuTdGnM6qbVC4B5DSmozPTqIag9fSzXRNNo+humQLG89XpPgdt16Ia56ORD7s+H8Pmyx44uczDQ0yDzpg==}
     cpu: [x64]
     os: [win32]
 
@@ -1332,11 +1303,6 @@ packages:
     peerDependencies:
       '@solana/web3.js': 2.0.0-preview.3
 
-  '@solana-program/token@0.1.4':
-    resolution: {integrity: sha512-3+9oVY+jie5cXZQM7s6jLui9vtwXO1F7EOdT7sHg/Xh9NT5J+9xWZUdPbOC5sNU+4V3W6RpVm20gqjX7WKbkLg==}
-    peerDependencies:
-      '@solana/web3.js': 2.0.0-preview.3
-
   '@solana-program/token@0.2.0':
     resolution: {integrity: sha512-2W3ylIdgwx/5k4P2RB/tvOhZD08GSQ86Iakxl/k280V5swM7wX8JwUgWSxpQOBl10tQmuA3EYleGkcrdCYyepg==}
     peerDependencies:
@@ -1364,14 +1330,16 @@ packages:
     resolution: {integrity: sha512-E1ImOIAD1tBZFRdjeM4/pzTiTApC0AOBGwyAMS4fwIodCWArzJ3DWdoh8cKxeFM2fElkxBh2Aqts1BPC373rHA==}
     engines: {node: '>=5.10'}
 
-  '@solana/codecs-core@2.0.0-preview.1':
-    resolution: {integrity: sha512-0y3kgFSJAOApNGefEOgLRMiXOHVmcF29Xw3zmR4LDUABvytG3ecKMXGz5oLt3vdaU2CyN3tuUVeGmQjrd0U1kw==}
-
   '@solana/codecs-core@2.0.0-preview.2':
     resolution: {integrity: sha512-gLhCJXieSCrAU7acUJjbXl+IbGnqovvxQLlimztPoGgfLQ1wFYu+XJswrEVQqknZYK1pgxpxH3rZ+OKFs0ndQg==}
 
   '@solana/codecs-core@2.0.0-preview.3':
     resolution: {integrity: sha512-xQz6USSBs82lUNoVa/wwnm6wa2y2eWtGwPLUwF/NOGGpR+QH9EODijXvJ8wuC9llyqerqdC+5mrmx9C8VSMNYg==}
+
+  '@solana/codecs-core@2.0.0-preview.4':
+    resolution: {integrity: sha512-A0VVuDDA5kNKZUinOqHxJQK32aKTucaVbvn31YenGzHX1gPqq+SOnFwgaEY6pq4XEopSmaK16w938ZQS8IvCnw==}
+    peerDependencies:
+      typescript: '>=5'
 
   '@solana/codecs-data-structures@2.0.0-preview.2':
     resolution: {integrity: sha512-Xf5vIfromOZo94Q8HbR04TbgTwzigqrKII0GjYr21K7rb3nba4hUW2ir8kguY7HWFBcjHGlU5x3MevKBOLp3Zg==}
@@ -1379,8 +1347,10 @@ packages:
   '@solana/codecs-data-structures@2.0.0-preview.3':
     resolution: {integrity: sha512-PfXvZCf9qDF+Dv4WG6cb4xZoY9tj117bmZWS17iKimuNSsvuFSHpzERy0mmX2hwYEAM4CnQBd/9dgx+eAeMAsg==}
 
-  '@solana/codecs-numbers@2.0.0-preview.1':
-    resolution: {integrity: sha512-NFA8itgcYUY3hkWMBpVRozd2poy1zfOvkIWZKx/D69oIMUtQTBpKrodRVBuhlBkAv12vDNkFljqVySpcMZMl7A==}
+  '@solana/codecs-data-structures@2.0.0-preview.4':
+    resolution: {integrity: sha512-nt2k2eTeyzlI/ccutPcG36M/J8NAYfxBPI9h/nQjgJ+M+IgOKi31JV8StDDlG/1XvY0zyqugV3I0r3KAbZRJpA==}
+    peerDependencies:
+      typescript: '>=5'
 
   '@solana/codecs-numbers@2.0.0-preview.2':
     resolution: {integrity: sha512-aLZnDTf43z4qOnpTcDsUVy1Ci9im1Md8thWipSWbE+WM9ojZAx528oAql+Cv8M8N+6ALKwgVRhPZkto6E59ARw==}
@@ -1388,10 +1358,10 @@ packages:
   '@solana/codecs-numbers@2.0.0-preview.3':
     resolution: {integrity: sha512-cjsHexVAj4GveDtG0+WjW121TKMbWN7AkOvGlf1qauOJgzJvX3V7KXHWuEg8wGGfRiLiXKEgh7KieQiB17EI3Q==}
 
-  '@solana/codecs-strings@2.0.0-preview.1':
-    resolution: {integrity: sha512-kBAxE9ZD5/c8j9CkPxqc55dbo7R50Re3k94SXR+k13DZCCs37Fyn0/mAkw/S95fofbi/zsi4jSfmsT5vCZD75A==}
+  '@solana/codecs-numbers@2.0.0-preview.4':
+    resolution: {integrity: sha512-Q061rLtMadsO7uxpguT+Z7G4UHnjQ6moVIxAQxR58nLxDPCC7MB1Pk106/Z7NDhDLHTcd18uO6DZ7ajHZEn2XQ==}
     peerDependencies:
-      fastestsmallesttextencoderdecoder: ^1.0.22
+      typescript: '>=5'
 
   '@solana/codecs-strings@2.0.0-preview.2':
     resolution: {integrity: sha512-EgBwY+lIaHHgMJIqVOGHfIfpdmmUDNoNO/GAUGeFPf+q0dF+DtwhJPEMShhzh64X2MeCZcmSO6Kinx0Bvmmz2g==}
@@ -1403,18 +1373,25 @@ packages:
     peerDependencies:
       fastestsmallesttextencoderdecoder: ^1.0.22
 
+  '@solana/codecs-strings@2.0.0-preview.4':
+    resolution: {integrity: sha512-YDbsQePRWm+xnrfS64losSGRg8Wb76cjK1K6qfR8LPmdwIC3787x9uW5/E4icl/k+9nwgbIRXZ65lpF+ucZUnw==}
+    peerDependencies:
+      fastestsmallesttextencoderdecoder: ^1.0.22
+      typescript: '>=5'
+
   '@solana/codecs@2.0.0-preview.2':
     resolution: {integrity: sha512-4HHzCD5+pOSmSB71X6w9ptweV48Zj1Vqhe732+pcAQ2cMNnN0gMPMdDq7j3YwaZDZ7yrILVV/3+HTnfT77t2yA==}
 
   '@solana/codecs@2.0.0-preview.3':
     resolution: {integrity: sha512-uB0GMAY1VrNoJxZ9S4F1RBL57gI+8YwxnV9DD5EP5rU8iD7Wq4wbaB2IPcENyJi7rmzytIjKJg0MI6i2bBr+0w==}
 
+  '@solana/codecs@2.0.0-preview.4':
+    resolution: {integrity: sha512-gLMupqI4i+G4uPi2SGF/Tc1aXcviZF2ybC81x7Q/fARamNSgNOCUUoSCg9nWu1Gid6+UhA7LH80sWI8XjKaRog==}
+    peerDependencies:
+      typescript: '>=5'
+
   '@solana/compat@2.0.0-preview.3':
     resolution: {integrity: sha512-imQ7nkE5qkcgEtC1hVqJtiu0g1GINru4az2UTHv53VXu92SkY/HeW0/DdD6DOwoKLk1aIwEeifeJsL6bpDsV7g==}
-
-  '@solana/errors@2.0.0-preview.1':
-    resolution: {integrity: sha512-mnBWfLVwMH4hxwb4sWZ7G7djQCMsyymjysvUPDiF89LueTBm1hfdxUv8Cy1uUCGsJ3jO3scdPwB4noOgr0rG/g==}
-    hasBin: true
 
   '@solana/errors@2.0.0-preview.2':
     resolution: {integrity: sha512-H2DZ1l3iYF5Rp5pPbJpmmtCauWeQXRJapkDg8epQ8BJ7cA2Ut/QEtC3CMmw/iMTcuS6uemFNLcWvlOfoQhvQuA==}
@@ -1423,6 +1400,12 @@ packages:
   '@solana/errors@2.0.0-preview.3':
     resolution: {integrity: sha512-IZAUMcKaV3Hn0QTfzlGmVsDaH1mVUq0uURJi+tm8K3n37cKrvXyS2GQsHtIMRaLdOVp1IbTtIc5YF3+qATlpyw==}
     hasBin: true
+
+  '@solana/errors@2.0.0-preview.4':
+    resolution: {integrity: sha512-kadtlbRv2LCWr8A9V22On15Us7Nn8BvqNaOB4hXsTB3O0fU40D1ru2l+cReqLcRPij4znqlRzW9Xi0m6J5DIhA==}
+    hasBin: true
+    peerDependencies:
+      typescript: '>=5'
 
   '@solana/eslint-config-solana@3.0.3':
     resolution: {integrity: sha512-yTaeCbOBwjmK4oUkknixOpwOzzAK8+4YWvJEJFNHuueESetieDnAeEHV7rzJllFgHEWa9nXps9Q3aD4/XJp71A==}
@@ -1454,6 +1437,11 @@ packages:
 
   '@solana/options@2.0.0-preview.3':
     resolution: {integrity: sha512-tT5O1CCJVE+rzo4VeeivYLNUL4L/2BjIeiy0MRh04lPxieiR346vUOPC1uCWGD6WqyTOOVUL0tsY4saYLmCTtA==}
+
+  '@solana/options@2.0.0-preview.4':
+    resolution: {integrity: sha512-tv2O/Frxql/wSe3jbzi5nVicIWIus/BftH+5ZR+r9r3FO0/htEllZS5Q9XdbmSboHu+St87584JXeDx3xm4jaA==}
+    peerDependencies:
+      typescript: '>=5'
 
   '@solana/programs@2.0.0-preview.3':
     resolution: {integrity: sha512-lGbXyAdoSu9a6GjMK34fUvm2id8dFY++ktOnOfJ9hiJ6JS9nK1CKzJUDNRESdF8B/y9t8Es4YzxF0VlDFy9QnQ==}
@@ -1499,6 +1487,12 @@ packages:
   '@solana/signers@2.0.0-preview.3':
     resolution: {integrity: sha512-j9k8KrivoFMxuNk9+vgDxRLXQzC+ZwDzUntfqaNhg6T6TqIiT9NITrQO5SqDfv1/Rj1nw+JLrtl8S1nrYR9w/A==}
 
+  '@solana/spl-token-group@0.0.5':
+    resolution: {integrity: sha512-CLJnWEcdoUBpQJfx9WEbX3h6nTdNiUzswfFdkABUik7HVwSNA98u5AYvBVK2H93d9PGMOHAak2lHW9xr+zAJGQ==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      '@solana/web3.js': ^1.94.0
+
   '@solana/spl-token-metadata@0.1.4':
     resolution: {integrity: sha512-N3gZ8DlW6NWDV28+vCCDJoTqaCZiF/jDUnk3o8GRkAFzHObiR60Bs1gXHBa8zCPdvOwiG6Z3dg5pg7+RW6XNsQ==}
     engines: {node: '>=16'}
@@ -1518,6 +1512,12 @@ packages:
     engines: {node: '>=16'}
     peerDependencies:
       '@solana/web3.js': ^1.88.0
+
+  '@solana/spl-token@0.4.8':
+    resolution: {integrity: sha512-RO0JD9vPRi4LsAbMUdNbDJ5/cv2z11MGhtAvFeRzT4+hAGE/FUzRi0tkkWtuCfSIU3twC6CtmAihRp/+XXjWsA==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      '@solana/web3.js': ^1.94.0
 
   '@solana/spl-type-length-value@0.1.0':
     resolution: {integrity: sha512-JBMGB0oR4lPttOZ5XiUGyvylwLQjt1CPJa6qQ5oM+MBCndfjz2TKKkw0eATlLLcYmq1jBVsNlJ2cD6ns2GR7lA==}
@@ -1584,11 +1584,11 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@18.19.42':
-    resolution: {integrity: sha512-d2ZFc/3lnK2YCYhos8iaNIYu9Vfhr92nHiyJHRltXWjXUBjEE+A4I58Tdbnw4VhggSW+2j5y5gTrLs4biNnubg==}
+  '@types/node@18.19.44':
+    resolution: {integrity: sha512-ZsbGerYg72WMXUIE9fYxtvfzLEuq6q8mKERdWFnqTmOvudMxnz+CBNRoOwJ2kNpFOncrKjT1hZwxjlFgQ9qvQA==}
 
-  '@types/node@22.0.2':
-    resolution: {integrity: sha512-yPL6DyFwY5PiMVEwymNeqUTKsDczQBJ/5T7W/46RwLU/VH+AA8aT5TZkvBviLKLbbm0hlfftEkGrNzfRk/fofQ==}
+  '@types/node@22.2.0':
+    resolution: {integrity: sha512-bm6EG6/pCpkxDf/0gDNDdtDILMOHgaQBVOJGdwsqClnxA3xL6jtMv76rLBc006RVMWbmaf0xbmom4Z/5o2nRkQ==}
 
   '@types/ps-tree@1.1.6':
     resolution: {integrity: sha512-PtrlVaOaI44/3pl3cvnlK+GxOM3re2526TJvPvh7W+keHIXdV4TE0ylpPBAcvFQCbGitaTXwL9u+RF7qtVeazQ==}
@@ -2734,8 +2734,8 @@ packages:
   for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
 
-  foreground-child@3.2.1:
-    resolution: {integrity: sha512-PXUUyLqrR2XCWICfv6ukppP96sdFwWbNEnfEMt7jNsISjMsvaLNinAHNDYyvkyU+SZG2BTSbT5NjG+vZslfGTA==}
+  foreground-child@3.3.0:
+    resolution: {integrity: sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==}
     engines: {node: '>=14'}
 
   form-data@4.0.0:
@@ -3189,8 +3189,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  kinobi@0.20.6:
-    resolution: {integrity: sha512-OkmX31hdIivV6BXf4Rl+hHfZw2pySSwV1Ub3fYnXDGHCWJv7B498fI0sDl1FRoQHv/D8LlVgDqkAOKmptJvfsA==}
+  kinobi@0.20.4:
+    resolution: {integrity: sha512-/EkPQV1jVK4PkSWbdFb12EO7QMMkhNaoVaA0Le6MheCcnCHcWlLsz4Un/5eqSa/NNM8kCivGsEg/n9qDeKddTA==}
 
   lazy-ass@1.6.0:
     resolution: {integrity: sha512-cc8oEVoctTvsFZ/Oje/kGnHbpWHYBe8IAJe4C0QNc3t8uM/0Y8+erSz/7Y1ALuXTEZTMvxXwO6YbX1ey3ujiZw==}
@@ -3244,9 +3244,6 @@ packages:
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
-
-  make-synchronized@0.2.9:
-    resolution: {integrity: sha512-4wczOs8SLuEdpEvp3vGo83wh8rjJ78UsIk7DIX5fxdfmfMJGog4bQzxfvOwq7Q3yCHLC4jp1urPHIxRS/A93gA==}
 
   map-stream@0.1.0:
     resolution: {integrity: sha512-CkYQrPYZfWnu/DAmVCpTSX/xHpKZ80eKh2lAkyA6AJTef6bW+6JpbQZN5rofum7da+SyN1bi5ctTm+lTfcCW3g==}
@@ -3731,8 +3728,8 @@ packages:
   ripemd160@2.0.2:
     resolution: {integrity: sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==}
 
-  rollup@4.19.2:
-    resolution: {integrity: sha512-6/jgnN1svF9PjNYJ4ya3l+cqutg49vOZ4rVgsDKxdl+5gpGPnByFXWGyfH9YGx9i3nfBwSu1Iyu6vGwFFA0BdQ==}
+  rollup@4.20.0:
+    resolution: {integrity: sha512-6rbWBChcnSGzIlXeIdNIZTopKYad8ZG8ajhl78lGRLsI2rX8IkaotQhVas2Ma+GPxJav19wrSzvRvuiv0YKzWw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -4062,8 +4059,8 @@ packages:
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
-  tsup@8.2.3:
-    resolution: {integrity: sha512-6YNT44oUfXRbZuSMNmN36GzwPPIlD2wBccY7looM2fkTcxkf2NEmwr3OZuDZoySklnrIG4hoEtzy8yUXYOqNcg==}
+  tsup@8.2.4:
+    resolution: {integrity: sha512-akpCPePnBnC/CXgRrcy72ZSntgIEUa1jN0oJbbvpALWKNOz1B7aM+UVDWGRGIO/T/PZugAESWDJUAb5FD48o8Q==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -4148,11 +4145,11 @@ packages:
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
-  undici-types@6.11.1:
-    resolution: {integrity: sha512-mIDEX2ek50x0OlRgxryxsenE5XaQD4on5U2inY7RApK3SOJpofyw7uW2AyfMKkhAxXIceo2DeWGVGwyvng1GNQ==}
+  undici-types@6.13.0:
+    resolution: {integrity: sha512-xtFJHudx8S2DSoujjMd1WeWvn7KKWFRESZTMeL1RptAYERu29D6jphMjjY+vn96jvN3kVPDNxU/E13VTaXj6jg==}
 
-  undici-types@6.19.5:
-    resolution: {integrity: sha512-VQUzGd+K73uDi/pTqzDBbxZneciOuMRjF0r/Lep2zr/GOnU+cUvfgRu4T5k4TWJfpGdSK5nrzVDoQVoEIAFbmg==}
+  undici-types@6.19.6:
+    resolution: {integrity: sha512-e/vggGopEfTKSvj4ihnOLTsqhrKRN3LeO6qSN/GxohhuRv8qH9bNQ4B8W7e/vFL+0XTnmHPB4/kegunZGA4Org==}
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
@@ -4799,59 +4796,51 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kinobi-so/errors@0.20.6':
+  '@kinobi-so/errors@0.20.4':
     dependencies:
-      '@kinobi-so/node-types': 0.20.6
+      '@kinobi-so/node-types': 0.20.4
       chalk: 5.3.0
       commander: 12.1.0
 
-  '@kinobi-so/errors@0.21.0':
+  '@kinobi-so/errors@0.20.5':
     dependencies:
-      '@kinobi-so/node-types': 0.21.0
+      '@kinobi-so/node-types': 0.20.5
       chalk: 5.3.0
       commander: 12.1.0
 
-  '@kinobi-so/node-types@0.20.6': {}
+  '@kinobi-so/node-types@0.20.4': {}
 
-  '@kinobi-so/node-types@0.21.0': {}
+  '@kinobi-so/node-types@0.20.5': {}
 
-  '@kinobi-so/nodes-from-anchor@0.20.8':
+  '@kinobi-so/nodes-from-anchor@0.20.7':
     dependencies:
-      '@kinobi-so/errors': 0.20.6
-      '@kinobi-so/nodes': 0.20.6
-      '@kinobi-so/visitors': 0.20.6
+      '@kinobi-so/errors': 0.20.5
+      '@kinobi-so/nodes': 0.20.5
+      '@kinobi-so/visitors': 0.20.5
       '@noble/hashes': 1.4.0
 
-  '@kinobi-so/nodes-from-anchor@0.20.9':
+  '@kinobi-so/nodes@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
-      '@kinobi-so/visitors': 0.21.0
-      '@noble/hashes': 1.4.0
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/node-types': 0.20.4
 
-  '@kinobi-so/nodes@0.20.6':
+  '@kinobi-so/nodes@0.20.5':
     dependencies:
-      '@kinobi-so/errors': 0.20.6
-      '@kinobi-so/node-types': 0.20.6
+      '@kinobi-so/errors': 0.20.5
+      '@kinobi-so/node-types': 0.20.5
 
-  '@kinobi-so/nodes@0.21.0':
+  '@kinobi-so/renderers-core@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/node-types': 0.21.0
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/visitors-core': 0.20.4
 
-  '@kinobi-so/renderers-core@0.20.6':
+  '@kinobi-so/renderers-js@0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
-      '@kinobi-so/errors': 0.20.6
-      '@kinobi-so/nodes': 0.20.6
-      '@kinobi-so/visitors-core': 0.20.6
-
-  '@kinobi-so/renderers-js@0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)':
-    dependencies:
-      '@kinobi-so/errors': 0.20.6
-      '@kinobi-so/nodes': 0.20.6
-      '@kinobi-so/nodes-from-anchor': 0.20.8
-      '@kinobi-so/renderers-core': 0.20.6
-      '@kinobi-so/visitors-core': 0.20.6
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/renderers-core': 0.20.4
+      '@kinobi-so/visitors-core': 0.20.4
       '@solana/codecs-strings': 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
       nunjucks: 3.2.4(chokidar@3.6.0)
       prettier: 3.3.3
@@ -4859,35 +4848,35 @@ snapshots:
       - chokidar
       - fastestsmallesttextencoderdecoder
 
-  '@kinobi-so/validators@0.20.6':
+  '@kinobi-so/validators@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.20.6
-      '@kinobi-so/nodes': 0.20.6
-      '@kinobi-so/visitors-core': 0.20.6
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/visitors-core': 0.20.4
 
-  '@kinobi-so/visitors-core@0.20.6':
+  '@kinobi-so/visitors-core@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.20.6
-      '@kinobi-so/nodes': 0.20.6
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
       json-stable-stringify: 1.1.1
 
-  '@kinobi-so/visitors-core@0.21.0':
+  '@kinobi-so/visitors-core@0.20.5':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
+      '@kinobi-so/errors': 0.20.5
+      '@kinobi-so/nodes': 0.20.5
       json-stable-stringify: 1.1.1
 
-  '@kinobi-so/visitors@0.20.6':
+  '@kinobi-so/visitors@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.20.6
-      '@kinobi-so/nodes': 0.20.6
-      '@kinobi-so/visitors-core': 0.20.6
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/visitors-core': 0.20.4
 
-  '@kinobi-so/visitors@0.21.0':
+  '@kinobi-so/visitors@0.20.5':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
-      '@kinobi-so/visitors-core': 0.21.0
+      '@kinobi-so/errors': 0.20.5
+      '@kinobi-so/nodes': 0.20.5
+      '@kinobi-so/visitors-core': 0.20.5
 
   '@mapbox/node-pre-gyp@1.0.11':
     dependencies:
@@ -4969,19 +4958,6 @@ snapshots:
       - supports-color
 
   '@metaplex-foundation/cusper@0.0.2': {}
-
-  '@metaplex-foundation/kinobi@0.18.5(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)':
-    dependencies:
-      '@noble/hashes': 1.4.0
-      '@prettier/sync': 0.5.2(prettier@3.3.3)
-      '@solana/codecs-strings': 2.0.0-preview.1(fastestsmallesttextencoderdecoder@1.0.22)
-      chalk: 4.1.2
-      json-stable-stringify: 1.1.1
-      nunjucks: 3.2.4(chokidar@3.6.0)
-      prettier: 3.3.3
-    transitivePeerDependencies:
-      - chokidar
-      - fastestsmallesttextencoderdecoder
 
   '@metaplex-foundation/mpl-token-metadata@2.13.0(bufferutil@4.0.8)(fastestsmallesttextencoderdecoder@1.0.22)(utf-8-validate@5.0.10)':
     dependencies:
@@ -5112,7 +5088,7 @@ snapshots:
       depd: 2.0.0
       mustache: 4.2.0
 
-  '@noble/curves@1.4.2':
+  '@noble/curves@1.5.0':
     dependencies:
       '@noble/hashes': 1.4.0
 
@@ -5202,11 +5178,6 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@prettier/sync@0.5.2(prettier@3.3.3)':
-    dependencies:
-      make-synchronized: 0.2.9
-      prettier: 3.3.3
-
   '@randlabs/communication-bridge@1.0.1':
     optional: true
 
@@ -5220,52 +5191,52 @@ snapshots:
       estree-walker: 2.0.2
       picomatch: 2.3.1
 
-  '@rollup/rollup-android-arm-eabi@4.19.2':
+  '@rollup/rollup-android-arm-eabi@4.20.0':
     optional: true
 
-  '@rollup/rollup-android-arm64@4.19.2':
+  '@rollup/rollup-android-arm64@4.20.0':
     optional: true
 
-  '@rollup/rollup-darwin-arm64@4.19.2':
+  '@rollup/rollup-darwin-arm64@4.20.0':
     optional: true
 
-  '@rollup/rollup-darwin-x64@4.19.2':
+  '@rollup/rollup-darwin-x64@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-arm-gnueabihf@4.19.2':
+  '@rollup/rollup-linux-arm-gnueabihf@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-arm-musleabihf@4.19.2':
+  '@rollup/rollup-linux-arm-musleabihf@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-arm64-gnu@4.19.2':
+  '@rollup/rollup-linux-arm64-gnu@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-arm64-musl@4.19.2':
+  '@rollup/rollup-linux-arm64-musl@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-powerpc64le-gnu@4.19.2':
+  '@rollup/rollup-linux-powerpc64le-gnu@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-riscv64-gnu@4.19.2':
+  '@rollup/rollup-linux-riscv64-gnu@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-s390x-gnu@4.19.2':
+  '@rollup/rollup-linux-s390x-gnu@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-x64-gnu@4.19.2':
+  '@rollup/rollup-linux-x64-gnu@4.20.0':
     optional: true
 
-  '@rollup/rollup-linux-x64-musl@4.19.2':
+  '@rollup/rollup-linux-x64-musl@4.20.0':
     optional: true
 
-  '@rollup/rollup-win32-arm64-msvc@4.19.2':
+  '@rollup/rollup-win32-arm64-msvc@4.20.0':
     optional: true
 
-  '@rollup/rollup-win32-ia32-msvc@4.19.2':
+  '@rollup/rollup-win32-ia32-msvc@4.20.0':
     optional: true
 
-  '@rollup/rollup-win32-x64-msvc@4.19.2':
+  '@rollup/rollup-win32-x64-msvc@4.20.0':
     optional: true
 
   '@scure/base@1.1.7': {}
@@ -5300,10 +5271,6 @@ snapshots:
       '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
   '@solana-program/system@0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
-    dependencies:
-      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-
-  '@solana-program/token@0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
     dependencies:
       '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
@@ -5354,10 +5321,6 @@ snapshots:
     dependencies:
       buffer: 6.0.3
 
-  '@solana/codecs-core@2.0.0-preview.1':
-    dependencies:
-      '@solana/errors': 2.0.0-preview.1
-
   '@solana/codecs-core@2.0.0-preview.2':
     dependencies:
       '@solana/errors': 2.0.0-preview.2
@@ -5365,6 +5328,11 @@ snapshots:
   '@solana/codecs-core@2.0.0-preview.3':
     dependencies:
       '@solana/errors': 2.0.0-preview.3
+
+  '@solana/codecs-core@2.0.0-preview.4(typescript@5.5.4)':
+    dependencies:
+      '@solana/errors': 2.0.0-preview.4(typescript@5.5.4)
+      typescript: 5.5.4
 
   '@solana/codecs-data-structures@2.0.0-preview.2':
     dependencies:
@@ -5378,10 +5346,12 @@ snapshots:
       '@solana/codecs-numbers': 2.0.0-preview.3
       '@solana/errors': 2.0.0-preview.3
 
-  '@solana/codecs-numbers@2.0.0-preview.1':
+  '@solana/codecs-data-structures@2.0.0-preview.4(typescript@5.5.4)':
     dependencies:
-      '@solana/codecs-core': 2.0.0-preview.1
-      '@solana/errors': 2.0.0-preview.1
+      '@solana/codecs-core': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/codecs-numbers': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/errors': 2.0.0-preview.4(typescript@5.5.4)
+      typescript: 5.5.4
 
   '@solana/codecs-numbers@2.0.0-preview.2':
     dependencies:
@@ -5393,12 +5363,11 @@ snapshots:
       '@solana/codecs-core': 2.0.0-preview.3
       '@solana/errors': 2.0.0-preview.3
 
-  '@solana/codecs-strings@2.0.0-preview.1(fastestsmallesttextencoderdecoder@1.0.22)':
+  '@solana/codecs-numbers@2.0.0-preview.4(typescript@5.5.4)':
     dependencies:
-      '@solana/codecs-core': 2.0.0-preview.1
-      '@solana/codecs-numbers': 2.0.0-preview.1
-      '@solana/errors': 2.0.0-preview.1
-      fastestsmallesttextencoderdecoder: 1.0.22
+      '@solana/codecs-core': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/errors': 2.0.0-preview.4(typescript@5.5.4)
+      typescript: 5.5.4
 
   '@solana/codecs-strings@2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
@@ -5413,6 +5382,14 @@ snapshots:
       '@solana/codecs-numbers': 2.0.0-preview.3
       '@solana/errors': 2.0.0-preview.3
       fastestsmallesttextencoderdecoder: 1.0.22
+
+  '@solana/codecs-strings@2.0.0-preview.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)':
+    dependencies:
+      '@solana/codecs-core': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/codecs-numbers': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/errors': 2.0.0-preview.4(typescript@5.5.4)
+      fastestsmallesttextencoderdecoder: 1.0.22
+      typescript: 5.5.4
 
   '@solana/codecs@2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
@@ -5434,6 +5411,17 @@ snapshots:
     transitivePeerDependencies:
       - fastestsmallesttextencoderdecoder
 
+  '@solana/codecs@2.0.0-preview.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)':
+    dependencies:
+      '@solana/codecs-core': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/codecs-data-structures': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/codecs-numbers': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/codecs-strings': 2.0.0-preview.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+      '@solana/options': 2.0.0-preview.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - fastestsmallesttextencoderdecoder
+
   '@solana/compat@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
       '@solana/addresses': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)
@@ -5442,11 +5430,6 @@ snapshots:
       '@solana/transactions': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)
     transitivePeerDependencies:
       - fastestsmallesttextencoderdecoder
-
-  '@solana/errors@2.0.0-preview.1':
-    dependencies:
-      chalk: 5.3.0
-      commander: 12.1.0
 
   '@solana/errors@2.0.0-preview.2':
     dependencies:
@@ -5457,6 +5440,12 @@ snapshots:
     dependencies:
       chalk: 5.3.0
       commander: 12.1.0
+
+  '@solana/errors@2.0.0-preview.4(typescript@5.5.4)':
+    dependencies:
+      chalk: 5.3.0
+      commander: 12.1.0
+      typescript: 5.5.4
 
   '@solana/eslint-config-solana@3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)':
     dependencies:
@@ -5511,6 +5500,17 @@ snapshots:
       '@solana/codecs-numbers': 2.0.0-preview.3
       '@solana/codecs-strings': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)
       '@solana/errors': 2.0.0-preview.3
+    transitivePeerDependencies:
+      - fastestsmallesttextencoderdecoder
+
+  '@solana/options@2.0.0-preview.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)':
+    dependencies:
+      '@solana/codecs-core': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/codecs-data-structures': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/codecs-numbers': 2.0.0-preview.4(typescript@5.5.4)
+      '@solana/codecs-strings': 2.0.0-preview.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+      '@solana/errors': 2.0.0-preview.4(typescript@5.5.4)
+      typescript: 5.5.4
     transitivePeerDependencies:
       - fastestsmallesttextencoderdecoder
 
@@ -5616,7 +5616,7 @@ snapshots:
     dependencies:
       '@solana/errors': 2.0.0-preview.3
       '@solana/rpc-spec': 2.0.0-preview.3
-      undici-types: 6.19.5
+      undici-types: 6.19.6
 
   '@solana/rpc-types@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
@@ -5651,6 +5651,15 @@ snapshots:
       '@solana/transactions': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)
     transitivePeerDependencies:
       - fastestsmallesttextencoderdecoder
+
+  '@solana/spl-token-group@0.0.5(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)':
+    dependencies:
+      '@solana/codecs': 2.0.0-preview.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+      '@solana/spl-type-length-value': 0.1.0
+      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+    transitivePeerDependencies:
+      - fastestsmallesttextencoderdecoder
+      - typescript
 
   '@solana/spl-token-metadata@0.1.4(@solana/web3.js@1.95.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
@@ -5697,10 +5706,11 @@ snapshots:
       - fastestsmallesttextencoderdecoder
       - utf-8-validate
 
-  '@solana/spl-token@0.3.11(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(fastestsmallesttextencoderdecoder@1.0.22)(utf-8-validate@5.0.10)':
+  '@solana/spl-token@0.4.8(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)(utf-8-validate@5.0.10)':
     dependencies:
       '@solana/buffer-layout': 4.0.1
       '@solana/buffer-layout-utils': 0.2.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@solana/spl-token-group': 0.0.5(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
       '@solana/spl-token-metadata': 0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))(fastestsmallesttextencoderdecoder@1.0.22)
       '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       buffer: 6.0.3
@@ -5708,6 +5718,7 @@ snapshots:
       - bufferutil
       - encoding
       - fastestsmallesttextencoderdecoder
+      - typescript
       - utf-8-validate
 
   '@solana/spl-type-length-value@0.1.0':
@@ -5776,7 +5787,7 @@ snapshots:
   '@solana/web3.js@1.95.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
     dependencies:
       '@babel/runtime': 7.25.0
-      '@noble/curves': 1.4.2
+      '@noble/curves': 1.5.0
       '@noble/hashes': 1.4.0
       '@solana/buffer-layout': 4.0.1
       agentkeepalive: 4.5.0
@@ -5851,7 +5862,7 @@ snapshots:
 
   '@types/bn.js@5.1.5':
     dependencies:
-      '@types/node': 22.0.2
+      '@types/node': 22.2.0
 
   '@types/connect@3.4.38':
     dependencies:
@@ -5861,14 +5872,14 @@ snapshots:
 
   '@types/cors@2.8.17':
     dependencies:
-      '@types/node': 22.0.2
+      '@types/node': 22.2.0
 
   '@types/estree@1.0.5': {}
 
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 18.19.42
+      '@types/node': 18.19.44
 
   '@types/json-schema@7.0.15': {}
 
@@ -5876,7 +5887,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 18.19.42
+      '@types/node': 18.19.44
 
   '@types/minimist@1.2.5': {}
 
@@ -5884,13 +5895,13 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@18.19.42':
+  '@types/node@18.19.44':
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@22.0.2':
+  '@types/node@22.2.0':
     dependencies:
-      undici-types: 6.11.1
+      undici-types: 6.13.0
 
   '@types/ps-tree@1.1.6': {}
 
@@ -5906,7 +5917,7 @@ snapshots:
 
   '@types/ws@8.5.12':
     dependencies:
-      '@types/node': 22.0.2
+      '@types/node': 22.2.0
 
   '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)':
     dependencies:
@@ -6905,7 +6916,7 @@ snapshots:
     dependencies:
       '@types/cookie': 0.4.1
       '@types/cors': 2.8.17
-      '@types/node': 22.0.2
+      '@types/node': 22.2.0
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.4.2
@@ -7379,7 +7390,7 @@ snapshots:
     dependencies:
       is-callable: 1.2.7
 
-  foreground-child@3.2.1:
+  foreground-child@3.3.0:
     dependencies:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
@@ -7466,7 +7477,7 @@ snapshots:
 
   glob@10.4.5:
     dependencies:
-      foreground-child: 3.2.1
+      foreground-child: 3.3.0
       jackspeak: 3.4.3
       minimatch: 9.0.5
       minipass: 7.1.2
@@ -7879,12 +7890,12 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kinobi@0.20.6:
+  kinobi@0.20.4:
     dependencies:
-      '@kinobi-so/errors': 0.20.6
-      '@kinobi-so/nodes': 0.20.6
-      '@kinobi-so/validators': 0.20.6
-      '@kinobi-so/visitors': 0.20.6
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/validators': 0.20.4
+      '@kinobi-so/visitors': 0.20.4
 
   lazy-ass@1.6.0: {}
 
@@ -7927,8 +7938,6 @@ snapshots:
   make-dir@3.1.0:
     dependencies:
       semver: 6.3.1
-
-  make-synchronized@0.2.9: {}
 
   map-stream@0.1.0: {}
 
@@ -8358,26 +8367,26 @@ snapshots:
       hash-base: 3.1.0
       inherits: 2.0.4
 
-  rollup@4.19.2:
+  rollup@4.20.0:
     dependencies:
       '@types/estree': 1.0.5
     optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.19.2
-      '@rollup/rollup-android-arm64': 4.19.2
-      '@rollup/rollup-darwin-arm64': 4.19.2
-      '@rollup/rollup-darwin-x64': 4.19.2
-      '@rollup/rollup-linux-arm-gnueabihf': 4.19.2
-      '@rollup/rollup-linux-arm-musleabihf': 4.19.2
-      '@rollup/rollup-linux-arm64-gnu': 4.19.2
-      '@rollup/rollup-linux-arm64-musl': 4.19.2
-      '@rollup/rollup-linux-powerpc64le-gnu': 4.19.2
-      '@rollup/rollup-linux-riscv64-gnu': 4.19.2
-      '@rollup/rollup-linux-s390x-gnu': 4.19.2
-      '@rollup/rollup-linux-x64-gnu': 4.19.2
-      '@rollup/rollup-linux-x64-musl': 4.19.2
-      '@rollup/rollup-win32-arm64-msvc': 4.19.2
-      '@rollup/rollup-win32-ia32-msvc': 4.19.2
-      '@rollup/rollup-win32-x64-msvc': 4.19.2
+      '@rollup/rollup-android-arm-eabi': 4.20.0
+      '@rollup/rollup-android-arm64': 4.20.0
+      '@rollup/rollup-darwin-arm64': 4.20.0
+      '@rollup/rollup-darwin-x64': 4.20.0
+      '@rollup/rollup-linux-arm-gnueabihf': 4.20.0
+      '@rollup/rollup-linux-arm-musleabihf': 4.20.0
+      '@rollup/rollup-linux-arm64-gnu': 4.20.0
+      '@rollup/rollup-linux-arm64-musl': 4.20.0
+      '@rollup/rollup-linux-powerpc64le-gnu': 4.20.0
+      '@rollup/rollup-linux-riscv64-gnu': 4.20.0
+      '@rollup/rollup-linux-s390x-gnu': 4.20.0
+      '@rollup/rollup-linux-x64-gnu': 4.20.0
+      '@rollup/rollup-linux-x64-musl': 4.20.0
+      '@rollup/rollup-win32-arm64-msvc': 4.20.0
+      '@rollup/rollup-win32-ia32-msvc': 4.20.0
+      '@rollup/rollup-win32-x64-msvc': 4.20.0
       fsevents: 2.3.3
 
   rpc-websockets@9.0.2:
@@ -8753,7 +8762,7 @@ snapshots:
 
   tslib@2.6.3: {}
 
-  tsup@8.2.3(typescript@5.5.4)(yaml@2.5.0):
+  tsup@8.2.4(typescript@5.5.4)(yaml@2.5.0):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.23.0)
       cac: 6.7.14
@@ -8767,7 +8776,7 @@ snapshots:
       picocolors: 1.0.1
       postcss-load-config: 6.0.1(yaml@2.5.0)
       resolve-from: 5.0.0
-      rollup: 4.19.2
+      rollup: 4.20.0
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tree-kill: 1.2.2
@@ -8853,9 +8862,9 @@ snapshots:
 
   undici-types@5.26.5: {}
 
-  undici-types@6.11.1: {}
+  undici-types@6.13.0: {}
 
-  undici-types@6.19.5: {}
+  undici-types@6.19.6: {}
 
   unicorn-magic@0.1.0: {}
 
@@ -9038,7 +9047,7 @@ snapshots:
     dependencies:
       '@types/fs-extra': 11.0.4
       '@types/minimist': 1.2.5
-      '@types/node': 18.19.42
+      '@types/node': 18.19.44
       '@types/ps-tree': 1.1.6
       '@types/which': 3.0.4
       chalk: 5.3.0
