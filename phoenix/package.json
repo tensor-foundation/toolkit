@@ -1,7 +1,7 @@
 {
-  "name": "@tensor-foundation/wen-new-standard",
-  "version": "0.1.1",
-  "description": "Toolkit for Wen New Standard program",
+  "name": "@tensor-foundation/phoenix",
+  "version": "0.1.0",
+  "description": "Toolkit for the Phoenix V1 program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
   "main": "./dist/src/index.js",
@@ -40,7 +40,8 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana-program/token": "^0.2.1"
+    "@solana-program/token": "^0.2.1",
+    "@solana/web3.js": "2.0.0-preview.3"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
