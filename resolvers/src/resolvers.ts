@@ -276,20 +276,6 @@ export const resolveOwnerAta = async ({
   };
 };
 
-export const resolveOwnerCurrencyAta = async ({
-  accounts,
-}: {
-  accounts: Record<string, ResolvedAccount>;
-}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
-  return {
-    value: await findAssociatedTokenAccountPda({
-      owner: expectAddress(accounts.owner?.value),
-      mint: expectAddress(accounts.currency?.value),
-      tokenProgram: expectAddress(accounts.tokenProgram?.value),
-    }),
-  };
-};
-
 export const resolveBuyerAta = async ({
   accounts,
 }: {
@@ -360,6 +346,20 @@ export const resolvePoolAta = async ({
   };
 };
 
+export const resolveOwnerCurrencyAta = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findAssociatedTokenAccountPda({
+      owner: expectAddress(accounts.owner?.value),
+      mint: expectAddress(accounts.currency?.value),
+      tokenProgram: expectAddress(accounts.tokenProgram?.value),
+    }),
+  };
+};
+
 export const resolveFeeVaultCurrencyAta = async ({
   accounts,
 }: {
@@ -370,6 +370,68 @@ export const resolveFeeVaultCurrencyAta = async ({
       owner: expectAddress(accounts.feeVault?.value),
       mint: expectAddress(accounts.currency?.value),
       tokenProgram: expectAddress(accounts.tokenProgram?.value),
+    }),
+  };
+};
+
+export const resolvePayerCurrencyAta = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findAssociatedTokenAccountPda({
+      owner: expectAddress(accounts.payer?.value),
+      mint: expectAddress(accounts.currency?.value),
+      tokenProgram: expectAddress(accounts.currencyTokenProgram?.value),
+    }),
+  };
+};
+
+export const resolveDistributionCurrencyAta = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findAssociatedTokenAccountPda({
+      owner: expectAddress(accounts.distribution?.value),
+      mint: expectAddress(accounts.currency?.value),
+      tokenProgram: expectAddress(accounts.currencyTokenProgram?.value),
+    }),
+  };
+};
+
+export const resolveMakerBrokerCurrencyAta = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  if (!accounts.makerBroker.value) {
+    return { value: null };
+  }
+  return {
+    value: await findAssociatedTokenAccountPda({
+      owner: expectAddress(accounts.makerBroker?.value),
+      mint: expectAddress(accounts.currency?.value),
+      tokenProgram: expectAddress(accounts.currencyTokenProgram?.value),
+    }),
+  };
+};
+
+export const resolveTakerBrokerCurrencyAta = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  if (!accounts.takerBroker.value) {
+    return { value: null };
+  }
+  return {
+    value: await findAssociatedTokenAccountPda({
+      owner: expectAddress(accounts.takerBroker?.value),
+      mint: expectAddress(accounts.currency?.value),
+      tokenProgram: expectAddress(accounts.currencyTokenProgram?.value),
     }),
   };
 };

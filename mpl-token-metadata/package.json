@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/mpl-token-metadata",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Toolkit for the Metaplex Token Metadata program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -40,9 +40,9 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana-program/token": "^0.2.1",
     "@tensor-foundation/test-helpers": "workspace:*",
-    "@solana/web3.js": "2.0.0-preview.3"
+    "@solana/web3.js": "2.0.0-preview.3",
+    "@solana-program/token": "^0.2.1"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",

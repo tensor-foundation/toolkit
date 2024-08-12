@@ -40,7 +40,6 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana-program/token": "^0.2.1",
     "@tensor-foundation/test-helpers": "workspace:*",
     "@tensor-foundation/mpl-token-metadata": "workspace:*",
     "@solana/web3.js": "2.0.0-preview.3",
