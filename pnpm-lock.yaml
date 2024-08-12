@@ -141,27 +141,9 @@ importers:
 
   mpl-bubblegum:
     dependencies:
-      '@solana-program/compute-budget':
-        specifier: 0.3.2
-        version: 0.3.2(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
-      '@solana-program/system':
-        specifier: 0.3.3
-        version: 0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
-      '@solana/web3.js':
-        specifier: 2.0.0-preview.3
-        version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-      '@tensor-foundation/mpl-token-metadata':
-        specifier: workspace:*
-        version: link:../mpl-token-metadata
-      '@tensor-foundation/test-helpers':
-        specifier: workspace:*
-        version: link:../test-helpers
-      js-sha3:
-        specifier: ^0.9.3
-        version: 0.9.3
-      typescript-collections:
-        specifier: ^1.3.3
-        version: 1.3.3
+      '@solana-program/token':
+        specifier: ^0.2.1
+        version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -170,20 +152,20 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.9
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.21.1
-        version: 0.21.2(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
-      '@solana-program/token':
-        specifier: 0.1.4
-        version: 0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/eslint-config-solana':
         specifier: ^3.0.0
         version: 3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
+      '@solana/web3.js':
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@solana/webcrypto-ed25519-polyfill':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3
@@ -200,8 +182,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.21.0
-        version: 0.21.0
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -226,9 +208,9 @@ importers:
 
   mpl-core:
     dependencies:
-      '@tensor-foundation/test-helpers':
-        specifier: workspace:*
-        version: link:../test-helpers
+      '@solana-program/token':
+        specifier: ^0.2.1
+        version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -237,11 +219,11 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.9
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.21.1
-        version: 0.21.2(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
@@ -267,8 +249,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.21.0
-        version: 0.21.0
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -293,12 +275,9 @@ importers:
 
   mpl-token-metadata:
     dependencies:
-      '@solana/web3.js':
-        specifier: 2.0.0-preview.3
-        version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-      '@tensor-foundation/test-helpers':
-        specifier: workspace:*
-        version: link:../test-helpers
+      '@solana-program/token':
+        specifier: ^0.2.1
+        version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -307,20 +286,20 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.9
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.21.1
-        version: 0.21.2(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
-      '@solana-program/token':
-        specifier: 0.1.4
-        version: 0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/eslint-config-solana':
         specifier: ^3.0.0
         version: 3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
+      '@solana/web3.js':
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@solana/webcrypto-ed25519-polyfill':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3
@@ -337,8 +316,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.21.0
-        version: 0.21.0
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -364,11 +343,8 @@ importers:
   phoenix:
     dependencies:
       '@solana-program/token':
-        specifier: 0.1.4
-        version: 0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
-      '@solana/web3.js':
-        specifier: 2.0.0-preview.3
-        version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        specifier: ^0.2.1
+        version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
     devDependencies:
       '@ava/typescript':
         specifier: ^4.1.0
@@ -377,26 +353,23 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.9
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.21.1
-        version: 0.21.2(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
-      '@solana-program/system':
-        specifier: 0.3.3
-        version: 0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/eslint-config-solana':
         specifier: ^3.0.0
         version: 3.0.3(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-jest@27.9.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-react-hooks@4.6.2(eslint@8.57.0))(eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.2.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
+      '@solana/web3.js':
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@solana/webcrypto-ed25519-polyfill':
         specifier: 2.0.0-preview.3
         version: 2.0.0-preview.3
-      '@tensor-foundation/test-helpers':
-        specifier: workspace:*
-        version: link:../test-helpers
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.0.0
         version: 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -410,8 +383,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.21.0
-        version: 0.21.0
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -554,11 +527,11 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.9
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.21.1
-        version: 0.21.2(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
@@ -584,8 +557,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.21.0
-        version: 0.21.0
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -611,7 +584,7 @@ importers:
   wns-distribution:
     dependencies:
       '@solana-program/token':
-        specifier: ^0.2.0
+        specifier: ^0.2.1
         version: 0.2.1(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
     devDependencies:
       '@ava/typescript':
@@ -621,11 +594,11 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5
       '@kinobi-so/nodes-from-anchor':
-        specifier: ^0.20.9
-        version: 0.20.9
+        specifier: 0.20.7
+        version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: ^0.21.1
-        version: 0.21.2(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+        specifier: 0.20.7
+        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
@@ -651,8 +624,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: ^0.21.0
-        version: 0.21.0
+        specifier: 0.20.4
+        version: 0.20.4
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -987,33 +960,49 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@kinobi-so/errors@0.21.0':
-    resolution: {integrity: sha512-7dPK35L/Y01qzekhVHdKAu+lENmHhuwX39rIx3qNJpNPHKi1VCcorLuOJlfT2F9MPPUjv5pZliL5qQ5IsvtNMw==}
+  '@kinobi-so/errors@0.20.4':
+    resolution: {integrity: sha512-5GWQPiqLOngZFxMCTnF0rGsCc9LXUHXX+zBzbXBjhsdyQm8OSFpVFZtwiBkF+jsOBQPrLv26dFlkWJgBiq2jXQ==}
     hasBin: true
 
-  '@kinobi-so/node-types@0.21.0':
-    resolution: {integrity: sha512-UmzjocmsLa1pZ/ExVklGRsWQZNoIvifKBuTEAcpdxlDhg6hmrMWoXwWvRrLI5o7v1WKvTucv7KuM+5GU9UhFDw==}
+  '@kinobi-so/errors@0.20.5':
+    resolution: {integrity: sha512-EoMmMIR787Phz7BOQB7GMKaqKC/mPOyKwxTqzYwV3agoM95ZsU9eN9OFE35zJlGRrQYCAVXKsRoopoa6znoREw==}
+    hasBin: true
 
-  '@kinobi-so/nodes-from-anchor@0.20.9':
-    resolution: {integrity: sha512-xNlwvJek6Hbfi45Unocwq/lT3rFXhmpZcAZmQJMgdIH8E4iAya9ZQ89j4neRQ+C1KVrK9qFJh0SaJvt9xnJQXA==}
+  '@kinobi-so/node-types@0.20.4':
+    resolution: {integrity: sha512-kFFXMC9nSemDj2itNeSj4VR9R6QTz0z7v3niwxHHq9IJ4TFPwpcZAt7aH++SGlCUeHG3iOHC2ZngFMhv+Ks/Fw==}
 
-  '@kinobi-so/nodes@0.21.0':
-    resolution: {integrity: sha512-Z8STFjB3/f9LzK494l6qydkBMsFtnm96YreJjlAg9/DeKNtphimslSvFTF/9qHiGMfOQpOVhQqbWFXpt+PCZiQ==}
+  '@kinobi-so/node-types@0.20.5':
+    resolution: {integrity: sha512-DnZn2UCAEqbl+L89IFfVJK5jwavsvPmFByN1LyErzVE/BJKsaRN2myMQPDDT5fEs6dWdaCDNcVKuvwcz57VjgQ==}
 
-  '@kinobi-so/renderers-core@0.20.7':
-    resolution: {integrity: sha512-KJhU8+UMowO9dDkLhEodAkbRkgSxdfBWeY+DIgOCgXcakt0T140K7OREuaAo9fp12Owf+10SAEGx9AzTNySoHA==}
+  '@kinobi-so/nodes-from-anchor@0.20.7':
+    resolution: {integrity: sha512-4/ZjHCT6UOBRrlaLQghub0/lHFwRca32USEbKRDFHfQcCLZVmGosychvus5J0VHELD6WolcVVszsVPHZ+BjdiA==}
 
-  '@kinobi-so/renderers-js@0.21.2':
-    resolution: {integrity: sha512-G576GAQ10ugmA63EZRlEbv892th37q9ow+AMzZD1vtypRCEJ7znakzySSDG3aeqaZujk2igKXFQTD+FHuY/xPg==}
+  '@kinobi-so/nodes@0.20.4':
+    resolution: {integrity: sha512-zeGOOdOaKbMxqiZWNJx/JVGVWp4mzCkwDp3bG4J+x9+mQ1nQcyuPvHXeHmtBXa9IWp7AScXlyn5HddVzK/8ZRQ==}
 
-  '@kinobi-so/validators@0.21.0':
-    resolution: {integrity: sha512-mpBqgqlto/Wdj6rlf1mqWkyw00rPJw98bkNItXq+ofCEtBsjaMq9lsevCE+IPmfJJYEPFGHGJW4Gb6m/cLmOqw==}
+  '@kinobi-so/nodes@0.20.5':
+    resolution: {integrity: sha512-6cxoTk7qYlBDg+djIHGrBfHewvTRwgKrR4GibdMrpRHODiv19kJusyu4vz1/ZAvlVabnyyiAmQbbAHE3/WdWwg==}
 
-  '@kinobi-so/visitors-core@0.21.0':
-    resolution: {integrity: sha512-m6C/cAy7q7ZAWhByQGo2YnBsbt0qS3Un0lyT4mmPGQt0QFXUDExFipjTvY/NnzZ5lQJ2grvnL04pqLx8V7eiuw==}
+  '@kinobi-so/renderers-core@0.20.4':
+    resolution: {integrity: sha512-feb0Fsw7UIj14JZ2LmHYyosT07K/Jrs7CvNYD2YF4g6WQz9mmy1l8Fa+gpVtoDdSHvfXrgzv8193p0QkRRBWmA==}
 
-  '@kinobi-so/visitors@0.21.0':
-    resolution: {integrity: sha512-gigysLJCfVtNCFkdDMeHGB+1SOvoiQOPUVKxewzOq1wDYVioFmmf4aXfB1GCEslLlMvl63cTJrwvh8bDIZoaSA==}
+  '@kinobi-so/renderers-js@0.20.7':
+    resolution: {integrity: sha512-CRugH3+fpZsXokuyUl8ioq9XzaNotAXB0zvqYQOh/TTho0sb4tkUrx7lYq6R1YAtRIcqkDSp+Dma1agKB7Tbmg==}
+
+  '@kinobi-so/validators@0.20.4':
+    resolution: {integrity: sha512-PyhfM1fgsAPrDgMOB1VjvW+CytPTtLMLB0bSCU+0GRm8IoZ8pj74cIcB5XPjai3N5dU7kDMYz1nZLnCFsoXfLg==}
+
+  '@kinobi-so/visitors-core@0.20.4':
+    resolution: {integrity: sha512-l4LCAOKL35tXn4jDZ4/gNdBeJYB5ACE4lgKQxL6oyII36hPe8pwCihIpjzHKDm9S93o9pKFN76ay5S3NnWANRw==}
+
+  '@kinobi-so/visitors-core@0.20.5':
+    resolution: {integrity: sha512-/huwX+Jhd4Zl1eNS+dsKwYDfZx1tu/n9nLyaWl+8gbEedJ4YFIW1Ay0lxEx3zvaOBx1BXgZCpcLGV7mMOJUtuQ==}
+
+  '@kinobi-so/visitors@0.20.4':
+    resolution: {integrity: sha512-sr+1qiU4sN5OfrVI//RqqHMKl5VapugkO3f/MHXGmFBDWANXJCIMmAXMMARzk/h6v76zswJ+NOHe0C3FLYb1xg==}
+
+  '@kinobi-so/visitors@0.20.5':
+    resolution: {integrity: sha512-XlTzk34I5ExRwHAzl4LsnW1gJyQoHl0fmncMJ1WN3X4PTRj9P2jVi8kYRkrcU6HiPVxkBCgASSmSilt67tuneQ==}
 
   '@mapbox/node-pre-gyp@1.0.11':
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
@@ -1086,8 +1075,8 @@ packages:
   '@near-js/utils@0.0.4':
     resolution: {integrity: sha512-mPUEPJbTCMicGitjEGvQqOe8AS7O4KkRCxqd0xuE/X6gXF1jz1pYMZn4lNUeUz2C84YnVSGLAM0o9zcN6Y4hiA==}
 
-  '@noble/curves@1.4.2':
-    resolution: {integrity: sha512-TavHr8qycMChk8UwMld0ZDRvatedkzWfH8IiaeGCfymOP5i0hSCozz9vHOL0nkwk7HRMlFnAiKpS2jrUmSybcw==}
+  '@noble/curves@1.5.0':
+    resolution: {integrity: sha512-J5EKamIHnKPyClwVrzmaf5wSdQXgdHcPZIZLu3bwnbeCx8/7NPK5q2ZBWF+5FvYGByjiQQsJYX6jfgB2wDPn3A==}
 
   '@noble/ed25519@1.7.3':
     resolution: {integrity: sha512-iR8GBkDt0Q3GyaVcIu7mSsVIqnFbkbRzGLWlvhwunacoLwt4J3swfKhfaM6rN6WY+TBGoYT1GtT1mIh2/jGbRQ==}
@@ -1293,11 +1282,6 @@ packages:
 
   '@solana-program/system@0.3.3':
     resolution: {integrity: sha512-TBR/NjAOn7kt1g1aZcUka6yk+n70/EcXO0cPL+lXCIfzqL5/3u1ko0UOLmdyCrs13jVheI+zeKmyR4Ft1Yz2fQ==}
-    peerDependencies:
-      '@solana/web3.js': 2.0.0-preview.3
-
-  '@solana-program/token@0.1.4':
-    resolution: {integrity: sha512-3+9oVY+jie5cXZQM7s6jLui9vtwXO1F7EOdT7sHg/Xh9NT5J+9xWZUdPbOC5sNU+4V3W6RpVm20gqjX7WKbkLg==}
     peerDependencies:
       '@solana/web3.js': 2.0.0-preview.3
 
@@ -1582,11 +1566,11 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@18.19.43':
-    resolution: {integrity: sha512-Mw/YlgXnyJdEwLoFv2dpuJaDFriX+Pc+0qOBJ57jC1H6cDxIj2xc5yUrdtArDVG0m+KV6622a4p2tenEqB3C/g==}
+  '@types/node@18.19.44':
+    resolution: {integrity: sha512-ZsbGerYg72WMXUIE9fYxtvfzLEuq6q8mKERdWFnqTmOvudMxnz+CBNRoOwJ2kNpFOncrKjT1hZwxjlFgQ9qvQA==}
 
-  '@types/node@22.1.0':
-    resolution: {integrity: sha512-AOmuRF0R2/5j1knA3c6G3HOk523Ga+l+ZXltX8SF1+5oqcXijjfTd8fY3XRZqSihEu9XhtQnKYLmkFaoxgsJHw==}
+  '@types/node@22.2.0':
+    resolution: {integrity: sha512-bm6EG6/pCpkxDf/0gDNDdtDILMOHgaQBVOJGdwsqClnxA3xL6jtMv76rLBc006RVMWbmaf0xbmom4Z/5o2nRkQ==}
 
   '@types/ps-tree@1.1.6':
     resolution: {integrity: sha512-PtrlVaOaI44/3pl3cvnlK+GxOM3re2526TJvPvh7W+keHIXdV4TE0ylpPBAcvFQCbGitaTXwL9u+RF7qtVeazQ==}
@@ -2732,8 +2716,8 @@ packages:
   for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
 
-  foreground-child@3.2.1:
-    resolution: {integrity: sha512-PXUUyLqrR2XCWICfv6ukppP96sdFwWbNEnfEMt7jNsISjMsvaLNinAHNDYyvkyU+SZG2BTSbT5NjG+vZslfGTA==}
+  foreground-child@3.3.0:
+    resolution: {integrity: sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==}
     engines: {node: '>=14'}
 
   form-data@4.0.0:
@@ -3187,8 +3171,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  kinobi@0.21.0:
-    resolution: {integrity: sha512-T71VNh4yS8uSvtNp1FEWhJGygW5/8O82SAlFRlPYsWiwqWH9X3eZwwUthBVH7dfazqs8GLia0rAMEmUP99iwLw==}
+  kinobi@0.20.4:
+    resolution: {integrity: sha512-/EkPQV1jVK4PkSWbdFb12EO7QMMkhNaoVaA0Le6MheCcnCHcWlLsz4Un/5eqSa/NNM8kCivGsEg/n9qDeKddTA==}
 
   lazy-ass@1.6.0:
     resolution: {integrity: sha512-cc8oEVoctTvsFZ/Oje/kGnHbpWHYBe8IAJe4C0QNc3t8uM/0Y8+erSz/7Y1ALuXTEZTMvxXwO6YbX1ey3ujiZw==}
@@ -4129,9 +4113,6 @@ packages:
     peerDependencies:
       typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x
 
-  typescript-collections@1.3.3:
-    resolution: {integrity: sha512-7sI4e/bZijOzyURng88oOFZCISQPTHozfE2sUu5AviFYk5QV7fYGb6YiDl+vKjF/pICA354JImBImL9XJWUvdQ==}
-
   typescript@5.5.4:
     resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
@@ -4146,8 +4127,8 @@ packages:
   undici-types@6.13.0:
     resolution: {integrity: sha512-xtFJHudx8S2DSoujjMd1WeWvn7KKWFRESZTMeL1RptAYERu29D6jphMjjY+vn96jvN3kVPDNxU/E13VTaXj6jg==}
 
-  undici-types@6.19.5:
-    resolution: {integrity: sha512-VQUzGd+K73uDi/pTqzDBbxZneciOuMRjF0r/Lep2zr/GOnU+cUvfgRu4T5k4TWJfpGdSK5nrzVDoQVoEIAFbmg==}
+  undici-types@6.19.6:
+    resolution: {integrity: sha512-e/vggGopEfTKSvj4ihnOLTsqhrKRN3LeO6qSN/GxohhuRv8qH9bNQ4B8W7e/vFL+0XTnmHPB4/kegunZGA4Org==}
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
@@ -4794,64 +4775,87 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kinobi-so/errors@0.21.0':
+  '@kinobi-so/errors@0.20.4':
     dependencies:
-      '@kinobi-so/node-types': 0.21.0
+      '@kinobi-so/node-types': 0.20.4
       chalk: 5.3.0
       commander: 12.1.0
 
-  '@kinobi-so/node-types@0.21.0': {}
-
-  '@kinobi-so/nodes-from-anchor@0.20.9':
+  '@kinobi-so/errors@0.20.5':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
-      '@kinobi-so/visitors': 0.21.0
+      '@kinobi-so/node-types': 0.20.5
+      chalk: 5.3.0
+      commander: 12.1.0
+
+  '@kinobi-so/node-types@0.20.4': {}
+
+  '@kinobi-so/node-types@0.20.5': {}
+
+  '@kinobi-so/nodes-from-anchor@0.20.7':
+    dependencies:
+      '@kinobi-so/errors': 0.20.5
+      '@kinobi-so/nodes': 0.20.5
+      '@kinobi-so/visitors': 0.20.5
       '@noble/hashes': 1.4.0
 
-  '@kinobi-so/nodes@0.21.0':
+  '@kinobi-so/nodes@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/node-types': 0.21.0
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/node-types': 0.20.4
 
-  '@kinobi-so/renderers-core@0.20.7':
+  '@kinobi-so/nodes@0.20.5':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
-      '@kinobi-so/visitors-core': 0.21.0
+      '@kinobi-so/errors': 0.20.5
+      '@kinobi-so/node-types': 0.20.5
 
-  '@kinobi-so/renderers-js@0.21.2(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)':
+  '@kinobi-so/renderers-core@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
-      '@kinobi-so/nodes-from-anchor': 0.20.9
-      '@kinobi-so/renderers-core': 0.20.7
-      '@kinobi-so/visitors-core': 0.21.0
-      '@solana/codecs-strings': 2.0.0-preview.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.4)
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/visitors-core': 0.20.4
+
+  '@kinobi-so/renderers-js@0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)':
+    dependencies:
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/renderers-core': 0.20.4
+      '@kinobi-so/visitors-core': 0.20.4
+      '@solana/codecs-strings': 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
       nunjucks: 3.2.4(chokidar@3.6.0)
       prettier: 3.3.3
     transitivePeerDependencies:
       - chokidar
       - fastestsmallesttextencoderdecoder
-      - typescript
 
-  '@kinobi-so/validators@0.21.0':
+  '@kinobi-so/validators@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
-      '@kinobi-so/visitors-core': 0.21.0
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/visitors-core': 0.20.4
 
-  '@kinobi-so/visitors-core@0.21.0':
+  '@kinobi-so/visitors-core@0.20.4':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
       json-stable-stringify: 1.1.1
 
-  '@kinobi-so/visitors@0.21.0':
+  '@kinobi-so/visitors-core@0.20.5':
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
-      '@kinobi-so/visitors-core': 0.21.0
+      '@kinobi-so/errors': 0.20.5
+      '@kinobi-so/nodes': 0.20.5
+      json-stable-stringify: 1.1.1
+
+  '@kinobi-so/visitors@0.20.4':
+    dependencies:
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/visitors-core': 0.20.4
+
+  '@kinobi-so/visitors@0.20.5':
+    dependencies:
+      '@kinobi-so/errors': 0.20.5
+      '@kinobi-so/nodes': 0.20.5
+      '@kinobi-so/visitors-core': 0.20.5
 
   '@mapbox/node-pre-gyp@1.0.11':
     dependencies:
@@ -5063,7 +5067,7 @@ snapshots:
       depd: 2.0.0
       mustache: 4.2.0
 
-  '@noble/curves@1.4.2':
+  '@noble/curves@1.5.0':
     dependencies:
       '@noble/hashes': 1.4.0
 
@@ -5237,21 +5241,9 @@ snapshots:
     dependencies:
       '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
-  '@solana-program/compute-budget@0.3.2(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
-    dependencies:
-      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-
   '@solana-program/system@0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
     dependencies:
       '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-
-  '@solana-program/system@0.3.3(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
-    dependencies:
-      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-
-  '@solana-program/token@0.1.4(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
-    dependencies:
-      '@solana/web3.js': 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
   '@solana-program/token@0.2.0(@solana/web3.js@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@7.5.10(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
     dependencies:
@@ -5595,7 +5587,7 @@ snapshots:
     dependencies:
       '@solana/errors': 2.0.0-preview.3
       '@solana/rpc-spec': 2.0.0-preview.3
-      undici-types: 6.19.5
+      undici-types: 6.19.6
 
   '@solana/rpc-types@2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
@@ -5766,7 +5758,7 @@ snapshots:
   '@solana/web3.js@1.95.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
     dependencies:
       '@babel/runtime': 7.25.0
-      '@noble/curves': 1.4.2
+      '@noble/curves': 1.5.0
       '@noble/hashes': 1.4.0
       '@solana/buffer-layout': 4.0.1
       agentkeepalive: 4.5.0
@@ -5841,7 +5833,7 @@ snapshots:
 
   '@types/bn.js@5.1.5':
     dependencies:
-      '@types/node': 22.1.0
+      '@types/node': 22.2.0
 
   '@types/connect@3.4.38':
     dependencies:
@@ -5851,14 +5843,14 @@ snapshots:
 
   '@types/cors@2.8.17':
     dependencies:
-      '@types/node': 22.1.0
+      '@types/node': 22.2.0
 
   '@types/estree@1.0.5': {}
 
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 18.19.43
+      '@types/node': 18.19.44
 
   '@types/json-schema@7.0.15': {}
 
@@ -5866,7 +5858,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 18.19.43
+      '@types/node': 18.19.44
 
   '@types/minimist@1.2.5': {}
 
@@ -5874,11 +5866,11 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@18.19.43':
+  '@types/node@18.19.44':
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@22.1.0':
+  '@types/node@22.2.0':
     dependencies:
       undici-types: 6.13.0
 
@@ -5896,7 +5888,7 @@ snapshots:
 
   '@types/ws@8.5.12':
     dependencies:
-      '@types/node': 22.1.0
+      '@types/node': 22.2.0
 
   '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)':
     dependencies:
@@ -6895,7 +6887,7 @@ snapshots:
     dependencies:
       '@types/cookie': 0.4.1
       '@types/cors': 2.8.17
-      '@types/node': 22.1.0
+      '@types/node': 22.2.0
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.4.2
@@ -7369,7 +7361,7 @@ snapshots:
     dependencies:
       is-callable: 1.2.7
 
-  foreground-child@3.2.1:
+  foreground-child@3.3.0:
     dependencies:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
@@ -7456,7 +7448,7 @@ snapshots:
 
   glob@10.4.5:
     dependencies:
-      foreground-child: 3.2.1
+      foreground-child: 3.3.0
       jackspeak: 3.4.3
       minimatch: 9.0.5
       minipass: 7.1.2
@@ -7869,12 +7861,12 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kinobi@0.21.0:
+  kinobi@0.20.4:
     dependencies:
-      '@kinobi-so/errors': 0.21.0
-      '@kinobi-so/nodes': 0.21.0
-      '@kinobi-so/validators': 0.21.0
-      '@kinobi-so/visitors': 0.21.0
+      '@kinobi-so/errors': 0.20.4
+      '@kinobi-so/nodes': 0.20.4
+      '@kinobi-so/validators': 0.20.4
+      '@kinobi-so/visitors': 0.20.4
 
   lazy-ass@1.6.0: {}
 
@@ -8828,8 +8820,6 @@ snapshots:
       shiki: 0.14.7
       typescript: 5.5.4
 
-  typescript-collections@1.3.3: {}
-
   typescript@5.5.4: {}
 
   unbox-primitive@1.0.2:
@@ -8843,7 +8833,7 @@ snapshots:
 
   undici-types@6.13.0: {}
 
-  undici-types@6.19.5: {}
+  undici-types@6.19.6: {}
 
   unicorn-magic@0.1.0: {}
 
@@ -9026,7 +9016,7 @@ snapshots:
     dependencies:
       '@types/fs-extra': 11.0.4
       '@types/minimist': 1.2.5
-      '@types/node': 18.19.43
+      '@types/node': 18.19.44
       '@types/ps-tree': 1.1.6
       '@types/which': 3.0.4
       chalk: 5.3.0

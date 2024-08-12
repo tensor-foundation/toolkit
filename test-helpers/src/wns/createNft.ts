@@ -271,7 +271,17 @@ export async function createNft(args: CreateNftArgs): Promise<{
 }
 
 export async function createWnsNftInGroup(args: CreateNftArgs) {
-  const { client, owner, authority, payer = authority, paymentMint } = args;
+  const {
+    client,
+    owner,
+    authority,
+    payer = authority,
+    paymentMint,
+    data = {
+      ...testNftData,
+      creators: [{ address: authority.address, share: 100 }],
+    },
+  } = args;
 
   const { group, distribution } = await createGroupWithRoyalties({
     client,
@@ -279,6 +289,9 @@ export async function createWnsNftInGroup(args: CreateNftArgs) {
     authority,
     owner,
     paymentMint,
+    data: data
+      ? { name: data.name, symbol: data.symbol, uri: data.uri, maxSize: 10 }
+      : testGroupData,
   });
 
   const { mint, ownerAta, extraAccountMetas } = await createNft({
@@ -286,6 +299,7 @@ export async function createWnsNftInGroup(args: CreateNftArgs) {
     owner,
     authority,
     group,
+    data,
   });
 
   return { mint, ownerAta, group, distribution, extraAccountMetas };
