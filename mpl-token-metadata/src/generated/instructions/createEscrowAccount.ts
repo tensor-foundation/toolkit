@@ -226,7 +226,7 @@ export function getCreateEscrowAccountInstruction<
       getAccountMeta(accounts.systemProgram),
       getAccountMeta(accounts.sysvarInstructions),
       getAccountMeta(accounts.authority),
-    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getCreateEscrowAccountInstructionDataEncoder().encode({}),
   } as CreateEscrowAccountInstruction<
