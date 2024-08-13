@@ -85,15 +85,24 @@ jobs:
           echo "TEST_PACKAGES: $TEST_PACKAGES"
           IFS=' ' read -ra PACKAGES <<< "$TEST_PACKAGES"
           for package in "${PACKAGES[@]}"; do
-            cd $package
-            FILES=$(find test -type f -name '*.test.ts')
-            while read FILE; do
-              if grep -Eq 'test.only\(' $FILE; then
-                echo "Error: '$FILE' contains 'test.only'"
-                EXIT_CODE=1
+            echo "Checking $package for test.only"
+            if [ -d "$package" ]; then
+              cd "$package" || { echo "Failed to change to $package directory"; exit 1; }
+              FILES=$(find test -type f -name '*.test.ts' 2>/dev/null)
+              if [ -n "$FILES" ]; then
+                while IFS= read -r FILE; do
+                  if grep -Eq 'test.only\(' "$FILE"; then
+                    echo "Error: '$FILE' contains 'test.only'"
+                    EXIT_CODE=1
+                  fi
+                done <<< "$FILES"
+              else
+                echo "No test files found in $package"
               fi
-            done <<< "$FILES"
-            cd ..
+              cd .. || { echo "Failed to return to parent directory"; exit 1; }
+            else
+              echo "Directory $package not found, skipping"
+            fi
           done
           exit $EXIT_CODE
 
