@@ -239,7 +239,7 @@ export function getCreateMetadataAccountV3Instruction<
       getAccountMeta(accounts.updateAuthority),
       getAccountMeta(accounts.systemProgram),
       getAccountMeta(accounts.rent),
-    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getCreateMetadataAccountV3InstructionDataEncoder().encode(
       args as CreateMetadataAccountV3InstructionDataArgs

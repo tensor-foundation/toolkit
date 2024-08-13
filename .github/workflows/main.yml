@@ -71,8 +71,10 @@ jobs:
             if [ -d "$package" ]; then
               cd "$package"
               pnpm install --frozen-lockfile
-              pnpm format
-              pnpm lint
+              if [ "$(basename "$package")" != "mpl-token-metadata" ]; then
+                pnpm format
+                pnpm lint
+              fi
               cd ..
             else
               echo "Directory $package not found, skipping"

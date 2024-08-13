@@ -331,8 +331,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       kinobi:
-        specifier: 0.20.4
-        version: 0.20.4
+        specifier: 0.21.0
+        version: 0.21.0
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -1025,6 +1025,9 @@ packages:
 
   '@kinobi-so/validators@0.20.4':
     resolution: {integrity: sha512-PyhfM1fgsAPrDgMOB1VjvW+CytPTtLMLB0bSCU+0GRm8IoZ8pj74cIcB5XPjai3N5dU7kDMYz1nZLnCFsoXfLg==}
+
+  '@kinobi-so/validators@0.21.0':
+    resolution: {integrity: sha512-mpBqgqlto/Wdj6rlf1mqWkyw00rPJw98bkNItXq+ofCEtBsjaMq9lsevCE+IPmfJJYEPFGHGJW4Gb6m/cLmOqw==}
 
   '@kinobi-so/visitors-core@0.20.4':
     resolution: {integrity: sha512-l4LCAOKL35tXn4jDZ4/gNdBeJYB5ACE4lgKQxL6oyII36hPe8pwCihIpjzHKDm9S93o9pKFN76ay5S3NnWANRw==}
@@ -3236,6 +3239,9 @@ packages:
   kinobi@0.20.4:
     resolution: {integrity: sha512-/EkPQV1jVK4PkSWbdFb12EO7QMMkhNaoVaA0Le6MheCcnCHcWlLsz4Un/5eqSa/NNM8kCivGsEg/n9qDeKddTA==}
 
+  kinobi@0.21.0:
+    resolution: {integrity: sha512-T71VNh4yS8uSvtNp1FEWhJGygW5/8O82SAlFRlPYsWiwqWH9X3eZwwUthBVH7dfazqs8GLia0rAMEmUP99iwLw==}
+
   lazy-ass@1.6.0:
     resolution: {integrity: sha512-cc8oEVoctTvsFZ/Oje/kGnHbpWHYBe8IAJe4C0QNc3t8uM/0Y8+erSz/7Y1ALuXTEZTMvxXwO6YbX1ey3ujiZw==}
     engines: {node: '> 0.8'}
@@ -4938,6 +4944,12 @@ snapshots:
       '@kinobi-so/errors': 0.20.4
       '@kinobi-so/nodes': 0.20.4
       '@kinobi-so/visitors-core': 0.20.4
+
+  '@kinobi-so/validators@0.21.0':
+    dependencies:
+      '@kinobi-so/errors': 0.21.0
+      '@kinobi-so/nodes': 0.21.0
+      '@kinobi-so/visitors-core': 0.21.0
 
   '@kinobi-so/visitors-core@0.20.4':
     dependencies:
@@ -8018,6 +8030,13 @@ snapshots:
       '@kinobi-so/nodes': 0.20.4
       '@kinobi-so/validators': 0.20.4
       '@kinobi-so/visitors': 0.20.4
+
+  kinobi@0.21.0:
+    dependencies:
+      '@kinobi-so/errors': 0.21.0
+      '@kinobi-so/nodes': 0.21.0
+      '@kinobi-so/validators': 0.21.0
+      '@kinobi-so/visitors': 0.21.0
 
   lazy-ass@1.6.0: {}
 
