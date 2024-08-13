@@ -7,28 +7,28 @@
  */
 
 import {
-  Address,
-  Codec,
-  Decoder,
-  Encoder,
-  IAccountMeta,
-  IAccountSignerMeta,
-  IInstruction,
-  IInstructionWithAccounts,
-  IInstructionWithData,
-  ReadonlyAccount,
-  ReadonlySignerAccount,
-  TransactionSigner,
-  WritableAccount,
   combineCodec,
   getStructDecoder,
   getStructEncoder,
   getU8Decoder,
   getU8Encoder,
   transformEncoder,
+  type Address,
+  type Codec,
+  type Decoder,
+  type Encoder,
+  type IAccountMeta,
+  type IAccountSignerMeta,
+  type IInstruction,
+  type IInstructionWithAccounts,
+  type IInstructionWithData,
+  type ReadonlyAccount,
+  type ReadonlySignerAccount,
+  type TransactionSigner,
+  type WritableAccount,
 } from '@solana/web3.js';
 import { TOKEN_METADATA_PROGRAM_ADDRESS } from '../programs';
-import { ResolvedAccount, getAccountMetaFactory } from '../shared';
+import { getAccountMetaFactory, type ResolvedAccount } from '../shared';
 
 export type DeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInstruction<
   TProgram extends string = typeof TOKEN_METADATA_PROGRAM_ADDRESS,
@@ -321,7 +321,7 @@ export function getDeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInst
       getAccountMeta(accounts.systemProgram),
       getAccountMeta(accounts.rent),
       getAccountMeta(accounts.reservationList),
-    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getDeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInstructionDataEncoder().encode(
       {}

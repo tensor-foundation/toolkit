@@ -307,8 +307,8 @@ importers:
         specifier: 0.20.7
         version: 0.20.7
       '@kinobi-so/renderers-js':
-        specifier: 0.20.7
-        version: 0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
+        specifier: 0.20.11
+        version: 0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
@@ -983,14 +983,24 @@ packages:
     resolution: {integrity: sha512-EoMmMIR787Phz7BOQB7GMKaqKC/mPOyKwxTqzYwV3agoM95ZsU9eN9OFE35zJlGRrQYCAVXKsRoopoa6znoREw==}
     hasBin: true
 
+  '@kinobi-so/errors@0.20.6':
+    resolution: {integrity: sha512-bxMfPbTU1JjhQzd1KzBzF9aKGpMwTxqkNA4ALdu0HLbNe6gTpZ+XF//a/Sdhcn6MZ48KAQX9siKfqVutgKjdzg==}
+    hasBin: true
+
   '@kinobi-so/node-types@0.20.4':
     resolution: {integrity: sha512-kFFXMC9nSemDj2itNeSj4VR9R6QTz0z7v3niwxHHq9IJ4TFPwpcZAt7aH++SGlCUeHG3iOHC2ZngFMhv+Ks/Fw==}
 
   '@kinobi-so/node-types@0.20.5':
     resolution: {integrity: sha512-DnZn2UCAEqbl+L89IFfVJK5jwavsvPmFByN1LyErzVE/BJKsaRN2myMQPDDT5fEs6dWdaCDNcVKuvwcz57VjgQ==}
 
+  '@kinobi-so/node-types@0.20.6':
+    resolution: {integrity: sha512-gStEfb52LAuK/RnfJGn426iECgobAhPAxlbcHIxx9BfuauF8Q57DfFFYUhCBS94/Se/KCtC4W+5dQjkTI8WViw==}
+
   '@kinobi-so/nodes-from-anchor@0.20.7':
     resolution: {integrity: sha512-4/ZjHCT6UOBRrlaLQghub0/lHFwRca32USEbKRDFHfQcCLZVmGosychvus5J0VHELD6WolcVVszsVPHZ+BjdiA==}
+
+  '@kinobi-so/nodes-from-anchor@0.20.8':
+    resolution: {integrity: sha512-TJtHixtIA6uVk2/syPHTwzlEyRMZYH1GeCv9D3uhDo17SxUl2gYTnG+Q5FXDuzNWtUFOYYvW8l0t9p7MzVbfmQ==}
 
   '@kinobi-so/nodes@0.20.4':
     resolution: {integrity: sha512-zeGOOdOaKbMxqiZWNJx/JVGVWp4mzCkwDp3bG4J+x9+mQ1nQcyuPvHXeHmtBXa9IWp7AScXlyn5HddVzK/8ZRQ==}
@@ -998,8 +1008,17 @@ packages:
   '@kinobi-so/nodes@0.20.5':
     resolution: {integrity: sha512-6cxoTk7qYlBDg+djIHGrBfHewvTRwgKrR4GibdMrpRHODiv19kJusyu4vz1/ZAvlVabnyyiAmQbbAHE3/WdWwg==}
 
+  '@kinobi-so/nodes@0.20.6':
+    resolution: {integrity: sha512-lKP+fj/6wvJp3dkwkhQRhFEgM6IlAufqOAU1A/sSi2Ciou7OxdqFJ98c14AFOMYBKpWqNOh5zUTtxBUyGDe9Sg==}
+
   '@kinobi-so/renderers-core@0.20.4':
     resolution: {integrity: sha512-feb0Fsw7UIj14JZ2LmHYyosT07K/Jrs7CvNYD2YF4g6WQz9mmy1l8Fa+gpVtoDdSHvfXrgzv8193p0QkRRBWmA==}
+
+  '@kinobi-so/renderers-core@0.20.6':
+    resolution: {integrity: sha512-GdgkwbipQK/Vb4z+08eB3j81oZHWcD8jKHRZzOuMBSpT8aVZIes1Nxy8FfoJYFppmjWvRaGg/X4YKAsLXZV56Q==}
+
+  '@kinobi-so/renderers-js@0.20.11':
+    resolution: {integrity: sha512-4MxpJ3gTQKvzIaeefHwo1bkWoopJJAvjVjwJCag7s2lxBWJ+NC1Dgo4z5BnTyDBoP5jJbXixRDKRc1p+/BW5jQ==}
 
   '@kinobi-so/renderers-js@0.20.7':
     resolution: {integrity: sha512-CRugH3+fpZsXokuyUl8ioq9XzaNotAXB0zvqYQOh/TTho0sb4tkUrx7lYq6R1YAtRIcqkDSp+Dma1agKB7Tbmg==}
@@ -1013,11 +1032,17 @@ packages:
   '@kinobi-so/visitors-core@0.20.5':
     resolution: {integrity: sha512-/huwX+Jhd4Zl1eNS+dsKwYDfZx1tu/n9nLyaWl+8gbEedJ4YFIW1Ay0lxEx3zvaOBx1BXgZCpcLGV7mMOJUtuQ==}
 
+  '@kinobi-so/visitors-core@0.20.6':
+    resolution: {integrity: sha512-V8Zosr40x38LMiMzGmJLvsglhlHJ7GPvLgAfGU4+7D8EhsFI5BXLIdQd55cbQE64Y1/2iG7jKDoEak0U+sy8Tw==}
+
   '@kinobi-so/visitors@0.20.4':
     resolution: {integrity: sha512-sr+1qiU4sN5OfrVI//RqqHMKl5VapugkO3f/MHXGmFBDWANXJCIMmAXMMARzk/h6v76zswJ+NOHe0C3FLYb1xg==}
 
   '@kinobi-so/visitors@0.20.5':
     resolution: {integrity: sha512-XlTzk34I5ExRwHAzl4LsnW1gJyQoHl0fmncMJ1WN3X4PTRj9P2jVi8kYRkrcU6HiPVxkBCgASSmSilt67tuneQ==}
+
+  '@kinobi-so/visitors@0.20.6':
+    resolution: {integrity: sha512-EZOp83sWEZoS+J+fb5ipHQXagUovGVCdaJrMIlYZEMe9tAa5oZF8d0skWg6T2AeP8SHCNnwW0nRA2/K90ltjWA==}
 
   '@mapbox/node-pre-gyp@1.0.11':
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
@@ -4805,15 +4830,30 @@ snapshots:
       chalk: 5.3.0
       commander: 12.1.0
 
+  '@kinobi-so/errors@0.20.6':
+    dependencies:
+      '@kinobi-so/node-types': 0.20.6
+      chalk: 5.3.0
+      commander: 12.1.0
+
   '@kinobi-so/node-types@0.20.4': {}
 
   '@kinobi-so/node-types@0.20.5': {}
+
+  '@kinobi-so/node-types@0.20.6': {}
 
   '@kinobi-so/nodes-from-anchor@0.20.7':
     dependencies:
       '@kinobi-so/errors': 0.20.5
       '@kinobi-so/nodes': 0.20.5
       '@kinobi-so/visitors': 0.20.5
+      '@noble/hashes': 1.4.0
+
+  '@kinobi-so/nodes-from-anchor@0.20.8':
+    dependencies:
+      '@kinobi-so/errors': 0.20.6
+      '@kinobi-so/nodes': 0.20.6
+      '@kinobi-so/visitors': 0.20.6
       '@noble/hashes': 1.4.0
 
   '@kinobi-so/nodes@0.20.4':
@@ -4826,11 +4866,36 @@ snapshots:
       '@kinobi-so/errors': 0.20.5
       '@kinobi-so/node-types': 0.20.5
 
+  '@kinobi-so/nodes@0.20.6':
+    dependencies:
+      '@kinobi-so/errors': 0.20.6
+      '@kinobi-so/node-types': 0.20.6
+
   '@kinobi-so/renderers-core@0.20.4':
     dependencies:
       '@kinobi-so/errors': 0.20.4
       '@kinobi-so/nodes': 0.20.4
       '@kinobi-so/visitors-core': 0.20.4
+
+  '@kinobi-so/renderers-core@0.20.6':
+    dependencies:
+      '@kinobi-so/errors': 0.20.6
+      '@kinobi-so/nodes': 0.20.6
+      '@kinobi-so/visitors-core': 0.20.6
+
+  '@kinobi-so/renderers-js@0.20.11(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)':
+    dependencies:
+      '@kinobi-so/errors': 0.20.6
+      '@kinobi-so/nodes': 0.20.6
+      '@kinobi-so/nodes-from-anchor': 0.20.8
+      '@kinobi-so/renderers-core': 0.20.6
+      '@kinobi-so/visitors-core': 0.20.6
+      '@solana/codecs-strings': 2.0.0-preview.2(fastestsmallesttextencoderdecoder@1.0.22)
+      nunjucks: 3.2.4(chokidar@3.6.0)
+      prettier: 3.3.3
+    transitivePeerDependencies:
+      - chokidar
+      - fastestsmallesttextencoderdecoder
 
   '@kinobi-so/renderers-js@0.20.7(chokidar@3.6.0)(fastestsmallesttextencoderdecoder@1.0.22)':
     dependencies:
@@ -4863,6 +4928,12 @@ snapshots:
       '@kinobi-so/nodes': 0.20.5
       json-stable-stringify: 1.1.1
 
+  '@kinobi-so/visitors-core@0.20.6':
+    dependencies:
+      '@kinobi-so/errors': 0.20.6
+      '@kinobi-so/nodes': 0.20.6
+      json-stable-stringify: 1.1.1
+
   '@kinobi-so/visitors@0.20.4':
     dependencies:
       '@kinobi-so/errors': 0.20.4
@@ -4874,6 +4945,12 @@ snapshots:
       '@kinobi-so/errors': 0.20.5
       '@kinobi-so/nodes': 0.20.5
       '@kinobi-so/visitors-core': 0.20.5
+
+  '@kinobi-so/visitors@0.20.6':
+    dependencies:
+      '@kinobi-so/errors': 0.20.6
+      '@kinobi-so/nodes': 0.20.6
+      '@kinobi-so/visitors-core': 0.20.6
 
   '@mapbox/node-pre-gyp@1.0.11':
     dependencies:

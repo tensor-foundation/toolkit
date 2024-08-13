@@ -7,11 +7,6 @@
  */
 
 import {
-  Codec,
-  Decoder,
-  Encoder,
-  GetDiscriminatedUnionVariant,
-  GetDiscriminatedUnionVariantContent,
   combineCodec,
   getDiscriminatedUnionDecoder,
   getDiscriminatedUnionEncoder,
@@ -21,8 +16,13 @@ import {
   getTupleEncoder,
   getUnitDecoder,
   getUnitEncoder,
+  type Codec,
+  type Decoder,
+  type Encoder,
+  type GetDiscriminatedUnionVariant,
+  type GetDiscriminatedUnionVariantContent,
 } from '@solana/web3.js';
-import { Uses, UsesArgs, getUsesDecoder, getUsesEncoder } from '.';
+import { getUsesDecoder, getUsesEncoder, type Uses, type UsesArgs } from '.';
 
 export type UsesToggle =
   | { __kind: 'None' }

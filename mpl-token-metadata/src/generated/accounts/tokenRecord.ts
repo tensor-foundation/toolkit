@@ -7,18 +7,6 @@
  */
 
 import {
-  Account,
-  Address,
-  Codec,
-  Decoder,
-  EncodedAccount,
-  Encoder,
-  FetchAccountConfig,
-  FetchAccountsConfig,
-  MaybeAccount,
-  MaybeEncodedAccount,
-  Option,
-  OptionOrNullable,
   assertAccountExists,
   assertAccountsExist,
   combineCodec,
@@ -35,21 +23,33 @@ import {
   getU64Encoder,
   getU8Decoder,
   getU8Encoder,
+  type Account,
+  type Address,
+  type Codec,
+  type Decoder,
+  type EncodedAccount,
+  type Encoder,
+  type FetchAccountConfig,
+  type FetchAccountsConfig,
+  type MaybeAccount,
+  type MaybeEncodedAccount,
+  type Option,
+  type OptionOrNullable,
 } from '@solana/web3.js';
 import { TokenRecordSeeds, findTokenRecordPda } from '../pdas';
 import {
-  Key,
-  KeyArgs,
-  TokenDelegateRole,
-  TokenDelegateRoleArgs,
-  TokenState,
-  TokenStateArgs,
   getKeyDecoder,
   getKeyEncoder,
   getTokenDelegateRoleDecoder,
   getTokenDelegateRoleEncoder,
   getTokenStateDecoder,
   getTokenStateEncoder,
+  type Key,
+  type KeyArgs,
+  type TokenDelegateRole,
+  type TokenDelegateRoleArgs,
+  type TokenState,
+  type TokenStateArgs,
 } from '../types';
 
 export type TokenRecord = {

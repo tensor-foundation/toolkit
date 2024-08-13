@@ -607,7 +607,7 @@ export type TokenMetadataError =
   | typeof TOKEN_METADATA_ERROR__USE_AUTHORITY_RECORD_ALREADY_REVOKED;
 
 let tokenMetadataErrorMessages: Record<TokenMetadataError, string> | undefined;
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   tokenMetadataErrorMessages = {
     [TOKEN_METADATA_ERROR__ADDRESS_NOT_IN_RESERVATION]: ``,
     [TOKEN_METADATA_ERROR__ALREADY_INITIALIZED]: `Already initialized`,
@@ -812,11 +812,11 @@ if (__DEV__) {
 }
 
 export function getTokenMetadataErrorMessage(code: TokenMetadataError): string {
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     return (tokenMetadataErrorMessages as Record<TokenMetadataError, string>)[
       code
     ];
   }
 
-  return 'Error message not available in production bundles. Compile with `__DEV__` set to true to see more information.';
+  return 'Error message not available in production bundles.';
 }
