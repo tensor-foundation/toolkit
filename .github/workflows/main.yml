@@ -65,18 +65,26 @@ jobs:
       - name: Install dependencies and lint
         run: |
           echo "TEST_PACKAGES: $TEST_PACKAGES"
-          for package in $TEST_PACKAGES; do
-            cd $package
-            pnpm install --frozen-lockfile
-            pnpm format
-            pnpm lint
-            cd ..
+          IFS=' ' read -ra PACKAGES <<< "$TEST_PACKAGES"
+          for package in "${PACKAGES[@]}"; do
+            echo "Linting $package"
+            if [ -d "$package" ]; then
+              cd "$package"
+              pnpm install --frozen-lockfile
+              pnpm format
+              pnpm lint
+              cd ..
+            else
+              echo "Directory $package not found, skipping"
+            fi
           done
 
       - name: No only tests
         run: |
           EXIT_CODE=0
-          for package in $TEST_PACKAGES; do
+          echo "TEST_PACKAGES: $TEST_PACKAGES"
+          IFS=' ' read -ra PACKAGES <<< "$TEST_PACKAGES"
+          for package in "${PACKAGES[@]}"; do
             cd $package
             FILES=$(find test -type f -name '*.test.ts')
             while read FILE; do
@@ -138,7 +146,8 @@ jobs:
       - name: Generate IDLs and clients
         run: |
           echo "TEST_PACKAGES: $TEST_PACKAGES"
-          for package in $TEST_PACKAGES; do
+          IFS=' ' read -ra PACKAGES <<< "$TEST_PACKAGES"
+          for package in "${PACKAGES[@]}"; do
             echo "Generating IDLs and clients for $package"
             cd $package
             pnpm generate
