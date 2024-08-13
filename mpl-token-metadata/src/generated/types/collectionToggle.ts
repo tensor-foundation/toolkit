@@ -7,11 +7,6 @@
  */
 
 import {
-  Codec,
-  Decoder,
-  Encoder,
-  GetDiscriminatedUnionVariant,
-  GetDiscriminatedUnionVariantContent,
   combineCodec,
   getDiscriminatedUnionDecoder,
   getDiscriminatedUnionEncoder,
@@ -21,12 +16,17 @@ import {
   getTupleEncoder,
   getUnitDecoder,
   getUnitEncoder,
+  type Codec,
+  type Decoder,
+  type Encoder,
+  type GetDiscriminatedUnionVariant,
+  type GetDiscriminatedUnionVariantContent,
 } from '@solana/web3.js';
 import {
-  Collection,
-  CollectionArgs,
   getCollectionDecoder,
   getCollectionEncoder,
+  type Collection,
+  type CollectionArgs,
 } from '.';
 
 export type CollectionToggle =

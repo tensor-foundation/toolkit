@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DAS } from 'helius-sdk';
 
 export async function retrieveProofFields(

@@ -7,16 +7,6 @@
  */
 
 import {
-  Account,
-  Address,
-  Codec,
-  Decoder,
-  EncodedAccount,
-  Encoder,
-  FetchAccountConfig,
-  FetchAccountsConfig,
-  MaybeAccount,
-  MaybeEncodedAccount,
   assertAccountExists,
   assertAccountsExist,
   combineCodec,
@@ -29,8 +19,18 @@ import {
   getStructEncoder,
   getU64Decoder,
   getU64Encoder,
+  type Account,
+  type Address,
+  type Codec,
+  type Decoder,
+  type EncodedAccount,
+  type Encoder,
+  type FetchAccountConfig,
+  type FetchAccountsConfig,
+  type MaybeAccount,
+  type MaybeEncodedAccount,
 } from '@solana/web3.js';
-import { Key, KeyArgs, getKeyDecoder, getKeyEncoder } from '../types';
+import { getKeyDecoder, getKeyEncoder, type Key, type KeyArgs } from '../types';
 
 export type Edition = { key: Key; parent: Address; edition: bigint };
 

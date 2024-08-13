@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Address, Rpc, SolanaRpcApi } from '@solana/web3.js';
 import { getMetadataDecoder } from './codecs/metadataDecoder';
-import { Rpc, SolanaRpcApi, Address } from '@solana/web3.js';
 
 // fetches ruleset given metadataPda
 export async function getRulesetFromMetadataPda(

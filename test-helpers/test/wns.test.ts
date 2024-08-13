@@ -23,6 +23,7 @@ test('it can create a WNS NFT w/ royalties setup', async (t) => {
     owner: owner.address,
   });
 
+  // Mint nft
   const { mint, ownerAta } = await createNft({
     client,
     owner: owner.address,

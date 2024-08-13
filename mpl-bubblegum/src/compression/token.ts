@@ -1,4 +1,13 @@
-import { Address, KeyPairSigner, appendTransactionMessageInstruction, createTransactionMessage, pipe, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash, unwrapOption } from "@solana/web3.js";
+import {
+  Address,
+  KeyPairSigner,
+  appendTransactionMessageInstruction,
+  createTransactionMessage,
+  pipe,
+  setTransactionMessageFeePayerSigner,
+  setTransactionMessageLifetimeUsingBlockhash,
+  unwrapOption,
+} from '@solana/web3.js';
 import {
   ProgramDerivedAddress,
   getAddressEncoder,
@@ -6,12 +15,21 @@ import {
   getU64Encoder,
   getUtf8Encoder,
 } from '@solana/web3.js';
-import { MetadataArgs, getMintToCollectionV1Instruction, getMintV1Instruction } from "../generated";
-import { findTreeAuthorityPda } from "./helpers";
-import { ACCOUNT_COMPRESSION_PROGRAM_ID, Client, MPL_BUBBLEGUM_PROGRAM_ID, MPL_TOKEN_METADATA_PROGRAM_ID, NOOP_PROGRAM_ID, signAndSendTransaction } from "@tensor-foundation/test-helpers";
-import { computeCompressedNFTHash } from "./hashing";
-
-
+import {
+  MetadataArgs,
+  getMintToCollectionV1Instruction,
+  getMintV1Instruction,
+} from '../generated';
+import { findTreeAuthorityPda } from './helpers';
+import {
+  ACCOUNT_COMPRESSION_PROGRAM_ID,
+  Client,
+  MPL_BUBBLEGUM_PROGRAM_ID,
+  MPL_TOKEN_METADATA_PROGRAM_ID,
+  NOOP_PROGRAM_ID,
+  signAndSendTransaction,
+} from '@tensor-foundation/test-helpers';
+import { computeCompressedNFTHash } from './hashing';
 
 export const makeLeaf = async ({
   index,
@@ -41,7 +59,6 @@ export const makeLeaf = async ({
   };
 };
 
-
 export type AssetIdSeeds = {
   merkleTree: Address;
   leafIndex: number | bigint;
@@ -70,9 +87,9 @@ export const mintCNft = async ({
   receiver,
   metadata,
   merkleTree,
-  unverifiedCollection = false
+  unverifiedCollection = false,
 }: {
-  client: Client,
+  client: Client;
   treeOwner: KeyPairSigner;
   receiver: Address;
   metadata: MetadataArgs;
@@ -81,14 +98,13 @@ export const mintCNft = async ({
 }) => {
   const [bgumSigner, __] = await getProgramDerivedAddress({
     programAddress: MPL_BUBBLEGUM_PROGRAM_ID,
-    seeds: [Buffer.from("collection_cpi")],
+    seeds: [Buffer.from('collection_cpi')],
   });
   const [treeAuthority] = await findTreeAuthorityPda({ merkleTree });
   const collectionKey = unwrapOption(metadata.collection)!.key;
   const mintIx =
     !!metadata.collection && !unverifiedCollection
-      ? getMintToCollectionV1Instruction(
-        {
+      ? getMintToCollectionV1Instruction({
           merkleTree,
           treeAuthority,
           treeDelegate: treeOwner,
@@ -100,16 +116,19 @@ export const mintCNft = async ({
           bubblegumSigner: bgumSigner,
           collectionAuthority: treeOwner,
           collectionAuthorityRecordPda: MPL_BUBBLEGUM_PROGRAM_ID,
-          collectionMetadata: await getMetadata(collectionKey).then(resp => resp[0]),
+          collectionMetadata: await getMetadata(collectionKey).then(
+            (resp) => resp[0]
+          ),
           collectionMint: collectionKey,
-          editionAccount: await getMasterEdition(collectionKey).then(resp => resp[0]),
+          editionAccount: await getMasterEdition(collectionKey).then(
+            (resp) => resp[0]
+          ),
           tokenMetadataProgram: MPL_TOKEN_METADATA_PROGRAM_ID,
           metadataArgs: {
             ...metadata,
           },
         })
-      : getMintV1Instruction(
-        {
+      : getMintV1Instruction({
           merkleTree,
           treeAuthority,
           treeDelegate: treeOwner,
@@ -119,8 +138,7 @@ export const mintCNft = async ({
           compressionProgram: ACCOUNT_COMPRESSION_PROGRAM_ID,
           logWrapper: NOOP_PROGRAM_ID,
           message: metadata,
-        }
-      );
+        });
   const { value: latestBlockhash } = await client.rpc
     .getLatestBlockhash()
     .send();
@@ -129,25 +147,29 @@ export const mintCNft = async ({
     (tx) => setTransactionMessageFeePayerSigner(treeOwner, tx),
     (tx) => setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, tx),
     (tx) => appendTransactionMessageInstruction(mintIx, tx),
-    (tx) => signAndSendTransaction(client, tx),
+    (tx) => signAndSendTransaction(client, tx)
   );
 };
 
 async function getMetadata(mint: Address) {
   return await getProgramDerivedAddress({
-    seeds: [Buffer.from("metadata"), getAddressEncoder().encode(MPL_TOKEN_METADATA_PROGRAM_ID), getAddressEncoder().encode(mint)],
-    programAddress: MPL_TOKEN_METADATA_PROGRAM_ID
+    seeds: [
+      Buffer.from('metadata'),
+      getAddressEncoder().encode(MPL_TOKEN_METADATA_PROGRAM_ID),
+      getAddressEncoder().encode(mint),
+    ],
+    programAddress: MPL_TOKEN_METADATA_PROGRAM_ID,
   });
 }
 
 async function getMasterEdition(mint: Address) {
   return await getProgramDerivedAddress({
     seeds: [
-      Buffer.from("metadata"),
+      Buffer.from('metadata'),
       getAddressEncoder().encode(MPL_TOKEN_METADATA_PROGRAM_ID),
       getAddressEncoder().encode(mint),
-      Buffer.from("edition"),
+      Buffer.from('edition'),
     ],
-    programAddress: MPL_TOKEN_METADATA_PROGRAM_ID
+    programAddress: MPL_TOKEN_METADATA_PROGRAM_ID,
   });
 }

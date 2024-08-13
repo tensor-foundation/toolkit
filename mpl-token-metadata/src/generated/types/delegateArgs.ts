@@ -7,14 +7,6 @@
  */
 
 import {
-  Address,
-  Codec,
-  Decoder,
-  Encoder,
-  GetDiscriminatedUnionVariant,
-  GetDiscriminatedUnionVariantContent,
-  Option,
-  OptionOrNullable,
   combineCodec,
   getAddressDecoder,
   getAddressEncoder,
@@ -26,12 +18,20 @@ import {
   getStructEncoder,
   getU64Decoder,
   getU64Encoder,
+  type Address,
+  type Codec,
+  type Decoder,
+  type Encoder,
+  type GetDiscriminatedUnionVariant,
+  type GetDiscriminatedUnionVariantContent,
+  type Option,
+  type OptionOrNullable,
 } from '@solana/web3.js';
 import {
-  AuthorizationData,
-  AuthorizationDataArgs,
   getAuthorizationDataDecoder,
   getAuthorizationDataEncoder,
+  type AuthorizationData,
+  type AuthorizationDataArgs,
 } from '.';
 
 export type DelegateArgs =

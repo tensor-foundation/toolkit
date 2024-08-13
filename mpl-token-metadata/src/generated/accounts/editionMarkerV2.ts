@@ -7,17 +7,6 @@
  */
 
 import {
-  Account,
-  Address,
-  Codec,
-  Decoder,
-  EncodedAccount,
-  Encoder,
-  FetchAccountConfig,
-  FetchAccountsConfig,
-  MaybeAccount,
-  MaybeEncodedAccount,
-  ReadonlyUint8Array,
   addDecoderSizePrefix,
   addEncoderSizePrefix,
   assertAccountExists,
@@ -32,8 +21,19 @@ import {
   getStructEncoder,
   getU32Decoder,
   getU32Encoder,
+  type Account,
+  type Address,
+  type Codec,
+  type Decoder,
+  type EncodedAccount,
+  type Encoder,
+  type FetchAccountConfig,
+  type FetchAccountsConfig,
+  type MaybeAccount,
+  type MaybeEncodedAccount,
+  type ReadonlyUint8Array,
 } from '@solana/web3.js';
-import { Key, KeyArgs, getKeyDecoder, getKeyEncoder } from '../types';
+import { getKeyDecoder, getKeyEncoder, type Key, type KeyArgs } from '../types';
 
 export type EditionMarkerV2 = { key: Key; ledger: ReadonlyUint8Array };
 

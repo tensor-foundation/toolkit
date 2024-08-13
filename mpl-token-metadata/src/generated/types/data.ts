@@ -7,11 +7,6 @@
  */
 
 import {
-  Codec,
-  Decoder,
-  Encoder,
-  Option,
-  OptionOrNullable,
   addDecoderSizePrefix,
   addEncoderSizePrefix,
   combineCodec,
@@ -27,8 +22,18 @@ import {
   getU32Encoder,
   getUtf8Decoder,
   getUtf8Encoder,
+  type Codec,
+  type Decoder,
+  type Encoder,
+  type Option,
+  type OptionOrNullable,
 } from '@solana/web3.js';
-import { Creator, CreatorArgs, getCreatorDecoder, getCreatorEncoder } from '.';
+import {
+  getCreatorDecoder,
+  getCreatorEncoder,
+  type Creator,
+  type CreatorArgs,
+} from '.';
 
 export type Data = {
   name: string;

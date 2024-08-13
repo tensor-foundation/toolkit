@@ -7,11 +7,6 @@
  */
 
 import {
-  Codec,
-  Decoder,
-  Encoder,
-  GetDiscriminatedUnionVariant,
-  GetDiscriminatedUnionVariantContent,
   combineCodec,
   getArrayDecoder,
   getArrayEncoder,
@@ -23,6 +18,11 @@ import {
   getU64Encoder,
   getU8Decoder,
   getU8Encoder,
+  type Codec,
+  type Decoder,
+  type Encoder,
+  type GetDiscriminatedUnionVariant,
+  type GetDiscriminatedUnionVariantContent,
 } from '@solana/web3.js';
 
 export type CollectionDetails =

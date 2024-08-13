@@ -6,56 +6,61 @@
  * @see https://github.com/kinobi-so/kinobi
  */
 
-import { Address, containsBytes, getU8Encoder } from '@solana/web3.js';
 import {
-  ParsedApproveCollectionAuthorityInstruction,
-  ParsedApproveUseAuthorityInstruction,
-  ParsedBubblegumSetCollectionSizeInstruction,
-  ParsedBurnEditionNftInstruction,
-  ParsedBurnInstruction,
-  ParsedBurnNftInstruction,
-  ParsedCloseEscrowAccountInstruction,
-  ParsedCollectInstruction,
-  ParsedConvertMasterEditionV1ToV2Instruction,
-  ParsedCreateEscrowAccountInstruction,
-  ParsedCreateMasterEditionInstruction,
-  ParsedCreateMasterEditionV3Instruction,
-  ParsedCreateMetadataAccountInstruction,
-  ParsedCreateMetadataAccountV2Instruction,
-  ParsedCreateMetadataAccountV3Instruction,
-  ParsedCreateV1Instruction,
-  ParsedDeprecatedCreateMasterEditionInstruction,
-  ParsedDeprecatedCreateReservationListInstruction,
-  ParsedDeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInstruction,
-  ParsedDeprecatedMintPrintingTokensInstruction,
-  ParsedDeprecatedMintPrintingTokensViaTokenInstruction,
-  ParsedDeprecatedSetReservationListInstruction,
-  ParsedFreezeDelegatedAccountInstruction,
-  ParsedLockInstruction,
-  ParsedMigrateInstruction,
-  ParsedMintNewEditionFromMasterEditionViaTokenInstruction,
-  ParsedMintNewEditionFromMasterEditionViaVaultProxyInstruction,
-  ParsedMintV1Instruction,
-  ParsedPrintInstruction,
-  ParsedPuffMetadataInstruction,
-  ParsedRemoveCreatorVerificationInstruction,
-  ParsedSetAndVerifyCollectionInstruction,
-  ParsedSetAndVerifySizedCollectionItemInstruction,
-  ParsedSetCollectionSizeInstruction,
-  ParsedSetTokenStandardInstruction,
-  ParsedSignMetadataInstruction,
-  ParsedThawDelegatedAccountInstruction,
-  ParsedTransferInstruction,
-  ParsedTransferOutOfEscrowInstruction,
-  ParsedUnlockInstruction,
-  ParsedUnverifyCollectionInstruction,
-  ParsedUnverifyInstruction,
-  ParsedUnverifySizedCollectionItemInstruction,
-  ParsedUseInstruction,
-  ParsedUtilizeInstruction,
-  ParsedVerifyCollectionInstruction,
-  ParsedVerifyInstruction,
-  ParsedVerifySizedCollectionItemInstruction,
+  containsBytes,
+  getU8Encoder,
+  type Address,
+  type ReadonlyUint8Array,
+} from '@solana/web3.js';
+import {
+  type ParsedApproveCollectionAuthorityInstruction,
+  type ParsedApproveUseAuthorityInstruction,
+  type ParsedBubblegumSetCollectionSizeInstruction,
+  type ParsedBurnEditionNftInstruction,
+  type ParsedBurnInstruction,
+  type ParsedBurnNftInstruction,
+  type ParsedCloseEscrowAccountInstruction,
+  type ParsedCollectInstruction,
+  type ParsedConvertMasterEditionV1ToV2Instruction,
+  type ParsedCreateEscrowAccountInstruction,
+  type ParsedCreateMasterEditionInstruction,
+  type ParsedCreateMasterEditionV3Instruction,
+  type ParsedCreateMetadataAccountInstruction,
+  type ParsedCreateMetadataAccountV2Instruction,
+  type ParsedCreateMetadataAccountV3Instruction,
+  type ParsedCreateV1Instruction,
+  type ParsedDeprecatedCreateMasterEditionInstruction,
+  type ParsedDeprecatedCreateReservationListInstruction,
+  type ParsedDeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInstruction,
+  type ParsedDeprecatedMintPrintingTokensInstruction,
+  type ParsedDeprecatedMintPrintingTokensViaTokenInstruction,
+  type ParsedDeprecatedSetReservationListInstruction,
+  type ParsedFreezeDelegatedAccountInstruction,
+  type ParsedLockInstruction,
+  type ParsedMigrateInstruction,
+  type ParsedMintNewEditionFromMasterEditionViaTokenInstruction,
+  type ParsedMintNewEditionFromMasterEditionViaVaultProxyInstruction,
+  type ParsedMintV1Instruction,
+  type ParsedPrintInstruction,
+  type ParsedPuffMetadataInstruction,
+  type ParsedRemoveCreatorVerificationInstruction,
+  type ParsedSetAndVerifyCollectionInstruction,
+  type ParsedSetAndVerifySizedCollectionItemInstruction,
+  type ParsedSetCollectionSizeInstruction,
+  type ParsedSetTokenStandardInstruction,
+  type ParsedSignMetadataInstruction,
+  type ParsedThawDelegatedAccountInstruction,
+  type ParsedTransferInstruction,
+  type ParsedTransferOutOfEscrowInstruction,
+  type ParsedUnlockInstruction,
+  type ParsedUnverifyCollectionInstruction,
+  type ParsedUnverifyInstruction,
+  type ParsedUnverifySizedCollectionItemInstruction,
+  type ParsedUseInstruction,
+  type ParsedUtilizeInstruction,
+  type ParsedVerifyCollectionInstruction,
+  type ParsedVerifyInstruction,
+  type ParsedVerifySizedCollectionItemInstruction,
 } from '../instructions';
 
 export const TOKEN_METADATA_PROGRAM_ADDRESS =
@@ -130,10 +135,9 @@ export enum TokenMetadataInstruction {
 }
 
 export function identifyTokenMetadataInstruction(
-  instruction: { data: Uint8Array } | Uint8Array
+  instruction: { data: ReadonlyUint8Array } | ReadonlyUint8Array
 ): TokenMetadataInstruction {
-  const data =
-    instruction instanceof Uint8Array ? instruction : instruction.data;
+  const data = 'data' in instruction ? instruction.data : instruction;
   if (containsBytes(data, getU8Encoder().encode(0), 0)) {
     return TokenMetadataInstruction.CreateMetadataAccount;
   }

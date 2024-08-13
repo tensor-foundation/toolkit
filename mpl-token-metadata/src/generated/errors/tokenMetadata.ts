@@ -6,6 +6,14 @@
  * @see https://github.com/kinobi-so/kinobi
  */
 
+import {
+  isProgramError,
+  type Address,
+  type SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM,
+  type SolanaError,
+} from '@solana/web3.js';
+import { TOKEN_METADATA_PROGRAM_ADDRESS } from '../programs';
+
 /** InstructionUnpackError */
 export const TOKEN_METADATA_ERROR__INSTRUCTION_UNPACK_ERROR = 0x0; // 0
 /** InstructionPackError */
@@ -607,7 +615,7 @@ export type TokenMetadataError =
   | typeof TOKEN_METADATA_ERROR__USE_AUTHORITY_RECORD_ALREADY_REVOKED;
 
 let tokenMetadataErrorMessages: Record<TokenMetadataError, string> | undefined;
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   tokenMetadataErrorMessages = {
     [TOKEN_METADATA_ERROR__ADDRESS_NOT_IN_RESERVATION]: ``,
     [TOKEN_METADATA_ERROR__ALREADY_INITIALIZED]: `Already initialized`,
@@ -812,11 +820,29 @@ if (__DEV__) {
 }
 
 export function getTokenMetadataErrorMessage(code: TokenMetadataError): string {
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     return (tokenMetadataErrorMessages as Record<TokenMetadataError, string>)[
       code
     ];
   }
 
-  return 'Error message not available in production bundles. Compile with `__DEV__` set to true to see more information.';
+  return 'Error message not available in production bundles.';
+}
+
+export function isTokenMetadataError<
+  TProgramErrorCode extends TokenMetadataError,
+>(
+  error: unknown,
+  transactionMessage: {
+    instructions: Record<number, { programAddress: Address }>;
+  },
+  code?: TProgramErrorCode
+): error is SolanaError<typeof SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM> &
+  Readonly<{ context: Readonly<{ code: TProgramErrorCode }> }> {
+  return isProgramError<TProgramErrorCode>(
+    error,
+    transactionMessage,
+    TOKEN_METADATA_PROGRAM_ADDRESS,
+    code
+  );
 }

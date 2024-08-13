@@ -1,0 +1,183 @@
+name: Main
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  CACHE: true
+  CARGO_NET_GIT_FETCH_WITH_CLI: "true"
+
+permissions: read-all
+
+jobs:
+  changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      any: ${{ steps.changes.outputs.any }}
+      programs: ${{ steps.changes.outputs.programs }}
+      program_matrix: ${{ steps.program_matrix.outputs.matrix }}
+      js_client: ${{ steps.changes.outputs.js_client }}
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Load environment variables
+        run: cat .github/.env >> $GITHUB_ENV
+
+      - name: Detect changes
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: .github/file-filters.yml
+
+      - name: Filter program matrix
+        id: program_matrix
+        uses: tensor-foundation/actions/filter-matrix@v2
+        with:
+          matrix: ${{ env.PROGRAMS }}
+          changes: ${{ steps.changes.outputs.changes }}
+          suffix: _binary
+
+  lint_js:
+    name: Lint (JavaScript)
+    if: ${{ needs.changes.outputs.js_client == 'true' }}
+    needs: changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Load environment variables
+        run: cat .github/.env >> $GITHUB_ENV
+
+      - name: Install Node.js
+        uses: tensor-foundation/actions/install-node-with-pnpm@v2
+        with:
+          version: ${{ env.NODE_VERSION }}
+          cache: ${{ env.CACHE }}
+          dependencies: false
+
+      - name: Install dependencies and lint
+        run: |
+          echo "TEST_PACKAGES: $TEST_PACKAGES"
+          IFS=' ' read -ra PACKAGES <<< "$TEST_PACKAGES"
+          for package in "${PACKAGES[@]}"; do
+            echo "Linting $package"
+            if [ -d "$package" ]; then
+              cd "$package"
+              pnpm install --frozen-lockfile
+              if [ "$(basename "$package")" != "mpl-token-metadata" ]; then
+                pnpm format
+                pnpm lint
+              fi
+              cd ..
+            else
+              echo "Directory $package not found, skipping"
+            fi
+          done
+
+      - name: No only tests
+        run: |
+          EXIT_CODE=0
+          echo "TEST_PACKAGES: $TEST_PACKAGES"
+          IFS=' ' read -ra PACKAGES <<< "$TEST_PACKAGES"
+          for package in "${PACKAGES[@]}"; do
+            echo "Checking $package for test.only"
+            if [ -d "$package" ]; then
+              cd "$package" || { echo "Failed to change to $package directory"; exit 1; }
+              FILES=$(find test -type f -name '*.test.ts' 2>/dev/null)
+              if [ -n "$FILES" ]; then
+                while IFS= read -r FILE; do
+                  if grep -Eq 'test.only\(' "$FILE"; then
+                    echo "Error: '$FILE' contains 'test.only'"
+                    EXIT_CODE=1
+                  fi
+                done <<< "$FILES"
+              else
+                echo "No test files found in $package"
+              fi
+              cd .. || { echo "Failed to return to parent directory"; exit 1; }
+            else
+              echo "Directory $package not found, skipping"
+            fi
+          done
+          exit $EXIT_CODE
+
+  generate_clients:
+    name: Generate Clients
+    if: ${{ needs.changes.outputs.any == 'true' }}
+    needs: [changes]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Load environment variables
+        run: cat .github/.env >> $GITHUB_ENV
+
+      - name: Install Linux Build Deps
+        run: sudo apt-get update && sudo apt-get install -y pkg-config build-essential libudev-dev
+
+      - name: Install Rust
+        uses: tensor-foundation/actions/install-rust@v2
+        with:
+          toolchain: ${{ env.RUST_VERSION }}
+
+      - name: Install Solana
+        uses: tensor-foundation/actions/install-solana@v2
+        with:
+          version: ${{ env.SOLANA_VERSION }}
+          cache: ${{ env.CACHE }}
+
+      - name: Cache program dependencies
+        if: env.CACHE == 'true'
+        uses: tensor-foundation/actions/cache-crate@v2
+        with:
+          folder: "."
+          key: programs
+
+      - name: Install Node.js
+        uses: tensor-foundation/actions/install-node-with-pnpm@v2
+        with:
+          version: ${{ env.NODE_VERSION }}
+          cache: ${{ env.CACHE }}
+          dependencies: true
+
+      - name: Cache IDL generators
+        if: env.CACHE == 'true'
+        uses: tensor-foundation/actions/cache-idl-generators@v2
+        with:
+          path: "./.cargo/"
+
+      - name: Generate IDLs and clients
+        run: |
+          echo "TEST_PACKAGES: $TEST_PACKAGES"
+          # Remove surrounding quotes and split into array
+          IFS=' ' read -ra PACKAGES <<< $(echo $TEST_PACKAGES | tr -d '"')
+          for package in "${PACKAGES[@]}"; do
+            if [ -d "$package" ] && [ "$(basename "$package")" != "test-helpers" ] && [ "$(basename "$package")" != "wns-distribution" ]; then
+              echo "Generating IDLs and clients for $package"
+              cd "$package" || { echo "Failed to change to $package directory"; exit 1; }
+              pnpm generate
+              cd - || { echo "Failed to return to previous directory"; exit 1; }
+            else
+              echo "Directory $package not found, skipping"
+            fi
+          done
+
+      - name: Ensure working directory is clean
+        run: |
+          git status --porcelain
+          test -z "$(git status --porcelain)"
+
+  test_js:
+    if: needs.changes.outputs.js_client == 'true'
+    name: JavaScript Client
+    needs: [changes, generate_clients]
+    uses: ./.github/workflows/test-js-client.yml
+    secrets: inherit

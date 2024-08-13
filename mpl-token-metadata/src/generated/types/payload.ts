@@ -7,9 +7,6 @@
  */
 
 import {
-  Codec,
-  Decoder,
-  Encoder,
   addDecoderSizePrefix,
   addEncoderSizePrefix,
   combineCodec,
@@ -21,12 +18,15 @@ import {
   getU32Encoder,
   getUtf8Decoder,
   getUtf8Encoder,
+  type Codec,
+  type Decoder,
+  type Encoder,
 } from '@solana/web3.js';
 import {
-  PayloadType,
-  PayloadTypeArgs,
   getPayloadTypeDecoder,
   getPayloadTypeEncoder,
+  type PayloadType,
+  type PayloadTypeArgs,
 } from '.';
 
 export type Payload = { map: Map<string, PayloadType> };

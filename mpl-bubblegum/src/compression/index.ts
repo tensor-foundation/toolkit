@@ -1,5 +1,5 @@
-export * from './hashing'
-export * from './helpers'
+export * from './hashing';
+export * from './helpers';
 export * from './merkleTree';
 export * from './setup';
 export * from './token';
