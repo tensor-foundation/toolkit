@@ -88,13 +88,6 @@ jobs:
           done
           exit $EXIT_CODE
 
-  build_programs:
-    name: Programs
-    if: ${{ needs.changes.outputs.any == 'true' }}
-    needs: [changes, lint_js, lint_rust]
-    uses: ./.github/workflows/build-programs.yml
-    secrets: inherit
-
   generate_clients:
     name: Generate Clients
     if: ${{ needs.changes.outputs.any == 'true' }}
