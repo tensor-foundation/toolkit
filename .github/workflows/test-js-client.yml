@@ -1,0 +1,77 @@
+name: Test JS client
+
+on: [workflow_dispatch, workflow_call]
+
+env:
+  CACHE: true
+  TEST_PACKAGES: "mpl-bubblegum mpl-core mpl-token-metadata phoenix tests-helpers"
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ["18.x", "20.x"]
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Load environment variables
+        run: cat .github/.env >> $GITHUB_ENV
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Install Solana
+        uses: ./.github/actions/install-solana
+        with:
+          solana_version: ${{ env.SOLANA_VERSION }}
+
+      - name: Read packages from pnpm-workspace.yml
+        id: read-packages
+        run: |
+          PACKAGES=$(grep -oP '(?<=- ).*' pnpm-workspace.yml | tr '\n' ' ')
+          echo "ALL_PACKAGES=$PACKAGES" >> $GITHUB_OUTPUT
+
+      - name: Install dependencies, build, and test
+        run: |
+          # Function to check if a package is in the TEST_PACKAGES list
+          is_test_package() {
+            echo $TEST_PACKAGES | grep -w $1 > /dev/null
+          }
+
+          for package in ${{ steps.read-packages.outputs.ALL_PACKAGES }}; do
+            echo "Processing $package"
+            cd $package
+
+            # Install dependencies
+            pnpm install
+
+            # Build all packages
+            pnpm build
+
+            if is_test_package $package; then
+              echo "Running full test suite for $package"
+
+              # Start validator
+              pnpm validator:restart
+
+              # Test
+              pnpm test
+
+              # Stop validator
+              pnpm validator:stop || true
+            else
+              echo "Skipping tests for $package"
+            fi
+
+            cd ..
+          done
