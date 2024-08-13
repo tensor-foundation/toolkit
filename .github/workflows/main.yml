@@ -135,9 +135,8 @@ jobs:
           path: "./.cargo/"
 
       - name: Generate IDLs and clients
-        env:
-          TEST_PACKAGES: "mpl-bubblegum mpl-core mpl-token-metadata phoenix tests-helpers"
         run: |
+          echo "TEST_PACKAGES: $TEST_PACKAGES"
           for package in $TEST_PACKAGES; do
             echo "Generating IDLs and clients for $package"
             cd $package
