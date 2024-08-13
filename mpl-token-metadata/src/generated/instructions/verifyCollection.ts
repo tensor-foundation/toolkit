@@ -195,7 +195,7 @@ export function getVerifyCollectionInstruction<
       getAccountMeta(accounts.collection),
       getAccountMeta(accounts.collectionMasterEditionAccount),
       getAccountMeta(accounts.collectionAuthorityRecord),
-    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getVerifyCollectionInstructionDataEncoder().encode({}),
   } as VerifyCollectionInstruction<
