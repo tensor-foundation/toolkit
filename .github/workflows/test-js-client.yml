@@ -31,9 +31,10 @@ jobs:
           version: 9
 
       - name: Install Solana
-        uses: ./.github/actions/install-solana
+        uses: tensor-foundation/actions/install-solana@v2
         with:
-          solana_version: ${{ env.SOLANA_VERSION }}
+          version: ${{ env.SOLANA_VERSION }}
+          cache: ${{ env.CACHE }}
 
       - name: Read packages from pnpm-workspace.yml
         id: read-packages
