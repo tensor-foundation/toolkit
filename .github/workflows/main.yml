@@ -155,15 +155,17 @@ jobs:
       - name: Generate IDLs and clients
         run: |
           echo "TEST_PACKAGES: $TEST_PACKAGES"
-          IFS=' ' read -ra PACKAGES <<< "$TEST_PACKAGES"
+          # Remove surrounding quotes and split into array
+          IFS=' ' read -ra PACKAGES <<< $(echo $TEST_PACKAGES | tr -d '"')
           for package in "${PACKAGES[@]}"; do
+            echo "Generating IDLs and clients for $package"
             if [ -d "$package" ]; then
-              echo "Generating IDLs and clients for $package"
-              cd $package
+              cd "$package" || { echo "Failed to change to $package directory"; exit 1; }
               pnpm generate
-              cd ..
+              cd - || { echo "Failed to return to previous directory"; exit 1; }
             else
               echo "Directory $package not found, skipping"
+            fi
           done
 
       - name: Ensure working directory is clean
