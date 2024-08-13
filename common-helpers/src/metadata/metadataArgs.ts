@@ -1,11 +1,8 @@
-import {
-  MetadataArgs,
-  TCreator,
-  getMetadataArgsEncoder,
-} from './codecs/metadataArgsEncoder';
-import { keccak_256 } from 'js-sha3';
-import BN from 'bn.js';
+/* eslint @typescript-eslint/no-unused-vars: "off" */
 import { address, getAddressEncoder } from '@solana/web3.js';
+import BN from 'bn.js';
+import { DAS } from 'helius-sdk';
+import { keccak_256 } from 'js-sha3';
 import {
   TCollection,
   TMetadataArgsArgs,
@@ -14,7 +11,11 @@ import {
   TUseMethod,
   TUses,
 } from '../shared-types';
-import { DAS } from 'helius-sdk';
+import {
+  MetadataArgs,
+  TCreator,
+  getMetadataArgsEncoder,
+} from './codecs/metadataArgsEncoder';
 
 // metadataArgs shouldn't get exported since they
 // are only used as intermediate to hash
@@ -47,7 +48,7 @@ export function findMetadataArgs(
     );
 
   // try original metadataArgs
-  var hash = makeDataHash(metadataArgs);
+  let hash = makeDataHash(metadataArgs);
   if (hash.equals(dataHashBuffer)) {
     return metadataArgs;
   }
@@ -107,7 +108,6 @@ function convertAssetFieldsToMetadataArgs(
     ? grouping.find((group: DAS.Grouping) => group.group_key === 'collection')
         ?.group_value
     : '';
-  //@ts-ignore - metadata field contains token_standard field - helius SDK seems to be not up-to-date?
   const tokenStandard = content ? content.metadata.token_standard : '';
 
   return {

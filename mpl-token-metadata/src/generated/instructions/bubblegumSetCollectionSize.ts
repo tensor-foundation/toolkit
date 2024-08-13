@@ -193,7 +193,7 @@ export function getBubblegumSetCollectionSizeInstruction<
       getAccountMeta(accounts.collectionMint),
       getAccountMeta(accounts.bubblegumSigner),
       getAccountMeta(accounts.collectionAuthorityRecord),
-    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getBubblegumSetCollectionSizeInstructionDataEncoder().encode(
       args as BubblegumSetCollectionSizeInstructionDataArgs

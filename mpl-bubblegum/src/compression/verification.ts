@@ -1,12 +1,27 @@
-import { Address, KeyPairSigner, appendTransactionMessageInstruction, createTransactionMessage, getAddressEncoder, getU16Encoder, pipe, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash } from "@solana/web3.js";
-import { ACCOUNT_COMPRESSION_PROGRAM_ID, Client, NOOP_PROGRAM_ID, signAndSendTransaction } from "@tensor-foundation/test-helpers";
-import { MetadataArgs, getVerifyCreatorInstruction } from "../generated";
-import { findTreeAuthorityPda } from "./helpers";
-import { SYSTEM_PROGRAM_ADDRESS } from "@solana-program/system";
-import { computeCreatorHash, computeDataHash } from "./hashing";
-import { getRootFromMerkleTreeAddress } from "./tree";
-import { makeLeaf } from ".";
-import { getVerifyLeafInstruction } from "../account_compression";
+import {
+  Address,
+  KeyPairSigner,
+  appendTransactionMessageInstruction,
+  createTransactionMessage,
+  getAddressEncoder,
+  getU16Encoder,
+  pipe,
+  setTransactionMessageFeePayerSigner,
+  setTransactionMessageLifetimeUsingBlockhash,
+} from '@solana/web3.js';
+import {
+  ACCOUNT_COMPRESSION_PROGRAM_ID,
+  Client,
+  NOOP_PROGRAM_ID,
+  signAndSendTransaction,
+} from '@tensor-foundation/test-helpers';
+import { MetadataArgs, getVerifyCreatorInstruction } from '../generated';
+import { findTreeAuthorityPda } from './helpers';
+import { SYSTEM_PROGRAM_ADDRESS } from '@solana-program/system';
+import { computeCreatorHash, computeDataHash } from './hashing';
+import { getRootFromMerkleTreeAddress } from './tree';
+import { makeLeaf } from '.';
+import { getVerifyLeafInstruction } from '../account_compression';
 import { getSetComputeUnitLimitInstruction } from '@solana-program/compute-budget';
 
 export const verifyCNftCreator = async ({
@@ -33,25 +48,26 @@ export const verifyCNftCreator = async ({
   );
 
   const [treeAuthority] = await findTreeAuthorityPda({ merkleTree });
-  const verifyCreatorIx = getVerifyCreatorInstruction(
-    {
-      merkleTree,
-      treeAuthority,
-      leafOwner: owner,
-      leafDelegate: owner,
-      payer: payer,
-      creator: verifiedCreator,
-      logWrapper: NOOP_PROGRAM_ID,
-      compressionProgram: ACCOUNT_COMPRESSION_PROGRAM_ID,
-      systemProgram: SYSTEM_PROGRAM_ADDRESS,
-      root,
-      creatorHash: computeCreatorHash(metadata.creators),
-      dataHash: computeDataHash(metadata, new Uint8Array(getU16Encoder().encode(metadata.sellerFeeBasisPoints))),
-      index,
-      message: metadata,
-      nonce: index,
-    }
-  );
+  const verifyCreatorIx = getVerifyCreatorInstruction({
+    merkleTree,
+    treeAuthority,
+    leafOwner: owner,
+    leafDelegate: owner,
+    payer: payer,
+    creator: verifiedCreator,
+    logWrapper: NOOP_PROGRAM_ID,
+    compressionProgram: ACCOUNT_COMPRESSION_PROGRAM_ID,
+    systemProgram: SYSTEM_PROGRAM_ADDRESS,
+    root,
+    creatorHash: computeCreatorHash(metadata.creators),
+    dataHash: computeDataHash(
+      metadata,
+      new Uint8Array(getU16Encoder().encode(metadata.sellerFeeBasisPoints))
+    ),
+    index,
+    message: metadata,
+    nonce: index,
+  });
 
   const { value: latestBlockhash } = await client.rpc
     .getLatestBlockhash()
@@ -62,7 +78,7 @@ export const verifyCNftCreator = async ({
     (tx) => setTransactionMessageFeePayerSigner(payer, tx),
     (tx) => setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, tx),
     (tx) => appendTransactionMessageInstruction(verifyCreatorIx, tx),
-    (tx) => signAndSendTransaction(client, tx),
+    (tx) => signAndSendTransaction(client, tx)
   );
   return;
 };
@@ -114,7 +130,7 @@ export const verifyCNft = async ({
     (tx) => setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, tx),
     (tx) => appendTransactionMessageInstruction(cuLimitIx, tx),
     (tx) => appendTransactionMessageInstruction(verifyLeafIx, tx),
-    (tx) => signAndSendTransaction(client, tx),
+    (tx) => signAndSendTransaction(client, tx)
   );
 
   return { leaf, assetId };

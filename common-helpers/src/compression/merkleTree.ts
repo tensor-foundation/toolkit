@@ -1,4 +1,5 @@
-import { Rpc, SolanaRpcApi, Address } from '@solana/web3.js';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Address, Rpc, SolanaRpcApi } from '@solana/web3.js';
 import { getConcurrentMerkleTreeDecoderFactory } from './codecs/merkleTreeDecoderFactories';
 import { getConcurrentMerkleTreeHeaderDecoder } from './codecs/merkleTreeHeaderDecoder';
 
@@ -13,7 +14,7 @@ export async function getCanopyDepth(
     .send()
     .then((result: any) => result.value.data[0]);
   const merkleTreeDataBytes = Buffer.from(merkleTreeData, 'base64');
-  var currOffset = 0;
+  let currOffset = 0;
   const [merkleTreeHeader, headerOffset] =
     getConcurrentMerkleTreeHeaderDecoder().read(
       merkleTreeDataBytes,

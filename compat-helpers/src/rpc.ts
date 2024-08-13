@@ -1,19 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createRpcMessage } from '@solana/rpc-spec-types';
+import type { KeyPath } from '@solana/rpc-transformers';
+import { Connection } from '@solana/web3.js';
 import {
-  RpcTransport,
+  Commitment,
   createRpc,
   createSolanaRpcApi,
-  Commitment,
-} from '@solana/web3.js-next';
-import {
+  RpcTransport,
   safeCaptureStackTrace,
   SOLANA_ERROR__RPC__INTEGER_OVERFLOW,
   SolanaError,
 } from '@solana/web3.js-next';
-import type { KeyPath } from '@solana/rpc-transformers';
-import { createRpcMessage } from '@solana/rpc-spec-types';
-import { Connection } from '@solana/web3.js';
-import RpcClient from 'jayson/lib/client/browser';
 import { RequestParamsLike } from 'jayson';
+import RpcClient from 'jayson/lib/client/browser';
 
 export function fromConnectionToRpc(connection: Connection) {
   const connectionTransport = (connection as any)._rpcClient as RpcClient;
