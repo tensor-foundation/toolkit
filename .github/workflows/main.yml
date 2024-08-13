@@ -157,10 +157,13 @@ jobs:
           echo "TEST_PACKAGES: $TEST_PACKAGES"
           IFS=' ' read -ra PACKAGES <<< "$TEST_PACKAGES"
           for package in "${PACKAGES[@]}"; do
-            echo "Generating IDLs and clients for $package"
-            cd $package
-            pnpm generate
-            cd ..
+            if [ -d "$package" ]; then
+              echo "Generating IDLs and clients for $package"
+              cd $package
+              pnpm generate
+              cd ..
+            else
+              echo "Directory $package not found, skipping"
           done
 
       - name: Ensure working directory is clean
