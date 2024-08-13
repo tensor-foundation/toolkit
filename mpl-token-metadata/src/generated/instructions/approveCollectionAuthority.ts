@@ -211,7 +211,7 @@ export function getApproveCollectionAuthorityInstruction<
       getAccountMeta(accounts.mint),
       getAccountMeta(accounts.systemProgram),
       getAccountMeta(accounts.rent),
-    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getApproveCollectionAuthorityInstructionDataEncoder().encode({}),
   } as ApproveCollectionAuthorityInstruction<

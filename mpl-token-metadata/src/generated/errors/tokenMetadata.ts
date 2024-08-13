@@ -6,6 +6,14 @@
  * @see https://github.com/kinobi-so/kinobi
  */
 
+import {
+  isProgramError,
+  type Address,
+  type SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM,
+  type SolanaError,
+} from '@solana/web3.js';
+import { TOKEN_METADATA_PROGRAM_ADDRESS } from '../programs';
+
 /** InstructionUnpackError */
 export const TOKEN_METADATA_ERROR__INSTRUCTION_UNPACK_ERROR = 0x0; // 0
 /** InstructionPackError */
@@ -819,4 +827,22 @@ export function getTokenMetadataErrorMessage(code: TokenMetadataError): string {
   }
 
   return 'Error message not available in production bundles.';
+}
+
+export function isTokenMetadataError<
+  TProgramErrorCode extends TokenMetadataError,
+>(
+  error: unknown,
+  transactionMessage: {
+    instructions: Record<number, { programAddress: Address }>;
+  },
+  code?: TProgramErrorCode
+): error is SolanaError<typeof SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM> &
+  Readonly<{ context: Readonly<{ code: TProgramErrorCode }> }> {
+  return isProgramError<TProgramErrorCode>(
+    error,
+    transactionMessage,
+    TOKEN_METADATA_PROGRAM_ADDRESS,
+    code
+  );
 }

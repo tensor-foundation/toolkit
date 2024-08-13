@@ -361,7 +361,7 @@ export function getMintNewEditionFromMasterEditionViaVaultProxyInstruction<
       getAccountMeta(accounts.tokenVaultProgram),
       getAccountMeta(accounts.systemProgram),
       getAccountMeta(accounts.rent),
-    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getMintNewEditionFromMasterEditionViaVaultProxyInstructionDataEncoder().encode(
       args as MintNewEditionFromMasterEditionViaVaultProxyInstructionDataArgs

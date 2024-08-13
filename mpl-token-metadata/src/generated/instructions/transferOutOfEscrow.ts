@@ -303,7 +303,7 @@ export function getTransferOutOfEscrowInstruction<
       getAccountMeta(accounts.tokenProgram),
       getAccountMeta(accounts.sysvarInstructions),
       getAccountMeta(accounts.authority),
-    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getTransferOutOfEscrowInstructionDataEncoder().encode(
       args as TransferOutOfEscrowInstructionDataArgs
