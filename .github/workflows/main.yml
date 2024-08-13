@@ -64,7 +64,8 @@ jobs:
 
       - name: Install dependencies and lint
         run: |
-          for package in package1 package2; do
+          echo "TEST_PACKAGES: $TEST_PACKAGES"
+          for package in $TEST_PACKAGES; do
             cd $package
             pnpm install --frozen-lockfile
             pnpm format
@@ -75,7 +76,7 @@ jobs:
       - name: No only tests
         run: |
           EXIT_CODE=0
-          for package in package1 package2; do
+          for package in $TEST_PACKAGES; do
             cd $package
             FILES=$(find test -type f -name '*.test.ts')
             while read FILE; do
