@@ -94,14 +94,12 @@ function convertAssetFieldsToMetadataArgs(
   assetFields: DAS.GetAssetResponse
 ): MetadataArgs {
   const {
-    compression,
     content,
     royalty,
     creators,
     uses,
     grouping,
     supply,
-    ownership: { owner, delegate },
     mutable,
   } = assetFields;
   const coll = grouping
