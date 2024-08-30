@@ -36,10 +36,10 @@ jobs:
           version: ${{ env.SOLANA_VERSION }}
           cache: ${{ env.CACHE }}
 
-      - name: Read packages from pnpm-workspace.yml
+      - name: Read packages from pnpm-workspace.yaml
         id: read-packages
         run: |
-          PACKAGES=$(grep -oP '(?<=- ).*' pnpm-workspace.yml | tr '\n' ' ')
+          PACKAGES=$(grep -oP '(?<=- ).*' pnpm-workspace.yaml | tr '\n' ' ')
           echo "ALL_PACKAGES=$PACKAGES" >> $GITHUB_OUTPUT
 
       - name: Install dependencies, build, and test

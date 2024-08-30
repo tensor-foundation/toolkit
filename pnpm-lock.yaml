@@ -223,6 +223,9 @@ importers:
 
   mpl-core:
     dependencies:
+      '@solana/web3.js':
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3(fastestsmallesttextencoderdecoder@1.0.22)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@tensor-foundation/test-helpers':
         specifier: workspace:*
         version: link:../test-helpers
