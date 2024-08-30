@@ -36,10 +36,10 @@ jobs:
           version: ${{ env.SOLANA_VERSION }}
           cache: ${{ env.CACHE }}
 
-      - name: Read packages from pnpm-workspace.yml
+      - name: Read packages from pnpm-workspace.yaml
         id: read-packages
         run: |
-          PACKAGES=$(grep -oP '(?<=- ).*' pnpm-workspace.yml | tr '\n' ' ')
+          PACKAGES=$(grep -oP '(?<=- ).*' pnpm-workspace.yaml | tr '\n' ' ')
           echo "ALL_PACKAGES=$PACKAGES" >> $GITHUB_OUTPUT
 
       - name: Install dependencies, build, and test
@@ -49,18 +49,20 @@ jobs:
             echo $TEST_PACKAGES | grep -w $1 > /dev/null
           }
 
+          pnpm install
+
+          # Build all packages
+          pnpm build
+
           for package in ${{ steps.read-packages.outputs.ALL_PACKAGES }}; do
             echo "Processing $package"
             cd $package
 
-            # Install dependencies
-            pnpm install
-
-            # Build all packages
-            pnpm build
-
             if is_test_package $package; then
               echo "Running full test suite for $package"
+
+              # Build programs
+              pnpm programs:build
 
               # Start validator
               pnpm validator:restart

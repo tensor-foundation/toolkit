@@ -218,7 +218,7 @@ export interface TokenNftOwnedByParams {
   client: Client;
   mint: Address;
   owner: Address;
-  tokenProgramAddress?: Address;
+  tokenProgram?: Address;
 }
 
 const TOKEN_OWNER_START_INDEX = 32;
@@ -241,18 +241,12 @@ export function getTokenOwner(data: Base64EncodedDataResponse): Address {
 // Asserts that a token-based NFT is owned by a specific address by deriving
 // the ATA for the owner and checking the amount and owner of the token.
 export async function assertTokenNftOwnedBy(params: TokenNftOwnedByParams) {
-  const {
-    t,
-    client,
-    mint,
-    owner,
-    tokenProgramAddress = TOKEN_PROGRAM_ID,
-  } = params;
+  const { t, client, mint, owner, tokenProgram = TOKEN_PROGRAM_ID } = params;
 
   const [ownerAta] = await findAssociatedTokenPda({
     mint,
     owner,
-    tokenProgram: tokenProgramAddress,
+    tokenProgram,
   });
   const ownerAtaAccount = await client.rpc
     .getAccountInfo(ownerAta, { encoding: 'base64' })

@@ -21,6 +21,7 @@ export function getExternalProgramAddresses() {
   const addresses = getProgramFolders().flatMap(
     (folder) => getCargoMetadata(folder)?.solana?.['program-dependencies'] ?? []
   );
+  console.log(addresses);
   return Array.from(new Set(addresses));
 }
 
@@ -33,17 +34,7 @@ export function getExternalAccountAddresses() {
 
 let didWarnAboutMissingPrograms = false;
 export function getProgramFolders() {
-  let programs;
-
-  if (process.env.PROGRAMS) {
-    try {
-      programs = JSON.parse(process.env.PROGRAMS);
-    } catch (error) {
-      programs = process.env.PROGRAMS.split(/\s+/);
-    }
-  } else {
-    programs = getAllProgramFolders();
-  }
+  const programs = getAllProgramFolders();
 
   const filteredPrograms = programs.filter((program) =>
     fs.existsSync(path.join(workingDirectory, program))

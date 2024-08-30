@@ -160,7 +160,7 @@ jobs:
           # Remove surrounding quotes and split into array
           IFS=' ' read -ra PACKAGES <<< $(echo $TEST_PACKAGES | tr -d '"')
           for package in "${PACKAGES[@]}"; do
-            if [ -d "$package" ] && [ "$(basename "$package")" != "test-helpers" ] && [ "$(basename "$package")" != "wns-distribution" ]; then
+            if [ -d "$package" ] && [ "$(basename "$package")" != "test-helpers" ] && [ "$(basename "$package")" != "wns-distribution" ] && [ "$(basename "$package")" != "wns" ]; then
               echo "Generating IDLs and clients for $package"
               cd "$package" || { echo "Failed to change to $package directory"; exit 1; }
               pnpm generate

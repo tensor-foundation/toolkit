@@ -6,7 +6,6 @@ import {
   getExternalProgramOutputDir,
 } from '../utils.mjs';
 
-// Get input from environment variables.
 const rpc = process.env.RPC ?? 'https://api.mainnet-beta.solana.com';
 const outputDir = getExternalProgramOutputDir();
 await dump();
@@ -22,7 +21,6 @@ async function dump() {
   ];
 
   if (external.length === 0) return;
-  echo(`Dumping external accounts to '${outputDir}':`);
 
   // Create the output directory if needed.
   $`mkdir -p ${outputDir}`.quiet();
