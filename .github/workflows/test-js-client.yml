@@ -51,12 +51,12 @@ jobs:
 
           pnpm install
 
+          # Build all packages
+          pnpm build
+
           for package in ${{ steps.read-packages.outputs.ALL_PACKAGES }}; do
             echo "Processing $package"
             cd $package
-
-            # Build all packages
-            pnpm build
 
             if is_test_package $package; then
               echo "Running full test suite for $package"
