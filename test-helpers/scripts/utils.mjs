@@ -21,6 +21,7 @@ export function getExternalProgramAddresses() {
   const addresses = getProgramFolders().flatMap(
     (folder) => getCargoMetadata(folder)?.solana?.['program-dependencies'] ?? []
   );
+  console.log(addresses);
   return Array.from(new Set(addresses));
 }
 

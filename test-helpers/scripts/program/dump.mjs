@@ -6,7 +6,7 @@ import {
   getExternalProgramOutputDir,
 } from '../utils.mjs';
 
-const rpc = process.env.RPC ?? 'https://api.mainnet-beta.solana.com';
+const rpc = 'https://api.mainnet-beta.solana.com';
 const outputDir = getExternalProgramOutputDir();
 console.log('Dumping external accounts to', outputDir);
 console.log('Current working directory:', process.cwd());
@@ -17,11 +17,14 @@ async function dump() {
   // Ensure we have some external accounts to dump.
   console.log('Getting external accounts');
   const programs = getExternalProgramAddresses();
+  console.log('programs', programs);
   const accounts = getExternalAccountAddresses();
+  console.log('accounts', accounts);
   const external = [
     ...programs.map((program) => [program, 'so']),
     ...accounts.map((account) => [account, 'json']),
   ];
+  console.log('external', external);
 
   if (external.length === 0) return;
   echo(`Dumping external accounts to '${outputDir}':`);
@@ -33,9 +36,12 @@ async function dump() {
   await Promise.all(
     external.map(async ([address, extension]) => {
       const binary = `${address}.${extension}`;
+      console.log('binary', binary);
       const hasBinary = await fs.exists(`${outputDir}/${binary}`);
+      console.log('hasBinary', hasBinary);
 
       if (!hasBinary) {
+        console.log('hasBinary false');
         await copyFromChain(address, extension);
         echo(`Wrote account data to ${outputDir}/${binary}`);
         return;
@@ -95,6 +101,7 @@ async function dump() {
 /** Helper function to copy external programs or accounts binaries from the chain. */
 async function copyFromChain(address, extension, prefix = '') {
   const binary = `${prefix}${address}.${extension}`;
+  console.log('copying from chain', binary);
   switch (extension) {
     case 'json':
       return $`solana account -u ${rpc} ${address} -o ${outputDir}/${binary} --output json >/dev/null`.quiet();
