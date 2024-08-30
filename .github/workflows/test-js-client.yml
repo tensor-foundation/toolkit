@@ -49,12 +49,11 @@ jobs:
             echo $TEST_PACKAGES | grep -w $1 > /dev/null
           }
 
+          pnpm install
+
           for package in ${{ steps.read-packages.outputs.ALL_PACKAGES }}; do
             echo "Processing $package"
             cd $package
-
-            # Install dependencies
-            pnpm install
 
             # Build all packages
             pnpm build
