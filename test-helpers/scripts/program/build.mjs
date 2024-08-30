@@ -5,8 +5,6 @@ import { workingDirectory, getProgramFolders } from '../utils.mjs';
 // Save external programs binaries to the output directory.
 import './dump.mjs';
 
-console.log('Building programs...');
-
 // Build the programs.
 for (const folder of getProgramFolders()) {
   cd(`${path.join(workingDirectory, folder)}`);
