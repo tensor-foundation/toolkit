@@ -19,7 +19,7 @@
     "./dist/types"
   ],
   "scripts": {
-    "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json && zx ./scripts/dump.mjs ",
+    "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json && zx ./scripts/dump.mjs",
     "clean": "rm -rf node_modules && rm -rf dist",
     "generate": "zx ./scripts/generate-clients.mjs",
     "format": "prettier --check src test",
