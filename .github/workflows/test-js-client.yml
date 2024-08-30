@@ -58,11 +58,11 @@ jobs:
             echo "Processing $package"
             cd $package
 
-            # Build programs
-            pnpm programs:build
-
             if is_test_package $package; then
               echo "Running full test suite for $package"
+
+              # Build programs
+              pnpm programs:build
 
               # Start validator
               pnpm validator:restart
