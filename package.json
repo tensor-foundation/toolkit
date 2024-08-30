@@ -11,7 +11,7 @@
     "build:common-helpers": "pnpm --filter @tensor-foundation/common-helpers build",
     "build:compat-helpers": "pnpm --filter @tensor-foundation/compat-helpers build",
     "build:mpl-bubblegum": "pnpm --filter @tensor-foundation/mpl-bubblegum build",
-    "build": "npm run build:wns && npm run build:wns-distribution && npm run build:mpl-core && npm run build:phoenix && npm run build:resolvers && npm run build:mpl-token-metadata && npm run build:test-helpers && npm run build:common-helpers && npm run build:compat-helpers && npm run build:mpl-bubblegum"
+    "build": "pnpm build:wns && pnpm build:wns-distribution && pnpm build:phoenix && pnpm build:resolvers && pnpm build:test-helpers && pnpm build:common-helpers && pnpm build:compat-helpers && pnpm build:mpl-token-metadata && pnpm build:mpl-core && pnpm build:mpl-bubblegum"
   },
   "packageManager": "pnpm@9.1.0"
 }
