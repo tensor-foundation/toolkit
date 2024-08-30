@@ -8,11 +8,14 @@ import {
 
 const rpc = process.env.RPC ?? 'https://api.mainnet-beta.solana.com';
 const outputDir = getExternalProgramOutputDir();
+console.log('Dumping external accounts to', outputDir);
+console.log('Current working directory:', process.cwd());
 await dump();
 
 /** Dump external programs binaries and accounts if needed. */
 async function dump() {
   // Ensure we have some external accounts to dump.
+  console.log('Getting external accounts');
   const programs = getExternalProgramAddresses();
   const accounts = getExternalAccountAddresses();
   const external = [
