@@ -6,8 +6,7 @@ import {
   getExternalProgramOutputDir,
 } from '../utils.mjs';
 
-// Get input from environment variables.
-const rpc = process.env.RPC ?? 'https://api.mainnet-beta.solana.com';
+const rpc = 'https://api.devnet.solana.com';
 const outputDir = getExternalProgramOutputDir();
 await dump();
 
