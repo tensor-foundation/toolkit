@@ -1,7 +1,17 @@
 {
   "scripts": {
-    "clean": "pnpm --filter common-helpers --filter compat-helpers --filter mpl-core --filter mpl-bubblegum --filter mpl-core --filter mpl-token-metadata --filter phoenix --filter resolvers --filter test-helpers --filter wns clean",
-    "build": "pnpm --filter common-helpers --filter compat-helpers --filter mpl-core --filter mpl-bubblegum --filter mpl-core --filter mpl-token-metadata --filter phoenix --filter resolvers --filter test-helpers --filter wns build"
+    "clean": "pnpm -r clean",
+    "build:wns": "pnpm --filter @tensor-foundation/wen-new-standard build",
+    "build:wns-distribution": "pnpm --filter @tensor-foundation/wen-royalty-distribution build",
+    "build:mpl-core": "pnpm --filter @tensor-foundation/mpl-core build",
+    "build:phoenix": "pnpm --filter @tensor-foundation/phoenix build",
+    "build:resolvers": "pnpm --filter @tensor-foundation/resolvers build",
+    "build:mpl-token-metadata": "pnpm --filter @tensor-foundation/mpl-token-metadata build",
+    "build:test-helpers": "pnpm --filter @tensor-foundation/test-helpers build",
+    "build:common-helpers": "pnpm --filter @tensor-foundation/common-helpers build",
+    "build:compat-helpers": "pnpm --filter @tensor-foundation/compat-helpers build",
+    "build:mpl-bubblegum": "pnpm --filter @tensor-foundation/mpl-bubblegum build",
+    "build": "npm run build:wns && npm run build:wns-distribution && npm run build:mpl-core && npm run build:phoenix && npm run build:resolvers && npm run build:mpl-token-metadata && npm run build:test-helpers && npm run build:common-helpers && npm run build:compat-helpers && npm run build:mpl-bubblegum"
   },
   "packageManager": "pnpm@9.1.0"
 }
