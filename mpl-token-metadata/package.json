@@ -26,6 +26,7 @@
     "format:fix": "prettier --write src test",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
+    "programs:build": "echo",
     "test": "ava",
     "validator:start": "zx ./scripts/start-validator.mjs",
     "validator:restart": "pnpm validator:start --restart",

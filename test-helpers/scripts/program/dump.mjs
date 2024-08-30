@@ -6,7 +6,7 @@ import {
   getExternalProgramOutputDir,
 } from '../utils.mjs';
 
-const rpc = 'https://api.devnet.solana.com';
+const rpc = process.env.RPC ?? 'https://api.mainnet-beta.solana.com';
 const outputDir = getExternalProgramOutputDir();
 await dump();
 

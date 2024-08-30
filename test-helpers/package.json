@@ -19,7 +19,7 @@
     "./dist/types"
   ],
   "scripts": {
-    "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json && pnpm programs:build",
+    "build": "rimraf dist && tsup && tsc -p ./tsconfig.declarations.json",
     "build:docs": "typedoc",
     "clean": "rm -rf node_modules && rm -rf dist",
     "test": "ava",
