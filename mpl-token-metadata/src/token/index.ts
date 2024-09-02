@@ -15,7 +15,7 @@ export type AtaSeeds = {
   /** The address of the mint account */
   mint: Address;
   /** The address of the token program */
-  tokenProgramId?: Address;
+  tokenProgram?: Address;
 };
 
 // Find the associated token account address for a given owner, mint and token program.
@@ -25,7 +25,7 @@ export const findAtaPda = async (
   return await getProgramDerivedAddress({
     seeds: [
       getAddressEncoder().encode(seeds.owner),
-      getAddressEncoder().encode(seeds.tokenProgramId ?? TOKEN_PROGRAM_ID),
+      getAddressEncoder().encode(seeds.tokenProgram ?? TOKEN_PROGRAM_ID),
       getAddressEncoder().encode(seeds.mint),
     ],
     programAddress: ASSOCIATED_TOKEN_ACCOUNTS_PROGRAM_ID,

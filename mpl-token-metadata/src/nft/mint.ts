@@ -1,4 +1,7 @@
-import { getMintToInstruction } from '@solana-program/token';
+import {
+  findAssociatedTokenPda,
+  getMintToInstruction,
+} from '@solana-program/token';
 import {
   address,
   Address,
@@ -45,7 +48,6 @@ import {
   Uses,
   VerificationArgs,
 } from '../generated';
-import { findAtaPda } from '../token';
 
 export interface NftData {
   name: string;
@@ -76,7 +78,7 @@ export type CreateNftArgs = {
   client: Client;
   payer: KeyPairSigner | null;
   authority: KeyPairSigner;
-  owner: KeyPairSigner;
+  owner: Address;
   collectionMint?: Address;
   creators?: Creator[] | null;
   data?: NftData;
@@ -143,7 +145,7 @@ export const createDefaultNft = async (args: CreateNftArgs): Promise<Nft> => {
     authority,
     owner,
     payer,
-    tokenProgramId: tokenProgram,
+    tokenProgram,
   };
 
   return await mintNft(client, accounts, data);
@@ -190,10 +192,10 @@ export const createDefaultNftInCollection = async (
 
 export interface MintNftAccounts {
   authority: KeyPairSigner;
-  owner: KeyPairSigner;
+  owner: Address;
   payer: KeyPairSigner | null;
   mint?: KeyPairSigner;
-  tokenProgramId?: Address;
+  tokenProgram?: Address;
 }
 
 // Create a new NFT and return the addresses associated with it.
@@ -219,7 +221,7 @@ export const mintNft = async (
     printSupply,
   } = data;
 
-  const { authority, owner, tokenProgramId } = accounts;
+  const { authority, owner, tokenProgram = TOKEN_PROGRAM_ID } = accounts;
   let { payer, mint } = accounts;
 
   // const client = createDefaultSolanaClient();
@@ -234,10 +236,10 @@ export const mintNft = async (
 
   const [metadata] = await findMetadataPda({ mint: mint.address });
   const [masterEdition] = await findMasterEditionPda({ mint: mint.address });
-  const [token] = await findAtaPda({
-    owner: owner.address,
+  const [token] = await findAssociatedTokenPda({
+    owner,
     mint: mint.address,
-    tokenProgramId: tokenProgramId,
+    tokenProgram,
   });
 
   let tokenRecord = undefined;
@@ -266,19 +268,19 @@ export const mintNft = async (
     ruleSet,
     decimals,
     printSupply: printSupply ?? none(),
-    splTokenProgram: tokenProgramId,
+    splTokenProgram: tokenProgram,
   });
 
   const mintIx = getMintV1Instruction({
     token,
-    tokenOwner: owner.address,
+    tokenOwner: owner,
     metadata,
     masterEdition,
     mint: mint.address,
     authority,
     payer,
     tokenRecord,
-    splTokenProgram: tokenProgramId,
+    splTokenProgram: tokenProgram,
     amount: 1,
     authorizationData: null,
   });

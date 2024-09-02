@@ -62,7 +62,9 @@ function unpackSeedAccountKey(
     throw new Error('Transfer hook invalid seed');
   }
   return {
-    data: new TextEncoder().encode(fromLegacyPublicKey(previousMetas[index])),
+    data: new TextEncoder().encode(
+      fromLegacyPublicKey(previousMetas[index].pubkey)
+    ),
     packedLength: DISCRIMINATOR_SPAN + ACCOUNT_KEY_INDEX_SPAN,
   };
 }
@@ -80,7 +82,7 @@ async function unpackSeedAccountData(
     throw new Error('Transfer hook invalid seed');
   }
   const accountInfo = await client.rpc
-    .getAccountInfo(fromLegacyPublicKey(previousMetas[accountIndex]), {
+    .getAccountInfo(fromLegacyPublicKey(previousMetas[accountIndex].pubkey), {
       encoding: 'base64',
     })
     .send();

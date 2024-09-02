@@ -35,7 +35,7 @@ test('it can mint a NonFungible', async (t) => {
     client,
     payer,
     authority,
-    owner,
+    owner: owner.address,
   });
 
   // Check the metadata.
@@ -79,7 +79,7 @@ test('it can mint a Token22 NonFungible', async (t) => {
     client,
     payer,
     authority,
-    owner,
+    owner: owner.address,
     tokenProgram: TOKEN22_PROGRAM_ID,
   });
 
@@ -124,7 +124,7 @@ test('it can mint a ProgrammableNonFungible', async (t) => {
     client,
     payer,
     authority,
-    owner,
+    owner: owner.address,
     standard: TokenStandard.ProgrammableNonFungible,
   });
 
@@ -169,7 +169,7 @@ test('it can mint a Token22 ProgrammableNonFungible', async (t) => {
     client,
     payer,
     authority,
-    owner,
+    owner: owner.address,
     standard: TokenStandard.ProgrammableNonFungible,
     tokenProgram: TOKEN22_PROGRAM_ID,
   });
@@ -215,7 +215,7 @@ test('it can mint a NonFungible in a collection', async (t) => {
     client,
     payer,
     authority,
-    owner,
+    owner: owner.address,
   });
 
   const { mint: collectionMint } = collection;
@@ -261,7 +261,7 @@ test('it can mint a ProgrammableNonFungible in a collection', async (t) => {
     client,
     payer,
     authority,
-    owner,
+    owner: owner.address,
     standard: TokenStandard.ProgrammableNonFungible,
   });
 

@@ -42,9 +42,10 @@ export type Client = {
   rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
 };
 
-export const createDefaultSolanaClient = (): Client => {
-  const rpc = createSolanaRpc('http://127.0.0.1:8899');
-  const rpcSubscriptions = createSolanaRpcSubscriptions('ws://127.0.0.1:8900');
+export const createDefaultSolanaClient = (rpcUrl?: string): Client => {
+  const rpc = createSolanaRpc(rpcUrl ?? 'http://127.0.0.1:8899');
+  const wssUrl = rpcUrl ? rpcUrl.replace('http', 'ws') : 'ws://127.0.0.1:8900';
+  const rpcSubscriptions = createSolanaRpcSubscriptions(wssUrl);
 
   return { rpc, rpcSubscriptions };
 };
