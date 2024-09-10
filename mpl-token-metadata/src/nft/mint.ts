@@ -224,8 +224,6 @@ export const mintNft = async (
   const { authority, owner, tokenProgram = TOKEN_PROGRAM_ID } = accounts;
   let { payer, mint } = accounts;
 
-  // const client = createDefaultSolanaClient();
-
   if (payer === null) {
     payer = authority;
   }
