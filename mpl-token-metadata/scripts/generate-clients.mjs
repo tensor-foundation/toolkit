@@ -14,20 +14,6 @@ const idl = rootNodeFromAnchor(
 );
 const kinobi = k.createFromRoot(idl, []);
 
-kinobi.update(
-  k.deleteNodesVisitor([
-    (node, _stack) => {
-      return node.kind === 'instructionNode' && /delegate*/.test(node.name);
-    },
-    (node, _stack) => {
-      return node.kind === 'instructionNode' && /revoke*/.test(node.name);
-    },
-    (node, _stack) => {
-      return node.kind === 'instructionNode' && /update*/.test(node.name);
-    },
-  ])
-);
-
 const metadataSeeds = [
   k.constantPdaSeedNodeFromString('utf8', 'metadata'),
   k.constantPdaSeedNodeFromProgramId(),
@@ -68,12 +54,12 @@ kinobi.update(
 );
 
 // Unwrap types and structs.
-kinobi.update(k.unwrapDefinedTypesVisitor(["AssetData"]));
-kinobi.update(k.unwrapTypeDefinedLinksVisitor(["metadata.data"]));
+kinobi.update(k.unwrapDefinedTypesVisitor(['AssetData']));
+kinobi.update(k.unwrapTypeDefinedLinksVisitor(['metadata.data']));
 kinobi.update(
   k.flattenStructVisitor({
-    Metadata: ["data"],
-    "CreateArgs.V1": ["assetData"],
+    Metadata: ['data'],
+    'CreateArgs.V1': ['assetData'],
   })
 );
 
