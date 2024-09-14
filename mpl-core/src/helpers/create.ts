@@ -28,7 +28,8 @@ import {
 export interface CreateAssetArgs {
   client: Client;
   payer: KeyPairSigner;
-  updateAuthority?: Address;
+  authority?: KeyPairSigner; // Sign to add to a collection
+  updateAuthority?: Address; // Set update authority when not minting to a collection
   owner: Address;
   name: string;
   uri: string;
@@ -48,6 +49,7 @@ export const createAsset = async (
   const {
     client,
     payer,
+    authority,
     updateAuthority,
     owner,
     name,
@@ -64,6 +66,7 @@ export const createAsset = async (
     asset: asset_kp,
     payer: payer,
     owner,
+    authority,
     updateAuthority,
     collection,
     dataState: DataState.AccountState,
@@ -85,11 +88,12 @@ export const createAsset = async (
 export interface CreateDefaultAssetArgs {
   client: Client;
   payer: KeyPairSigner;
+  authority?: KeyPairSigner;
   updateAuthority?: Address;
   owner: Address;
   royalties?: {
     creators?: Creator[];
-    royaltyBasisPoints?: number;
+    basisPoints?: number;
   };
   collection?: Address;
 }
@@ -100,14 +104,22 @@ export interface CreateDefaultAssetArgs {
 export const createDefaultAsset = async (
   args: CreateDefaultAssetArgs
 ): Promise<Account<AssetV1, Address>> => {
-  const { client, payer, updateAuthority, owner, royalties, collection } = args;
+  const {
+    client,
+    payer,
+    authority,
+    updateAuthority,
+    owner,
+    royalties,
+    collection,
+  } = args;
 
   let plugins: PluginAuthorityPairArgs[] | null = null;
 
   if (royalties) {
     const royaltyPlugin: [RoyaltiesArgs] = [
       {
-        basisPoints: royalties.royaltyBasisPoints ?? 500,
+        basisPoints: royalties.basisPoints ?? 500,
         creators: royalties.creators ?? [],
         ruleSet: {
           __kind: 'None',
@@ -129,6 +141,7 @@ export const createDefaultAsset = async (
   const { address } = await createAsset({
     client,
     payer,
+    authority,
     updateAuthority,
     owner,
     name: 'TestAsset',
@@ -185,9 +198,8 @@ export interface CreateDefaultCollectionArgs {
   client: Client;
   payer: KeyPairSigner;
   updateAuthority: Address;
-  owner: Address;
   creators?: Creator[];
-  royaltyBasisPoints?: number;
+  basisPoints?: number;
 }
 
 export const createDefaultCollection = async (
@@ -203,12 +215,12 @@ export const createDefaultCollection = async (
         percentage: 100,
       },
     ],
-    royaltyBasisPoints = 500,
+    basisPoints = 500,
   } = args;
 
   const royalties: [RoyaltiesArgs] = [
     {
-      basisPoints: royaltyBasisPoints,
+      basisPoints,
       creators,
       ruleSet: {
         __kind: 'None',
@@ -237,22 +249,29 @@ export const createDefaultCollection = async (
   return await fetchCollectionV1(client.rpc, address);
 };
 
+export interface CreateDefaultAssetWithCollectionArgs {
+  client: Client;
+  payer: KeyPairSigner;
+  collectionAuthority: KeyPairSigner;
+  owner: Address;
+}
+
 export const createDefaultAssetWithCollection = async (
-  client: Client,
-  payer: KeyPairSigner,
-  updateAuthority: Address,
-  owner: Address
+  args: CreateDefaultAssetWithCollectionArgs
 ): Promise<[Account<AssetV1, Address>, Account<CollectionV1, Address>]> => {
+  const { client, payer, collectionAuthority, owner } = args;
+
   const collection = await createDefaultCollection({
     client,
     payer,
-    updateAuthority,
-    owner,
+    updateAuthority: collectionAuthority.address,
   });
+
   const asset = await createDefaultAsset({
     client,
     payer,
     owner,
+    authority: collectionAuthority,
     collection: collection.address,
   });
 
