@@ -1,9 +1,11 @@
 import {
+  Account,
   Address,
   appendTransactionMessageInstruction,
   generateKeyPairSigner,
   KeyPairSigner,
   pipe,
+  Signature,
 } from '@solana/web3.js';
 import {
   Client,
@@ -11,60 +13,102 @@ import {
   signAndSendTransaction,
 } from '@tensor-foundation/test-helpers';
 import {
-  CreatorArgs,
+  AssetV1,
+  CollectionV1,
+  Creator,
   DataState,
+  fetchAssetV1,
+  fetchCollectionV1,
   getCreateCollectionV1Instruction,
   getCreateV2Instruction,
   PluginAuthorityPairArgs,
   RoyaltiesArgs,
 } from '../generated';
 
-export interface AssetData {
-  name: string;
-  symbol: string;
-  uri: string;
-}
-
-export interface CollectionData {
+export interface CreateAssetArgs {
+  client: Client;
+  payer: KeyPairSigner;
+  updateAuthority?: Address;
+  owner: Address;
   name: string;
   uri: string;
+  plugins: PluginAuthorityPairArgs[] | null;
+  collection?: Address;
+  asset_kp?: KeyPairSigner;
 }
 
-export interface Asset {
+export interface CreateAssetResult {
+  signature: Signature;
   address: Address;
-  data: AssetData;
 }
 
-export interface Collection {
-  address: Address;
-  data: CollectionData;
+export const createAsset = async (
+  args: CreateAssetArgs
+): Promise<CreateAssetResult> => {
+  const {
+    client,
+    payer,
+    updateAuthority,
+    owner,
+    name,
+    uri,
+    plugins,
+    collection,
+    asset_kp = await generateKeyPairSigner(),
+  } = args;
+
+  if (collection && updateAuthority)
+    throw new Error('Cannot specify both collection and updateAuthority');
+
+  const ix = getCreateV2Instruction({
+    asset: asset_kp,
+    payer: payer,
+    owner,
+    updateAuthority,
+    collection,
+    dataState: DataState.AccountState,
+    name,
+    uri,
+    plugins,
+    externalPluginAdapters: null,
+  });
+
+  const signature = await pipe(
+    await createDefaultTransaction(client, payer),
+    (tx) => appendTransactionMessageInstruction(ix, tx),
+    (tx) => signAndSendTransaction(client, tx)
+  );
+
+  return { signature, address: asset_kp.address };
+};
+
+export interface CreateDefaultAssetArgs {
+  client: Client;
+  payer: KeyPairSigner;
+  updateAuthority?: Address;
+  owner: Address;
+  royalties?: {
+    creators?: Creator[];
+    royaltyBasisPoints?: number;
+  };
+  collection?: Address;
 }
 
 // Create a default NFT with example data. Useful for creating throw-away NFTs
 // for testing.
 // Returns the asset.
 export const createDefaultAsset = async (
-  client: Client,
-  payer: KeyPairSigner,
-  updateAuthority: Address,
-  owner: Address,
-  withRoyalties: boolean = false
-): Promise<Asset> => {
-  const asset_kp = await generateKeyPairSigner();
+  args: CreateDefaultAssetArgs
+): Promise<Account<AssetV1, Address>> => {
+  const { client, payer, updateAuthority, owner, royalties, collection } = args;
 
   let plugins: PluginAuthorityPairArgs[] | null = null;
-  if (withRoyalties) {
-    const creators: [CreatorArgs] = [
-      {
-        address: updateAuthority,
-        percentage: 100,
-      },
-    ];
 
-    const royalties: [RoyaltiesArgs] = [
+  if (royalties) {
+    const royaltyPlugin: [RoyaltiesArgs] = [
       {
-        basisPoints: 500,
-        creators,
+        basisPoints: royalties.royaltyBasisPoints ?? 500,
+        creators: royalties.creators ?? [],
         ruleSet: {
           __kind: 'None',
         },
@@ -75,56 +119,96 @@ export const createDefaultAsset = async (
       {
         plugin: {
           __kind: 'Royalties',
-          fields: royalties,
+          fields: royaltyPlugin,
         },
         authority: { __kind: 'UpdateAuthority' },
       },
     ];
   }
 
-  const ix = getCreateV2Instruction({
-    asset: asset_kp,
-    payer: payer,
-    owner,
+  const { address } = await createAsset({
+    client,
+    payer,
     updateAuthority,
-    dataState: DataState.AccountState,
+    owner,
     name: 'TestAsset',
     uri: 'https://example.com/nft',
     plugins,
-    externalPluginAdapters: null,
+    collection,
   });
 
-  await pipe(
+  return await fetchAssetV1(client.rpc, address);
+};
+
+export interface CreateCollectionArgs {
+  client: Client;
+  payer: KeyPairSigner;
+  updateAuthority: Address;
+  plugins: PluginAuthorityPairArgs[] | null;
+  collection_kp?: KeyPairSigner;
+}
+
+export interface CreateCollectionResult {
+  signature: Signature;
+  address: Address;
+}
+
+export const createCollection = async (
+  args: CreateCollectionArgs
+): Promise<CreateCollectionResult> => {
+  const {
+    client,
+    payer,
+    updateAuthority,
+    plugins,
+    collection_kp = await generateKeyPairSigner(),
+  } = args;
+  const createCollectionIx = getCreateCollectionV1Instruction({
+    collection: collection_kp,
+    payer,
+    updateAuthority,
+    name: 'TestCollection',
+    uri: 'https://example.com/collection',
+    plugins,
+  });
+
+  const signature = await pipe(
     await createDefaultTransaction(client, payer),
-    (tx) => appendTransactionMessageInstruction(ix, tx),
+    (tx) => appendTransactionMessageInstruction(createCollectionIx, tx),
     (tx) => signAndSendTransaction(client, tx)
   );
 
-  const asset: Asset = {
-    address: asset_kp.address,
-    data: { name: 'TestAsset', symbol: 'TA', uri: 'https://example.com/nft' },
-  };
-
-  return asset;
+  return { signature, address: collection_kp.address };
 };
 
-export const createDefaultCollection = async (
-  client: Client,
-  payer: KeyPairSigner,
-  updateAuthority: Address
-): Promise<Collection> => {
-  const collection_kp = await generateKeyPairSigner();
+export interface CreateDefaultCollectionArgs {
+  client: Client;
+  payer: KeyPairSigner;
+  updateAuthority: Address;
+  owner: Address;
+  creators?: Creator[];
+  royaltyBasisPoints?: number;
+}
 
-  const creators: [CreatorArgs] = [
-    {
-      address: updateAuthority,
-      percentage: 100,
-    },
-  ];
+export const createDefaultCollection = async (
+  args: CreateDefaultCollectionArgs
+): Promise<Account<CollectionV1, Address>> => {
+  const {
+    client,
+    payer,
+    updateAuthority,
+    creators = [
+      {
+        address: updateAuthority,
+        percentage: 100,
+      },
+    ],
+    royaltyBasisPoints = 500,
+  } = args;
 
   const royalties: [RoyaltiesArgs] = [
     {
-      basisPoints: 500,
+      basisPoints: royaltyBasisPoints,
       creators,
       ruleSet: {
         __kind: 'None',
@@ -133,32 +217,24 @@ export const createDefaultCollection = async (
   ];
 
   // eslint-disable-next-line prefer-const
-  const plugins: PluginAuthorityPairArgs = {
-    plugin: {
-      __kind: 'Royalties',
-      fields: royalties,
+  const plugins: PluginAuthorityPairArgs[] = [
+    {
+      plugin: {
+        __kind: 'Royalties',
+        fields: royalties,
+      },
+      authority: { __kind: 'UpdateAuthority' },
     },
-    authority: { __kind: 'UpdateAuthority' },
-  };
+  ];
 
-  const createCollectionIx = getCreateCollectionV1Instruction({
-    collection: collection_kp,
+  const { address } = await createCollection({
+    client,
     payer,
-    name: 'TestCollection',
-    uri: 'https://example.com/collection',
-    plugins: [plugins],
+    updateAuthority,
+    plugins,
   });
 
-  await pipe(
-    await createDefaultTransaction(client, payer),
-    (tx) => appendTransactionMessageInstruction(createCollectionIx, tx),
-    (tx) => signAndSendTransaction(client, tx)
-  );
-
-  return {
-    address: collection_kp.address,
-    data: { name: 'TestCollection', uri: 'https://example.com/collection' },
-  };
+  return await fetchCollectionV1(client.rpc, address);
 };
 
 export const createDefaultAssetWithCollection = async (
@@ -166,13 +242,19 @@ export const createDefaultAssetWithCollection = async (
   payer: KeyPairSigner,
   updateAuthority: Address,
   owner: Address
-): Promise<[Asset, Collection]> => {
-  const collection = await createDefaultCollection(
+): Promise<[Account<AssetV1, Address>, Account<CollectionV1, Address>]> => {
+  const collection = await createDefaultCollection({
     client,
     payer,
-    updateAuthority
-  );
-  const asset = await createDefaultAsset(client, payer, updateAuthority, owner);
+    updateAuthority,
+    owner,
+  });
+  const asset = await createDefaultAsset({
+    client,
+    payer,
+    owner,
+    collection: collection.address,
+  });
 
   return [asset, collection];
 };
