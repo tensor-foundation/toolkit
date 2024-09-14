@@ -6,6 +6,7 @@ import test from 'ava';
 import {
   AssetV1,
   CollectionV1,
+  createAsset,
   createDefaultAsset,
   createDefaultAssetWithCollection,
   createDefaultCollection,
@@ -13,7 +14,9 @@ import {
   fetchAssetV1,
   fetchCollectionPlugin,
   fetchCollectionV1,
+  PluginAuthorityPairArgs,
   PluginType,
+  VerifiedCreatorsArgs,
 } from '../src';
 
 test('it can mint a basic asset', async (t) => {
@@ -80,6 +83,76 @@ test('it can mint an asset w/ royalties', async (t) => {
       {
         basisPoints: 500,
         creators: [{ address: updateAuthority, percentage: 100 }],
+      },
+    ],
+  });
+});
+
+test('it can mint an asset w/ verified creators plugin', async (t) => {
+  const client = createDefaultSolanaClient();
+  const payer = await generateKeyPairSignerWithSol(client);
+  const updateAuthority = await generateKeyPairSignerWithSol(client);
+  const owner = (await generateKeyPairSignerWithSol(client)).address;
+
+  const name = 'Test Asset';
+  const uri = 'https://test.com';
+
+  const verifiedCreators: [VerifiedCreatorsArgs] = [
+    {
+      signatures: [
+        {
+          address: updateAuthority.address,
+          verified: true,
+        },
+      ],
+    },
+  ];
+
+  const plugins: PluginAuthorityPairArgs[] = [
+    {
+      plugin: {
+        __kind: 'VerifiedCreators',
+        fields: verifiedCreators,
+      },
+      authority: { __kind: 'UpdateAuthority' },
+    },
+  ];
+
+  const { address } = await createAsset({
+    client,
+    payer,
+    authority: updateAuthority,
+    updateAuthority: updateAuthority.address,
+    owner,
+    name,
+    uri,
+    plugins,
+  });
+
+  t.like(await fetchAssetV1(client.rpc, address), {
+    address,
+    data: {
+      owner,
+      updateAuthority: {
+        __kind: 'Address',
+        fields: [updateAuthority.address],
+      },
+      name,
+      uri,
+    },
+  });
+
+  const verifiedCreatorsPlugin = await fetchAssetPlugin(
+    client,
+    address,
+    PluginType.VerifiedCreators
+  );
+
+  t.like(verifiedCreatorsPlugin, {
+    __kind: 'VerifiedCreators',
+    fields: [
+      {
+        signatures: verifiedCreators[0].signatures,
       },
     ],
   });

@@ -117,7 +117,7 @@ export const createDefaultAsset = async (
   let plugins: PluginAuthorityPairArgs[] | null = null;
 
   if (royalties) {
-    const royaltyPlugin: [RoyaltiesArgs] = [
+    const royalty: [RoyaltiesArgs] = [
       {
         basisPoints: royalties.basisPoints ?? 500,
         creators: royalties.creators ?? [],
@@ -131,7 +131,7 @@ export const createDefaultAsset = async (
       {
         plugin: {
           __kind: 'Royalties',
-          fields: royaltyPlugin,
+          fields: royalty,
         },
         authority: { __kind: 'UpdateAuthority' },
       },
