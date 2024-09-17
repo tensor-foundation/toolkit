@@ -29,6 +29,7 @@ import {
   type ParsedCreateMetadataAccountV2Instruction,
   type ParsedCreateMetadataAccountV3Instruction,
   type ParsedCreateV1Instruction,
+  type ParsedDelegateInstruction,
   type ParsedDeprecatedCreateMasterEditionInstruction,
   type ParsedDeprecatedCreateReservationListInstruction,
   type ParsedDeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInstruction,
@@ -44,6 +45,9 @@ import {
   type ParsedPrintInstruction,
   type ParsedPuffMetadataInstruction,
   type ParsedRemoveCreatorVerificationInstruction,
+  type ParsedRevokeCollectionAuthorityInstruction,
+  type ParsedRevokeInstruction,
+  type ParsedRevokeUseAuthorityInstruction,
   type ParsedSetAndVerifyCollectionInstruction,
   type ParsedSetAndVerifySizedCollectionItemInstruction,
   type ParsedSetCollectionSizeInstruction,
@@ -56,6 +60,10 @@ import {
   type ParsedUnverifyCollectionInstruction,
   type ParsedUnverifyInstruction,
   type ParsedUnverifySizedCollectionItemInstruction,
+  type ParsedUpdateInstruction,
+  type ParsedUpdateMetadataAccountInstruction,
+  type ParsedUpdateMetadataAccountV2Instruction,
+  type ParsedUpdatePrimarySaleHappenedViaTokenInstruction,
   type ParsedUseInstruction,
   type ParsedUtilizeInstruction,
   type ParsedVerifyCollectionInstruction,
@@ -85,8 +93,10 @@ export enum TokenMetadataAccount {
 
 export enum TokenMetadataInstruction {
   CreateMetadataAccount,
+  UpdateMetadataAccount,
   DeprecatedCreateMasterEdition,
   DeprecatedMintNewEditionFromMasterEditionViaPrintingToken,
+  UpdatePrimarySaleHappenedViaToken,
   DeprecatedSetReservationList,
   DeprecatedCreateReservationList,
   SignMetadata,
@@ -97,13 +107,16 @@ export enum TokenMetadataInstruction {
   ConvertMasterEditionV1ToV2,
   MintNewEditionFromMasterEditionViaVaultProxy,
   PuffMetadata,
+  UpdateMetadataAccountV2,
   CreateMetadataAccountV2,
   CreateMasterEditionV3,
   VerifyCollection,
   Utilize,
   ApproveUseAuthority,
+  RevokeUseAuthority,
   UnverifyCollection,
   ApproveCollectionAuthority,
+  RevokeCollectionAuthority,
   SetAndVerifyCollection,
   FreezeDelegatedAccount,
   ThawDelegatedAccount,
@@ -123,10 +136,13 @@ export enum TokenMetadataInstruction {
   Burn,
   CreateV1,
   MintV1,
+  Delegate,
+  Revoke,
   Lock,
   Unlock,
   Migrate,
   Transfer,
+  Update,
   Use,
   Verify,
   Unverify,
@@ -141,11 +157,17 @@ export function identifyTokenMetadataInstruction(
   if (containsBytes(data, getU8Encoder().encode(0), 0)) {
     return TokenMetadataInstruction.CreateMetadataAccount;
   }
+  if (containsBytes(data, getU8Encoder().encode(1), 0)) {
+    return TokenMetadataInstruction.UpdateMetadataAccount;
+  }
   if (containsBytes(data, getU8Encoder().encode(2), 0)) {
     return TokenMetadataInstruction.DeprecatedCreateMasterEdition;
   }
   if (containsBytes(data, getU8Encoder().encode(3), 0)) {
     return TokenMetadataInstruction.DeprecatedMintNewEditionFromMasterEditionViaPrintingToken;
+  }
+  if (containsBytes(data, getU8Encoder().encode(4), 0)) {
+    return TokenMetadataInstruction.UpdatePrimarySaleHappenedViaToken;
   }
   if (containsBytes(data, getU8Encoder().encode(5), 0)) {
     return TokenMetadataInstruction.DeprecatedSetReservationList;
@@ -177,6 +199,9 @@ export function identifyTokenMetadataInstruction(
   if (containsBytes(data, getU8Encoder().encode(14), 0)) {
     return TokenMetadataInstruction.PuffMetadata;
   }
+  if (containsBytes(data, getU8Encoder().encode(15), 0)) {
+    return TokenMetadataInstruction.UpdateMetadataAccountV2;
+  }
   if (containsBytes(data, getU8Encoder().encode(16), 0)) {
     return TokenMetadataInstruction.CreateMetadataAccountV2;
   }
@@ -192,11 +217,17 @@ export function identifyTokenMetadataInstruction(
   if (containsBytes(data, getU8Encoder().encode(20), 0)) {
     return TokenMetadataInstruction.ApproveUseAuthority;
   }
+  if (containsBytes(data, getU8Encoder().encode(21), 0)) {
+    return TokenMetadataInstruction.RevokeUseAuthority;
+  }
   if (containsBytes(data, getU8Encoder().encode(22), 0)) {
     return TokenMetadataInstruction.UnverifyCollection;
   }
   if (containsBytes(data, getU8Encoder().encode(23), 0)) {
     return TokenMetadataInstruction.ApproveCollectionAuthority;
+  }
+  if (containsBytes(data, getU8Encoder().encode(24), 0)) {
+    return TokenMetadataInstruction.RevokeCollectionAuthority;
   }
   if (containsBytes(data, getU8Encoder().encode(25), 0)) {
     return TokenMetadataInstruction.SetAndVerifyCollection;
@@ -255,6 +286,12 @@ export function identifyTokenMetadataInstruction(
   if (containsBytes(data, getU8Encoder().encode(43), 0)) {
     return TokenMetadataInstruction.MintV1;
   }
+  if (containsBytes(data, getU8Encoder().encode(44), 0)) {
+    return TokenMetadataInstruction.Delegate;
+  }
+  if (containsBytes(data, getU8Encoder().encode(45), 0)) {
+    return TokenMetadataInstruction.Revoke;
+  }
   if (containsBytes(data, getU8Encoder().encode(46), 0)) {
     return TokenMetadataInstruction.Lock;
   }
@@ -266,6 +303,9 @@ export function identifyTokenMetadataInstruction(
   }
   if (containsBytes(data, getU8Encoder().encode(49), 0)) {
     return TokenMetadataInstruction.Transfer;
+  }
+  if (containsBytes(data, getU8Encoder().encode(50), 0)) {
+    return TokenMetadataInstruction.Update;
   }
   if (containsBytes(data, getU8Encoder().encode(51), 0)) {
     return TokenMetadataInstruction.Use;
@@ -294,11 +334,17 @@ export type ParsedTokenMetadataInstruction<
       instructionType: TokenMetadataInstruction.CreateMetadataAccount;
     } & ParsedCreateMetadataAccountInstruction<TProgram>)
   | ({
+      instructionType: TokenMetadataInstruction.UpdateMetadataAccount;
+    } & ParsedUpdateMetadataAccountInstruction<TProgram>)
+  | ({
       instructionType: TokenMetadataInstruction.DeprecatedCreateMasterEdition;
     } & ParsedDeprecatedCreateMasterEditionInstruction<TProgram>)
   | ({
       instructionType: TokenMetadataInstruction.DeprecatedMintNewEditionFromMasterEditionViaPrintingToken;
     } & ParsedDeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInstruction<TProgram>)
+  | ({
+      instructionType: TokenMetadataInstruction.UpdatePrimarySaleHappenedViaToken;
+    } & ParsedUpdatePrimarySaleHappenedViaTokenInstruction<TProgram>)
   | ({
       instructionType: TokenMetadataInstruction.DeprecatedSetReservationList;
     } & ParsedDeprecatedSetReservationListInstruction<TProgram>)
@@ -330,6 +376,9 @@ export type ParsedTokenMetadataInstruction<
       instructionType: TokenMetadataInstruction.PuffMetadata;
     } & ParsedPuffMetadataInstruction<TProgram>)
   | ({
+      instructionType: TokenMetadataInstruction.UpdateMetadataAccountV2;
+    } & ParsedUpdateMetadataAccountV2Instruction<TProgram>)
+  | ({
       instructionType: TokenMetadataInstruction.CreateMetadataAccountV2;
     } & ParsedCreateMetadataAccountV2Instruction<TProgram>)
   | ({
@@ -345,11 +394,17 @@ export type ParsedTokenMetadataInstruction<
       instructionType: TokenMetadataInstruction.ApproveUseAuthority;
     } & ParsedApproveUseAuthorityInstruction<TProgram>)
   | ({
+      instructionType: TokenMetadataInstruction.RevokeUseAuthority;
+    } & ParsedRevokeUseAuthorityInstruction<TProgram>)
+  | ({
       instructionType: TokenMetadataInstruction.UnverifyCollection;
     } & ParsedUnverifyCollectionInstruction<TProgram>)
   | ({
       instructionType: TokenMetadataInstruction.ApproveCollectionAuthority;
     } & ParsedApproveCollectionAuthorityInstruction<TProgram>)
+  | ({
+      instructionType: TokenMetadataInstruction.RevokeCollectionAuthority;
+    } & ParsedRevokeCollectionAuthorityInstruction<TProgram>)
   | ({
       instructionType: TokenMetadataInstruction.SetAndVerifyCollection;
     } & ParsedSetAndVerifyCollectionInstruction<TProgram>)
@@ -408,6 +463,12 @@ export type ParsedTokenMetadataInstruction<
       instructionType: TokenMetadataInstruction.MintV1;
     } & ParsedMintV1Instruction<TProgram>)
   | ({
+      instructionType: TokenMetadataInstruction.Delegate;
+    } & ParsedDelegateInstruction<TProgram>)
+  | ({
+      instructionType: TokenMetadataInstruction.Revoke;
+    } & ParsedRevokeInstruction<TProgram>)
+  | ({
       instructionType: TokenMetadataInstruction.Lock;
     } & ParsedLockInstruction<TProgram>)
   | ({
@@ -419,6 +480,9 @@ export type ParsedTokenMetadataInstruction<
   | ({
       instructionType: TokenMetadataInstruction.Transfer;
     } & ParsedTransferInstruction<TProgram>)
+  | ({
+      instructionType: TokenMetadataInstruction.Update;
+    } & ParsedUpdateInstruction<TProgram>)
   | ({
       instructionType: TokenMetadataInstruction.Use;
     } & ParsedUseInstruction<TProgram>)
