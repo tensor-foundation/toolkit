@@ -92,8 +92,8 @@ export interface CreateDefaultAssetArgs {
   updateAuthority?: Address;
   owner: Address;
   royalties?: {
-    creators?: Creator[];
-    basisPoints?: number;
+    creators: Creator[];
+    basisPoints: number;
   };
   collection?: Address;
 }
@@ -198,8 +198,10 @@ export interface CreateDefaultCollectionArgs {
   client: Client;
   payer: KeyPairSigner;
   updateAuthority: Address;
-  creators?: Creator[];
-  basisPoints?: number;
+  royalties?: {
+    creators: Creator[];
+    basisPoints: number;
+  };
 }
 
 export const createDefaultCollection = async (
@@ -209,31 +211,32 @@ export const createDefaultCollection = async (
     client,
     payer,
     updateAuthority,
-    creators = [
-      {
-        address: updateAuthority,
-        percentage: 100,
-      },
-    ],
-    basisPoints = 500,
+    royalties = {
+      creators: [
+        {
+          address: updateAuthority,
+          percentage: 100,
+        },
+      ],
+      basisPoints: 500,
+    },
   } = args;
 
-  const royalties: [RoyaltiesArgs] = [
+  const royaltyArgs: [RoyaltiesArgs] = [
     {
-      basisPoints,
-      creators,
+      basisPoints: royalties.basisPoints,
+      creators: royalties.creators,
       ruleSet: {
         __kind: 'None',
       },
     },
   ];
 
-  // eslint-disable-next-line prefer-const
   const plugins: PluginAuthorityPairArgs[] = [
     {
       plugin: {
         __kind: 'Royalties',
-        fields: royalties,
+        fields: royaltyArgs,
       },
       authority: { __kind: 'UpdateAuthority' },
     },
@@ -254,17 +257,23 @@ export interface CreateDefaultAssetWithCollectionArgs {
   payer: KeyPairSigner;
   collectionAuthority: KeyPairSigner;
   owner: Address;
+  royalties?: {
+    creators: Creator[];
+    basisPoints: number;
+  };
 }
 
+// Creates a collection and an asset in the collection.
 export const createDefaultAssetWithCollection = async (
   args: CreateDefaultAssetWithCollectionArgs
 ): Promise<[Account<AssetV1, Address>, Account<CollectionV1, Address>]> => {
-  const { client, payer, collectionAuthority, owner } = args;
+  const { client, payer, collectionAuthority, owner, royalties } = args;
 
   const collection = await createDefaultCollection({
     client,
     payer,
     updateAuthority: collectionAuthority.address,
+    royalties,
   });
 
   const asset = await createDefaultAsset({
