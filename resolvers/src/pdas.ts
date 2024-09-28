@@ -233,3 +233,87 @@ export async function findTreeAuthorityPda(
     seeds: [getAddressEncoder().encode(seeds.merkleTree)],
   });
 }
+
+export type TswapNftEscrowSeeds = {
+  /** The address of the mint account */
+  mint: Address;
+};
+
+export async function findTswapNftEscrowPda(
+  seeds: TswapNftEscrowSeeds,
+  config: { programAddress?: Address | undefined } = {}
+): Promise<ProgramDerivedAddress> {
+  const {
+    programAddress = 'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN' as Address<'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN'>,
+  } = config;
+  return await getProgramDerivedAddress({
+    programAddress,
+    seeds: [
+      getUtf8Encoder().encode('nft_escrow'),
+      getAddressEncoder().encode(seeds.mint)
+    ],
+  });
+}
+
+export type TswapNftDepositReceiptSeeds = {
+  /** The address of the mint account */
+  mint: Address;
+};
+
+export async function findTswapNftDepositReceiptPda(
+  seeds: TswapNftDepositReceiptSeeds,
+  config: { programAddress?: Address | undefined } = {}
+): Promise<ProgramDerivedAddress> {
+  const {
+    programAddress = 'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN' as Address<'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN'>,
+  } = config;
+  return await getProgramDerivedAddress({
+    programAddress,
+    seeds: [
+      getUtf8Encoder().encode('nft_receipt'),
+      getAddressEncoder().encode(seeds.mint)
+    ],
+  });
+}
+
+export type TswapSolEscrowSeeds = {
+  /** The address of the pool account */
+  pool: Address;
+};
+
+export async function findTswapSolEscrowPda(
+  seeds: TswapSolEscrowSeeds,
+  config: { programAddress?: Address | undefined } = {}
+): Promise<ProgramDerivedAddress> {
+  const {
+    programAddress = 'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN' as Address<'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN'>,
+  } = config;
+  return await getProgramDerivedAddress({
+    programAddress,
+    seeds: [
+      getUtf8Encoder().encode('sol_escrow'),
+      getAddressEncoder().encode(seeds.pool)
+    ],
+  });
+}
+
+export type TswapSingleListingSeeds = {
+  /** The address of the mint account */
+  mint: Address;
+};
+
+export async function findTswapSingleListingPda(
+  seeds: TswapSingleListingSeeds,
+  config: { programAddress?: Address | undefined } = {}
+): Promise<ProgramDerivedAddress> {
+  const {
+    programAddress = 'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN' as Address<'TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN'>,
+  } = config;
+  return await getProgramDerivedAddress({
+    programAddress,
+    seeds: [
+      getUtf8Encoder().encode('single_listing'),
+      getAddressEncoder().encode(seeds.mint)
+    ],
+  });
+}
