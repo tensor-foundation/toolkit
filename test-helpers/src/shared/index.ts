@@ -1,3 +1,5 @@
+export * from './errors';
+
 import {
   AccountRole,
   Address,

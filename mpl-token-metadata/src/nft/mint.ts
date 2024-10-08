@@ -3,7 +3,6 @@ import {
   getMintToInstruction,
 } from '@solana-program/token';
 import {
-  address,
   Address,
   appendTransactionMessageInstruction,
   createTransactionMessage,
@@ -84,7 +83,7 @@ export type CreateNftArgs = {
   data?: NftData;
   standard?: TokenStandard;
   tokenProgram?: Address;
-  ruleset?: Address;
+  ruleSet?: Address;
 };
 
 export type InitializeCollectionReturn = {
@@ -107,7 +106,7 @@ export const createDefaultNft = async (args: CreateNftArgs): Promise<Nft> => {
     collectionMint,
     standard = TokenStandard.NonFungible,
     tokenProgram = TOKEN_PROGRAM_ID,
-    ruleset = address('AdH2Utn6Fus15ZhtenW4hZBQnvtLgM1YCW2MfVp7pYS5'), // compatibility ruleset
+    ruleSet,
   } = args;
 
   let { data } = args;
@@ -132,7 +131,7 @@ export const createDefaultNft = async (args: CreateNftArgs): Promise<Nft> => {
       collection: collectionMint
         ? { verified: false, key: collectionMint }
         : undefined,
-      ruleSet: ruleset,
+      ruleSet,
     };
   }
 
@@ -216,7 +215,7 @@ export const mintNft = async (
     collection,
     uses = null,
     collectionDetails = null,
-    ruleSet = null,
+    ruleSet,
     decimals = null,
     printSupply,
   } = data;
@@ -263,7 +262,7 @@ export const mintNft = async (
     collection: collection ? some(collection) : none(),
     uses,
     collectionDetails,
-    ruleSet,
+    ruleSet: ruleSet ?? none(),
     decimals,
     printSupply: printSupply ?? none(),
     splTokenProgram: tokenProgram,

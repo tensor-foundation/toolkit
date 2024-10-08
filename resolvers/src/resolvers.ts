@@ -70,6 +70,24 @@ export const resolveOwnerTokenRecordFromTokenStandard = async ({
     : { value: null };
 };
 
+export const resolveTakerTokenRecordFromTokenStandard = async ({
+  accounts,
+  args,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+  args: { tokenStandard?: TokenStandard | undefined };
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return args.tokenStandard === TokenStandard.ProgrammableNonFungible ||
+    args.tokenStandard === TokenStandard.ProgrammableNonFungibleEdition
+    ? {
+        value: await findTokenRecordPda({
+          mint: expectAddress(accounts.mint?.value),
+          token: expectAddress(accounts.takerTa?.value),
+        }),
+      }
+    : { value: null };
+};
+
 export const resolveListTokenRecordFromTokenStandard = async ({
   accounts,
   args,
@@ -302,6 +320,20 @@ export const resolveSellerAta = async ({
   return {
     value: await findAssociatedTokenAccountPda({
       owner: expectAddress(accounts.seller?.value),
+      mint: expectAddress(accounts.mint?.value),
+      tokenProgram: expectAddress(accounts.tokenProgram?.value),
+    }),
+  };
+};
+
+export const resolveTakerAta = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findAssociatedTokenAccountPda({
+      owner: expectAddress(accounts.taker?.value),
       mint: expectAddress(accounts.mint?.value),
       tokenProgram: expectAddress(accounts.tokenProgram?.value),
     }),
@@ -562,7 +594,7 @@ export const resolveOrderTokenRecordFromTokenStandard = async ({
 export const resolveTswapNftEscrowPda = async ({
   args,
 }: {
-  args: { mint: Address; };
+  args: { mint: Address };
 }): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
   return {
     value: await findTswapNftEscrowPda({
@@ -574,7 +606,7 @@ export const resolveTswapNftEscrowPda = async ({
 export const resolveTswapNftDepositReceiptPda = async ({
   args,
 }: {
-  args: { mint: Address; };
+  args: { mint: Address };
 }): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
   return {
     value: await findTswapNftDepositReceiptPda({
@@ -586,7 +618,7 @@ export const resolveTswapNftDepositReceiptPda = async ({
 export const resolveTswapSolEscrowPda = async ({
   args,
 }: {
-  args: { pool: Address; };
+  args: { pool: Address };
 }): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
   return {
     value: await findTswapSolEscrowPda({
@@ -598,7 +630,7 @@ export const resolveTswapSolEscrowPda = async ({
 export const resolveTswapSingleListingPda = async ({
   args,
 }: {
-  args: { mint: Address; };
+  args: { mint: Address };
 }): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
   return {
     value: await findTswapSingleListingPda({
