@@ -29,7 +29,7 @@ export type ResolvedAccount<
 };
 
 /**
- * Asserts that the given value is a PublicKey.
+ * Asserts that the given value is an Address.
  * @internal
  */
 export function expectAddress<T extends string = string>(
