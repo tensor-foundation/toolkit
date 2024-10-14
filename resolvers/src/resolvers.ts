@@ -638,3 +638,15 @@ export const resolveTswapSingleListingPda = async ({
     }),
   };
 };
+
+export const resolveEscrowProgramFromSharedEscrow = ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Partial<{ value: Address<string> | null }> => {
+  return accounts.sharedEscrow?.value
+    ? {
+        value: address('TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN'),
+      }
+    : { value: null };
+};
