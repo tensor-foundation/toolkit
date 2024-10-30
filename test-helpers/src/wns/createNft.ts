@@ -287,7 +287,11 @@ export async function createWnsNftInGroup(args: CreateNftArgs) {
     },
   } = args;
 
-  const { group, distribution } = await createGroupWithRoyalties({
+  const {
+    mint: groupMint,
+    group,
+    distribution,
+  } = await createGroupWithRoyalties({
     client,
     payer,
     authority,
@@ -306,5 +310,12 @@ export async function createWnsNftInGroup(args: CreateNftArgs) {
     data,
   });
 
-  return { mint, ownerAta, group, distribution, extraAccountMetas };
+  return {
+    mint,
+    ownerAta,
+    group,
+    groupMint,
+    distribution,
+    extraAccountMetas,
+  };
 }
