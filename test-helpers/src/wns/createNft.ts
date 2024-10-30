@@ -46,6 +46,7 @@ export interface CreateNftArgs {
   group?: Address;
   data?: NftData;
   paymentMint?: Address;
+  skipPreflight?: boolean;
 }
 
 export interface NftData {
@@ -64,6 +65,7 @@ export interface CreateGroupArgs {
   mint?: TransactionSigner;
   paymentMint?: Address;
   data?: GroupData;
+  skipPreflight?: boolean;
 }
 
 export interface GroupData {
@@ -144,13 +146,14 @@ export async function createGroupWithRoyalties(
   await pipe(
     await createDefaultTransaction(client, payer),
     (tx) => appendTransactionMessageInstructions(instructions, tx),
-    (tx) => signAndSendTransaction(client, tx)
+    (tx) =>
+      signAndSendTransaction(client, tx, { skipPreflight: args.skipPreflight })
   );
 
   return { group, mint: mint.address, distribution: distributionAccount };
 }
 
-const testNftData: NftData = {
+export const testNftData: NftData = {
   name: 'Test WNS',
   symbol: 'TWNS',
   uri: 'https://example.com/wns',
@@ -234,7 +237,8 @@ export async function createNft(args: CreateNftArgs): Promise<{
             tx
           )
       : (tx) => tx,
-    (tx) => signAndSendTransaction(client, tx)
+    (tx) =>
+      signAndSendTransaction(client, tx, { skipPreflight: args.skipPreflight })
   );
 
   // Hacky--there's probably a better way to do this.

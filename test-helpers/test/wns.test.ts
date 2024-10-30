@@ -9,6 +9,7 @@ import {
   deserializeExtension,
   ExtensionType,
   findExtraAccountMetaAddress,
+  testNftData,
   TOKEN22_PROGRAM_ID,
   tokenSetup,
 } from '../src/index.js';
@@ -137,4 +138,19 @@ test('create nft with createWnsNftInGroup', async (t) => {
 
   t.assert(extraMetasAccount);
   t.assert(extraMetasAccount!.owner === WEN_NEW_STANDARD_PROGRAM_ADDRESS);
+
+  const tokenMetadata = deserializeExtension(data, ExtensionType.TokenMetadata);
+  t.assert(tokenMetadata?.updateAuthority === authority.address);
+  t.assert(tokenMetadata?.mint === mint);
+  t.assert(tokenMetadata?.name === testNftData.name);
+  t.assert(tokenMetadata?.symbol === testNftData.symbol);
+  t.assert(tokenMetadata?.uri === testNftData.uri);
+  t.assert(tokenMetadata?.additionalMetadata.length === 2);
+  t.assert(tokenMetadata?.additionalMetadata[0].key === 'royalty_basis_points');
+  t.assert(
+    tokenMetadata?.additionalMetadata[0].value ===
+      testNftData.royaltyBasisPoints.toString()
+  );
+  t.assert(tokenMetadata?.additionalMetadata[1].key === authority.address);
+  t.assert(tokenMetadata?.additionalMetadata[1].value === '100');
 });
