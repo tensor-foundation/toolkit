@@ -1,6 +1,7 @@
 import {
   addDecoderSizePrefix,
   Decoder,
+  getAddressDecoder,
   getArrayDecoder,
   getStructDecoder,
   getU32Decoder,
@@ -88,15 +89,18 @@ function deserializeTransferHook(extensionBytes: Uint8Array): TransferHook {
 }
 
 function deserializeTokenMetadata(extensionBytes: Uint8Array): TokenMetadata {
-  const updateAuthority = toAddress(extensionBytes.slice(0, 32));
-  const mint = toAddress(extensionBytes.slice(32, 64));
-  const name = getUtf8Decoder().decode(extensionBytes);
-  const symbol = getUtf8Decoder().decode(extensionBytes);
-  const uri = getUtf8Decoder().decode(extensionBytes);
-  const additionalMetadata =
-    getAdditionalMetadataDecoder().decode(extensionBytes);
+  return getTokenMetadataDecoder().decode(extensionBytes);
+}
 
-  return { updateAuthority, mint, name, symbol, uri, additionalMetadata };
+function getTokenMetadataDecoder(): Decoder<TokenMetadata> {
+  return getStructDecoder([
+    ['updateAuthority', getAddressDecoder()],
+    ['mint', getAddressDecoder()],
+    ['name', addDecoderSizePrefix(getUtf8Decoder(), getU32Decoder())],
+    ['symbol', addDecoderSizePrefix(getUtf8Decoder(), getU32Decoder())],
+    ['uri', addDecoderSizePrefix(getUtf8Decoder(), getU32Decoder())],
+    ['additionalMetadata', getAdditionalMetadataDecoder()],
+  ]);
 }
 
 function getAdditionalMetadataDecoder(): Decoder<AdditionalMetadata[]> {
