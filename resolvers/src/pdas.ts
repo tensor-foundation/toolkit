@@ -250,7 +250,7 @@ export async function findTswapNftEscrowPda(
     programAddress,
     seeds: [
       getUtf8Encoder().encode('nft_escrow'),
-      getAddressEncoder().encode(seeds.mint)
+      getAddressEncoder().encode(seeds.mint),
     ],
   });
 }
@@ -271,7 +271,7 @@ export async function findTswapNftDepositReceiptPda(
     programAddress,
     seeds: [
       getUtf8Encoder().encode('nft_receipt'),
-      getAddressEncoder().encode(seeds.mint)
+      getAddressEncoder().encode(seeds.mint),
     ],
   });
 }
@@ -292,7 +292,7 @@ export async function findTswapSolEscrowPda(
     programAddress,
     seeds: [
       getUtf8Encoder().encode('sol_escrow'),
-      getAddressEncoder().encode(seeds.pool)
+      getAddressEncoder().encode(seeds.pool),
     ],
   });
 }
@@ -313,7 +313,7 @@ export async function findTswapSingleListingPda(
     programAddress,
     seeds: [
       getUtf8Encoder().encode('single_listing'),
-      getAddressEncoder().encode(seeds.mint)
+      getAddressEncoder().encode(seeds.mint),
     ],
   });
 }
