@@ -96,6 +96,8 @@ export interface CreateDefaultAssetArgs {
     basisPoints: number;
   };
   collection?: Address;
+  name?: string;
+  uri?: string;
 }
 
 // Create a default NFT with example data. Useful for creating throw-away NFTs
@@ -112,6 +114,8 @@ export const createDefaultAsset = async (
     owner,
     royalties,
     collection,
+    name,
+    uri,
   } = args;
 
   let plugins: PluginAuthorityPairArgs[] | null = null;
@@ -144,8 +148,8 @@ export const createDefaultAsset = async (
     authority,
     updateAuthority,
     owner,
-    name: 'TestAsset',
-    uri: 'https://example.com/nft',
+    name: name ?? 'TestAsset',
+    uri: uri ?? 'https://example.com/nft',
     plugins,
     collection,
   });
@@ -261,6 +265,8 @@ export interface CreateDefaultAssetWithCollectionArgs {
     creators: Creator[];
     basisPoints: number;
   };
+  name?: string;
+  uri?: string;
 }
 
 // Creates a collection and an asset in the collection.

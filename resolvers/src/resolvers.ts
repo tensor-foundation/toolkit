@@ -6,6 +6,7 @@ import {
   findAssociatedTokenAccountPda,
   findEditionPda,
   findExtraAccountMetasPda,
+  findFeeVaultPda,
   findMetadataPda,
   findNftReceiptPda,
   findTokenRecordPda,
@@ -391,7 +392,7 @@ export const resolveOwnerCurrencyAta = async ({
     value: await findAssociatedTokenAccountPda({
       owner: expectAddress(accounts.owner?.value),
       mint: expectAddress(accounts.currency?.value),
-      tokenProgram: expectAddress(accounts.tokenProgram?.value),
+      tokenProgram: expectAddress(accounts.currencyTokenProgram?.value),
     }),
   };
 };
@@ -405,7 +406,7 @@ export const resolveFeeVaultCurrencyAta = async ({
     value: await findAssociatedTokenAccountPda({
       owner: expectAddress(accounts.feeVault?.value),
       mint: expectAddress(accounts.currency?.value),
-      tokenProgram: expectAddress(accounts.tokenProgram?.value),
+      tokenProgram: expectAddress(accounts.currencyTokenProgram?.value),
     }),
   };
 };
@@ -649,4 +650,74 @@ export const resolveEscrowProgramFromSharedEscrow = ({
         value: address('TSWAPaqyCSx2KABk68Shruf4rp7CxcNi8hAsbdwmHbN'),
       }
     : { value: null };
+};
+
+export const resolveBrokersCurrencyAta = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Address[]> => {
+  const brokers = [accounts.makerBroker, accounts.takerBroker].filter(
+    (broker) => broker.value
+  );
+  if (brokers.length === 0) {
+    return [];
+  }
+  return await Promise.all(
+    brokers.map(
+      async (broker) =>
+        (
+          await findAssociatedTokenAccountPda({
+            owner: expectAddress(broker.value),
+            mint: expectAddress(accounts.currency?.value),
+            tokenProgram: expectAddress(accounts.currencyTokenProgram?.value),
+          })
+        )[0]
+    )
+  );
+};
+
+export const resolveCreatorsCurrencyAta = async ({
+  accounts,
+  args,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+  args: { creators: Array<Address> };
+}): Promise<Address[]> => {
+  return await Promise.all(
+    args.creators.map(
+      async (creator) =>
+        (
+          await findAssociatedTokenAccountPda({
+            owner: expectAddress(creator),
+            mint: expectAddress(accounts.currency?.value),
+            tokenProgram: expectAddress(accounts.currencyTokenProgram?.value),
+          })
+        )[0]
+    )
+  );
+};
+
+export const resolveFeeVaultPdaFromListState = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findFeeVaultPda({
+      address: expectAddress(accounts.listState?.value),
+    }),
+  };
+};
+
+export const resolveFeeVaultPdaFromBidState = async ({
+  accounts,
+}: {
+  accounts: Record<string, ResolvedAccount>;
+}): Promise<Partial<{ value: ProgramDerivedAddress | null }>> => {
+  return {
+    value: await findFeeVaultPda({
+      address: expectAddress(accounts.bidState?.value),
+    }),
+  };
 };

@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/mpl-core",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Toolkit for the Metaplex Core program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -42,7 +42,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@solana/web3.js": "2.0.0-preview.3",
-    "@tensor-foundation/test-helpers": "workspace:*"
+    "@tensor-foundation/test-helpers": "^0.5.0"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
