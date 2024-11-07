@@ -1,7 +1,7 @@
 {
   "name": "@tensor-foundation/resolvers",
-  "version": "0.2.5",
-  "description": "Kinobi resolvers for Tensor protocols",
+  "version": "0.3.0",
+  "description": "Codama resolvers for Tensor protocols",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
   "main": "./dist/src/index.js",
@@ -37,7 +37,7 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "peerDependencies": {
-    "@solana/web3.js": "2.0.0-preview.3"
+    "@solana/web3.js": "2.0.0-rc.4"
   },
   "devDependencies": {
     "rimraf": "^5.0.5",

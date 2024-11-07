@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/compat-helpers",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Helper functions to make old web3.js programs compatible with web3.js-next modules",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -37,12 +37,12 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana/compat": "2.0.0-preview.3",
+    "@solana/compat": "2.0.0-rc.4",
     "@solana/web3.js": "<2.0.0",
-    "@solana/web3.js-next": "npm:@solana/web3.js@2.0.0-preview.3",
-    "@solana/rpc-spec-types": "2.0.0-preview.3",
-    "@solana/rpc": "2.0.0-preview.3",
-    "@solana/rpc-transformers": "2.0.0-preview.3"
+    "@solana/web3.js-next": "npm:@solana/web3.js@2.0.0-rc.4",
+    "@solana/rpc-spec-types": "2.0.0-rc.4",
+    "@solana/rpc": "2.0.0-rc.4",
+    "@solana/rpc-transformers": "2.0.0-rc.4"
   },
   "peerDependencies": {
     "jayson": "^4.1.0"
@@ -62,7 +62,8 @@
     "tsup": "^8.0.2",
     "typedoc": "^0.25.12",
     "typedoc-plugin-missing-exports": "^2.2.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "ws": "^8.18.0"
   },
   "packageManager": "pnpm@9.1.0"
 }

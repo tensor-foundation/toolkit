@@ -1,8 +1,8 @@
 #!/usr/bin/env zx
 import 'zx/globals';
-import * as k from 'kinobi';
-import { rootNodeFromAnchor } from '@kinobi-so/nodes-from-anchor';
-import { renderVisitor as renderJavaScriptVisitor } from '@kinobi-so/renderers-js';
+import * as c from 'codama';
+import { rootNodeFromAnchor } from '@codama/nodes-from-anchor';
+import { renderVisitor as renderJavaScriptVisitor } from '@codama/renderers-js';
 
 // Paths.
 const packageDir = path.join(__dirname, '..');
@@ -12,20 +12,20 @@ const idlDir = path.join(__dirname, '..');
 const idl = rootNodeFromAnchor(
   require(path.join(idlDir, 'token-metadata.json'))
 );
-const kinobi = k.createFromRoot(idl, []);
+const codama = c.createFromRoot(idl, []);
 
 const metadataSeeds = [
-  k.constantPdaSeedNodeFromString('utf8', 'metadata'),
-  k.constantPdaSeedNodeFromProgramId(),
-  k.variablePdaSeedNode(
+  c.constantPdaSeedNodeFromString('utf8', 'metadata'),
+  c.constantPdaSeedNodeFromProgramId(),
+  c.variablePdaSeedNode(
     'mint',
-    k.publicKeyTypeNode(),
+    c.publicKeyTypeNode(),
     'The address of the mint account'
   ),
 ];
 
-kinobi.update(
-  k.updateAccountsVisitor({
+codama.update(
+  c.updateAccountsVisitor({
     metadata: {
       seeds: metadataSeeds,
     },
@@ -33,16 +33,16 @@ kinobi.update(
       name: 'masterEdition',
       seeds: [
         ...metadataSeeds,
-        k.constantPdaSeedNodeFromString('utf8', 'edition'),
+        c.constantPdaSeedNodeFromString('utf8', 'edition'),
       ],
     },
     tokenRecord: {
       seeds: [
         ...metadataSeeds,
-        k.constantPdaSeedNodeFromString('utf8', 'token_record'),
-        k.variablePdaSeedNode(
+        c.constantPdaSeedNodeFromString('utf8', 'token_record'),
+        c.variablePdaSeedNode(
           'token',
-          k.publicKeyTypeNode(),
+          c.publicKeyTypeNode(),
           'The address of the token account (ata or not)'
         ),
       ],
@@ -54,31 +54,31 @@ kinobi.update(
 );
 
 // Unwrap types and structs.
-kinobi.update(k.unwrapDefinedTypesVisitor(['AssetData']));
-kinobi.update(k.unwrapTypeDefinedLinksVisitor(['metadata.data']));
-kinobi.update(
-  k.flattenStructVisitor({
+codama.update(c.unwrapDefinedTypesVisitor(['AssetData']));
+codama.update(c.unwrapTypeDefinedLinksVisitor(['metadata.data']));
+codama.update(
+  c.flattenStructVisitor({
     Metadata: ['data'],
     'CreateArgs.V1': ['assetData'],
   })
 );
 
 // Create versioned instructions.
-kinobi.update(
-  k.createSubInstructionsFromEnumArgsVisitor({
+codama.update(
+  c.createSubInstructionsFromEnumArgsVisitor({
     create: 'createArgs',
     mint: 'mintArgs',
   })
 );
 
-kinobi.update(
-  k.updateInstructionsVisitor({
+codama.update(
+  c.updateInstructionsVisitor({
     createV1: {
       accounts: {
         mint: { isSigner: 'either' },
         updateAuthority: { isSigner: 'either' },
         masterEdition: {
-          defaultValue: k.pdaValueNode('masterEdition'),
+          defaultValue: c.pdaValueNode('masterEdition'),
         },
       },
     },
@@ -86,8 +86,7 @@ kinobi.update(
 );
 
 // Render JavaScript.
-const jsClient = path.join(__dirname, '..', 'clients', 'js');
-kinobi.accept(
+codama.accept(
   renderJavaScriptVisitor(path.join(packageDir, 'src', 'generated'), {
     prettier: require(path.join(packageDir, '.prettierrc.json')),
   })

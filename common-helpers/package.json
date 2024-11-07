@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/common-helpers",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Common helper functions for Tensor SDKs",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -37,7 +37,7 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana/web3.js": "2.0.0-preview.3",
+    "@solana/web3.js": "2.0.0-rc.4",
     "@types/bn.js": "^5.1.5",
     "bn.js": "^5.2.1",
     "js-sha3": "^0.9.3"
@@ -60,7 +60,8 @@
     "tsup": "^8.0.2",
     "typedoc": "^0.25.12",
     "typedoc-plugin-missing-exports": "^2.2.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "ws": "^8.18.0"
   },
   "packageManager": "pnpm@9.1.0"
 }

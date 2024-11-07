@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/mpl-token-metadata",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Toolkit for the Metaplex Token Metadata program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -42,29 +42,27 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@tensor-foundation/test-helpers": "workspace:*",
-    "@solana/web3.js": "2.0.0-preview.3",
-    "@solana-program/token": "^0.2.1"
+    "@solana/web3.js": "2.0.0-rc.4",
+    "@solana-program/token": "^0.4.0"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
+    "@codama/nodes-from-anchor": "1.0.0",
+    "@codama/renderers-js": "1.0.0",
     "@iarna/toml": "^2.2.5",
-    "@kinobi-so/nodes-from-anchor": "0.20.9",
-    "@kinobi-so/renderers-js": "0.21.3",
     "@metaplex-foundation/shank-js": "^0.1.7",
     "@solana/eslint-config-solana": "^3.0.0",
-    "@solana/web3.js": "2.0.0-preview.3",
-    "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@solana/webcrypto-ed25519-polyfill": "2.0.0-rc.4",
     "ava": "^6.1.2",
     "eslint": "^8.57.0",
-    "kinobi": "0.21.0",
+    "codama": "1.0.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tsup": "^8.0.2",
     "typedoc": "^0.25.12",
     "typedoc-plugin-missing-exports": "^2.2.0",
     "typescript": "^5.4.2",
+    "ws": "^8.18.0",
     "zx": "^7.2.3"
   },
   "ava": {
