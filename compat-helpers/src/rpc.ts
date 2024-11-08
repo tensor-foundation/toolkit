@@ -89,6 +89,10 @@ function createSolanaJsonRpcIntegerOverflowError(
 const DEFAULT_RPC_CONFIG: Partial<Parameters<typeof createSolanaRpcApi>[0]> = {
   defaultCommitment: 'confirmed',
   onIntegerOverflow(request, keyPath, value) {
-    throw createSolanaJsonRpcIntegerOverflowError(request.methodName, keyPath, value);
+    throw createSolanaJsonRpcIntegerOverflowError(
+      request.methodName,
+      keyPath,
+      value
+    );
   },
 };

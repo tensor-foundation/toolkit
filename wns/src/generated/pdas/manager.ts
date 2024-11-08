@@ -7,11 +7,11 @@
  */
 
 import {
-    Address,
-    ProgramDerivedAddress,
-    fixEncoderSize,
-    getBytesEncoder,
-    getProgramDerivedAddress,
+  Address,
+  ProgramDerivedAddress,
+  fixEncoderSize,
+  getBytesEncoder,
+  getProgramDerivedAddress,
 } from '@solana/web3.js';
 
 export async function findManagerPda(

@@ -156,7 +156,7 @@ export function getSetTokenStandardInstruction<
       getAccountMeta(accounts.updateAuthority),
       getAccountMeta(accounts.mint),
       getAccountMeta(accounts.edition),
-    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getSetTokenStandardInstructionDataEncoder().encode({}),
   } as SetTokenStandardInstruction<

@@ -1,6 +1,12 @@
 import { fromLegacyKeypair } from '@solana/compat';
 import { Keypair, PublicKey } from '@solana/web3.js';
-import { createSignerFromKeyPair, KeyPairSigner, NoopSigner, address, createNoopSigner } from '@solana/web3.js-next';
+import {
+  createSignerFromKeyPair,
+  KeyPairSigner,
+  NoopSigner,
+  address,
+  createNoopSigner,
+} from '@solana/web3.js-next';
 
 export async function fromLegacyKeypairToKeyPairSigner(
   keypair: Keypair

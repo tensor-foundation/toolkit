@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/compat-helpers",
-  "version": "0.3.0",
+  "version": "1.0.0-beta.1",
   "description": "Helper functions to make old web3.js programs compatible with web3.js-next modules",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -21,8 +21,8 @@
     "generate": "node ./generate.cjs",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --fix --ext js,ts,tsx src",
-    "format": "prettier --check src test",
-    "format:fix": "prettier --write src test"
+    "format": "prettier --check src",
+    "format:fix": "prettier --write src"
   },
   "files": [
     "./dist/src",
@@ -37,12 +37,12 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana/compat": "2.0.0-rc.4",
+    "@solana/compat": "2.0.0",
     "@solana/web3.js": "<2.0.0",
-    "@solana/web3.js-next": "npm:@solana/web3.js@2.0.0-rc.4",
-    "@solana/rpc-spec-types": "2.0.0-rc.4",
-    "@solana/rpc": "2.0.0-rc.4",
-    "@solana/rpc-transformers": "2.0.0-rc.4"
+    "@solana/web3.js-next": "npm:@solana/web3.js@2.0.0",
+    "@solana/rpc-spec-types": "2.0.0",
+    "@solana/rpc": "2.0.0",
+    "@solana/rpc-transformers": "2.0.0"
   },
   "peerDependencies": {
     "jayson": "^4.1.0"

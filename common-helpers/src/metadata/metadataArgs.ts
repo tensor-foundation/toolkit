@@ -93,15 +93,8 @@ export function findMetadataArgs(
 function convertAssetFieldsToMetadataArgs(
   assetFields: DAS.GetAssetResponse
 ): MetadataArgs {
-  const {
-    content,
-    royalty,
-    creators,
-    uses,
-    grouping,
-    supply,
-    mutable,
-  } = assetFields;
+  const { content, royalty, creators, uses, grouping, supply, mutable } =
+    assetFields;
   const coll = grouping
     ? grouping.find((group: DAS.Grouping) => group.group_key === 'collection')
         ?.group_value

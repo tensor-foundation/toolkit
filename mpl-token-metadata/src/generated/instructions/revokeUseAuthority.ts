@@ -233,7 +233,7 @@ export function getRevokeUseAuthorityInstruction<
       getAccountMeta(accounts.tokenProgram),
       getAccountMeta(accounts.systemProgram),
       getAccountMeta(accounts.rent),
-    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getRevokeUseAuthorityInstructionDataEncoder().encode({}),
   } as RevokeUseAuthorityInstruction<

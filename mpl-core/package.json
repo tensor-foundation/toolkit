@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/mpl-core",
-  "version": "0.4.0",
+  "version": "1.0.0-beta.1",
   "description": "Toolkit for the Metaplex Core program",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
@@ -41,7 +41,7 @@
   "author": "Tensor Protocol Foundation <maintainers@tensor.foundation>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@solana/web3.js": "2.0.0-rc.4",
+    "@solana/web3.js": "2.0.0",
     "@tensor-foundation/test-helpers": "workspace:*"
   },
   "devDependencies": {
@@ -51,7 +51,7 @@
     "@iarna/toml": "^2.2.5",
     "@metaplex-foundation/shank-js": "^0.1.7",
     "@solana/eslint-config-solana": "^3.0.0",
-    "@solana/webcrypto-ed25519-polyfill": "2.0.0-rc.4",
+    "@solana/webcrypto-ed25519-polyfill": "2.0.0",
     "ava": "^6.1.2",
     "eslint": "^8.57.0",
     "codama": "1.0.0",
