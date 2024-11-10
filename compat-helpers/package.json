@@ -40,9 +40,9 @@
     "@solana/compat": "2.0.0",
     "@solana/web3.js": "<2.0.0",
     "@solana/web3.js-next": "npm:@solana/web3.js@2.0.0",
-    "@solana/rpc-spec-types": "2.0.0",
-    "@solana/rpc": "2.0.0",
-    "@solana/rpc-transformers": "2.0.0"
+    "@solana/rpc-spec-types": "^2.0.0",
+    "@solana/rpc": "^2.0.0",
+    "@solana/rpc-transformers": "^2.0.0"
   },
   "peerDependencies": {
     "jayson": "^4.1.0"

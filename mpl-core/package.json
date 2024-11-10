@@ -51,7 +51,7 @@
     "@iarna/toml": "^2.2.5",
     "@metaplex-foundation/shank-js": "^0.1.7",
     "@solana/eslint-config-solana": "^3.0.0",
-    "@solana/webcrypto-ed25519-polyfill": "2.0.0",
+    "@solana/webcrypto-ed25519-polyfill": "^2.0.0",
     "ava": "^6.1.2",
     "eslint": "^8.57.0",
     "codama": "1.0.0",
