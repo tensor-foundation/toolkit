@@ -32,6 +32,7 @@ export const verifyCNftCreator = async ({
   merkleTree,
   metadata,
   verifiedCreator,
+  proof,
 }: {
   client: Client;
   index: number;
@@ -40,6 +41,7 @@ export const verifyCNftCreator = async ({
   merkleTree: Address;
   metadata: MetadataArgs;
   verifiedCreator: KeyPairSigner;
+  proof: Address[];
 }) => {
   const root = new Uint8Array(
     getAddressEncoder().encode(
@@ -67,6 +69,7 @@ export const verifyCNftCreator = async ({
     index,
     message: metadata,
     nonce: index,
+    proof,
   });
 
   const { value: latestBlockhash } = await client.rpc
@@ -91,6 +94,7 @@ export const verifyCNft = async ({
   delegate,
   merkleTree,
   metadata,
+  proof,
 }: {
   client: Client;
   index: number;
@@ -99,6 +103,7 @@ export const verifyCNft = async ({
   delegate?: Address;
   merkleTree: Address;
   metadata: MetadataArgs;
+  proof: Address[];
 }) => {
   const root = new Uint8Array(
     getAddressEncoder().encode(
@@ -117,6 +122,7 @@ export const verifyCNft = async ({
     root,
     leaf: new Uint8Array(leaf),
     index,
+    proof,
   });
   const cuLimitIx = getSetComputeUnitLimitInstruction({
     units: 400_000,

@@ -7,6 +7,7 @@
  */
 
 import {
+  AccountRole,
   combineCodec,
   fixDecoderSize,
   fixEncoderSize,
@@ -160,6 +161,8 @@ export function getVerifyCreatorInstructionDataCodec(): Codec<
   );
 }
 
+export type VerifyCreatorInstructionExtraArgs = { proof: Array<Address> };
+
 export type VerifyCreatorInput<
   TAccountTreeAuthority extends string = string,
   TAccountLeafOwner extends string = string,
@@ -186,6 +189,7 @@ export type VerifyCreatorInput<
   nonce: VerifyCreatorInstructionDataArgs['nonce'];
   index: VerifyCreatorInstructionDataArgs['index'];
   message: VerifyCreatorInstructionDataArgs['message'];
+  proof: VerifyCreatorInstructionExtraArgs['proof'];
 };
 
 export function getVerifyCreatorInstruction<
@@ -256,6 +260,12 @@ export function getVerifyCreatorInstruction<
       '11111111111111111111111111111111' as Address<'11111111111111111111111111111111'>;
   }
 
+  // Remaining accounts.
+  const remainingAccounts: IAccountMeta[] = args.proof.map((address) => ({
+    address,
+    role: AccountRole.READONLY,
+  }));
+
   const getAccountMeta = getAccountMetaFactory(programAddress, 'programId');
   const instruction = {
     accounts: [
@@ -268,6 +278,7 @@ export function getVerifyCreatorInstruction<
       getAccountMeta(accounts.logWrapper),
       getAccountMeta(accounts.compressionProgram),
       getAccountMeta(accounts.systemProgram),
+      ...remainingAccounts,
     ],
     programAddress,
     data: getVerifyCreatorInstructionDataEncoder().encode(

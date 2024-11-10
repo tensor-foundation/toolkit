@@ -7,6 +7,7 @@
  */
 
 import {
+  AccountRole,
   combineCodec,
   fixDecoderSize,
   fixEncoderSize,
@@ -98,11 +99,14 @@ export function getVerifyLeafInstructionDataCodec(): Codec<
   );
 }
 
+export type VerifyLeafInstructionExtraArgs = { proof: Array<Address> };
+
 export type VerifyLeafInput<TAccountMerkleTree extends string = string> = {
   merkleTree: Address<TAccountMerkleTree>;
   root: VerifyLeafInstructionDataArgs['root'];
   leaf: VerifyLeafInstructionDataArgs['leaf'];
   index: VerifyLeafInstructionDataArgs['index'];
+  proof: VerifyLeafInstructionExtraArgs['proof'];
 };
 
 export function getVerifyLeafInstruction<
@@ -129,9 +133,15 @@ export function getVerifyLeafInstruction<
   // Original args.
   const args = { ...input };
 
+  // Remaining accounts.
+  const remainingAccounts: IAccountMeta[] = args.proof.map((address) => ({
+    address,
+    role: AccountRole.READONLY,
+  }));
+
   const getAccountMeta = getAccountMetaFactory(programAddress, 'programId');
   const instruction = {
-    accounts: [getAccountMeta(accounts.merkleTree)],
+    accounts: [getAccountMeta(accounts.merkleTree), ...remainingAccounts],
     programAddress,
     data: getVerifyLeafInstructionDataEncoder().encode(
       args as VerifyLeafInstructionDataArgs
