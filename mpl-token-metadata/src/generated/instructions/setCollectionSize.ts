@@ -186,7 +186,7 @@ export function getSetCollectionSizeInstruction<
       getAccountMeta(accounts.collectionAuthority),
       getAccountMeta(accounts.collectionMint),
       getAccountMeta(accounts.collectionAuthorityRecord),
-    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getSetCollectionSizeInstructionDataEncoder().encode(
       args as SetCollectionSizeInstructionDataArgs

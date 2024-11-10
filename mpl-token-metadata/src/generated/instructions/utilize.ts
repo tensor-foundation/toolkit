@@ -288,7 +288,7 @@ export function getUtilizeInstruction<
       getAccountMeta(accounts.rent),
       getAccountMeta(accounts.useAuthorityRecord),
       getAccountMeta(accounts.burner),
-    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getUtilizeInstructionDataEncoder().encode(
       args as UtilizeInstructionDataArgs

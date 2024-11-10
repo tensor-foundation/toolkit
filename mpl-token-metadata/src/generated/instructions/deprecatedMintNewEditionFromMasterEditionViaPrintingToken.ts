@@ -336,7 +336,7 @@ export function getDeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInst
       getAccountMeta(accounts.systemProgram),
       getAccountMeta(accounts.rent),
       getAccountMeta(accounts.reservationList),
-    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getDeprecatedMintNewEditionFromMasterEditionViaPrintingTokenInstructionDataEncoder().encode(
       {}

@@ -209,7 +209,7 @@ export function getBurnNftInstruction<
       getAccountMeta(accounts.masterEditionAccount),
       getAccountMeta(accounts.splTokenProgram),
       getAccountMeta(accounts.collectionMetadata),
-    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getBurnNftInstructionDataEncoder().encode({}),
   } as BurnNftInstruction<

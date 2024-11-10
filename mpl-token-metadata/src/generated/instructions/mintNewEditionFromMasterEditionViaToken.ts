@@ -334,7 +334,7 @@ export function getMintNewEditionFromMasterEditionViaTokenInstruction<
       getAccountMeta(accounts.tokenProgram),
       getAccountMeta(accounts.systemProgram),
       getAccountMeta(accounts.rent),
-    ].filter(<T>(x: T | undefined): x is T => x !== undefined),
+    ].filter(<T,>(x: T | undefined): x is T => x !== undefined),
     programAddress,
     data: getMintNewEditionFromMasterEditionViaTokenInstructionDataEncoder().encode(
       args as MintNewEditionFromMasterEditionViaTokenInstructionDataArgs
