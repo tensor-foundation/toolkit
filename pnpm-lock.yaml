@@ -191,8 +191,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-jest@28.9.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-react-hooks@5.0.0(eslint@8.57.1))(eslint-plugin-simple-import-sort@12.1.1(eslint@8.57.1))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.3.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.6.3)
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3
       ava:
         specifier: ^6.1.2
         version: 6.1.3(@ava/typescript@4.1.0)
@@ -255,8 +255,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-jest@28.9.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-react-hooks@5.0.0(eslint@8.57.1))(eslint-plugin-simple-import-sort@12.1.1(eslint@8.57.1))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.3.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.6.3)
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3
       ava:
         specifier: ^6.1.2
         version: 6.1.3(@ava/typescript@4.1.0)
@@ -322,8 +322,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-jest@28.9.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-react-hooks@5.0.0(eslint@8.57.1))(eslint-plugin-simple-import-sort@12.1.1(eslint@8.57.1))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.3.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.6.3)
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3
       ava:
         specifier: ^6.1.2
         version: 6.1.3(@ava/typescript@4.1.0)
@@ -389,14 +389,14 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-jest@28.9.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-react-hooks@5.0.0(eslint@8.57.1))(eslint-plugin-simple-import-sort@12.1.1(eslint@8.57.1))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.3.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.6.3)
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3
       '@tensor-foundation/test-helpers':
         specifier: workspace:*
         version: link:../test-helpers
       ava:
-        specifier: ^6.1.2
-        version: 6.1.3(@ava/typescript@4.1.0)
+        specifier: 6.1.2
+        version: 6.1.2(@ava/typescript@4.1.0)
       codama:
         specifier: 1.0.0
         version: 1.0.0
@@ -508,8 +508,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-jest@28.9.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-react-hooks@5.0.0(eslint@8.57.1))(eslint-plugin-simple-import-sort@12.1.1(eslint@8.57.1))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.3.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.6.3)
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3
       ava:
         specifier: ^6.1.2
         version: 6.1.3(@ava/typescript@4.1.0)
@@ -572,8 +572,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-jest@28.9.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-react-hooks@5.0.0(eslint@8.57.1))(eslint-plugin-simple-import-sort@12.1.1(eslint@8.57.1))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.3.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.6.3)
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3
       ava:
         specifier: ^6.1.2
         version: 6.1.3(@ava/typescript@4.1.0)
@@ -636,8 +636,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-jest@28.9.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-react-hooks@5.0.0(eslint@8.57.1))(eslint-plugin-simple-import-sort@12.1.1(eslint@8.57.1))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.3.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.6.3)
+        specifier: 2.0.0-preview.3
+        version: 2.0.0-preview.3
       ava:
         specifier: ^6.1.2
         version: 6.1.3(@ava/typescript@4.1.0)
@@ -1677,11 +1677,8 @@ packages:
     peerDependencies:
       typescript: '>=5'
 
-  '@solana/webcrypto-ed25519-polyfill@2.0.0':
-    resolution: {integrity: sha512-NGoAmBe6/OOSTtDqq44nzad2Qx/lv5YdpHbkU5jykFivc7t2o9Ig6E+PcKjGuM3eTIeo11xoAN8ePA6DefyL1Q==}
-    engines: {node: '>=20.18.0'}
-    peerDependencies:
-      typescript: '>=5'
+  '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.3':
+    resolution: {integrity: sha512-MaV4swf8QJr+H7BVr9hJiZxn/nWedvCMSJB53GtHse5/EC+STdBMzfELICKXiQtycWC5V4vC9LKTOHIjx2zXhg==}
 
   '@supercharge/promise-pool@3.2.0':
     resolution: {integrity: sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==}
@@ -2110,6 +2107,16 @@ packages:
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+
+  ava@6.1.2:
+    resolution: {integrity: sha512-WcpxJ8yZ7mk9ABTinD0IAjcemovSeVGjuuwZx0JS9johREWFeLTl8UP6wd7l6nmnrWqkKZdwaD71a/ocH4qPKw==}
+    engines: {node: ^18.18 || ^20.8 || ^21}
+    hasBin: true
+    peerDependencies:
+      '@ava/typescript': '*'
+    peerDependenciesMeta:
+      '@ava/typescript':
+        optional: true
 
   ava@6.1.3:
     resolution: {integrity: sha512-tkKbpF1pIiC+q09wNU9OfyTDYZa8yuWvU2up3+lFJ3lr1RmnYh2GBpPwzYUEB0wvTPIUysGjcZLNZr7STDviRA==}
@@ -6017,10 +6024,9 @@ snapshots:
       - fastestsmallesttextencoderdecoder
       - ws
 
-  '@solana/webcrypto-ed25519-polyfill@2.0.0(typescript@5.6.3)':
+  '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.3':
     dependencies:
       '@noble/ed25519': 2.1.0
-      typescript: 5.6.3
 
   '@supercharge/promise-pool@3.2.0': {}
 
@@ -6579,6 +6585,54 @@ snapshots:
   async-sema@3.1.1: {}
 
   asynckit@0.4.0: {}
+
+  ava@6.1.2(@ava/typescript@4.1.0):
+    dependencies:
+      '@vercel/nft': 0.26.5
+      acorn: 8.14.0
+      acorn-walk: 8.3.3
+      ansi-styles: 6.2.1
+      arrgv: 1.0.2
+      arrify: 3.0.0
+      callsites: 4.2.0
+      cbor: 9.0.2
+      chalk: 5.3.0
+      chunkd: 2.0.1
+      ci-info: 4.0.0
+      ci-parallel-vars: 1.0.1
+      cli-truncate: 4.0.0
+      code-excerpt: 4.0.0
+      common-path-prefix: 3.0.0
+      concordance: 5.0.4
+      currently-unhandled: 0.4.1
+      debug: 4.3.6
+      emittery: 1.0.3
+      figures: 6.1.0
+      globby: 14.0.2
+      ignore-by-default: 2.1.0
+      indent-string: 5.0.0
+      is-plain-object: 5.0.0
+      is-promise: 4.0.0
+      matcher: 5.0.0
+      memoize: 10.0.0
+      ms: 2.1.3
+      p-map: 7.0.2
+      package-config: 5.0.0
+      picomatch: 3.0.1
+      plur: 5.1.0
+      pretty-ms: 9.1.0
+      resolve-cwd: 3.0.0
+      stack-utils: 2.0.6
+      strip-ansi: 7.1.0
+      supertap: 3.0.1
+      temp-dir: 3.0.0
+      write-file-atomic: 5.0.1
+      yargs: 17.7.2
+    optionalDependencies:
+      '@ava/typescript': 4.1.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
 
   ava@6.1.3(@ava/typescript@4.1.0):
     dependencies:

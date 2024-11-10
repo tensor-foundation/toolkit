@@ -63,7 +63,7 @@
     "@octokit/rest": "^21.0.0",
     "@solana/errors": "^2.0.0",
     "@solana/eslint-config-solana": "^3.0.0",
-    "@solana/webcrypto-ed25519-polyfill": "^2.0.0",
+    "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
     "ava": "^6.1.2",
     "eslint": "^8.57.0",
     "jszip": "^3.10.1",
