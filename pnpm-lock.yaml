@@ -389,8 +389,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-jest@28.9.0(@typescript-eslint/eslint-plugin@8.13.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-react-hooks@5.0.0(eslint@8.57.1))(eslint-plugin-simple-import-sort@12.1.1(eslint@8.57.1))(eslint-plugin-sort-keys-fix@1.1.2)(eslint-plugin-typescript-sort-keys@3.3.0(@typescript-eslint/parser@8.13.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)
       '@solana/webcrypto-ed25519-polyfill':
-        specifier: 2.0.0-preview.3
-        version: 2.0.0-preview.3
+        specifier: 2.0.0-rc.4
+        version: 2.0.0-rc.4(typescript@5.6.3)
       '@tensor-foundation/test-helpers':
         specifier: workspace:*
         version: link:../test-helpers
@@ -1679,6 +1679,12 @@ packages:
 
   '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.3':
     resolution: {integrity: sha512-MaV4swf8QJr+H7BVr9hJiZxn/nWedvCMSJB53GtHse5/EC+STdBMzfELICKXiQtycWC5V4vC9LKTOHIjx2zXhg==}
+
+  '@solana/webcrypto-ed25519-polyfill@2.0.0-rc.4':
+    resolution: {integrity: sha512-1c+GBROM8/yH6kv5/HfGA8Niq4vNYlKuSw82rCaxQqvnw1uHD4NasJK9eN3vzH8sTl0vb5P3t05Ed7iL7DmtaQ==}
+    engines: {node: '>=20.18.0'}
+    peerDependencies:
+      typescript: '>=5'
 
   '@supercharge/promise-pool@3.2.0':
     resolution: {integrity: sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==}
@@ -6027,6 +6033,11 @@ snapshots:
   '@solana/webcrypto-ed25519-polyfill@2.0.0-preview.3':
     dependencies:
       '@noble/ed25519': 2.1.0
+
+  '@solana/webcrypto-ed25519-polyfill@2.0.0-rc.4(typescript@5.6.3)':
+    dependencies:
+      '@noble/ed25519': 2.1.0
+      typescript: 5.6.3
 
   '@supercharge/promise-pool@3.2.0': {}
 

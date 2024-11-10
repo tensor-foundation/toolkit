@@ -51,7 +51,7 @@
     "@iarna/toml": "^2.2.5",
     "@metaplex-foundation/shank-js": "^0.1.7",
     "@solana/eslint-config-solana": "^3.0.0",
-    "@solana/webcrypto-ed25519-polyfill": "2.0.0-preview.3",
+    "@solana/webcrypto-ed25519-polyfill": "2.0.0-rc.4",
     "@solana-program/system": "0.6.1",
     "@tensor-foundation/test-helpers": "workspace:*",
     "ava": "6.1.2",
