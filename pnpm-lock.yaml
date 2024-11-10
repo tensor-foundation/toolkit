@@ -379,6 +379,9 @@ importers:
       '@metaplex-foundation/shank-js':
         specifier: ^0.1.7
         version: 0.1.7
+      '@solana-program/system':
+        specifier: 0.6.1
+        version: 0.6.1(@solana/web3.js@2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana-program/token':
         specifier: ^0.4.0
         version: 0.4.0(@solana/web3.js@2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
@@ -388,6 +391,9 @@ importers:
       '@solana/webcrypto-ed25519-polyfill':
         specifier: 2.0.0
         version: 2.0.0(typescript@5.6.3)
+      '@tensor-foundation/test-helpers':
+        specifier: workspace:*
+        version: link:../test-helpers
       ava:
         specifier: ^6.1.2
         version: 6.1.3(@ava/typescript@4.1.0)
