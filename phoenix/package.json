@@ -63,7 +63,7 @@
     "typedoc": "^0.25.12",
     "typedoc-plugin-missing-exports": "^2.2.0",
     "typescript": "^5.4.2",
-    "ws": "^8.18.0",
+    "ws": "^7.0.0",
     "zx": "^7.2.3"
   },
   "ava": {
