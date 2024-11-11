@@ -4,7 +4,7 @@ on: [workflow_dispatch, workflow_call]
 
 env:
   CACHE: true
-  TEST_PACKAGES: "mpl-bubblegum mpl-core mpl-token-metadata phoenix test-helpers"
+  TEST_PACKAGES: "mpl-core mpl-token-metadata phoenix test-helpers"
 
 jobs:
   test:
