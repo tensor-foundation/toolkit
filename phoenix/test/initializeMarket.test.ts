@@ -132,12 +132,14 @@ test('it can submit a limit order', async (t) => {
     },
   });
 
-  await pipe(
+  const tx = await pipe(
     await createDefaultTransaction(client, payer),
     (tx) => appendTransactionMessageInstruction(mintToIx, tx),
     (tx) => appendTransactionMessageInstruction(limitOrderIx, tx),
     (tx) => signAndSendTransaction(client, tx)
   );
-
-  t.pass();
+  const transaction = await client.rpc
+    .getTransaction(tx, { maxSupportedTransactionVersion: 0 })
+    .send();
+  t.is(transaction!.meta!.err, null);
 });
