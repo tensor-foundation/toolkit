@@ -730,7 +730,7 @@ export async function resolveExtraAccountMeta(
     if (previousMetas.length <= accountIndex) {
       throw new Error('Token transfer hook not found!');
     }
-    programAddress = fromLegacyPublicKey(previousMetas[accountIndex]);
+    programAddress = fromLegacyPublicKey(previousMetas[accountIndex].pubkey);
   }
 
   const addressBytes = new Uint8Array(

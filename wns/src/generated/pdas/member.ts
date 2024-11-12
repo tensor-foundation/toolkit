@@ -7,12 +7,12 @@
  */
 
 import {
-    Address,
-    ProgramDerivedAddress,
-    fixEncoderSize,
-    getAddressEncoder,
-    getBytesEncoder,
-    getProgramDerivedAddress,
+  Address,
+  ProgramDerivedAddress,
+  fixEncoderSize,
+  getAddressEncoder,
+  getBytesEncoder,
+  getProgramDerivedAddress,
 } from '@solana/web3.js';
 
 export type MemberSeeds = {

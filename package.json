@@ -1,6 +1,7 @@
 {
   "scripts": {
     "clean": "pnpm -r clean",
+
     "build:wns": "pnpm --filter @tensor-foundation/wen-new-standard build",
     "build:wns-distribution": "pnpm --filter @tensor-foundation/wen-royalty-distribution build",
     "build:mpl-core": "pnpm --filter @tensor-foundation/mpl-core build",
@@ -11,7 +12,55 @@
     "build:common-helpers": "pnpm --filter @tensor-foundation/common-helpers build",
     "build:compat-helpers": "pnpm --filter @tensor-foundation/compat-helpers build",
     "build:mpl-bubblegum": "pnpm --filter @tensor-foundation/mpl-bubblegum build",
-    "build": "pnpm build:wns && pnpm build:wns-distribution && pnpm build:phoenix && pnpm build:resolvers && pnpm build:test-helpers && pnpm build:common-helpers && pnpm build:compat-helpers && pnpm build:mpl-token-metadata && pnpm build:mpl-core && pnpm build:mpl-bubblegum"
+    "build": "pnpm build:wns && pnpm build:wns-distribution && pnpm build:phoenix && pnpm build:resolvers && pnpm build:test-helpers && pnpm build:common-helpers && pnpm build:compat-helpers && pnpm build:mpl-token-metadata && pnpm build:mpl-core && pnpm build:mpl-bubblegum",
+    
+    "lint:wns": "pnpm --filter @tensor-foundation/wen-new-standard lint",
+    "lint:wns-distribution": "pnpm --filter @tensor-foundation/wen-royalty-distribution lint",
+    "lint:mpl-core": "pnpm --filter @tensor-foundation/mpl-core lint",
+    "lint:phoenix": "pnpm --filter @tensor-foundation/phoenix lint",
+    "lint:resolvers": "pnpm --filter @tensor-foundation/resolvers lint",
+    "lint:mpl-token-metadata": "pnpm --filter @tensor-foundation/mpl-token-metadata lint",
+    "lint:test-helpers": "pnpm --filter @tensor-foundation/test-helpers lint",
+    "lint:common-helpers": "pnpm --filter @tensor-foundation/common-helpers lint",
+    "lint:compat-helpers": "pnpm --filter @tensor-foundation/compat-helpers lint",
+    "lint:mpl-bubblegum": "pnpm --filter @tensor-foundation/mpl-bubblegum lint",
+    "lint": "pnpm lint:wns && pnpm lint:wns-distribution && pnpm lint:phoenix && pnpm lint:resolvers && pnpm lint:test-helpers && pnpm lint:common-helpers && pnpm lint:compat-helpers && pnpm lint:mpl-token-metadata && pnpm lint:mpl-core && pnpm lint:mpl-bubblegum",
+    
+    "lint:fix:wns": "pnpm --filter @tensor-foundation/wen-new-standard lint:fix",
+    "lint:fix:wns-distribution": "pnpm --filter @tensor-foundation/wen-royalty-distribution lint:fix",
+    "lint:fix:mpl-core": "pnpm --filter @tensor-foundation/mpl-core lint:fix",
+    "lint:fix:phoenix": "pnpm --filter @tensor-foundation/phoenix lint:fix",
+    "lint:fix:resolvers": "pnpm --filter @tensor-foundation/resolvers lint:fix",
+    "lint:fix:mpl-token-metadata": "pnpm --filter @tensor-foundation/mpl-token-metadata lint:fix",
+    "lint:fix:test-helpers": "pnpm --filter @tensor-foundation/test-helpers lint:fix",
+    "lint:fix:common-helpers": "pnpm --filter @tensor-foundation/common-helpers lint:fix",
+    "lint:fix:compat-helpers": "pnpm --filter @tensor-foundation/compat-helpers lint:fix",
+    "lint:fix:mpl-bubblegum": "pnpm --filter @tensor-foundation/mpl-bubblegum lint:fix",
+    "lint:fix": "pnpm lint:fix:wns && pnpm lint:fix:wns-distribution && pnpm lint:fix:phoenix && pnpm lint:fix:resolvers && pnpm lint:fix:test-helpers && pnpm lint:fix:common-helpers && pnpm lint:fix:compat-helpers && pnpm lint:fix:mpl-token-metadata && pnpm lint:fix:mpl-core && pnpm lint:fix:mpl-bubblegum",
+
+    "format:wns": "pnpm --filter @tensor-foundation/wen-new-standard format",
+    "format:wns-distribution": "pnpm --filter @tensor-foundation/wen-royalty-distribution format",
+    "format:mpl-core": "pnpm --filter @tensor-foundation/mpl-core format",
+    "format:phoenix": "pnpm --filter @tensor-foundation/phoenix format",
+    "format:resolvers": "pnpm --filter @tensor-foundation/resolvers format",
+    "format:mpl-token-metadata": "pnpm --filter @tensor-foundation/mpl-token-metadata format",
+    "format:test-helpers": "pnpm --filter @tensor-foundation/test-helpers format",
+    "format:common-helpers": "pnpm --filter @tensor-foundation/common-helpers format",
+    "format:compat-helpers": "pnpm --filter @tensor-foundation/compat-helpers format",
+    "format:mpl-bubblegum": "pnpm --filter @tensor-foundation/mpl-bubblegum format",
+    "format": "pnpm format:wns && pnpm format:wns-distribution && pnpm format:phoenix && pnpm format:resolvers && pnpm format:test-helpers && pnpm format:common-helpers && pnpm format:compat-helpers && pnpm format:mpl-token-metadata && pnpm format:mpl-core && pnpm format:mpl-bubblegum",
+
+    "format:fix:wns": "pnpm --filter @tensor-foundation/wen-new-standard format:fix",
+    "format:fix:wns-distribution": "pnpm --filter @tensor-foundation/wen-royalty-distribution format:fix",
+    "format:fix:mpl-core": "pnpm --filter @tensor-foundation/mpl-core format:fix",
+    "format:fix:phoenix": "pnpm --filter @tensor-foundation/phoenix format:fix",
+    "format:fix:resolvers": "pnpm --filter @tensor-foundation/resolvers format:fix",
+    "format:fix:mpl-token-metadata": "pnpm --filter @tensor-foundation/mpl-token-metadata format:fix",
+    "format:fix:test-helpers": "pnpm --filter @tensor-foundation/test-helpers format:fix",
+    "format:fix:common-helpers": "pnpm --filter @tensor-foundation/common-helpers format:fix",
+    "format:fix:compat-helpers": "pnpm --filter @tensor-foundation/compat-helpers format:fix",
+    "format:fix:mpl-bubblegum": "pnpm --filter @tensor-foundation/mpl-bubblegum format:fix",
+    "format:fix": "pnpm format:fix:wns && pnpm format:fix:wns-distribution && pnpm format:fix:phoenix && pnpm format:fix:resolvers && pnpm format:fix:test-helpers && pnpm format:fix:common-helpers && pnpm format:fix:compat-helpers && pnpm format:fix:mpl-token-metadata && pnpm format:fix:mpl-core && pnpm format:fix:mpl-bubblegum"
   },
   "packageManager": "pnpm@9.1.0"
 }

@@ -94,9 +94,10 @@ export async function setupSingleVerifiedCNFT({
     editionNonce: some(0),
     tokenStandard: some(0),
     uses: none(),
-    creators: [creator],
+    creators: [{ ...creator, verified: false }],
     tokenProgramVersion: TokenProgramVersion.Original,
   };
+
   await mintCNft({
     client,
     merkleTree,
@@ -113,6 +114,9 @@ export async function setupSingleVerifiedCNFT({
     owner: cNftOwner,
   });
 
+  let memTree = sparseMerkleTreeFromLeaves([leaf], treeDepthSize.maxDepth);
+  let proof = memTree.getProof(index, false, treeDepthSize.maxDepth, false);
+
   await verifyCNftCreator({
     client,
     index: index,
@@ -121,26 +125,49 @@ export async function setupSingleVerifiedCNFT({
     owner: cNftOwner,
     payer: payer,
     verifiedCreator: creatorKeypair,
+    proof: proof.proof.map((proof) => {
+      return getAddressDecoder().decode(new Uint8Array(proof));
+    }),
   });
+
+  const { leaf: leafWithVerifiedCreator } = await makeLeaf({
+    index: index,
+    merkleTree,
+    metadata: {
+      ...cnftMetadataArgs,
+      creators: [{ ...creator, verified: true }],
+    },
+    owner: cNftOwner,
+  });
+
+  // Recalculate proof for leaf with verified creator
+  memTree = sparseMerkleTreeFromLeaves(
+    [leafWithVerifiedCreator],
+    treeDepthSize.maxDepth
+  );
+  proof = memTree.getProof(index, false, treeDepthSize.maxDepth, false);
 
   await verifyCNft({
     client,
     index: index,
     merkleTree,
-    metadata: cnftMetadataArgs,
+    metadata: {
+      ...cnftMetadataArgs,
+      creators: [{ ...creator, verified: true }],
+    },
     owner: cNftOwner,
     payer: payer,
+    proof: proof.proof.map((proof) => {
+      return getAddressDecoder().decode(new Uint8Array(proof));
+    }),
   });
-
-  const memTree = sparseMerkleTreeFromLeaves([leaf], treeDepthSize.maxDepth);
-  const proof = memTree.getProof(index, false, treeDepthSize.maxDepth, false);
 
   return {
     collectionMint,
     merkleTree,
     memTree,
     root: memTree.root,
-    meta: cnftMetadataArgs,
+    meta: { ...cnftMetadataArgs, creators: [{ ...creator, verified: true }] },
     leaf,
     assetId,
     proof: proof.proof.map((proof) => {

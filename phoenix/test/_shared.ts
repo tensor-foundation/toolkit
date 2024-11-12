@@ -67,6 +67,7 @@ export const createDefaultMarket = async (
     payer,
     mintAuthority: mintAuthority.address,
     decimals: 9,
+    freezeAuthority: mintAuthority.address,
   });
   // Simulate USDC mint.
   const quoteMint = await createMint({
@@ -74,6 +75,7 @@ export const createDefaultMarket = async (
     payer,
     mintAuthority: mintAuthority.address,
     decimals: 6,
+    freezeAuthority: mintAuthority.address,
   });
 
   const [baseVault] = await findMintVaultPda({
