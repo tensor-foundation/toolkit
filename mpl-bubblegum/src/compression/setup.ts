@@ -89,12 +89,12 @@ export async function setupSingleVerifiedCNFT({
     ...metadata,
     collection: some({
       key: collectionMint,
-      verified: false,
+      verified: true,
     } as Collection),
     editionNonce: some(0),
     tokenStandard: some(0),
     uses: none(),
-    creators: [{...creator, verified: false}],
+    creators: [{ ...creator, verified: false }],
     tokenProgramVersion: TokenProgramVersion.Original,
   };
 
@@ -130,11 +130,31 @@ export async function setupSingleVerifiedCNFT({
     }),
   });
 
+  const { leaf: leafWithVerifiedCreator } = await makeLeaf({
+    index: index,
+    merkleTree,
+    metadata: {
+      ...cnftMetadataArgs,
+      creators: [{ ...creator, verified: true }],
+    },
+    owner: cNftOwner,
+  });
+
+  // Recalculate proof for leaf with verified creator
+  memTree = sparseMerkleTreeFromLeaves(
+    [leafWithVerifiedCreator],
+    treeDepthSize.maxDepth
+  );
+  proof = memTree.getProof(index, false, treeDepthSize.maxDepth, false);
+
   await verifyCNft({
     client,
     index: index,
     merkleTree,
-    metadata: { ...cnftMetadataArgs, creators: [{...creator, verified: true}] },
+    metadata: {
+      ...cnftMetadataArgs,
+      creators: [{ ...creator, verified: true }],
+    },
     owner: cNftOwner,
     payer: payer,
     proof: proof.proof.map((proof) => {
@@ -142,23 +162,12 @@ export async function setupSingleVerifiedCNFT({
     }),
   });
 
-  const { leaf: leafWithVerifiedCreator } = await makeLeaf({
-    index: index,
-    merkleTree,
-    metadata: { ...cnftMetadataArgs, creators: [{...creator, verified: true}] },
-    owner: cNftOwner,
-  });
-
-  // Recalculate proof for leaf with verified creator
-  memTree = sparseMerkleTreeFromLeaves([leafWithVerifiedCreator], treeDepthSize.maxDepth);
-  proof = memTree.getProof(index, false, treeDepthSize.maxDepth, false);
-
   return {
     collectionMint,
     merkleTree,
     memTree,
     root: memTree.root,
-    meta: cnftMetadataArgs,
+    meta: { ...cnftMetadataArgs, creators: [{ ...creator, verified: true }] },
     leaf,
     assetId,
     proof: proof.proof.map((proof) => {
