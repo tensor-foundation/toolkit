@@ -238,6 +238,35 @@ export function getTokenOwner(data: Base64EncodedDataResponse): Address {
   return address(base58string);
 }
 
+export interface MintToArgs {
+  client: Client;
+  payer: KeyPairSigner;
+  mint: Address;
+  token: Address;
+  mintAuthority: KeyPairSigner;
+  amount: bigint;
+  tokenProgram?: Address;
+}
+
+export async function mintTo(args: MintToArgs) {
+  const { client, payer, mint, token, mintAuthority, amount, tokenProgram } =
+    args;
+
+  const mintToIx = getMintToInstruction({
+    mint,
+    token,
+    mintAuthority,
+    amount,
+    tokenProgram,
+  });
+
+  await pipe(
+    await createDefaultTransaction(client, payer),
+    (tx) => appendTransactionMessageInstruction(mintToIx, tx),
+    (tx) => signAndSendTransaction(client, tx)
+  );
+}
+
 // Asserts that a token-based NFT is owned by a specific address by deriving
 // the ATA for the owner and checking the amount and owner of the token.
 export async function assertTokenNftOwnedBy(params: TokenNftOwnedByParams) {
