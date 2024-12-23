@@ -1,6 +1,6 @@
 {
   "name": "@tensor-foundation/compat-helpers",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Helper functions to make old web3.js programs compatible with web3.js-next modules",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
