@@ -48,7 +48,7 @@ enum Key {
   EditionMarkerV2,
 }
 
-type MetadataData = {
+export type MetadataData = {
   name: string;
   symbol: string;
   uri: string;
@@ -56,19 +56,19 @@ type MetadataData = {
   creators: TCreator[] | null;
 };
 
-type ProgrammableConfigRecord = {
+export type ProgrammableConfigRecord = {
   ruleSet: Address | null;
 };
 
-type ProgrammableConfig = ProgrammableConfigRecord & {
+export type ProgrammableConfig = ProgrammableConfigRecord & {
   __kind: 'V1';
 };
 
-type CollectionDetails =
+export type CollectionDetails =
   | { __kind: 'V1'; size: bigint }
   | { __kind: 'V2'; padding: Array<number> };
 
-type Metadata = {
+export type Metadata = {
   key: Key;
   updateAuthority: Address;
   mint: Address;
@@ -103,26 +103,26 @@ export function getMetadataDecoder(): Decoder<Metadata> {
   ]);
 }
 
-function getCollectionDetailsDecoder(): Decoder<CollectionDetails> {
+export function getCollectionDetailsDecoder(): Decoder<CollectionDetails> {
   return getDiscriminatedUnionDecoder([
     ['V1', getStructDecoder([['size', getU64Decoder()]])],
     ['V2', getStructDecoder([['padding', getArrayDecoder(getU8Decoder())]])],
   ]);
 }
 
-function getProgrammableConfigDecoder(): Decoder<ProgrammableConfig> {
+export function getProgrammableConfigDecoder(): Decoder<ProgrammableConfig> {
   return getDiscriminatedUnionDecoder([
     ['V1', getProgrammableConfigRecordDecoder()],
   ]);
 }
 
-function getProgrammableConfigRecordDecoder(): Decoder<ProgrammableConfigRecord> {
+export function getProgrammableConfigRecordDecoder(): Decoder<ProgrammableConfigRecord> {
   return getStructDecoder([
     ['ruleSet', getNullableDecoder(getAddressDecoder())],
   ]);
 }
 
-function getMetadataDataDecoder(): Decoder<MetadataData> {
+export function getMetadataDataDecoder(): Decoder<MetadataData> {
   return getStructDecoder([
     ['name', addDecoderSizePrefix(getUtf8Decoder(), getU32Decoder())],
     ['symbol', addDecoderSizePrefix(getUtf8Decoder(), getU32Decoder())],
@@ -132,7 +132,7 @@ function getMetadataDataDecoder(): Decoder<MetadataData> {
   ]);
 }
 
-function getTCreatorDecoder(): Decoder<TCreator> {
+export function getTCreatorDecoder(): Decoder<TCreator> {
   return getStructDecoder([
     ['address', getAddressDecoder()],
     ['verified', getBooleanDecoder()],
