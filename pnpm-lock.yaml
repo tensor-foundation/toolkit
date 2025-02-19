@@ -10,6 +10,9 @@ importers:
 
   common-helpers:
     dependencies:
+      '@solana-program/token-2022':
+        specifier: 0.3.4
+        version: 0.3.4(@solana/web3.js@2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       '@solana/web3.js':
         specifier: 2.0.0
         version: 2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
@@ -1299,6 +1302,11 @@ packages:
     resolution: {integrity: sha512-vfBzveKp13gUL4M8p7wIFamPTT0aPJycUat6GcJGJRopfDX/pB8DHIURKiqFw3UGt7PJ6+koM2uWyESAifjZvA==}
     peerDependencies:
       '@solana/web3.js': 2.0.0-rc.4
+
+  '@solana-program/token-2022@0.3.4':
+    resolution: {integrity: sha512-URHA91F9sDibbL6RbuhnKHWGeAONCDcCmHq8tMtpVOhse9/WKp0JOvdLSiGuRkKZqLHo74xF8otmgPVchgVZXQ==}
+    peerDependencies:
+      '@solana/web3.js': ^2.0.0
 
   '@solana-program/token@0.4.0':
     resolution: {integrity: sha512-RNj2ge5bQzXKozI2u2HIbw6zvDsn/S1yHwoPC+SHSESOSzP7FDxlnaOMoAgyw++vXoQjXLsbNcyuKVsqiDgXUw==}
@@ -5415,6 +5423,10 @@ snapshots:
       '@solana/web3.js': 2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
   '@solana-program/system@0.6.1(@solana/web3.js@2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
+    dependencies:
+      '@solana/web3.js': 2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+
+  '@solana-program/token-2022@0.3.4(@solana/web3.js@2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
     dependencies:
       '@solana/web3.js': 2.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
 
