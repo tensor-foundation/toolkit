@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Address, Rpc, SolanaRpcApi } from '@solana/web3.js';
 import { getConcurrentMerkleTreeDecoderFactory } from './codecs/merkleTreeDecoderFactories';
 import { getConcurrentMerkleTreeHeaderDecoder } from './codecs/merkleTreeHeaderDecoder';
