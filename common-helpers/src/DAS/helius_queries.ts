@@ -42,6 +42,9 @@ export async function retrieveAssetFields(
       method: 'getAsset',
       params: {
         id: mint,
+        displayOptions: {
+          showRawData: true,
+        },
       },
     }),
   };
