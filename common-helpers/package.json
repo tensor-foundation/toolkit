@@ -38,6 +38,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@solana/web3.js": "2.0.0",
+    "@solana-program/token-2022": "0.3.4",
     "@types/bn.js": "^5.1.5",
     "bn.js": "^5.2.1",
     "js-sha3": "^0.9.3"
